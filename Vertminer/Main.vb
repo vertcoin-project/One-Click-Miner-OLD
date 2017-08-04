@@ -231,14 +231,19 @@ Public Class Main
             ' using SSDP protocol, it discovers NAT device.
             Dim device = discoverer.DiscoverDeviceAsync()
             ' create a New mapping in the router [external_ip1702 -> host_machine:1602]
-            device.Equals(New Mapping(Protocol.Tcp, 7676, 7676, "For testing"))
+            device.Equals(New Mapping(Protocol.Tcp, mining_port, mining_port, "P2Pool Mining Server"))
+            device.Equals(New Mapping(Protocol.Tcp, p2pool_port, p2pool_port, "P2Pool P2P"))
             ' configure a TCP socket listening on port 1602
-            Dim EndPoint As New IPEndPoint(IPAddress.Any, 7676)
+            Dim EndPoint As New IPEndPoint(IPAddress.Any, mining_port)
             Dim socket As New Socket(EndPoint.AddressFamily, SocketType.Stream, ProtocolType.Tcp)
             socket.SetIPProtectionLevel(IPProtectionLevel.Unrestricted)
             socket.Bind(EndPoint)
             socket.Listen(4)
-
+            Dim EndPoint2 As New IPEndPoint(IPAddress.Any, p2pool_port)
+            Dim socket2 As New Socket(EndPoint2.AddressFamily, SocketType.Stream, ProtocolType.Tcp)
+            socket2.SetIPProtectionLevel(IPProtectionLevel.Unrestricted)
+            socket2.Bind(EndPoint2)
+            socket2.Listen(4)
             'Using Open.Nat
             'Dim discoverer As New Open.Nat.NatDiscoverer()
             'Dim cts As New System.Threading.CancellationTokenSource(10000)
