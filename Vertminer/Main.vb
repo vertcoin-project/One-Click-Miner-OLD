@@ -426,18 +426,18 @@ Public Class Main
                 miner_config_file = SettingsFolder & "\cpu\config.bat"
             End If
             Using archive As ZipArchive = ZipFile.OpenRead(zipPath)
-                If platform = True Then '64-bit
-                    For Each entry As ZipArchiveEntry In archive.Entries
+                'If platform = True Then '64-bit
+                For Each entry As ZipArchiveEntry In archive.Entries
                         If NvidiaMiner = True Then 'Nvidia
-                            If (entry.FullName.Contains("64") And entry.FullName.EndsWith(".exe", StringComparison.OrdinalIgnoreCase)) Or (entry.FullName.Contains("64") And entry.FullName.EndsWith(".dll", StringComparison.OrdinalIgnoreCase)) Then
-                                If entry.FullName.EndsWith(".exe") Then
-                                    extractpath = exe
-                                ElseIf entry.FullName.EndsWith(".dll") Then
-                                    extractpath = dll
-                                End If
-                                entry.ExtractToFile(extractpath, True)
+                        If (entry.FullName.EndsWith(".exe", StringComparison.OrdinalIgnoreCase)) Or entry.FullName.EndsWith(".dll", StringComparison.OrdinalIgnoreCase) Then
+                            If entry.FullName.EndsWith(".exe") Then
+                                extractpath = exe
+                            ElseIf entry.FullName.EndsWith(".dll") Then
+                                extractpath = dll
                             End If
-                        ElseIf AmdMiner = True Then 'AMD
+                            entry.ExtractToFile(extractpath, True)
+                        End If
+                    ElseIf AmdMiner = True Then 'AMD
                             If (entry.FullName.Contains("kernel") And entry.FullName.EndsWith(".cl", StringComparison.OrdinalIgnoreCase)) Then
                                 If System.IO.Directory.Exists(AmdFolder & "\kernel\") = False Then
                                     System.IO.Directory.CreateDirectory(AmdFolder & "\kernel\")
@@ -459,31 +459,31 @@ Public Class Main
                             End If
                         End If
                     Next
-                Else '32-bit
-                    For Each entry As ZipArchiveEntry In archive.Entries
-                        If NvidiaMiner = True Then 'Nvidia
-                            If (entry.FullName.Contains("32") And entry.FullName.EndsWith(".exe", StringComparison.OrdinalIgnoreCase)) Or (entry.FullName.Contains("32") And entry.FullName.EndsWith(".dll", StringComparison.OrdinalIgnoreCase)) Then
-                                If entry.FullName.EndsWith(".exe") Then
-                                    extractpath = exe
-                                ElseIf entry.FullName.EndsWith(".dll") Then
-                                    extractpath = dll
-                                End If
-                                entry.ExtractToFile(extractpath, True)
-                            End If
-                        Else 'AMD
-                            If (entry.FullName.Contains("kernel") And entry.FullName.EndsWith(".cl", StringComparison.OrdinalIgnoreCase)) Then
-                                If System.IO.Directory.Exists(AmdFolder & "\kernel\") = False Then
-                                    System.IO.Directory.CreateDirectory(AmdFolder & "\kernel\")
-                                End If
-                                entry.ExtractToFile(AmdFolder & "\kernel\" & entry.Name, True)
-                            Else
-                                If Not entry.Name = "" Then
-                                    entry.ExtractToFile(AmdFolder & "\" & entry.Name, True)
-                                End If
-                            End If
-                        End If
-                    Next
-                End If
+                'Else '32-bit
+                '    For Each entry As ZipArchiveEntry In archive.Entries
+                '        If NvidiaMiner = True Then 'Nvidia
+                '            If (entry.FullName.Contains("32") And entry.FullName.EndsWith(".exe", StringComparison.OrdinalIgnoreCase)) Or (entry.FullName.Contains("32") And entry.FullName.EndsWith(".dll", StringComparison.OrdinalIgnoreCase)) Then
+                '                If entry.FullName.EndsWith(".exe") Then
+                '                    extractpath = exe
+                '                ElseIf entry.FullName.EndsWith(".dll") Then
+                '                    extractpath = dll
+                '                End If
+                '                entry.ExtractToFile(extractpath, True)
+                '            End If
+                '        Else 'AMD
+                '            If (entry.FullName.Contains("kernel") And entry.FullName.EndsWith(".cl", StringComparison.OrdinalIgnoreCase)) Then
+                '                If System.IO.Directory.Exists(AmdFolder & "\kernel\") = False Then
+                '                    System.IO.Directory.CreateDirectory(AmdFolder & "\kernel\")
+                '                End If
+                '                entry.ExtractToFile(AmdFolder & "\kernel\" & entry.Name, True)
+                '            Else
+                '                If Not entry.Name = "" Then
+                '                    entry.ExtractToFile(AmdFolder & "\" & entry.Name, True)
+                '                End If
+                '            End If
+                '        End If
+                '       Next
+                'End If
             End Using
             'Create default miner config
             If System.IO.File.Exists(miner_config_file) = False Then
