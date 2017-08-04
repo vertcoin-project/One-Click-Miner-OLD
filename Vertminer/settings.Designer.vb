@@ -106,10 +106,12 @@ Partial Class settings
         Me.CheckBox3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CheckBox3.Location = New System.Drawing.Point(31, 43)
         Me.CheckBox3.Name = "CheckBox3"
-        Me.CheckBox3.Size = New System.Drawing.Size(97, 17)
+        Me.CheckBox3.Size = New System.Drawing.Size(102, 17)
         Me.CheckBox3.TabIndex = 1
-        Me.CheckBox3.Text = "Start Minimized"
-        Me.ToolTip.SetToolTip(Me.CheckBox3, "Toggle to start Vertcoin One-Click Miner minimized to your toolbar.")
+        Me.CheckBox3.Text = "Minimize to Tray"
+        Me.ToolTip.SetToolTip(Me.CheckBox3, "Toggle to start Vertcoin One-Click Miner minimized to your system tray." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "This wil" &
+        "l also automatically minimize the software to your system tray when the 'minimiz" &
+        "e' button is clicked.")
         Me.CheckBox3.UseVisualStyleBackColor = True
         '
         'CheckBox4
