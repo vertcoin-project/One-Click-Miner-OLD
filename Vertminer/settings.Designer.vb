@@ -134,7 +134,7 @@ Partial Class settings
         Me.CheckBox6.Size = New System.Drawing.Size(106, 17)
         Me.CheckBox6.TabIndex = 4
         Me.CheckBox6.Text = "Keep Miner Alive"
-        Me.ToolTip.SetToolTip(Me.CheckBox6, "Toggle to disable Windows Error Reporting.")
+        Me.ToolTip.SetToolTip(Me.CheckBox6, "Toggle to allow the One-Click Miner to 'babysit' your miner script.")
         Me.CheckBox6.UseVisualStyleBackColor = True
         '
         'GroupBox1
@@ -199,7 +199,7 @@ Partial Class settings
         Me.CheckBox5.Size = New System.Drawing.Size(114, 17)
         Me.CheckBox5.TabIndex = 5
         Me.CheckBox5.Text = "Keep P2Pool Alive"
-        Me.ToolTip.SetToolTip(Me.CheckBox5, "Toggle to disable Windows Error Reporting.")
+        Me.ToolTip.SetToolTip(Me.CheckBox5, "Toggle to allow the One-Click Miner to 'babysit' your P2Pool script." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10))
         Me.CheckBox5.UseVisualStyleBackColor = True
         '
         'PictureBox4

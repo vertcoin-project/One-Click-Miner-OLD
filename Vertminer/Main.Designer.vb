@@ -523,7 +523,7 @@ Partial Class Main
         Me.Pool_Address_Text.Size = New System.Drawing.Size(335, 20)
         Me.Pool_Address_Text.TabIndex = 7
         Me.Pool_Address_Text.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.ToolTip.SetToolTip(Me.Pool_Address_Text, "Address of pool that miner will mine to.")
+        Me.ToolTip.SetToolTip(Me.Pool_Address_Text, "Addresses of pools that the miner will point to.")
         '
         'Label19
         '
@@ -775,7 +775,7 @@ Partial Class Main
         Me.MinimumSize = New System.Drawing.Size(541, 305)
         Me.Name = "Main"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Vertcoin One-Click Miner"
+        Me.Text = "Vertcoin One-Click Miner - BETA"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         CType(Me.PictureBox8, System.ComponentModel.ISupportInitialize).EndInit()

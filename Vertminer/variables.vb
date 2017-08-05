@@ -1,4 +1,6 @@
-﻿Module variables
+﻿Imports System.Net
+
+Module variables
 
     'General
     Public Property Miner_Version = Application.ProductVersion
@@ -18,6 +20,8 @@
     Public Property NewLog As String
     Public Property LogFileString As String
     Public Property platform As Boolean = False 'true=64-bit false=32-bit
+    Public Property otherminer As Boolean = False
+    Public Property otherp2pool As Boolean = False
 
     'Update Variables
     Public Property update_needed As Boolean = False
@@ -29,6 +33,8 @@
     Public Property amd_update As Boolean = False
     Public Property nvidia_update As Boolean = False
     Public Property cpu_update As Boolean = False
+    Public Property downloadclient As New WebClient
+    Public Property canceldownloadasync As Boolean = False
 
     'Settings
     Public Property start_minimized As Boolean = False
@@ -44,7 +50,7 @@
     Public Property P2P_Donation As Integer = 1
     Public Property MaxConnections As Integer = 50
     Public Property MiningIdle As Integer = 60
-    Public Property RestartDelay As Integer = 5
+    Public Property RestartDelay As Integer = 1
 
     'P2Pool Variables
     Public Property p2pool_running As Boolean = False
