@@ -223,7 +223,6 @@ Public Class settings
                     objWriter.WriteLine("Worker Password=x")
                     Password = "x"
                     objWriter.WriteLine("Wallet Address=VpBsRnN749jYHE9hT8dZreznHfmFMdE1yG")
-                    Wallet_Address = "VpBsRnN749jYHE9hT8dZreznHfmFMdE1yG"
                     objWriter.WriteLine("P2Pool Fee Address=VpBsRnN749jYHE9hT8dZreznHfmFMdE1yG")
                     objWriter.WriteLine("Pool URL=stratum+tcp://vtc.alwayshashing.com:9171")
                     Pool_Address = "stratum+tcp://vtc.alwayshashing.com:9171"

@@ -102,7 +102,6 @@ Module variables
     Public Property Intensity As Decimal
     Public Property Worker As String = "VpBsRnN749jYHE9hT8dZreznHfmFMdE1yG"
     Public Property Password As String = "x"
-    Public Property Wallet_Address As String = "VpBsRnN749jYHE9hT8dZreznHfmFMdE1yG"
     Public Property Pool_Address As String = "stratum+tcp://vtc.alwayshashing.com:9171"
     Public Property Config_Setting As String = "default"
 

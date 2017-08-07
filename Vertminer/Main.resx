@@ -123,9 +123,6 @@
   <metadata name="ToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>441, 19</value>
   </metadata>
-  <metadata name="ToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>441, 19</value>
-  </metadata>
   <data name="Node_Donation_Text.ToolTip" xml:space="preserve">
     <value>% Donation that is charged to all miner rewards on this node.  This % is sent directly to the Vertcoin Dev Address upon each solved block.
 Please consider that the Vertcoin Development team runs purely on donations, and yours would be greatly appreciated!</value>
@@ -139,17 +136,10 @@ If mining on a public P2Pool node, make sure your worker name = your wallet addr
 If you are using the local p2pool on the OCM, it will automatically use your wallet address.</value>
   </data>
   <data name="PictureBox4.ToolTip" xml:space="preserve">
-    <value>Use this field to add additional commands to your configuration.
+    <value>Use this field to add additional commands to your miner configuration.
 Be certain the syntax of the command is correct, otherwise the miner will refuse to launch correctly.
 Use ↑ and ↓ keys to cycle through entered configuration text.
 Use at your own comfort.</value>
-  </data>
-  <data name="Additional_Configuration_Text.ToolTip" xml:space="preserve">
-    <value>Use this field to add additional commands to your configuration.
-Be certain the syntax of the command is correct, otherwise the miner will refuse to launch correctly.
-Use ↑ and ↓ keys to cycle through entered configuration text.
-Use at your own comfort.
-</value>
   </data>
   <data name="PictureBox3.ToolTip" xml:space="preserve">
     <value>Use the following 3 buttons to launch the respective miner for your hardware.

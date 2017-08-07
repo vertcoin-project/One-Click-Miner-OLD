@@ -56,16 +56,14 @@ Partial Class Main
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Intensity_Text = New System.Windows.Forms.TextBox()
         Me.Password_Text = New System.Windows.Forms.TextBox()
-        Me.Worker_Text = New System.Windows.Forms.TextBox()
         Me.PictureBox3 = New System.Windows.Forms.PictureBox()
         Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.Pool_Address_Text = New System.Windows.Forms.TextBox()
         Me.Label19 = New System.Windows.Forms.Label()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.Button2 = New System.Windows.Forms.Button()
-        Me.Wallet_Address_Text = New System.Windows.Forms.TextBox()
+        Me.Worker_Address_Text = New System.Windows.Forms.TextBox()
         Me.Label12 = New System.Windows.Forms.Label()
-        Me.Label13 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
@@ -311,16 +309,14 @@ Partial Class Main
         Me.GroupBox2.Controls.Add(Me.Label6)
         Me.GroupBox2.Controls.Add(Me.Intensity_Text)
         Me.GroupBox2.Controls.Add(Me.Password_Text)
-        Me.GroupBox2.Controls.Add(Me.Worker_Text)
         Me.GroupBox2.Controls.Add(Me.PictureBox3)
         Me.GroupBox2.Controls.Add(Me.CheckBox1)
         Me.GroupBox2.Controls.Add(Me.Pool_Address_Text)
         Me.GroupBox2.Controls.Add(Me.Label19)
         Me.GroupBox2.Controls.Add(Me.Label14)
         Me.GroupBox2.Controls.Add(Me.Button2)
-        Me.GroupBox2.Controls.Add(Me.Wallet_Address_Text)
+        Me.GroupBox2.Controls.Add(Me.Worker_Address_Text)
         Me.GroupBox2.Controls.Add(Me.Label12)
-        Me.GroupBox2.Controls.Add(Me.Label13)
         Me.GroupBox2.Controls.Add(Me.Label2)
         Me.GroupBox2.Controls.Add(Me.PictureBox2)
         Me.GroupBox2.Controls.Add(Me.TextBox2)
@@ -334,7 +330,7 @@ Partial Class Main
         'PictureBox10
         '
         Me.PictureBox10.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.help_small
-        Me.PictureBox10.Location = New System.Drawing.Point(327, 138)
+        Me.PictureBox10.Location = New System.Drawing.Point(327, 101)
         Me.PictureBox10.Name = "PictureBox10"
         Me.PictureBox10.Size = New System.Drawing.Size(15, 15)
         Me.PictureBox10.TabIndex = 40
@@ -365,7 +361,7 @@ Partial Class Main
         'PictureBox4
         '
         Me.PictureBox4.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.help_small
-        Me.PictureBox4.Location = New System.Drawing.Point(232, 180)
+        Me.PictureBox4.Location = New System.Drawing.Point(231, 143)
         Me.PictureBox4.Name = "PictureBox4"
         Me.PictureBox4.Size = New System.Drawing.Size(15, 15)
         Me.PictureBox4.TabIndex = 38
@@ -386,7 +382,7 @@ Partial Class Main
         '
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(114, 180)
+        Me.Label4.Location = New System.Drawing.Point(114, 144)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(118, 13)
         Me.Label4.TabIndex = 37
@@ -424,14 +420,13 @@ Partial Class Main
         '
         Me.Additional_Configuration_Text.BackColor = System.Drawing.SystemColors.Window
         Me.Additional_Configuration_Text.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Additional_Configuration_Text.Location = New System.Drawing.Point(6, 196)
+        Me.Additional_Configuration_Text.Location = New System.Drawing.Point(6, 160)
         Me.Additional_Configuration_Text.Multiline = True
         Me.Additional_Configuration_Text.Name = "Additional_Configuration_Text"
         Me.Additional_Configuration_Text.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.Additional_Configuration_Text.Size = New System.Drawing.Size(335, 20)
+        Me.Additional_Configuration_Text.Size = New System.Drawing.Size(335, 55)
         Me.Additional_Configuration_Text.TabIndex = 12
-        Me.Additional_Configuration_Text.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.ToolTip.SetToolTip(Me.Additional_Configuration_Text, resources.GetString("Additional_Configuration_Text.ToolTip"))
+        Me.ToolTip.SetToolTip(Me.Additional_Configuration_Text, "Use this field to add additional commands to your miner configuration.")
         '
         'Button5
         '
@@ -459,7 +454,7 @@ Partial Class Main
         '
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(282, 138)
+        Me.Label6.Location = New System.Drawing.Point(282, 101)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(46, 13)
         Me.Label6.TabIndex = 31
@@ -468,7 +463,7 @@ Partial Class Main
         'Intensity_Text
         '
         Me.Intensity_Text.BackColor = System.Drawing.SystemColors.Window
-        Me.Intensity_Text.Location = New System.Drawing.Point(271, 154)
+        Me.Intensity_Text.Location = New System.Drawing.Point(271, 117)
         Me.Intensity_Text.MaxLength = 5
         Me.Intensity_Text.Name = "Intensity_Text"
         Me.Intensity_Text.Size = New System.Drawing.Size(69, 20)
@@ -481,22 +476,12 @@ Partial Class Main
         'Password_Text
         '
         Me.Password_Text.BackColor = System.Drawing.SystemColors.Window
-        Me.Password_Text.Location = New System.Drawing.Point(183, 154)
+        Me.Password_Text.Location = New System.Drawing.Point(183, 117)
         Me.Password_Text.Name = "Password_Text"
         Me.Password_Text.Size = New System.Drawing.Size(82, 20)
         Me.Password_Text.TabIndex = 10
         Me.Password_Text.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.ToolTip.SetToolTip(Me.Password_Text, "Miner password.  Most often used for centralized pools.")
-        '
-        'Worker_Text
-        '
-        Me.Worker_Text.BackColor = System.Drawing.SystemColors.Window
-        Me.Worker_Text.Location = New System.Drawing.Point(6, 154)
-        Me.Worker_Text.Name = "Worker_Text"
-        Me.Worker_Text.Size = New System.Drawing.Size(171, 20)
-        Me.Worker_Text.TabIndex = 9
-        Me.Worker_Text.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.ToolTip.SetToolTip(Me.Worker_Text, "Name that is given to pool to identify miner by.")
         '
         'PictureBox3
         '
@@ -546,11 +531,11 @@ Partial Class Main
         '
         Me.Label14.AutoSize = True
         Me.Label14.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label14.Location = New System.Drawing.Point(133, 99)
+        Me.Label14.Location = New System.Drawing.Point(32, 101)
         Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(78, 13)
+        Me.Label14.Size = New System.Drawing.Size(118, 13)
         Me.Label14.TabIndex = 16
-        Me.Label14.Text = "Wallet Address"
+        Me.Label14.Text = "Worker/Wallet Address"
         '
         'Button2
         '
@@ -563,35 +548,25 @@ Partial Class Main
         Me.ToolTip.SetToolTip(Me.Button2, "Toggles your miner on/off.")
         Me.Button2.UseVisualStyleBackColor = True
         '
-        'Wallet_Address_Text
+        'Worker_Address_Text
         '
-        Me.Wallet_Address_Text.BackColor = System.Drawing.SystemColors.Window
-        Me.Wallet_Address_Text.Location = New System.Drawing.Point(6, 115)
-        Me.Wallet_Address_Text.Name = "Wallet_Address_Text"
-        Me.Wallet_Address_Text.Size = New System.Drawing.Size(335, 20)
-        Me.Wallet_Address_Text.TabIndex = 8
-        Me.Wallet_Address_Text.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.ToolTip.SetToolTip(Me.Wallet_Address_Text, "Wallet address that payouts will be received on.")
+        Me.Worker_Address_Text.BackColor = System.Drawing.SystemColors.Window
+        Me.Worker_Address_Text.Location = New System.Drawing.Point(6, 117)
+        Me.Worker_Address_Text.Name = "Worker_Address_Text"
+        Me.Worker_Address_Text.Size = New System.Drawing.Size(171, 20)
+        Me.Worker_Address_Text.TabIndex = 8
+        Me.Worker_Address_Text.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.ToolTip.SetToolTip(Me.Worker_Address_Text, "Wallet address that payouts will be received on.")
         '
         'Label12
         '
         Me.Label12.AutoSize = True
         Me.Label12.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label12.Location = New System.Drawing.Point(198, 138)
+        Me.Label12.Location = New System.Drawing.Point(198, 101)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(53, 13)
         Me.Label12.TabIndex = 14
         Me.Label12.Text = "Password"
-        '
-        'Label13
-        '
-        Me.Label13.AutoSize = True
-        Me.Label13.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label13.Location = New System.Drawing.Point(55, 138)
-        Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(73, 13)
-        Me.Label13.TabIndex = 13
-        Me.Label13.Text = "Worker Name"
         '
         'Label2
         '
@@ -814,10 +789,8 @@ Partial Class Main
     Friend WithEvents PictureBox2 As System.Windows.Forms.PictureBox
     Friend WithEvents TextBox2 As System.Windows.Forms.TextBox
     Friend WithEvents Label14 As System.Windows.Forms.Label
-    Friend WithEvents Wallet_Address_Text As System.Windows.Forms.TextBox
+    Friend WithEvents Worker_Address_Text As System.Windows.Forms.TextBox
     Friend WithEvents Label12 As System.Windows.Forms.Label
-    Friend WithEvents Label13 As System.Windows.Forms.Label
-    Friend WithEvents Worker_Text As System.Windows.Forms.TextBox
     Friend WithEvents Password_Text As System.Windows.Forms.TextBox
     Friend WithEvents Label19 As System.Windows.Forms.Label
     Friend WithEvents CheckBox1 As System.Windows.Forms.CheckBox
