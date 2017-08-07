@@ -1,4 +1,5 @@
 ﻿Imports System.Environment
+Imports System.IO
 
 Public Class settings
 
@@ -170,7 +171,7 @@ Public Class settings
             If RestartDelay <= 0 Then
                 RestartDelay = 1
             End If
-            main.Uptime_Timer.Interval = RestartDelay * 1000
+            Main.Uptime_Timer.Interval = RestartDelay * 1000
         Catch ex As Exception
             MsgBox(ex.Message)
             NewLog = NewLog & Environment.NewLine
@@ -188,7 +189,69 @@ Public Class settings
         If result1 = DialogResult.OK Then
             appdata = GetFolderPath(SpecialFolder.ApplicationData) & "\Vertcoin"
         End If
+        MsgBox("Vertcoin Data Directory set to default.")
 
     End Sub
 
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Do
+            Try
+                If System.IO.File.Exists(SettingsIni) = True Then
+                    Dim objWriter As New System.IO.StreamWriter(SettingsIni)
+                    objWriter.WriteLine(appdata)
+                    objWriter.WriteLine("Start Minimized=false")
+                    objWriter.WriteLine("Hide Windows=false")
+                    objWriter.WriteLine("Start With Windows=false")
+                    objWriter.WriteLine("Autostart P2Pool=false")
+                    objWriter.WriteLine("Autostart Mining=false")
+                    objWriter.WriteLine("Mine When Idle=false")
+                    objWriter.WriteLine("Keep Miner Alive=false")
+                    objWriter.WriteLine("Keep P2Pool Alive=false")
+                    objWriter.WriteLine("Use UPnP=false")
+                    objWriter.WriteLine("P2Pool Network=1")
+                    objWriter.WriteLine("P2Pool Node Fee (%)=0")
+                    objWriter.WriteLine("P2Pool Donation (%)=1")
+                    objWriter.WriteLine("Maximum P2Pool Connections=50")
+                    objWriter.WriteLine("Mining Idle (s)=0")
+                    objWriter.WriteLine("Mining Restart Delay (s)=2")
+                    objWriter.WriteLine("P2Pool Port=9346")
+                    objWriter.WriteLine("Mining Port=9171")
+                    objWriter.WriteLine("Mining Intensity=0")
+                    Intensity = 0
+                    objWriter.WriteLine("Worker Name=VpBsRnN749jYHE9hT8dZreznHfmFMdE1yG")
+                    Worker = "VpBsRnN749jYHE9hT8dZreznHfmFMdE1yG"
+                    objWriter.WriteLine("Worker Password=x")
+                    Password = "x"
+                    objWriter.WriteLine("Wallet Address=VpBsRnN749jYHE9hT8dZreznHfmFMdE1yG")
+                    Wallet_Address = "VpBsRnN749jYHE9hT8dZreznHfmFMdE1yG"
+                    objWriter.WriteLine("P2Pool Fee Address=VpBsRnN749jYHE9hT8dZreznHfmFMdE1yG")
+                    objWriter.WriteLine("Pool URL=stratum+tcp://vtc.alwayshashing.com:9171")
+                    Pool_Address = "stratum+tcp://vtc.alwayshashing.com:9171"
+                    objWriter.WriteLine("One-Click Version=" & Miner_Version)
+                    objWriter.WriteLine("P2Pool Version=" & P2Pool_Version)
+                    objWriter.WriteLine("AMD Miner Version=" & AMD_Version)
+                    objWriter.WriteLine("Nvidia Miner Version=" & Nvidia_Version)
+                    objWriter.WriteLine("CPU Miner Version=" & CPU_Version)
+                    objWriter.WriteLine("Default Miner=")
+                    objWriter.Write("Additional Miner Config=")
+                    additional_config = ""
+                    objWriter.Close()
+                End If
+                Exit Do
+            Catch ex As IOException
+                'Settings.ini is still in use so pause before trying again.
+                System.Threading.Thread.Sleep(100)
+                NewLog = NewLog & Environment.NewLine
+                NewLog = NewLog & ("- " & Date.Parse(Now) & ", " & "Main() SaveSettings: " & ex.Message)
+            Finally
+                NewLog = NewLog & Environment.NewLine
+                NewLog = NewLog & ("- " & Date.Parse(Now) & ", " & "Main() SaveSettings: OK.")
+                MsgBox("Settings set to defaults.")
+                Invoke(New MethodInvoker(AddressOf Main.LoadSettingsIni))
+                Invoke(New MethodInvoker(AddressOf Main.Update_P2Pool_Text))
+                Invoke(New MethodInvoker(AddressOf Main.Update_Miner_Text))
+            End Try
+        Loop
+
+    End Sub
 End Class

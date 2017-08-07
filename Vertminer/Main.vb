@@ -51,12 +51,6 @@ Public Class Main
             ElseIf P2P_Network = 2 Then
                 ComboBox1.SelectedItem = "2"
             End If
-            Intensity_Text.Text = Intensity
-            Worker_Text.Text = Worker
-            Password_Text.Text = Password
-            Wallet_Address_Text.Text = Wallet_Address
-            Pool_Address_Text.Text = Pool_Address
-            Additional_Configuration_Text.Text = additional_config
             If Pool_Address.Contains("localhost") Then
                 CheckBox1.Checked = True
             End If
@@ -74,7 +68,7 @@ Public Class Main
             Dim Nvidia_Detected = False
             Dim CPU_Detected = False
             For Each p As Process In System.Diagnostics.Process.GetProcesses
-                If p.ProcessName.Contains("ocm_p2pool") Then
+                If p.ProcessName.Contains("run_p2pool") Then
                     P2Pool_Detected = True
                 ElseIf p.ProcessName.Contains("ocm_sgminer") Then
                     AMD_Detected = True
@@ -83,7 +77,7 @@ Public Class Main
                 ElseIf p.ProcessName.Contains("ocm_cpuminer") Then
                     CPU_Detected = True
                 ElseIf p.ProcessName.Contains("run_p2pool") Or p.ProcessName.Contains("p2pool") Then
-                    otherp2pool = True
+                    'otherp2pool = True
                 ElseIf p.ProcessName.Contains("ccminer") Or p.ProcessName.Contains("sgminer") Or p.ProcessName.Contains("cpuminer") Then
                     otherminer = True
                 End If
@@ -121,7 +115,6 @@ Public Class Main
                 TextBox2.Text = "Online"
                 Button5.Text = "Disable"
             End If
-            BeginInvoke(New MethodInvoker(AddressOf Detected))
             'Autostart variables
             If autostart_mining = True Then
                 If amd_check.Checked = True Then
@@ -145,10 +138,13 @@ Public Class Main
                 End If
             End If
             If autostart_p2pool = True Then
-                If System.IO.File.Exists(P2PoolFolder & "\ocm_p2pool.exe") = True Then
+                If System.IO.File.Exists(P2PoolFolder & "\run_p2pool.exe") = True Then
                     BeginInvoke(New MethodInvoker(AddressOf Start_P2Pool))
                 End If
             End If
+            Invoke(New MethodInvoker(AddressOf Update_P2Pool_Text))
+            Invoke(New MethodInvoker(AddressOf Update_Miner_Text))
+            BeginInvoke(New MethodInvoker(AddressOf Detected))
         Catch ex As Exception
             MsgBox(ex.Message)
             NewLog = NewLog & Environment.NewLine
@@ -202,9 +198,7 @@ Public Class Main
         NewLog = NewLog & ("================================================================================")
         File.WriteAllText(SysLog, NewLog)
         File.AppendAllText(SysLog, LogFileString)
-        'Invoke(New MethodInvoker(AddressOf Stop_P2Pool))
-        'Invoke(New MethodInvoker(AddressOf Stop_Miner))
-        Intensity = Convert.ToInt32(Intensity_Text.Text)
+        Intensity = Convert.ToDecimal(Intensity_Text.Text)
         Worker = Worker_Text.Text
         Password = Password_Text.Text
         Wallet_Address = Wallet_Address_Text.Text
@@ -552,16 +546,16 @@ Public Class Main
             If canceldownloadasync = False Then
                 'Download proper miner and extract into respective directories
                 zipPath = P2PoolFolder & "\p2pool.zip"
-                exe = P2PoolFolder & "\ocm_p2pool.exe"
+                exe = P2PoolFolder & "\run_p2pool.exe"
                 p2pool_config_file = P2PoolFolder & "\start_p2pool.bat"
-                p2pool_config = "ocm_p2pool.exe" & Environment.NewLine & "exit /B"
+                p2pool_config = "run_p2pool.exe" & Environment.NewLine & "exit /B"
                 ZipFile.ExtractToDirectory(zipPath, P2PoolFolder)
                 Dim folders() As String = IO.Directory.GetDirectories(P2PoolFolder)
                 For Each folder As String In folders
                     Dim files() As String = IO.Directory.GetFiles(folder)
                     For Each file As String In files
                         If file.Contains("run_p2pool") Then
-                            My.Computer.FileSystem.MoveFile(file, P2PoolFolder & "\" & "ocm_p2pool.exe", True)
+                            My.Computer.FileSystem.MoveFile(file, P2PoolFolder & "\" & "run_p2pool.exe", True)
                         Else
                             My.Computer.FileSystem.MoveFile(file, P2PoolFolder & "\" & System.IO.Path.GetFileName(file), True)
                         End If
@@ -646,23 +640,32 @@ Public Class Main
 
     End Sub
 
-    Public Sub Update_Text()
+    Public Sub Update_P2Pool_Text()
 
         Try
-            If p2pool_running = True Then
-                'P2Pool Info
-                Node_Fee_Text.Text = P2P_Node_Fee & "%"
-                Node_Donation_Text.Text = P2P_Donation & "%"
-                TextBox4.Text = mining_port
-            End If
-            If mining_running = True Then
-                'Miner Info
-                Worker_Text.Text = Worker
-                Password_Text.Text = Password
-                Wallet_Address_Text.Text = Wallet_Address
-                Pool_Address_Text.Text = Pool_Address
-                Additional_Configuration_Text.Text = additional_config
-            End If
+            'If p2pool_running = True Then
+            'P2Pool Info
+            Node_Fee_Text.Text = P2P_Node_Fee & "%"
+            Node_Donation_Text.Text = P2P_Donation & "%"
+            TextBox4.Text = mining_port
+            'End If
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+
+    End Sub
+
+    Public Sub Update_Miner_Text()
+
+        Try
+            'If mining_running = True Then
+            'Miner Info
+            Worker_Text.Text = Worker
+            Password_Text.Text = Password
+            Wallet_Address_Text.Text = Wallet_Address
+            Pool_Address_Text.Text = Pool_Address
+            Additional_Configuration_Text.Text = additional_config
+            'End If
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
@@ -735,7 +738,7 @@ Public Class Main
             Buf = Reader.ReadLine
             If Not Buf = "" And Buf.contains("P2Pool Network=") = True Then
                 Buf = Buf.replace("P2Pool Network=", "")
-                If Integer.TryParse(Buf, IntBuf) = True Then
+                If Decimal.TryParse(Buf, IntBuf) = True Then
                     P2P_Network = Buf
                 Else
                     MsgBox("'P2Pool Network' setting invalid. Using default P2Pool network 1.")
@@ -744,7 +747,7 @@ Public Class Main
             Buf = Reader.ReadLine
             If Not Buf = "" And Buf.contains("P2Pool Node Fee (%)=") = True Then
                 Buf = Buf.replace("P2Pool Node Fee (%)=", "")
-                If Integer.TryParse(Buf, IntBuf) = True Then
+                If Decimal.TryParse(Buf, IntBuf) = True Then
                     P2P_Node_Fee = Buf
                 Else
                     MsgBox("'P2Pool Node Fee' setting invalid. Using default P2Pool node fee percentage of 0%.")
@@ -753,7 +756,7 @@ Public Class Main
             Buf = Reader.ReadLine
             If Not Buf = "" And Buf.contains("P2Pool Node Donation (%)=") = True Then
                 Buf = Buf.replace("P2Pool Node Donation (%)=", "")
-                If Integer.TryParse(Buf, IntBuf) = True Then
+                If Decimal.TryParse(Buf, IntBuf) = True Then
                     P2P_Donation = Buf
                 Else
                     MsgBox("'P2Pool Donation' setting invalid. Using default P2Pool donation percentage of 1%.")
@@ -762,7 +765,7 @@ Public Class Main
             Buf = Reader.ReadLine
             If Not Buf = "" And Buf.contains("Maximum P2Pool Connections=") = True Then
                 Buf = Buf.replace("Maximum P2Pool Connections=", "")
-                If Integer.TryParse(Buf, IntBuf) = True Then
+                If Decimal.TryParse(Buf, IntBuf) = True Then
                     MaxConnections = Buf
                 Else
                     MsgBox("'Maximum P2Pool Connections' setting invalid. Using default maximum connections.")
@@ -771,7 +774,7 @@ Public Class Main
             Buf = Reader.ReadLine
             If Not Buf = "" And Buf.contains("Mining Idle (s)=") = True Then
                 Buf = Buf.replace("Mining Idle (s)=", "")
-                If Integer.TryParse(Buf, IntBuf) = True Then
+                If Decimal.TryParse(Buf, IntBuf) = True Then
                     MiningIdle = Buf
                 Else
                     MsgBox("'Mining Idle' setting invalid. Using default mining idle.")
@@ -780,7 +783,7 @@ Public Class Main
             Buf = Reader.ReadLine
             If Not Buf = "" And Buf.contains("Mining Restart Delay (s)=") = True Then
                 Buf = Buf.replace("Mining Restart Delay (s)=", "")
-                If Integer.TryParse(Buf, IntBuf) = True Then
+                If Decimal.TryParse(Buf, IntBuf) = True Then
                     RestartDelay = Buf
                 Else
                     MsgBox("'Mining Restart Delay' setting invalid. Using default mining restart delay.")
@@ -789,7 +792,7 @@ Public Class Main
             Buf = Reader.ReadLine
             If Not Buf = "" And Buf.contains("P2Pool Port=") = True Then
                 Buf = Buf.replace("P2Pool Port=", "")
-                If Integer.TryParse(Buf, IntBuf) = True Then
+                If Decimal.TryParse(Buf, IntBuf) = True Then
                     p2pool_port = Buf
                 Else
                     MsgBox("'P2Pool Port' setting invalid. Using default P2Pool port.")
@@ -798,7 +801,7 @@ Public Class Main
             Buf = Reader.ReadLine
             If Not Buf = "" And Buf.contains("Mining Port=") = True Then
                 Buf = Buf.replace("Mining Port=", "")
-                If Integer.TryParse(Buf, IntBuf) = True Then
+                If Decimal.TryParse(Buf, IntBuf) = True Then
                     mining_port = Buf
                 Else
                     MsgBox("'Mining Port' setting invalid. Using default mining port.")
@@ -807,7 +810,7 @@ Public Class Main
             Buf = Reader.ReadLine
             If Not Buf = "" And Buf.contains("Mining Intensity=") = True Then
                 Buf = Buf.replace("Mining Intensity=", "")
-                If Integer.TryParse(Buf, IntBuf) = True Then
+                If Decimal.TryParse(Buf, IntBuf) = True Then
                     Intensity = Buf
                 Else
                     MsgBox("'Mining Intensity' setting invalid. Using default mining intensity.")
@@ -865,7 +868,7 @@ Public Class Main
                             End If
                         End If
                     Else
-                        MsgBox("'Pool Address' setting invalid. Using default pool address with 1% dev-fund donation fee. Please check your pool address for errors.")
+                        'MsgBox("'Pool Address' setting invalid. Using default pool address. Please check your pool address for errors.")
                     End If
                 End If
             Loop
@@ -913,11 +916,17 @@ Public Class Main
             Buf = Reader.ReadToEnd
             If Not Buf = "" And Buf.contains("Additional Miner Config=") = True Then
                 Buf = Buf.replace("Additional Miner Config=", "")
-                If Not Buf = "" Then
+                If Not Buf = "" And Not Buf.contains("Default") Then
                     additional_config = Buf
                 End If
             End If
             Reader.Close()
+            Intensity_Text.Text = Intensity
+            Worker_Text.Text = Worker
+            Password_Text.Text = Password
+            Wallet_Address_Text.Text = Wallet_Address
+            Pool_Address_Text.Text = Pool_Address
+            Additional_Configuration_Text.Text = additional_config
         Catch ex As IOException
             MsgBox(ex.Message)
             NewLog = NewLog & Environment.NewLine
@@ -1018,7 +1027,6 @@ Public Class Main
                 System.Threading.Thread.Sleep(100)
                 NewLog = NewLog & Environment.NewLine
                 NewLog = NewLog & ("- " & Date.Parse(Now) & ", " & "Main() SaveSettings: " & ex.Message)
-                Invoke(New MethodInvoker(AddressOf SaveSettingsIni))
             Finally
                 NewLog = NewLog & Environment.NewLine
                 NewLog = NewLog & ("- " & Date.Parse(Now) & ", " & "Main() SaveSettings: OK.")
@@ -1110,6 +1118,7 @@ Public Class Main
             AmdMiner = False
             mining_initialized = False
             BeginInvoke(New MethodInvoker(AddressOf Stop_Miner))
+            BeginInvoke(New MethodInvoker(AddressOf Kill_Miner))
         End If
         mining_installed = False
 
@@ -1118,7 +1127,7 @@ Public Class Main
     Public Sub Update_P2Pool_Config()
 
         Try
-            exe = SettingsFolder & "\p2pool\ocm_p2pool.exe"
+            exe = SettingsFolder & "\p2pool\run_p2pool.exe"
             p2pool_config_file = SettingsFolder & "\p2pool\start_p2pool.bat"
             Dim network As String = ""
             If P2P_Network = 0 Or P2P_Network = 1 Then
@@ -1140,7 +1149,7 @@ Public Class Main
                     mining_port = "9181"
                 End If
             End If
-            p2pool_config = "ocm_p2pool.exe" & network & " --give-author " & P2P_Donation & " --fee " & P2P_Node_Fee & " --address " & P2P_Node_Fee_Address & " --max-conns " & MaxConnections & " --worker-port " & mining_port & " --p2pool-port " & p2pool_port & Environment.NewLine & "exit /B"
+            p2pool_config = "run_p2pool.exe" & network & " --give-author " & P2P_Donation & " --fee " & P2P_Node_Fee & " --address " & P2P_Node_Fee_Address & " --max-conns " & MaxConnections & " --worker-port " & mining_port & " --p2pool-port " & p2pool_port & Environment.NewLine & "exit /B"
             If System.IO.File.Exists(p2pool_config_file) = True Then
                 command = File.ReadAllText(p2pool_config_file)
             End If
@@ -1166,6 +1175,11 @@ Public Class Main
             Dim Pool As String = ""
             If Not Pool_Address = "" Then
                 For Each line As String In Pool_Address.Split(Environment.NewLine)
+                    If Not line.Contains("http://") And Not line.Contains("stratum+tcp://") Then
+                        line = "stratum+tcp://" & line
+                    Else
+                        line = line.Replace("http://", "stratum+tcp://")
+                    End If
                     Pool = Pool & "-o " & line.Replace(vbCr, "").Replace(vbLf, "") & " "
                 Next
             Else
@@ -1205,6 +1219,16 @@ Public Class Main
             If AmdMiner = True Then
                 miner_config_file = SettingsFolder & "\amd\config.bat"
                 miner_config = "setx GPU_MAX_HEAP_SIZE 100" & Environment.NewLine & "setx GPU_USE_SYNC_OBJECTS 1" & Environment.NewLine & "setx GPU_MAX_ALLOC_PERCENT 100" & Environment.NewLine & "ocm_sgminer.exe --kernel Lyra2REv2 " & Pool & "-u " & Worker & " -p " & Password & Intensity_Buffer & " " & additional_config & Environment.NewLine & "exit /B"
+                'miner_config = "setx GPU_MAX_HEAP_SIZE 100" & Environment.NewLine & "setx GPU_USE_SYNC_OBJECTS 1" & Environment.NewLine & "setx GPU_MAX_ALLOC_PERCENT 100" & Environment.NewLine
+                'For Each pools As String In Pool_Address.Split(Environment.NewLine)
+                '    If Not pools.Contains("http://") And Not pools.Contains(" stratum+tcp://") Then
+                '        pools = " -o stratum+tcp://" & pools & " "
+                '    Else
+                '        pools = pools.Replace("http://", " -o stratum+tcp://") & " "
+                '    End If
+                '    miner_config = miner_config & "ocm_sgminer.exe --kernel Lyra2REv2 " & "-u " & Worker & " -p " & Password & pools & Intensity_Buffer & " " & additional_config & Environment.NewLine
+                'Next
+                'miner_config = miner_config & "exit /B"
             ElseIf NvidiaMiner = True Then
                 miner_config_file = SettingsFolder & "\nvidia\config.bat"
                 miner_config = "ocm_ccminer.exe -a lyra2v2 " & Pool & "-u " & Worker & " -p " & Password & Intensity_Buffer & " " & additional_config & Environment.NewLine & "exit /B"
@@ -1257,6 +1281,28 @@ Public Class Main
             If cc = True Or sg = True Or cpu = True Then
                 ' Process is running
                 MsgBox("A miner is already running.")
+                amd_check.Enabled = True
+                Button2.Enabled = True
+                nvidia_check.Enabled = True
+                Button4.Enabled = True
+                cpu_check.Enabled = True
+                Button5.Enabled = True
+                Pool_Address_Text.Enabled = True
+                Wallet_Address_Text.Enabled = True
+                Worker_Text.Enabled = True
+                Password_Text.Enabled = True
+                Intensity_Text.Enabled = True
+                Additional_Configuration_Text.Enabled = True
+                CheckBox1.Enabled = True
+                PictureBox2.Image = VertcoinOneClickMiner.My.Resources.Resources.off_small
+                TextBox2.Text = "Offline"
+                Button2.Text = "AMD"
+                PictureBox5.Image = VertcoinOneClickMiner.My.Resources.Resources.off_small
+                TextBox2.Text = "Offline"
+                Button4.Text = "Nvidia"
+                PictureBox7.Image = VertcoinOneClickMiner.My.Resources.Resources.off_small
+                TextBox2.Text = "Offline"
+                Button5.Text = "CPU"
             Else
                 ' Process is not running
                 mining_running = True
@@ -1306,7 +1352,7 @@ Public Class Main
 
     End Sub
 
-    Public Sub Stop_Miner()
+    Public Sub Kill_Miner()
 
         Try
             mining_running = False
@@ -1319,6 +1365,21 @@ Public Class Main
                     p.Kill()
                 End If
             Next
+        Catch ex As Exception
+            MsgBox(ex.Message)
+            NewLog = NewLog & Environment.NewLine
+            NewLog = NewLog & ("- " & Date.Parse(Now) & ", " & "Main() Kill_Miner: " & ex.Message)
+            Invoke(New MethodInvoker(AddressOf SaveSettingsIni))
+        Finally
+            NewLog = NewLog & Environment.NewLine
+            NewLog = NewLog & ("- " & Date.Parse(Now) & ", " & "Main() Kill_Miner: OK.")
+        End Try
+
+    End Sub
+
+    Public Sub Stop_Miner()
+
+        Try
             amd_check.Enabled = True
             Button2.Enabled = True
             nvidia_check.Enabled = True
@@ -1363,7 +1424,7 @@ Public Class Main
             End If
             Dim P2Pool_Detected = False
             For Each p As Process In System.Diagnostics.Process.GetProcesses
-                If p.ProcessName.Contains("ocm_p2pool") Then
+                If p.ProcessName.Contains("run_p2pool") Then
                     'If P2Pool is already running
                     P2Pool_Detected = True
                 Else
@@ -1405,7 +1466,7 @@ Public Class Main
 
     End Sub
 
-    Public Sub Stop_P2Pool()
+    Public Sub Kill_P2Pool()
 
         Try
             p2pool_running = False
@@ -1414,10 +1475,25 @@ Public Class Main
                 Uptime_Checker.CancelAsync()
             End If
             For Each p As Process In System.Diagnostics.Process.GetProcesses
-                If p.ProcessName.Contains("ocm_p2pool") Then
+                If p.ProcessName.Contains("run_p2pool") Then
                     p.Kill()
                 End If
             Next
+        Catch ex As Exception
+            MsgBox(ex.Message)
+            NewLog = NewLog & Environment.NewLine
+            NewLog = NewLog & ("- " & Date.Parse(Now) & ", " & "Main() Kill_P2Pool: " & ex.Message)
+            Invoke(New MethodInvoker(AddressOf SaveSettingsIni))
+        Finally
+            NewLog = NewLog & Environment.NewLine
+            NewLog = NewLog & ("- " & Date.Parse(Now) & ", " & "Main() Kill_P2Pool: OK.")
+        End Try
+
+    End Sub
+
+    Public Sub Stop_P2Pool()
+
+        Try
             PictureBox1.Image = VertcoinOneClickMiner.My.Resources.Resources.off_small
             TextBox1.Text = "Offline"
             Button1.Text = "Enable"
@@ -1520,7 +1596,7 @@ Public Class Main
 
     Private Sub UpdateStats_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles UpdateStats.DoWork
 
-        BeginInvoke(New MethodInvoker(AddressOf Update_Text))
+        BeginInvoke(New MethodInvoker(AddressOf Update_P2Pool_Text))
 
     End Sub
 
@@ -1646,21 +1722,43 @@ Public Class Main
     Private Sub Uptime_Checker_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles Uptime_Checker.DoWork
 
         Try
-            Dim miner As Boolean
-            Dim p2pool As Boolean
+            'For Each p As Process In System.Diagnostics.Process.GetProcesses
+            '    If p.ProcessName.Contains("ocm_ccminer") Or p.ProcessName.Contains("ocm_sgminer") Or p.ProcessName.Contains("ocm_cpuminer") Then
+            '        ocmminer = True
+            '    ElseIf p.ProcessName.Contains("ccminer") Or p.ProcessName.Contains("sgminer") Or p.ProcessName.Contains("cpuminer") Then
+            '        miner = True
+            '    End If
+            '    If p.ProcessName.Contains("run_p2pool") Then
+            '        ocmp2pool = True
+            '    ElseIf p.ProcessName.Contains("run_p2pool") Or p.ProcessName.Contains("p2pool") Then
+            '        p2pool = True
+            '    End If
+            'Next
             Dim ocmminer As Boolean
             Dim ocmp2pool As Boolean
+            P2Pool_Detected = False
+            AMD_Detected = False
+            Nvidia_Detected = False
+            CPU_Detected = False
             For Each p As Process In System.Diagnostics.Process.GetProcesses
-                If p.ProcessName.Contains("ocm_ccminer") Or p.ProcessName.Contains("ocm_sgminer") Or p.ProcessName.Contains("ocm_cpuminer") Then
-                    ocmminer = True
-                ElseIf p.ProcessName.Contains("ccminer") Or p.ProcessName.Contains("sgminer") Or p.ProcessName.Contains("cpuminer") Then
-                    miner = True
-                End If
-                If p.ProcessName.Contains("ocm_p2pool") Then
+                If p.ProcessName.Contains("run_p2pool") Then
+                    P2Pool_Detected = True
                     ocmp2pool = True
-                ElseIf p.ProcessName.Contains("run_p2pool") Or p.ProcessName.Contains("p2pool") Then
-                    p2pool = True
+                ElseIf p.ProcessName.Contains("ocm_sgminer") Then
+                    AMD_Detected = True
+                    ocmminer = True
+                ElseIf p.ProcessName.Contains("ocm_ccminer") Then
+                    Nvidia_Detected = True
+                    ocmminer = True
+                ElseIf p.ProcessName.Contains("ocm_cpuminer") Then
+                    CPU_Detected = True
+                    ocmminer = True
+                    'ElseIf p.ProcessName.Contains("run_p2pool") Or p.ProcessName.Contains("p2pool") Then
+                    '    otherp2pool = True
+                ElseIf p.ProcessName.Contains("ccminer") Or p.ProcessName.Contains("sgminer") Or p.ProcessName.Contains("cpuminer") Then
+                    otherminer = True
                 End If
+                BeginInvoke(New MethodInvoker(AddressOf update_stats))
             Next
             If ocmp2pool = True And ocmminer = True Then
                 'P2Pool and Miner are running, do nothing
@@ -1670,22 +1768,25 @@ Public Class Main
                         If Keep_Miner_Alive = True Then
                             BeginInvoke(New MethodInvoker(AddressOf Start_Miner))
                         Else
-                            'BeginInvoke(New MethodInvoker(AddressOf Stop_Miner))
+                            BeginInvoke(New MethodInvoker(AddressOf Stop_Miner))
                         End If
+                    Else
                     End If
                 Else 'Miner not initialized
-                    'BeginInvoke(New MethodInvoker(AddressOf Stop_Miner))
+                    'BeginInvoke(New MethodInvoker(AddressOf Stop_P2Pool))
+                    'BeginInvoke(New MethodInvoker(AddressOf kill_Miner))
                 End If
                 If p2pool_running = True Then
                     If ocmp2pool = False Then
                         If Keep_P2Pool_Alive = True Then
                             BeginInvoke(New MethodInvoker(AddressOf Start_P2Pool))
                         Else
-                            'BeginInvoke(New MethodInvoker(AddressOf Stop_P2Pool))
+                            BeginInvoke(New MethodInvoker(AddressOf Stop_P2Pool))
                         End If
                     End If
                 Else 'P2Pool not initialized
                     'BeginInvoke(New MethodInvoker(AddressOf Stop_P2Pool))
+                    'BeginInvoke(New MethodInvoker(AddressOf kill_P2Pool))
                 End If
             End If
             Uptime_Checker.CancelAsync()
@@ -1695,8 +1796,40 @@ Public Class Main
 
     End Sub
 
-    Private Sub CheckedListBox1_SelectedIndexChanged(sender As Object, e As EventArgs)
-
+    Public Sub update_stats()
+        'Miner is already running
+        If AMD_Detected = True Or Nvidia_Detected = True Or CPU_Detected = True Then
+            Additional_Configuration_Text.Enabled = False
+            Pool_Address_Text.Enabled = False
+            Wallet_Address_Text.Enabled = False
+            Worker_Text.Enabled = False
+            Password_Text.Enabled = False
+            Intensity_Text.Enabled = False
+            CheckBox1.Enabled = False
+            Uptime_Timer.Start()
+        End If
+        If AMD_Detected = True Then
+            PictureBox2.Image = VertcoinOneClickMiner.My.Resources.Resources.on_small
+            TextBox2.Text = "Online"
+            Button2.Text = "Disable"
+        End If
+        If Nvidia_Detected = True Then
+            PictureBox5.Image = VertcoinOneClickMiner.My.Resources.Resources.on_small
+            TextBox2.Text = "Online"
+            Button4.Text = "Disable"
+        End If
+        If CPU_Detected = True Then
+            PictureBox7.Image = VertcoinOneClickMiner.My.Resources.Resources.on_small
+            TextBox2.Text = "Online"
+            Button5.Text = "Disable"
+        End If
+        'P2Pool is already running
+        If P2Pool_Detected = True Then
+            PictureBox1.Image = VertcoinOneClickMiner.My.Resources.Resources.on_small
+            TextBox1.Text = "Online"
+            Button1.Text = "Disable"
+            Uptime_Timer.Start()
+        End If
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
@@ -1705,7 +1838,7 @@ Public Class Main
         'See if P2Pool has already been downloaded/installed
         If System.IO.Directory.Exists(P2PoolFolder) = True Then
             For Each file As String In Directory.GetFiles(P2PoolFolder)
-                If file.Contains("ocm_p2pool.exe") Then
+                If file.Contains("run_p2pool.exe") Then
                     p2pool_installed = True
                     Exit For
                 Else
@@ -1730,6 +1863,7 @@ Public Class Main
         Else
             p2pool_initialized = False
             BeginInvoke(New MethodInvoker(AddressOf Stop_P2Pool))
+            BeginInvoke(New MethodInvoker(AddressOf Kill_P2Pool))
         End If
         p2pool_installed = False
 
@@ -2197,6 +2331,7 @@ Public Class Main
             NvidiaMiner = False
             mining_initialized = False
             BeginInvoke(New MethodInvoker(AddressOf Stop_Miner))
+            BeginInvoke(New MethodInvoker(AddressOf Kill_Miner))
         End If
         mining_installed = False
 
@@ -2243,6 +2378,7 @@ Public Class Main
             CPUMiner = False
             mining_initialized = False
             BeginInvoke(New MethodInvoker(AddressOf Stop_Miner))
+            BeginInvoke(New MethodInvoker(AddressOf Kill_Miner))
         End If
         mining_installed = False
 

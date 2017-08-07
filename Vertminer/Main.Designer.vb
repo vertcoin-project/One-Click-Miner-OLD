@@ -192,6 +192,7 @@ Partial Class Main
         Me.ComboBox1.Name = "ComboBox1"
         Me.ComboBox1.Size = New System.Drawing.Size(40, 21)
         Me.ComboBox1.TabIndex = 0
+        Me.ToolTip.SetToolTip(Me.ComboBox1, "Selects the network in which p2pool will connect.")
         '
         'Button3
         '
@@ -338,7 +339,8 @@ Partial Class Main
         Me.PictureBox10.Size = New System.Drawing.Size(15, 15)
         Me.PictureBox10.TabIndex = 40
         Me.PictureBox10.TabStop = False
-        Me.ToolTip.SetToolTip(Me.PictureBox10, "Leave blank or set to '0' to use your miner's default intensity setting.")
+        Me.ToolTip.SetToolTip(Me.PictureBox10, "This sets the intensity of the miner.  This can be used to help fine-tune miner p" &
+        "erformance.")
         '
         'PictureBox9
         '
@@ -357,6 +359,7 @@ Partial Class Main
         Me.cpu_check.Name = "cpu_check"
         Me.cpu_check.Size = New System.Drawing.Size(15, 14)
         Me.cpu_check.TabIndex = 4
+        Me.ToolTip.SetToolTip(Me.cpu_check, "Selects this miner as Default.")
         Me.cpu_check.UseVisualStyleBackColor = True
         '
         'PictureBox4
@@ -376,6 +379,7 @@ Partial Class Main
         Me.amd_check.Name = "amd_check"
         Me.amd_check.Size = New System.Drawing.Size(15, 14)
         Me.amd_check.TabIndex = 0
+        Me.ToolTip.SetToolTip(Me.amd_check, "Selects this miner as Default.")
         Me.amd_check.UseVisualStyleBackColor = True
         '
         'Label4
@@ -395,6 +399,7 @@ Partial Class Main
         Me.nvidia_check.Name = "nvidia_check"
         Me.nvidia_check.Size = New System.Drawing.Size(15, 14)
         Me.nvidia_check.TabIndex = 2
+        Me.ToolTip.SetToolTip(Me.nvidia_check, "Selects this miner as Default.")
         Me.nvidia_check.UseVisualStyleBackColor = True
         '
         'PictureBox7
@@ -426,7 +431,7 @@ Partial Class Main
         Me.Additional_Configuration_Text.Size = New System.Drawing.Size(335, 20)
         Me.Additional_Configuration_Text.TabIndex = 12
         Me.Additional_Configuration_Text.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.ToolTip.SetToolTip(Me.Additional_Configuration_Text, "Miner password.  Most often used for centralized pools.")
+        Me.ToolTip.SetToolTip(Me.Additional_Configuration_Text, resources.GetString("Additional_Configuration_Text.ToolTip"))
         '
         'Button5
         '
@@ -470,7 +475,8 @@ Partial Class Main
         Me.Intensity_Text.TabIndex = 11
         Me.Intensity_Text.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.ToolTip.SetToolTip(Me.Intensity_Text, "This sets the intensity of the miner.  This can be used to help fine-tune miner p" &
-        "erformance.")
+        "erformance." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Leave blank or set to '0' to use your miner's default intensity set" &
+        "ting.")
         '
         'Password_Text
         '
@@ -510,6 +516,7 @@ Partial Class Main
         Me.CheckBox1.Size = New System.Drawing.Size(111, 17)
         Me.CheckBox1.TabIndex = 6
         Me.CheckBox1.Text = "Use Local P2Pool"
+        Me.ToolTip.SetToolTip(Me.CheckBox1, "Select this to point your miner directly to your local p2pool node.")
         Me.CheckBox1.UseVisualStyleBackColor = True
         '
         'Pool_Address_Text
@@ -523,7 +530,7 @@ Partial Class Main
         Me.Pool_Address_Text.Size = New System.Drawing.Size(335, 20)
         Me.Pool_Address_Text.TabIndex = 7
         Me.Pool_Address_Text.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.ToolTip.SetToolTip(Me.Pool_Address_Text, "Addresses of pools that the miner will point to.")
+        Me.ToolTip.SetToolTip(Me.Pool_Address_Text, resources.GetString("Pool_Address_Text.ToolTip"))
         '
         'Label19
         '

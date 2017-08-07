@@ -22,6 +22,10 @@ Module variables
     Public Property platform As Boolean = False 'true=64-bit false=32-bit
     Public Property otherminer As Boolean = False
     Public Property otherp2pool As Boolean = False
+    Public Property P2Pool_Detected = False
+    Public Property AMD_Detected = False
+    Public Property Nvidia_Detected = False
+    Public Property CPU_Detected = False
 
     'Update Variables
     Public Property update_needed As Boolean = False
@@ -50,7 +54,7 @@ Module variables
     Public Property P2P_Donation As Integer = 1
     Public Property MaxConnections As Integer = 50
     Public Property MiningIdle As Integer = 60
-    Public Property RestartDelay As Integer = 1
+    Public Property RestartDelay As Integer = 2
 
     'P2Pool Variables
     Public Property p2pool_running As Boolean = False
@@ -95,7 +99,7 @@ Module variables
     Public Property mining_port As String = "9171"
     Public Property Keep_Miner_Alive As Boolean = False
     'Miner Configuration
-    Public Property Intensity As Integer
+    Public Property Intensity As Decimal
     Public Property Worker As String = "VpBsRnN749jYHE9hT8dZreznHfmFMdE1yG"
     Public Property Password As String = "x"
     Public Property Wallet_Address As String = "VpBsRnN749jYHE9hT8dZreznHfmFMdE1yG"
