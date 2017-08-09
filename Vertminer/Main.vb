@@ -106,16 +106,22 @@ Public Class Main
                 PictureBox2.Image = VertcoinOneClickMiner.My.Resources.Resources.on_small
                 TextBox2.Text = "Online"
                 Button2.Text = "Disable"
+                Button4.Enabled = False
+                Button5.Enabled = False
             End If
             If Nvidia_Detected = True Then
                 PictureBox5.Image = VertcoinOneClickMiner.My.Resources.Resources.on_small
                 TextBox2.Text = "Online"
                 Button4.Text = "Disable"
+                Button2.Enabled = False
+                Button5.Enabled = False
             End If
             If CPU_Detected = True Then
                 PictureBox7.Image = VertcoinOneClickMiner.My.Resources.Resources.on_small
                 TextBox2.Text = "Online"
                 Button5.Text = "Disable"
+                Button2.Enabled = False
+                Button4.Enabled = False
             End If
             'Autostart variables
             If autostart_mining = True Then
@@ -525,6 +531,7 @@ Public Class Main
                 AmdMiner = False
                 NvidiaMiner = False
                 CPUMiner = False
+                update_needed = False
             End If
         Catch ex As Exception
             MsgBox("An issue occurred during the download.  Please try again.")
@@ -674,11 +681,11 @@ Public Class Main
     Public Sub Update_Settings()
 
         Try
-            Dim Old_Settings As String = File.ReadAllText(SettingsIni)
-            If Old_Settings.Contains("Wallet Address=") Then 'Wallet Address= has been deprecated.
-                With System.Reflection.Assembly.GetExecutingAssembly.GetName.Version
-                    '1.0.5 Release
-                    If (.Major >= 1 And .Minor >= 0 And .Build >= 5) Then
+            With System.Reflection.Assembly.GetExecutingAssembly.GetName.Version
+                '1.0.5 Release
+                If (.Major >= 1 And .Minor >= 0 And .Build >= 5) Then
+                    Dim Old_Settings As String = File.ReadAllText(SettingsIni)
+                    If Old_Settings.Contains("Wallet Address=") Then 'Wallet Address= has been deprecated.
                         Dim Reader As New StreamReader(SettingsIni, False)
                         Dim Buf As Object = Reader.ReadLine
                         Dim IntBuf As Integer
@@ -951,7 +958,7 @@ Public Class Main
                                 objWriter.WriteLine("Pool URL=stratum+tcp://vtc.alwayshashing.com:9171")
                                 Pool_Address = "stratum+tcp://vtc.alwayshashing.com:9171"
                                 objWriter.WriteLine("One-Click Version=" & Miner_Version)
-                                objWriter.WriteLine("P2Pool Version=" & P2Pool_Version)
+                                objWriter.WriteLine("P2Pool Version=0.0.0.0") 'Force P2Pool update
                                 objWriter.WriteLine("AMD Miner Version=" & AMD_Version)
                                 objWriter.WriteLine("Nvidia Miner Version=" & Nvidia_Version)
                                 objWriter.WriteLine("CPU Miner Version=" & CPU_Version)
@@ -963,8 +970,8 @@ Public Class Main
                             Exit Do
                         Loop
                     End If
-                End With
-            End If
+                End If
+            End With
         Catch ex As IOException
             MsgBox(ex.Message)
             NewLog = NewLog & Environment.NewLine
@@ -1396,7 +1403,7 @@ Public Class Main
         'Checks if AMD miner has already been downloaded and installed
         If System.IO.Directory.Exists(AmdFolder) = True Then
             For Each file As String In Directory.GetFiles(AmdFolder)
-                If file.Contains("ocm_sgminer.exe") Then
+                If file.Contains("ocm_sgminer.exe") And Not (System.Version.Parse(AMD_Version) = System.Version.Parse("0.0.0.0")) Then
                     mining_installed = True
                     Exit For
                 Else
@@ -2126,7 +2133,7 @@ Public Class Main
         'See if P2Pool has already been downloaded/installed
         If System.IO.Directory.Exists(P2PoolFolder) = True Then
             For Each file As String In Directory.GetFiles(P2PoolFolder)
-                If file.Contains("ocm_p2pool.exe") Then
+                If file.Contains("ocm_p2pool.exe") And Not (System.Version.Parse(P2Pool_Version) = System.Version.Parse("0.0.0.0")) Then
                     p2pool_installed = True
                     Exit For
                 Else
@@ -2361,9 +2368,6 @@ Public Class Main
     Private Sub UpdateToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles UpdateToolStripMenuItem.Click
 
         If Not Updater.IsBusy Then
-            AmdMiner = True
-            NvidiaMiner = True
-            CPUMiner = True
             Updater.RunWorkerAsync()
         End If
 
@@ -2453,10 +2457,11 @@ Public Class Main
                     cancel = True
                 End If
             Else
-                If newestversion > System.Version.Parse(AMD_Version) And p2pool_update = False And nvidia_update = False And cpu_update = False And Not (System.Version.Parse(AMD_Version) = System.Version.Parse("0.0.0.0")) Then
+                If newestversion > System.Version.Parse(AMD_Version) And p2pool_update = False And nvidia_update = False And cpu_update = False Then
                     Dim result1 As DialogResult = MsgBox("Update found for AMD Miner! Click OK to download.", MessageBoxButtons.OKCancel)
                     update_needed = True
                     If result1 = DialogResult.OK Then
+                        AmdMiner = True
                         Invoke(New MethodInvoker(AddressOf Download_Miner))
                     ElseIf result1 = DialogResult.Cancel Then
                         update_complete = True
@@ -2484,10 +2489,11 @@ Public Class Main
                     cancel = True
                 End If
             Else
-                If newestversion > System.Version.Parse(Nvidia_Version) And p2pool_update = False And amd_update = False And cpu_update = False And Not (System.Version.Parse(Nvidia_Version) = System.Version.Parse("0.0.0.0")) Then
+                If newestversion > System.Version.Parse(Nvidia_Version) And p2pool_update = False And amd_update = False And cpu_update = False Then
                     Dim result1 As DialogResult = MsgBox("Update found for Nvidia Miner! Click OK to download.", MessageBoxButtons.OKCancel)
                     update_needed = True
                     If result1 = DialogResult.OK Then
+                        NvidiaMiner = True
                         Invoke(New MethodInvoker(AddressOf Download_Miner))
                     ElseIf result1 = DialogResult.Cancel Then
                         update_complete = True
@@ -2515,10 +2521,11 @@ Public Class Main
                     cancel = True
                 End If
             Else
-                If newestversion > System.Version.Parse(CPU_Version) And p2pool_update = False And amd_update = False And nvidia_update = False And Not (System.Version.Parse(CPU_Version) = System.Version.Parse("0.0.0.0")) Then
+                If newestversion > System.Version.Parse(CPU_Version) And p2pool_update = False And amd_update = False And nvidia_update = False Then
                     Dim result1 As DialogResult = MsgBox("Update found for CPU Miner! Click OK to download.", MessageBoxButtons.OKCancel)
                     update_needed = True
                     If result1 = DialogResult.OK Then
+                        CPUMiner = True
                         Invoke(New MethodInvoker(AddressOf Download_Miner))
                     ElseIf result1 = DialogResult.Cancel Then
                         cancel = True
@@ -2595,7 +2602,7 @@ Public Class Main
         'Checks if Nvidia miner has already been downloaded and installed
         If System.IO.Directory.Exists(NvidiaFolder) = True Then
             For Each file As String In Directory.GetFiles(NvidiaFolder)
-                If file.Contains("ocm_ccminer.exe") Then
+                If file.Contains("ocm_ccminer.exe") And Not (System.Version.Parse(Nvidia_Version) = System.Version.Parse("0.0.0.0")) Then
                     mining_installed = True
                     Exit For
                 Else
@@ -2642,7 +2649,7 @@ Public Class Main
         'Checks if CPU miner has already been downloaded and installed
         If System.IO.Directory.Exists(CPUFolder) = True Then
             For Each file As String In Directory.GetFiles(CPUFolder)
-                If file.Contains("ocm_cpuminer.exe") Then
+                If file.Contains("ocm_cpuminer.exe") And Not (System.Version.Parse(CPU_Version) = System.Version.Parse("0.0.0.0")) Then
                     mining_installed = True
                     Exit For
                 Else
