@@ -54,7 +54,7 @@ Module variables
     Public Property P2P_Donation As Integer = 1
     Public Property MaxConnections As Integer = 50
     Public Property MiningIdle As Integer = 60
-    Public Property RestartDelay As Integer = 2
+    Public Property RestartDelay As Integer = 1
 
     'P2Pool Variables
     Public Property p2pool_running As Boolean = False

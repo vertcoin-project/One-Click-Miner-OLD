@@ -1349,9 +1349,6 @@ Public Class Main
                 Else
                     line = line.Replace("http://", "stratum+tcp://")
                 End If
-                'If line.Contains("localhost:" & mining_port) Then
-                '    Pool_Address = Pool_Address.Replace(line, "")
-                'End If
             Next
             If P2P_Network = 1 Then
                 If mining_port = "9181" Or mining_port = "" Then
@@ -1366,11 +1363,11 @@ Public Class Main
                 Pool_Address = "http://localhost:" & mining_port & Environment.NewLine & Pool_Address
             End If
             Pool_Address_Text.Text = Pool_Address
-                Pool_Address_Text.SelectionStart = 0
-                Pool_Address_Text.ScrollToCaret()
-                Pool_Address_Text.Enabled = False
-            Else
-                Pool_Address_Text.Enabled = True
+            Pool_Address_Text.SelectionStart = 0
+            Pool_Address_Text.ScrollToCaret()
+            Pool_Address_Text.Enabled = False
+        Else
+            Pool_Address_Text.Enabled = True
             'remove localhost address from pool list
             For Each line As String In Pool_Address_Text.Lines
                 If line.Contains("localhost:" & mining_port) And Pool_Address_Text.Lines.Count > 1 Then
@@ -1490,14 +1487,6 @@ Public Class Main
         Try
             Dim Pool As String = ""
             If Not Pool_Address = "" Then
-                'For Each line As String In Pool_Address.Split(Environment.NewLine)
-                '    If Not line.Contains("http://") And Not line.Contains("stratum+tcp://") Then
-                '        line = "stratum+tcp://" & line
-                '    Else
-                '        line = line.Replace("http://", "stratum+tcp://")
-                '    End If
-                '    Pool = Pool & "-o " & line.Replace(vbCr, "").Replace(vbLf, "") & " "
-                'Next
                 For Each line As String In Pool_Address.Split(New String() {Environment.NewLine}, StringSplitOptions.None)
                     If Not line.Contains("http://") And Not line.Contains("stratum+tcp://") Then
                         line = "stratum+tcp://" & line
@@ -1539,16 +1528,6 @@ Public Class Main
                 miner_config_file = SettingsFolder & "\amd\config.bat"
                 '"setx GPU_MAX_HEAP_SIZE 100" & Environment.NewLine & "setx GPU_MAX_ALLOC_PERCENT 100" & Environment.NewLine & 
                 miner_config = "ocm_sgminer.exe --kernel Lyra2REv2 " & "-u " & Worker & " -p " & Password & Intensity_Buffer & " " & additional_config & " " & Pool & Environment.NewLine & "exit /B"
-                'miner_config = "setx GPU_MAX_HEAP_SIZE 100" & Environment.NewLine & "setx GPU_USE_SYNC_OBJECTS 1" & Environment.NewLine & "setx GPU_MAX_ALLOC_PERCENT 100" & Environment.NewLine
-                'For Each pools As String In Pool_Address.Split(Environment.NewLine)
-                '    If Not pools.Contains("http://") And Not pools.Contains(" stratum+tcp://") Then
-                '        pools = " -o stratum+tcp://" & pools & " "
-                '    Else
-                '        pools = pools.Replace("http://", " -o stratum+tcp://") & " "
-                '    End If
-                '    miner_config = miner_config & "ocm_sgminer.exe --kernel Lyra2REv2 " & "-u " & Worker & " -p " & Password & pools & Intensity_Buffer & " " & additional_config & Environment.NewLine
-                'Next
-                'miner_config = miner_config & "exit /B"
             ElseIf NvidiaMiner = True Then
                 miner_config_file = SettingsFolder & "\nvidia\config.bat"
                 miner_config = "ocm_ccminer.exe -a lyra2v2 " & "-u " & Worker & " -p " & Password & Intensity_Buffer & " " & additional_config & " " & Pool & Environment.NewLine & "exit /B"
@@ -2043,18 +2022,6 @@ Public Class Main
     Private Sub Uptime_Checker_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles Uptime_Checker.DoWork
 
         Try
-            'For Each p As Process In System.Diagnostics.Process.GetProcesses
-            '    If p.ProcessName.Contains("ocm_ccminer") Or p.ProcessName.Contains("ocm_sgminer") Or p.ProcessName.Contains("ocm_cpuminer") Then
-            '        ocmminer = True
-            '    ElseIf p.ProcessName.Contains("ccminer") Or p.ProcessName.Contains("sgminer") Or p.ProcessName.Contains("cpuminer") Then
-            '        miner = True
-            '    End If
-            '    If p.ProcessName.Contains("ocm_p2pool") Then
-            '        ocmp2pool = True
-            '    ElseIf p.ProcessName.Contains("run_p2pool") Or p.ProcessName.Contains("p2pool") Then
-            '        p2pool = True
-            '    End If
-            'Next
             Dim ocmminer As Boolean
             Dim ocmp2pool As Boolean
             P2Pool_Detected = False
