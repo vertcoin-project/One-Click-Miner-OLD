@@ -1535,13 +1535,13 @@ Public Class Main
             If AmdMiner = True Then
                 miner_config_file = SettingsFolder & "\amd\config.bat"
                 '"setx GPU_MAX_HEAP_SIZE 100" & Environment.NewLine & "setx GPU_MAX_ALLOC_PERCENT 100" & Environment.NewLine & 
-                miner_config = "ocm_sgminer.exe --kernel Lyra2REv2 " & "-u " & Worker & " -p " & Password & Intensity_Buffer & " " & additional_config & " " & Pool & Environment.NewLine & "exit /B"
+                miner_config = "ocm_sgminer.exe --kernel Lyra2REv2 " & "-u " & Worker & " -p " & Password & Intensity_Buffer & " " & additional_config & Pool & Environment.NewLine & "exit /B"
             ElseIf NvidiaMiner = True Then
                 miner_config_file = SettingsFolder & "\nvidia\config.bat"
-                miner_config = "ocm_ccminer.exe -a lyra2v2 " & "-u " & Worker & " -p " & Password & Intensity_Buffer & " " & additional_config & " " & Pool & Environment.NewLine & "exit /B"
+                miner_config = "ocm_ccminer.exe -a lyra2v2 " & "-u " & Worker & " -p " & Password & Intensity_Buffer & " " & additional_config & Pool & Environment.NewLine & "exit /B"
             ElseIf CPUMiner = True Then
                 miner_config_file = SettingsFolder & "\cpu\config.bat"
-                miner_config = "ocm_cpuminer.exe -a lyra2rev2 " & "-u " & Worker & " -p " & Password & " " & additional_config & " " & Pool & Environment.NewLine & "exit /B"
+                miner_config = "ocm_cpuminer.exe -a lyra2rev2 " & "-u " & Worker & " -p " & Password & " " & additional_config & Pool & Environment.NewLine & "exit /B"
             End If
             'Update miner config
             Dim objWriter As New System.IO.StreamWriter(miner_config_file)
