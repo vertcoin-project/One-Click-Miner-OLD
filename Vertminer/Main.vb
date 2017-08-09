@@ -1356,6 +1356,7 @@ Public Class Main
                 Else
                     line = line.Replace("http://", "stratum+tcp://")
                 End If
+                line = line.Trim()
             Next
             If P2P_Network = 1 Then
                 If mining_port = "9181" Or mining_port = "" Then
@@ -1379,7 +1380,7 @@ Public Class Main
             For Each line As String In Pool_Address_Text.Lines
                 If line.Contains("localhost:" & mining_port) And Pool_Address_Text.Lines.Count > 1 Then
                     Pool_Address_Text.Text = Pool_Address_Text.Text.Replace(line, "")
-                    Pool_Address_Text.Text = Pool_Address_Text.Text.Remove(0, 1)
+                    Pool_Address_Text.Text = Pool_Address_Text.Text.Trim()
                     Pool_Address = Pool_Address_Text.Text
                 End If
             Next
