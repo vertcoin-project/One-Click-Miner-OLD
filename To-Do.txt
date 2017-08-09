@@ -1,6 +1,4 @@
--add vertcoin data directory to p2pool if not default
-
-
+-miner button stuck on disable after clicking it to disable miner. miner gets disabled like it's supposed to. experienced on nvidia miner button.
 
 Done - double check to verify before release
 ---------------------------------------------
@@ -17,3 +15,8 @@ Done - double check to verify before release
 -add reset to defaults button
 -Combine wallet address and worker fields.
 -Check update methods.  Seems to be broken/p2pool is not detecting the update
+-add vertcoin data directory to p2pool if not default
+
+-Rename p2pool process to ocm_p2pool
+-Mining configs fixed
+-Pool address bugs fixed

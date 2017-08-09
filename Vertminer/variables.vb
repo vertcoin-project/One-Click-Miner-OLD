@@ -98,8 +98,9 @@ Module variables
     Public Property MinerPrompt As Boolean = False
     Public Property mining_port As String = "9171"
     Public Property Keep_Miner_Alive As Boolean = False
+
     'Miner Configuration
-    Public Property Intensity As Decimal
+    Public Property Intensity As Decimal = 0
     Public Property Worker As String = "VpBsRnN749jYHE9hT8dZreznHfmFMdE1yG"
     Public Property Password As String = "x"
     Public Property Pool_Address As String = "stratum+tcp://vtc.alwayshashing.com:9171"

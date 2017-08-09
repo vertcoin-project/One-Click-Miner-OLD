@@ -33,7 +33,7 @@ Public Class Main
                 File.Create(SettingsIni).Dispose()
                 Invoke(New MethodInvoker(AddressOf SaveSettingsIni))
             Else
-                Update_Settings()
+                Invoke(New MethodInvoker(AddressOf Update_Settings))
             End If
             If System.IO.File.Exists(SysLog) = False Then
                 File.Create(SysLog).Dispose()
@@ -65,10 +65,10 @@ Public Class Main
             'Copies previous log file to string
             LogFileString = File.ReadAllText(SysLog)
             'Check if p2pool or miner are already running
-            Dim P2Pool_Detected = False
-            Dim AMD_Detected = False
-            Dim Nvidia_Detected = False
-            Dim CPU_Detected = False
+            P2Pool_Detected = False
+            AMD_Detected = False
+            Nvidia_Detected = False
+            CPU_Detected = False
             For Each p As Process In System.Diagnostics.Process.GetProcesses
                 If p.ProcessName.Contains("ocm_p2pool") Then
                     P2Pool_Detected = True
@@ -151,7 +151,6 @@ Public Class Main
             MsgBox(ex.Message)
             NewLog = NewLog & Environment.NewLine
             NewLog = NewLog & ("- " & Date.Parse(Now) & ", " & "Main(), " & ex.Message)
-            Invoke(New MethodInvoker(AddressOf SaveSettingsIni))
         Finally
             NewLog = NewLog & Environment.NewLine
             NewLog = NewLog & ("- " & Date.Parse(Now) & ", " & "Main() Loaded: OK, V:" & Application.ProductVersion)
@@ -553,7 +552,7 @@ Public Class Main
                 For Each folder As String In folders
                     Dim files() As String = IO.Directory.GetFiles(folder)
                     For Each file As String In files
-                        If file.Contains("ocm_p2pool") Then
+                        If file.Contains("run_p2pool") Then
                             My.Computer.FileSystem.MoveFile(file, P2PoolFolder & "\" & "ocm_p2pool.exe", True)
                         Else
                             My.Computer.FileSystem.MoveFile(file, P2PoolFolder & "\" & System.IO.Path.GetFileName(file), True)
@@ -675,292 +674,297 @@ Public Class Main
     Public Sub Update_Settings()
 
         Try
-            Dim Reader As New StreamReader(SettingsIni, False)
-            Dim Buf As Object = Reader.ReadLine
-            Dim IntBuf As Integer
-            If Not Buf = "" Then
-                appdata = Buf
-            End If
-            Buf = Reader.ReadLine                               '
-            If Not Buf = "" And Buf.Contains("true") Then       '
-                start_minimized = "true"                        '
-            ElseIf Not Buf = "" And Buf.Contains("false") Then  '
-                start_minimized = "false"                       '
-            End If                                              '
-            Buf = Reader.ReadLine                               '
-            If Not Buf = "" And Buf.Contains("true") Then       '
-                hide_windows = "true"                            '
-            ElseIf Not Buf = "" And Buf.Contains("false") Then  '
-                hide_windows = "false"                           '
-            End If                                              '                                            '
-            Buf = Reader.ReadLine                               '
-            If Not Buf = "" And Buf.Contains("true") Then       '
-                start_with_windows = "true"                     '
-            ElseIf Not Buf = "" And Buf.Contains("false") Then  'This section will use default variable values if field happens to be null
-                start_with_windows = "false"                    '
-            End If                                              '
-            Buf = Reader.ReadLine                               '
-            If Not Buf = "" And Buf.Contains("true") Then       '
-                autostart_p2pool = "true"                       '
-            ElseIf Not Buf = "" And Buf.Contains("false") Then  '
-                autostart_p2pool = "false"                      '
-            End If                                              '
-            Buf = Reader.ReadLine                               '
-            If Not Buf = "" And Buf.Contains("true") Then       '
-                autostart_mining = "true"                       '
-            ElseIf Not Buf = "" And Buf.Contains("false") Then  '
-                autostart_mining = "false"                      '
-            End If                                              '
-            Buf = Reader.ReadLine                               '
-            If Not Buf = "" And Buf.Contains("true") Then       '
-                start_mining_when_idle = "true"                 '
-            ElseIf Not Buf = "" And Buf.Contains("false") Then  '
-                start_mining_when_idle = "false"                '
-            End If                                              '
-            Buf = Reader.ReadLine                               '
-            If Not Buf = "" And Buf.Contains("true") Then       '
-                Keep_Miner_Alive = "true"                       '
-            ElseIf Not Buf = "" And Buf.Contains("false") Then  '
-                Keep_Miner_Alive = "false"                      '
-            End If                                              '
-            Buf = Reader.ReadLine                               '
-            If Not Buf = "" And Buf.Contains("true") Then       '
-                Keep_P2Pool_Alive = "true"                      '
-            ElseIf Not Buf = "" And Buf.Contains("false") Then  '
-                Keep_P2Pool_Alive = "false"                     '
-            End If                                              '
-            Buf = Reader.ReadLine                               '
-            If Not Buf = "" And Buf.Contains("true") Then       '
-                use_UPnP = "true"                               '
-            ElseIf Not Buf = "" And Buf.Contains("false") Then  '
-                use_UPnP = "false"                              '
-            End If                                              '
-            Buf = Reader.ReadLine
-            If Not Buf = "" And Buf.contains("P2Pool Network=") = True Then
-                Buf = Buf.replace("P2Pool Network=", "")
-                If Decimal.TryParse(Buf, IntBuf) = True Then
-                    P2P_Network = Buf
-                Else
-                    MsgBox("'P2Pool Network' setting invalid. Using default P2Pool network 1.")
-                End If
-            End If
-            Buf = Reader.ReadLine
-            If Not Buf = "" And Buf.contains("P2Pool Node Fee (%)=") = True Then
-                Buf = Buf.replace("P2Pool Node Fee (%)=", "")
-                If Decimal.TryParse(Buf, IntBuf) = True Then
-                    P2P_Node_Fee = Buf
-                Else
-                    MsgBox("'P2Pool Node Fee' setting invalid. Using default P2Pool node fee percentage of 0%.")
-                End If
-            End If
-            Buf = Reader.ReadLine
-            If Not Buf = "" And Buf.contains("P2Pool Node Donation (%)=") = True Then
-                Buf = Buf.replace("P2Pool Node Donation (%)=", "")
-                If Decimal.TryParse(Buf, IntBuf) = True Then
-                    P2P_Donation = Buf
-                Else
-                    MsgBox("'P2Pool Donation' setting invalid. Using default P2Pool donation percentage of 1%.")
-                End If
-            End If
-            Buf = Reader.ReadLine
-            If Not Buf = "" And Buf.contains("Maximum P2Pool Connections=") = True Then
-                Buf = Buf.replace("Maximum P2Pool Connections=", "")
-                If Decimal.TryParse(Buf, IntBuf) = True Then
-                    MaxConnections = Buf
-                Else
-                    MsgBox("'Maximum P2Pool Connections' setting invalid. Using default maximum connections.")
-                End If
-            End If
-            Buf = Reader.ReadLine
-            If Not Buf = "" And Buf.contains("Mining Idle (s)=") = True Then
-                Buf = Buf.replace("Mining Idle (s)=", "")
-                If Decimal.TryParse(Buf, IntBuf) = True Then
-                    MiningIdle = Buf
-                Else
-                    MsgBox("'Mining Idle' setting invalid. Using default mining idle.")
-                End If
-            End If
-            Buf = Reader.ReadLine
-            If Not Buf = "" And Buf.contains("Mining Restart Delay (s)=") = True Then
-                Buf = Buf.replace("Mining Restart Delay (s)=", "")
-                If Decimal.TryParse(Buf, IntBuf) = True Then
-                    RestartDelay = Buf
-                Else
-                    MsgBox("'Mining Restart Delay' setting invalid. Using default mining restart delay.")
-                End If
-            End If
-            Buf = Reader.ReadLine
-            If Not Buf = "" And Buf.contains("P2Pool Port=") = True Then
-                Buf = Buf.replace("P2Pool Port=", "")
-                If Decimal.TryParse(Buf, IntBuf) = True Then
-                    p2pool_port = Buf
-                Else
-                    MsgBox("'P2Pool Port' setting invalid. Using default P2Pool port.")
-                End If
-            End If
-            Buf = Reader.ReadLine
-            If Not Buf = "" And Buf.contains("Mining Port=") = True Then
-                Buf = Buf.replace("Mining Port=", "")
-                If Decimal.TryParse(Buf, IntBuf) = True Then
-                    mining_port = Buf
-                Else
-                    MsgBox("'Mining Port' setting invalid. Using default mining port.")
-                End If
-            End If
-            Buf = Reader.ReadLine
-            If Not Buf = "" And Buf.contains("Mining Intensity=") = True Then
-                Buf = Buf.replace("Mining Intensity=", "")
-                If Decimal.TryParse(Buf, IntBuf) = True Then
-                    Intensity = Buf
-                Else
-                    MsgBox("'Mining Intensity' setting invalid. Using default mining intensity.")
-                End If
-            End If
-            Buf = Reader.ReadLine
-            If Not Buf = "" And Buf.contains("Worker Name=") = True Then
-                Buf = Buf.replace("Worker Name=", "")
-                If Not Buf = "" Then
-                    Worker = Buf
-                Else
-                    MsgBox("'Worker Name' setting invalid. Using default worker name.")
-                End If
-            End If
-            Buf = Reader.ReadLine
-            If Not Buf = "" And Buf.contains("Worker Password=") = True Then
-                Buf = Buf.replace("Worker Password=", "")
-                If Not Buf = "" Then
-                    Password = Buf
-                Else
-                    MsgBox("'Worker Password' setting invalid. Using default worker password.")
-                End If
-            End If
-            Buf = Reader.ReadLine ' Wallet Address that has been deprecated
-            Buf = Reader.ReadLine
-            If Not Buf = "" And Buf.contains("P2Pool Fee Address=") = True Then
-                Buf = Buf.replace("P2Pool Fee Address=", "")
-                If Not Buf = "" Then
-                    P2P_Node_Fee_Address = Buf
-                Else
-                    MsgBox("'P2Pool Fee Address' setting invalid. Using default P2Pool fee address. Please check your fee address for errors.")
-                End If
-            End If
-            Pool_Address = ""
-            Do
-                Buf = Reader.ReadLine
-                If Not Buf.contains("Pool URL=") Then
-                    Exit Do
-                Else
-                    If Not Buf.replace("Pool URL=", "") = "" Then
-                        Buf = Buf.replace("Pool URL=", "")
-                        If Pool_Address = "" Then
-                            Pool_Address = Buf
-                        Else
-                            If Not Pool_Address = Buf Then
-                                Pool_Address = Pool_Address & Environment.NewLine & Buf
+            Dim Old_Settings As String = File.ReadAllText(SettingsIni)
+            If Old_Settings.Contains("Wallet Address=") Then 'Wallet Address= has been deprecated.
+                With System.Reflection.Assembly.GetExecutingAssembly.GetName.Version
+                    '1.0.5 Release
+                    If (.Major >= 1 And .Minor >= 0 And .Build >= 5) Then
+                        Dim Reader As New StreamReader(SettingsIni, False)
+                        Dim Buf As Object = Reader.ReadLine
+                        Dim IntBuf As Integer
+                        If Not Buf = "" Then
+                            appdata = Buf
+                        End If
+                        Buf = Reader.ReadLine                               '
+                        If Not Buf = "" And Buf.Contains("true") Then       '
+                            start_minimized = "true"                        '
+                        ElseIf Not Buf = "" And Buf.Contains("false") Then  '
+                            start_minimized = "false"                       '
+                        End If                                              '
+                        Buf = Reader.ReadLine                               '
+                        If Not Buf = "" And Buf.Contains("true") Then       '
+                            hide_windows = "true"                           '
+                        ElseIf Not Buf = "" And Buf.Contains("false") Then  '
+                            hide_windows = "false"                          '
+                        End If                                              '                                            
+                        Buf = Reader.ReadLine                               '
+                        If Not Buf = "" And Buf.Contains("true") Then       '
+                            start_with_windows = "true"                     '
+                        ElseIf Not Buf = "" And Buf.Contains("false") Then  'This section will use default variable values if field happens to be null
+                            start_with_windows = "false"                    '
+                        End If                                              '
+                        Buf = Reader.ReadLine                               '
+                        If Not Buf = "" And Buf.Contains("true") Then       '
+                            autostart_p2pool = "true"                       '
+                        ElseIf Not Buf = "" And Buf.Contains("false") Then  '
+                            autostart_p2pool = "false"                      '
+                        End If                                              '
+                        Buf = Reader.ReadLine                               '
+                        If Not Buf = "" And Buf.Contains("true") Then       '
+                            autostart_mining = "true"                       '
+                        ElseIf Not Buf = "" And Buf.Contains("false") Then  '
+                            autostart_mining = "false"                      '
+                        End If                                              '
+                        Buf = Reader.ReadLine                               '
+                        If Not Buf = "" And Buf.Contains("true") Then       '
+                            start_mining_when_idle = "true"                 '
+                        ElseIf Not Buf = "" And Buf.Contains("false") Then  '
+                            start_mining_when_idle = "false"                '
+                        End If                                              '
+                        Buf = Reader.ReadLine                               '
+                        If Not Buf = "" And Buf.Contains("true") Then       '
+                            Keep_Miner_Alive = "true"                       '
+                        ElseIf Not Buf = "" And Buf.Contains("false") Then  '
+                            Keep_Miner_Alive = "false"                      '
+                        End If                                              '
+                        Buf = Reader.ReadLine                               '
+                        If Not Buf = "" And Buf.Contains("true") Then       '
+                            Keep_P2Pool_Alive = "true"                      '
+                        ElseIf Not Buf = "" And Buf.Contains("false") Then  '
+                            Keep_P2Pool_Alive = "false"                     '
+                        End If                                              '
+                        Buf = Reader.ReadLine                               '
+                        If Not Buf = "" And Buf.Contains("true") Then       '
+                            use_UPnP = "true"                               '
+                        ElseIf Not Buf = "" And Buf.Contains("false") Then  '
+                            use_UPnP = "false"                              '
+                        End If                                              '
+                        Buf = Reader.ReadLine
+                        If Not Buf = "" And Buf.contains("P2Pool Network=") = True Then
+                            Buf = Buf.replace("P2Pool Network=", "")
+                            If Decimal.TryParse(Buf, IntBuf) = True Then
+                                P2P_Network = Buf
+                            Else
+                                MsgBox("'P2Pool Network' setting invalid. Using default P2Pool network 1.")
                             End If
                         End If
-                    Else
-                        'MsgBox("'Pool Address' setting invalid. Using default pool address. Please check your pool address for errors.")
+                        Buf = Reader.ReadLine
+                        If Not Buf = "" And Buf.contains("P2Pool Node Fee (%)=") = True Then
+                            Buf = Buf.replace("P2Pool Node Fee (%)=", "")
+                            If Decimal.TryParse(Buf, IntBuf) = True Then
+                                P2P_Node_Fee = Buf
+                            Else
+                                MsgBox("'P2Pool Node Fee' setting invalid. Using default P2Pool node fee percentage of 0%.")
+                            End If
+                        End If
+                        Buf = Reader.ReadLine
+                        If Not Buf = "" And Buf.contains("P2Pool Node Donation (%)=") = True Then
+                            Buf = Buf.replace("P2Pool Node Donation (%)=", "")
+                            If Decimal.TryParse(Buf, IntBuf) = True Then
+                                P2P_Donation = Buf
+                            Else
+                                MsgBox("'P2Pool Donation' setting invalid. Using default P2Pool donation percentage of 1%.")
+                            End If
+                        End If
+                        Buf = Reader.ReadLine
+                        If Not Buf = "" And Buf.contains("Maximum P2Pool Connections=") = True Then
+                            Buf = Buf.replace("Maximum P2Pool Connections=", "")
+                            If Decimal.TryParse(Buf, IntBuf) = True Then
+                                MaxConnections = Buf
+                            Else
+                                MsgBox("'Maximum P2Pool Connections' setting invalid. Using default maximum connections.")
+                            End If
+                        End If
+                        Buf = Reader.ReadLine
+                        If Not Buf = "" And Buf.contains("Mining Idle (s)=") = True Then
+                            Buf = Buf.replace("Mining Idle (s)=", "")
+                            If Decimal.TryParse(Buf, IntBuf) = True Then
+                                MiningIdle = Buf
+                            Else
+                                MsgBox("'Mining Idle' setting invalid. Using default mining idle.")
+                            End If
+                        End If
+                        Buf = Reader.ReadLine
+                        If Not Buf = "" And Buf.contains("Mining Restart Delay (s)=") = True Then
+                            Buf = Buf.replace("Mining Restart Delay (s)=", "")
+                            If Decimal.TryParse(Buf, IntBuf) = True Then
+                                RestartDelay = Buf
+                            Else
+                                MsgBox("'Mining Restart Delay' setting invalid. Using default mining restart delay.")
+                            End If
+                        End If
+                        Buf = Reader.ReadLine
+                        If Not Buf = "" And Buf.contains("P2Pool Port=") = True Then
+                            Buf = Buf.replace("P2Pool Port=", "")
+                            If Decimal.TryParse(Buf, IntBuf) = True Then
+                                p2pool_port = Buf
+                            Else
+                                MsgBox("'P2Pool Port' setting invalid. Using default P2Pool port.")
+                            End If
+                        End If
+                        Buf = Reader.ReadLine
+                        If Not Buf = "" And Buf.contains("Mining Port=") = True Then
+                            Buf = Buf.replace("Mining Port=", "")
+                            If Decimal.TryParse(Buf, IntBuf) = True Then
+                                mining_port = Buf
+                            Else
+                                MsgBox("'Mining Port' setting invalid. Using default mining port.")
+                            End If
+                        End If
+                        Buf = Reader.ReadLine
+                        If Not Buf = "" And Buf.contains("Mining Intensity=") = True Then
+                            Buf = Buf.replace("Mining Intensity=", "")
+                            If Decimal.TryParse(Buf, IntBuf) = True Then
+                                Intensity = Buf
+                            Else
+                                MsgBox("'Mining Intensity' setting invalid. Using default mining intensity.")
+                            End If
+                        End If
+                        Buf = Reader.ReadLine
+                        If Not Buf = "" And Buf.contains("Worker Name=") = True Then
+                            Buf = Buf.replace("Worker Name=", "")
+                            If Not Buf = "" Then
+                                Worker = Buf
+                            Else
+                                MsgBox("'Worker Name' setting invalid. Using default worker name.")
+                            End If
+                        End If
+                        Buf = Reader.ReadLine
+                        If Not Buf = "" And Buf.contains("Worker Password=") = True Then
+                            Buf = Buf.replace("Worker Password=", "")
+                            If Not Buf = "" Then
+                                Password = Buf
+                            Else
+                                MsgBox("'Worker Password' setting invalid. Using default worker password.")
+                            End If
+                        End If
+                        Buf = Reader.ReadLine ' Wallet Address that has been deprecated
+                        Buf = Reader.ReadLine
+                        If Not Buf = "" And Buf.contains("P2Pool Fee Address=") = True Then
+                            Buf = Buf.replace("P2Pool Fee Address=", "")
+                            If Not Buf = "" Then
+                                P2P_Node_Fee_Address = Buf
+                            Else
+                                MsgBox("'P2Pool Fee Address' setting invalid. Using default P2Pool fee address. Please check your fee address for errors.")
+                            End If
+                        End If
+                        Pool_Address = ""
+                        Do
+                            Buf = Reader.ReadLine
+                            If Not Buf.contains("Pool URL=") And Not Buf = "" Then
+                                Exit Do
+                            Else
+                                If Not Buf.replace("Pool URL=", "") = "" Then
+                                    Buf = Buf.replace("Pool URL=", "")
+                                    If Pool_Address = "" Then
+                                        Pool_Address = Buf
+                                    Else
+                                        If Not Pool_Address = Buf Then
+                                            Pool_Address = Pool_Address & Environment.NewLine & Buf
+                                        End If
+                                    End If
+                                Else
+                                    'MsgBox("'Pool Address' setting invalid. Using default pool address. Please check your pool address for errors.")
+                                End If
+                            End If
+                        Loop
+                        If Not Buf = "" And Buf.contains("One-Click Version=") = True Then
+                            Buf = Buf.replace("One-Click Version=", "")
+                            If Not Buf = "" Then
+                                'Miner_Version = Buf 'Allow the OCM to determine this value on load
+                                Dim Old_Miner_Version = Buf
+                            End If
+                        End If
+                        Buf = Reader.ReadLine
+                        If Not Buf = "" And Buf.contains("P2Pool Version=") = True Then
+                            Buf = Buf.replace("P2Pool Version=", "")
+                            If Not Buf = "" Then
+                                P2Pool_Version = Buf
+                            End If
+                        End If
+                        Buf = Reader.ReadLine
+                        If Not Buf = "" And Buf.contains("AMD Miner Version=") = True Then
+                            Buf = Buf.replace("AMD Miner Version=", "")
+                            If Not Buf = "" Then
+                                AMD_Version = Buf
+                            End If
+                        End If
+                        Buf = Reader.ReadLine
+                        If Not Buf = "" And Buf.contains("Nvidia Miner Version=") = True Then
+                            Buf = Buf.replace("Nvidia Miner Version=", "")
+                            If Not Buf = "" Then
+                                Nvidia_Version = Buf
+                            End If
+                        End If
+                        Buf = Reader.ReadLine
+                        If Not Buf = "" And Buf.contains("CPU Miner Version=") = True Then
+                            Buf = Buf.replace("CPU Miner Version=", "")
+                            If Not Buf = "" Then
+                                CPU_Version = Buf
+                            End If
+                        End If
+                        Buf = Reader.ReadLine
+                        If Not Buf = "" And Buf.contains("Default Miner=") = True Then
+                            Buf = Buf.replace("Default Miner=", "")
+                            If Not Buf = "" Then
+                                DefaultMiner = Buf
+                            End If
+                        End If
+                        Buf = Reader.ReadToEnd
+                        If Not Buf = "" And Buf.contains("Additional Miner Config=") = True Then
+                            Buf = Buf.replace("Additional Miner Config=", "")
+                            If Not Buf = "" And Not Buf.contains("Default") Then
+                                additional_config = Buf
+                            End If
+                        End If
+                        Reader.Close()
+                        Invoke(New MethodInvoker(AddressOf Update_Miner_Text))
+                        System.Threading.Thread.Sleep(100)
+                        Do
+                            If System.IO.File.Exists(SettingsIni) = True Then
+                                Dim objWriter As New System.IO.StreamWriter(SettingsIni)
+                                objWriter.WriteLine(appdata)
+                                objWriter.WriteLine("Start Minimized=false")
+                                objWriter.WriteLine("Hide Windows=false")
+                                objWriter.WriteLine("Start With Windows=false")
+                                objWriter.WriteLine("Autostart P2Pool=false")
+                                objWriter.WriteLine("Autostart Mining=false")
+                                objWriter.WriteLine("Mine When Idle=false")
+                                objWriter.WriteLine("Keep Miner Alive=false")
+                                objWriter.WriteLine("Keep P2Pool Alive=false")
+                                objWriter.WriteLine("Use UPnP=false")
+                                objWriter.WriteLine("P2Pool Network=1")
+                                objWriter.WriteLine("P2Pool Node Fee (%)=0")
+                                objWriter.WriteLine("P2Pool Donation (%)=1")
+                                objWriter.WriteLine("Maximum P2Pool Connections=50")
+                                objWriter.WriteLine("Mining Idle (s)=0")
+                                objWriter.WriteLine("Mining Restart Delay (s)=2")
+                                objWriter.WriteLine("P2Pool Port=9346")
+                                objWriter.WriteLine("Mining Port=9171")
+                                objWriter.WriteLine("Mining Intensity=0")
+                                Intensity = 0
+                                objWriter.WriteLine("Worker Name=VpBsRnN749jYHE9hT8dZreznHfmFMdE1yG")
+                                Worker = "VpBsRnN749jYHE9hT8dZreznHfmFMdE1yG"
+                                objWriter.WriteLine("Worker Password=x")
+                                Password = "x"
+                                objWriter.WriteLine("P2Pool Fee Address=VpBsRnN749jYHE9hT8dZreznHfmFMdE1yG")
+                                objWriter.WriteLine("Pool URL=stratum+tcp://vtc.alwayshashing.com:9171")
+                                Pool_Address = "stratum+tcp://vtc.alwayshashing.com:9171"
+                                objWriter.WriteLine("One-Click Version=" & Miner_Version)
+                                objWriter.WriteLine("P2Pool Version=" & P2Pool_Version)
+                                objWriter.WriteLine("AMD Miner Version=" & AMD_Version)
+                                objWriter.WriteLine("Nvidia Miner Version=" & Nvidia_Version)
+                                objWriter.WriteLine("CPU Miner Version=" & CPU_Version)
+                                objWriter.WriteLine("Default Miner=")
+                                objWriter.Write("Additional Miner Config=")
+                                additional_config = ""
+                                objWriter.Close()
+                            End If
+                            Exit Do
+                        Loop
                     End If
-                End If
-            Loop
-            If Not Buf = "" And Buf.contains("One-Click Version=") = True Then
-                Buf = Buf.replace("One-Click Version=", "")
-                If Not Buf = "" Then
-                    'Miner_Version = Buf 'Allow the OCM to determine this value on load
-                End If
+                End With
             End If
-            Buf = Reader.ReadLine
-            If Not Buf = "" And Buf.contains("P2Pool Version=") = True Then
-                Buf = Buf.replace("P2Pool Version=", "")
-                If Not Buf = "" Then
-                    P2Pool_Version = Buf
-                End If
-            End If
-            Buf = Reader.ReadLine
-            If Not Buf = "" And Buf.contains("AMD Miner Version=") = True Then
-                Buf = Buf.replace("AMD Miner Version=", "")
-                If Not Buf = "" Then
-                    AMD_Version = Buf
-                End If
-            End If
-            Buf = Reader.ReadLine
-            If Not Buf = "" And Buf.contains("Nvidia Miner Version=") = True Then
-                Buf = Buf.replace("Nvidia Miner Version=", "")
-                If Not Buf = "" Then
-                    Nvidia_Version = Buf
-                End If
-            End If
-            Buf = Reader.ReadLine
-            If Not Buf = "" And Buf.contains("CPU Miner Version=") = True Then
-                Buf = Buf.replace("CPU Miner Version=", "")
-                If Not Buf = "" Then
-                    CPU_Version = Buf
-                End If
-            End If
-            Buf = Reader.ReadLine
-            If Not Buf = "" And Buf.contains("Default Miner=") = True Then
-                Buf = Buf.replace("Default Miner=", "")
-                If Not Buf = "" Then
-                    DefaultMiner = Buf
-                End If
-            End If
-            Buf = Reader.ReadToEnd
-            If Not Buf = "" And Buf.contains("Additional Miner Config=") = True Then
-                Buf = Buf.replace("Additional Miner Config=", "")
-                If Not Buf = "" And Not Buf.contains("Default") Then
-                    additional_config = Buf
-                End If
-            End If
-            Reader.Close()
-            Intensity_Text.Text = Intensity
-            Worker_Address_Text.Text = Worker
-            Password_Text.Text = Password
-            Pool_Address_Text.Text = Pool_Address
-            Additional_Configuration_Text.Text = additional_config
-
-            Do
-                If System.IO.File.Exists(SettingsIni) = True Then
-                    Dim objWriter As New System.IO.StreamWriter(SettingsIni)
-                    objWriter.WriteLine(appdata)
-                    objWriter.WriteLine("Start Minimized=false")
-                    objWriter.WriteLine("Hide Windows=false")
-                    objWriter.WriteLine("Start With Windows=false")
-                    objWriter.WriteLine("Autostart P2Pool=false")
-                    objWriter.WriteLine("Autostart Mining=false")
-                    objWriter.WriteLine("Mine When Idle=false")
-                    objWriter.WriteLine("Keep Miner Alive=false")
-                    objWriter.WriteLine("Keep P2Pool Alive=false")
-                    objWriter.WriteLine("Use UPnP=false")
-                    objWriter.WriteLine("P2Pool Network=1")
-                    objWriter.WriteLine("P2Pool Node Fee (%)=0")
-                    objWriter.WriteLine("P2Pool Donation (%)=1")
-                    objWriter.WriteLine("Maximum P2Pool Connections=50")
-                    objWriter.WriteLine("Mining Idle (s)=0")
-                    objWriter.WriteLine("Mining Restart Delay (s)=2")
-                    objWriter.WriteLine("P2Pool Port=9346")
-                    objWriter.WriteLine("Mining Port=9171")
-                    objWriter.WriteLine("Mining Intensity=0")
-                    Intensity = 0
-                    objWriter.WriteLine("Worker Name=VpBsRnN749jYHE9hT8dZreznHfmFMdE1yG")
-                    Worker = "VpBsRnN749jYHE9hT8dZreznHfmFMdE1yG"
-                    objWriter.WriteLine("Worker Password=x")
-                    Password = "x"
-                    objWriter.WriteLine("P2Pool Fee Address=VpBsRnN749jYHE9hT8dZreznHfmFMdE1yG")
-                    objWriter.WriteLine("Pool URL=stratum+tcp://vtc.alwayshashing.com:9171")
-                    Pool_Address = "stratum+tcp://vtc.alwayshashing.com:9171"
-                    objWriter.WriteLine("One-Click Version=" & Miner_Version)
-                    objWriter.WriteLine("P2Pool Version=" & P2Pool_Version)
-                    objWriter.WriteLine("AMD Miner Version=" & AMD_Version)
-                    objWriter.WriteLine("Nvidia Miner Version=" & Nvidia_Version)
-                    objWriter.WriteLine("CPU Miner Version=" & CPU_Version)
-                    objWriter.WriteLine("Default Miner=")
-                    objWriter.Write("Additional Miner Config=")
-                    additional_config = ""
-                    objWriter.Close()
-                End If
-                Exit Do
-            Loop
         Catch ex As IOException
             MsgBox(ex.Message)
             NewLog = NewLog & Environment.NewLine
@@ -990,10 +994,10 @@ Public Class Main
             End If                                              '
             Buf = Reader.ReadLine                               '
             If Not Buf = "" And Buf.Contains("true") Then       '
-                hide_windows = "true"                            '
+                hide_windows = "true"                           '
             ElseIf Not Buf = "" And Buf.Contains("false") Then  '
-                hide_windows = "false"                           '
-            End If                                              '                                            '
+                hide_windows = "false"                          '
+            End If                                              '                                            
             Buf = Reader.ReadLine                               '
             If Not Buf = "" And Buf.Contains("true") Then       '
                 start_with_windows = "true"                     '
@@ -1147,7 +1151,7 @@ Public Class Main
             Pool_Address = ""
             Do
                 Buf = Reader.ReadLine
-                If Not Buf.contains("Pool URL=") Then
+                If Not Buf.contains("Pool URL=") And Not Buf = "" Then
                     Exit Do
                 Else
                     If Not Buf.replace("Pool URL=", "") = "" Then
@@ -1213,11 +1217,7 @@ Public Class Main
                 End If
             End If
             Reader.Close()
-            Intensity_Text.Text = Intensity
-            Worker_Address_Text.Text = Worker
-            Password_Text.Text = Password
-            Pool_Address_Text.Text = Pool_Address
-            Additional_Configuration_Text.Text = additional_config
+            Invoke(New MethodInvoker(AddressOf Update_Miner_Text))
         Catch ex As IOException
             MsgBox(ex.Message)
             NewLog = NewLog & Environment.NewLine
@@ -1234,11 +1234,21 @@ Public Class Main
 
         Do
             Try
-                Intensity = Convert.ToDecimal(Intensity_Text.Text)
-                Worker = Worker_Address_Text.Text
-                Password = Password_Text.Text
-                Pool_Address = Pool_Address_Text.Text
-                additional_config = Additional_Configuration_Text.Text
+                If Not Intensity_Text.Text = "" Then
+                    Intensity = Convert.ToDecimal(Intensity_Text.Text)
+                End If
+                If Not Worker_Address_Text.Text = "" Then
+                    Worker = Worker_Address_Text.Text
+                End If
+                If Not Password_Text.Text = "" Then
+                    Password = Password_Text.Text
+                End If
+                If Not Pool_Address_Text.Text = "" Then
+                    Pool_Address = Pool_Address_Text.Text
+                End If
+                If Not Additional_Configuration_Text.Text = "" Then
+                    additional_config = Additional_Configuration_Text.Text
+                End If
                 If System.IO.File.Exists(SettingsIni) = True Then
                     Dim objWriter As New System.IO.StreamWriter(SettingsIni)
                     objWriter.WriteLine(appdata)
@@ -1300,10 +1310,10 @@ Public Class Main
                     objWriter.WriteLine("Worker Password=" & Password)
                     objWriter.WriteLine("P2Pool Fee Address=" & P2P_Node_Fee_Address)
                     If Pool_Address.Split(vbCrLf).Length > 1 Then
-                        For Each line As String In Pool_Address.Split(vbLf)
-                            objWriter.Write("Pool URL=" & line)
+                        For Each line As String In Pool_Address.Split(vbCrLf)
+                            objWriter.WriteLine("Pool URL=" & line.Trim())
                         Next
-                        objWriter.Write(vbLf)
+                        'objWriter.Write(Environment.NewLine)
                     Else
                         objWriter.WriteLine("Pool URL=" & Pool_Address)
                     End If
@@ -1334,9 +1344,14 @@ Public Class Main
 
         If CheckBox1.Checked = True Then
             For Each line As String In Pool_Address.Split(New String() {Environment.NewLine}, StringSplitOptions.None)
-                If line.Contains("localhost") Then
-                    Pool_Address = Pool_Address.Replace(line & Environment.NewLine, "")
+                If Not line.Contains("http://") And Not line.Contains("stratum+tcp://") Then
+                    line = "stratum+tcp://" & line
+                Else
+                    line = line.Replace("http://", "stratum+tcp://")
                 End If
+                'If line.Contains("localhost:" & mining_port) Then
+                '    Pool_Address = Pool_Address.Replace(line, "")
+                'End If
             Next
             If P2P_Network = 1 Then
                 If mining_port = "9181" Or mining_port = "" Then
@@ -1347,16 +1362,18 @@ Public Class Main
                     mining_port = "9181"
                 End If
             End If
-            Pool_Address = "http://localhost:" & mining_port & Environment.NewLine & Pool_Address
+            If Not Pool_Address.Contains("localhost:" & mining_port) Then
+                Pool_Address = "http://localhost:" & mining_port & Environment.NewLine & Pool_Address
+            End If
             Pool_Address_Text.Text = Pool_Address
-            Pool_Address_Text.SelectionStart = 0
-            Pool_Address_Text.ScrollToCaret()
-            Pool_Address_Text.Enabled = False
-        Else
-            Pool_Address_Text.Enabled = True
+                Pool_Address_Text.SelectionStart = 0
+                Pool_Address_Text.ScrollToCaret()
+                Pool_Address_Text.Enabled = False
+            Else
+                Pool_Address_Text.Enabled = True
             'remove localhost address from pool list
             For Each line As String In Pool_Address_Text.Lines
-                If line.Contains("localhost") Then
+                If line.Contains("localhost:" & mining_port) And Pool_Address_Text.Lines.Count > 1 Then
                     Pool_Address_Text.Text = Pool_Address_Text.Text.Replace(line, "")
                     Pool_Address_Text.Text = Pool_Address_Text.Text.Remove(0, 1)
                     Pool_Address = Pool_Address_Text.Text
@@ -1473,11 +1490,22 @@ Public Class Main
         Try
             Dim Pool As String = ""
             If Not Pool_Address = "" Then
-                For Each line As String In Pool_Address.Split(Environment.NewLine)
+                'For Each line As String In Pool_Address.Split(Environment.NewLine)
+                '    If Not line.Contains("http://") And Not line.Contains("stratum+tcp://") Then
+                '        line = "stratum+tcp://" & line
+                '    Else
+                '        line = line.Replace("http://", "stratum+tcp://")
+                '    End If
+                '    Pool = Pool & "-o " & line.Replace(vbCr, "").Replace(vbLf, "") & " "
+                'Next
+                For Each line As String In Pool_Address.Split(New String() {Environment.NewLine}, StringSplitOptions.None)
                     If Not line.Contains("http://") And Not line.Contains("stratum+tcp://") Then
                         line = "stratum+tcp://" & line
                     Else
                         line = line.Replace("http://", "stratum+tcp://")
+                    End If
+                    If line.Contains("localhost:" & mining_port) Then
+                        Pool_Address = Pool_Address.Replace(line & Environment.NewLine, "")
                     End If
                     Pool = Pool & "-o " & line.Replace(vbCr, "").Replace(vbLf, "") & " "
                 Next
@@ -1509,7 +1537,8 @@ Public Class Main
             additional_config = Additional_Configuration_Text.Text
             If AmdMiner = True Then
                 miner_config_file = SettingsFolder & "\amd\config.bat"
-                miner_config = "setx GPU_MAX_HEAP_SIZE 100" & Environment.NewLine & "setx GPU_USE_SYNC_OBJECTS 1" & Environment.NewLine & "setx GPU_MAX_ALLOC_PERCENT 100" & Environment.NewLine & "ocm_sgminer.exe --kernel Lyra2REv2 " & Pool & "-u " & Worker & " -p " & Password & Intensity_Buffer & " " & additional_config & Environment.NewLine & "exit /B"
+                '"setx GPU_MAX_HEAP_SIZE 100" & Environment.NewLine & "setx GPU_MAX_ALLOC_PERCENT 100" & Environment.NewLine & 
+                miner_config = "ocm_sgminer.exe --kernel Lyra2REv2 " & "-u " & Worker & " -p " & Password & Intensity_Buffer & " " & additional_config & " " & Pool & Environment.NewLine & "exit /B"
                 'miner_config = "setx GPU_MAX_HEAP_SIZE 100" & Environment.NewLine & "setx GPU_USE_SYNC_OBJECTS 1" & Environment.NewLine & "setx GPU_MAX_ALLOC_PERCENT 100" & Environment.NewLine
                 'For Each pools As String In Pool_Address.Split(Environment.NewLine)
                 '    If Not pools.Contains("http://") And Not pools.Contains(" stratum+tcp://") Then
@@ -1522,10 +1551,10 @@ Public Class Main
                 'miner_config = miner_config & "exit /B"
             ElseIf NvidiaMiner = True Then
                 miner_config_file = SettingsFolder & "\nvidia\config.bat"
-                miner_config = "ocm_ccminer.exe -a lyra2v2 " & Pool & "-u " & Worker & " -p " & Password & Intensity_Buffer & " " & additional_config & Environment.NewLine & "exit /B"
+                miner_config = "ocm_ccminer.exe -a lyra2v2 " & "-u " & Worker & " -p " & Password & Intensity_Buffer & " " & additional_config & " " & Pool & Environment.NewLine & "exit /B"
             ElseIf CPUMiner = True Then
                 miner_config_file = SettingsFolder & "\cpu\config.bat"
-                miner_config = "ocm_cpuminer.exe -a lyra2rev2 " & Pool & "-u " & Worker & " -p " & Password & " " & additional_config & Environment.NewLine & "exit /B"
+                miner_config = "ocm_cpuminer.exe -a lyra2rev2 " & "-u " & Worker & " -p " & Password & " " & additional_config & " " & Pool & Environment.NewLine & "exit /B"
             End If
             'Update miner config
             Dim objWriter As New System.IO.StreamWriter(miner_config_file)
@@ -2693,7 +2722,7 @@ Public Class Main
 
     Private Sub Pool_Address_Text_TextChanged(sender As Object, e As EventArgs) Handles Pool_Address_Text.TextChanged
 
-        Pool_Address = Pool_Address_Text.Text
+        'Pool_Address = Pool_Address_Text.Text
 
     End Sub
 

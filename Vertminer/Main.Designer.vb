@@ -330,7 +330,7 @@ Partial Class Main
         'PictureBox10
         '
         Me.PictureBox10.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.help_small
-        Me.PictureBox10.Location = New System.Drawing.Point(327, 101)
+        Me.PictureBox10.Location = New System.Drawing.Point(330, 100)
         Me.PictureBox10.Name = "PictureBox10"
         Me.PictureBox10.Size = New System.Drawing.Size(15, 15)
         Me.PictureBox10.TabIndex = 40
@@ -454,7 +454,7 @@ Partial Class Main
         '
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(282, 101)
+        Me.Label6.Location = New System.Drawing.Point(286, 101)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(46, 13)
         Me.Label6.TabIndex = 31
@@ -463,10 +463,10 @@ Partial Class Main
         'Intensity_Text
         '
         Me.Intensity_Text.BackColor = System.Drawing.SystemColors.Window
-        Me.Intensity_Text.Location = New System.Drawing.Point(271, 117)
+        Me.Intensity_Text.Location = New System.Drawing.Point(278, 117)
         Me.Intensity_Text.MaxLength = 5
         Me.Intensity_Text.Name = "Intensity_Text"
-        Me.Intensity_Text.Size = New System.Drawing.Size(69, 20)
+        Me.Intensity_Text.Size = New System.Drawing.Size(62, 20)
         Me.Intensity_Text.TabIndex = 11
         Me.Intensity_Text.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.ToolTip.SetToolTip(Me.Intensity_Text, "This sets the intensity of the miner.  This can be used to help fine-tune miner p" &
@@ -476,9 +476,9 @@ Partial Class Main
         'Password_Text
         '
         Me.Password_Text.BackColor = System.Drawing.SystemColors.Window
-        Me.Password_Text.Location = New System.Drawing.Point(183, 117)
+        Me.Password_Text.Location = New System.Drawing.Point(210, 117)
         Me.Password_Text.Name = "Password_Text"
-        Me.Password_Text.Size = New System.Drawing.Size(82, 20)
+        Me.Password_Text.Size = New System.Drawing.Size(62, 20)
         Me.Password_Text.TabIndex = 10
         Me.Password_Text.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.ToolTip.SetToolTip(Me.Password_Text, "Miner password.  Most often used for centralized pools.")
@@ -531,7 +531,7 @@ Partial Class Main
         '
         Me.Label14.AutoSize = True
         Me.Label14.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label14.Location = New System.Drawing.Point(32, 101)
+        Me.Label14.Location = New System.Drawing.Point(46, 101)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(118, 13)
         Me.Label14.TabIndex = 16
@@ -553,7 +553,7 @@ Partial Class Main
         Me.Worker_Address_Text.BackColor = System.Drawing.SystemColors.Window
         Me.Worker_Address_Text.Location = New System.Drawing.Point(6, 117)
         Me.Worker_Address_Text.Name = "Worker_Address_Text"
-        Me.Worker_Address_Text.Size = New System.Drawing.Size(171, 20)
+        Me.Worker_Address_Text.Size = New System.Drawing.Size(198, 20)
         Me.Worker_Address_Text.TabIndex = 8
         Me.Worker_Address_Text.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.ToolTip.SetToolTip(Me.Worker_Address_Text, "Wallet address that payouts will be received on.")
@@ -562,7 +562,7 @@ Partial Class Main
         '
         Me.Label12.AutoSize = True
         Me.Label12.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label12.Location = New System.Drawing.Point(198, 101)
+        Me.Label12.Location = New System.Drawing.Point(215, 101)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(53, 13)
         Me.Label12.TabIndex = 14
