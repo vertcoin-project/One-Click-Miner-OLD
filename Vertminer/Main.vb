@@ -1720,8 +1720,7 @@ Public Class Main
             NewLog = NewLog & ("- " & Date.Parse(Now) & ", " & "Main() Stop_Miner: " & ex.Message)
             Invoke(New MethodInvoker(AddressOf SaveSettingsIni))
         Finally
-            NewLog = NewLog & Environment.NewLine
-            NewLog = NewLog & ("- " & Date.Parse(Now) & ", " & "Main() Stop_Miner: OK.")
+
         End Try
 
     End Sub
