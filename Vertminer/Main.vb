@@ -1467,7 +1467,7 @@ Public Class Main
                 End If
             End If
             If Not appdata.Contains("AppData") Then
-                p2pool_config = "ocm_p2pool.exe" & network & " --give-author " & P2P_Donation & " --fee " & P2P_Node_Fee & " --address " & P2P_Node_Fee_Address & " --max-conns " & MaxConnections & " --worker-port " & mining_port & " --p2pool-port " & p2pool_port & "--bitcoind-config-path " & appdata & "\vertcoin.conf" & Environment.NewLine & "exit /B"
+                p2pool_config = "ocm_p2pool.exe" & network & " --give-author " & P2P_Donation & " --fee " & P2P_Node_Fee & " --address " & P2P_Node_Fee_Address & " --max-conns " & MaxConnections & " --worker-port " & mining_port & " --p2pool-port " & p2pool_port & " --bitcoind-config-path " & appdata & "\vertcoin.conf" & Environment.NewLine & "exit /B"
             Else
                 p2pool_config = "ocm_p2pool.exe" & network & " --give-author " & P2P_Donation & " --fee " & P2P_Node_Fee & " --address " & P2P_Node_Fee_Address & " --max-conns " & MaxConnections & " --worker-port " & mining_port & " --p2pool-port " & p2pool_port & Environment.NewLine & "exit /B"
             End If
