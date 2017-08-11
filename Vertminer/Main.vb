@@ -1378,7 +1378,7 @@ Public Class Main
             Pool_Address_Text.Enabled = True
             'remove localhost address from pool list
             For Each line As String In Pool_Address_Text.Lines
-                If line.Contains("localhost:" & mining_port) And Pool_Address_Text.Lines.Count > 1 Then
+                If line.Contains("localhost:") And Pool_Address_Text.Lines.Count > 1 Then
                     Pool_Address_Text.Text = Pool_Address_Text.Text.Replace(line, "")
                     Pool_Address_Text.Text = Pool_Address_Text.Text.Trim()
                     Pool_Address = Pool_Address_Text.Text
@@ -1529,7 +1529,7 @@ Public Class Main
                     Intensity_Buffer = " -i " & Intensity & " "
                 End If
             ElseIf Intensity_Text.Text = "" Or Intensity = 0 Then
-                Intensity_Buffer = ""
+                Intensity_Buffer = " "
             End If
             additional_config = Additional_Configuration_Text.Text
             If Not additional_config = "" Then
