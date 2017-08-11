@@ -120,6 +120,9 @@
   <metadata name="ToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>441, 19</value>
   </metadata>
+  <metadata name="ToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>441, 19</value>
+  </metadata>
   <data name="Node_Donation_Text.ToolTip" xml:space="preserve">
     <value>% Donation that is charged to all miner rewards on this node.  This % is sent directly to the Vertcoin Dev Address upon each solved block.
 Please consider that the Vertcoin Development team runs purely on donations, and yours would be greatly appreciated!</value>
@@ -127,7 +130,7 @@ Please consider that the Vertcoin Development team runs purely on donations, and
   <data name="PictureBox9.ToolTip" xml:space="preserve">
     <value>Enter the URL (usually including port) into the Pool Address field.
 To use multiple pools for redundancy, hit ENTER after the first pool to enter more.
-Only P2Pool nodes are supported as failover
+Only P2Pool nodes are supported as failover.  AMD miner does not currently support failover pools.
 Use ↑ and ↓ keys to cycle through entered pools.
 
 If mining on a public P2Pool node, make sure your worker name = your wallet address.
@@ -147,6 +150,7 @@ This will tell the One-Click Miner to remember which miner you prefer for use.</
   <data name="Pool_Address_Text.ToolTip" xml:space="preserve">
     <value>Enter the URL (usually including port) into the Pool Address field.
 To use multiple pools for redundancy, hit ENTER after the first pool to enter more.
+Only P2Pool nodes are supported as failover.  AMD miner does not currently support failover pools.
 Use ↑ and ↓ keys to cycle through entered pools.
 
 If mining on a public P2Pool node, make sure your worker name = your wallet address.

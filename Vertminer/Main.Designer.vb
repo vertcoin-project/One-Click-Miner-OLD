@@ -545,7 +545,7 @@ Partial Class Main
         Me.Button2.Size = New System.Drawing.Size(60, 23)
         Me.Button2.TabIndex = 1
         Me.Button2.Text = "AMD"
-        Me.ToolTip.SetToolTip(Me.Button2, "Toggles your miner on/off.")
+        Me.ToolTip.SetToolTip(Me.Button2, "Toggles your miner on/off." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "AMD miner does not currently support failover pools.")
         Me.Button2.UseVisualStyleBackColor = True
         '
         'Worker_Address_Text

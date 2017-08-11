@@ -1349,6 +1349,7 @@ Public Class Main
 
     Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox1.CheckedChanged
 
+        Pool_Address = Pool_Address_Text.Text
         If CheckBox1.Checked = True Then
             For Each line As String In Pool_Address.Split(New String() {Environment.NewLine}, StringSplitOptions.None)
                 If Not line.Contains("http://") And Not line.Contains("stratum+tcp://") Then
@@ -1378,7 +1379,7 @@ Public Class Main
             Pool_Address_Text.Enabled = True
             'remove localhost address from pool list
             For Each line As String In Pool_Address_Text.Lines
-                If line.Contains("localhost:") And Pool_Address_Text.Lines.Count > 1 Then
+                If line.Contains("localhost:") And Pool_Address_Text.Lines.Count >= 1 Then
                     Pool_Address_Text.Text = Pool_Address_Text.Text.Replace(line, "")
                     Pool_Address_Text.Text = Pool_Address_Text.Text.Trim()
                     Pool_Address = Pool_Address_Text.Text
@@ -1493,10 +1494,11 @@ Public Class Main
     Public Sub Update_Miner_Config()
 
         Try
+            Pool_Address = Pool_Address_Text.Text
             Dim Pool As String = ""
             If Not Pool_Address = "" Then
                 For Each line As String In Pool_Address.Split(New String() {Environment.NewLine}, StringSplitOptions.None)
-                    If Not line.Contains("http://") And Not line.Contains("stratum+tcp://") Then
+                    If Not line.Contains("http://") And Not line.Contains("stratum+tcp://") And Not line = "" Then
                         line = "stratum+tcp://" & line
                     Else
                         line = line.Replace("http://", "stratum+tcp://")
@@ -1504,10 +1506,10 @@ Public Class Main
                     If line.Contains("localhost:" & mining_port) Then
                         Pool_Address = Pool_Address.Replace(line & Environment.NewLine, "")
                     End If
-                    Pool = Pool & "-o " & line.Replace(vbCr, "").Replace(vbLf, "") & " "
+                    If line.Length > 1 Then
+                        Pool = Pool & "-o " & line.Replace(vbCr, "").Replace(vbLf, "") & " "
+                    End If
                 Next
-            Else
-                Pool = "-o http://localhost:" & mining_port
             End If
             If Not Worker_Address_Text.Text = "" Then
                 Worker = Worker_Address_Text.Text
@@ -1599,7 +1601,9 @@ Public Class Main
                 Button4.Enabled = True
                 cpu_check.Enabled = True
                 Button5.Enabled = True
-                Pool_Address_Text.Enabled = True
+                If CheckBox1.Checked = False Then
+                    Pool_Address_Text.Enabled = True
+                End If
                 Worker_Address_Text.Enabled = True
                 Worker_Address_Text.Enabled = True
                 Password_Text.Enabled = True
@@ -1698,7 +1702,9 @@ Public Class Main
             Button4.Enabled = True
             cpu_check.Enabled = True
             Button5.Enabled = True
-            Pool_Address_Text.Enabled = True
+            If CheckBox1.Checked = False Then
+                Pool_Address_Text.Enabled = True
+            End If
             Worker_Address_Text.Enabled = True
             Worker_Address_Text.Enabled = True
             Password_Text.Enabled = True
@@ -2100,7 +2106,9 @@ Public Class Main
         'Miner is already running
         If AMD_Detected = True Or Nvidia_Detected = True Or CPU_Detected = True Then
             Additional_Configuration_Text.Enabled = False
-            Pool_Address_Text.Enabled = False
+            If CheckBox1.Checked = False Then
+                Pool_Address_Text.Enabled = False
+            End If
             Worker_Address_Text.Enabled = False
             Worker_Address_Text.Enabled = False
             Password_Text.Enabled = False

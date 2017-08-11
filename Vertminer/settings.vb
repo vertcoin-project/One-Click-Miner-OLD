@@ -222,7 +222,6 @@ Public Class settings
                     Worker = "VpBsRnN749jYHE9hT8dZreznHfmFMdE1yG"
                     objWriter.WriteLine("Worker Password=x")
                     Password = "x"
-                    objWriter.WriteLine("Wallet Address=VpBsRnN749jYHE9hT8dZreznHfmFMdE1yG")
                     objWriter.WriteLine("P2Pool Fee Address=VpBsRnN749jYHE9hT8dZreznHfmFMdE1yG")
                     objWriter.WriteLine("Pool URL=stratum+tcp://vtc.alwayshashing.com:9171")
                     Pool_Address = "stratum+tcp://vtc.alwayshashing.com:9171"
@@ -245,7 +244,7 @@ Public Class settings
             Finally
                 NewLog = NewLog & Environment.NewLine
                 NewLog = NewLog & ("- " & Date.Parse(Now) & ", " & "Main() SaveSettings: OK.")
-                MsgBox("Settings set to defaults.")
+                MsgBox("Settings set back to defaults.")
                 Invoke(New MethodInvoker(AddressOf Main.LoadSettingsIni))
                 Invoke(New MethodInvoker(AddressOf Main.Update_P2Pool_Text))
                 Invoke(New MethodInvoker(AddressOf Main.Update_Miner_Text))
