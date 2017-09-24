@@ -66,7 +66,7 @@ Partial Class about
         'LinkLabel1
         '
         Me.LinkLabel1.AutoSize = True
-        Me.LinkLabel1.Location = New System.Drawing.Point(96, 99)
+        Me.LinkLabel1.Location = New System.Drawing.Point(136, 99)
         Me.LinkLabel1.Name = "LinkLabel1"
         Me.LinkLabel1.Size = New System.Drawing.Size(66, 13)
         Me.LinkLabel1.TabIndex = 5
@@ -78,14 +78,14 @@ Partial Class about
         Me.Label1.AutoSize = True
         Me.Label1.Location = New System.Drawing.Point(18, 34)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(272, 78)
+        Me.Label1.Size = New System.Drawing.Size(284, 78)
         Me.Label1.TabIndex = 0
         Me.Label1.Text = resources.GetString("Label1.Text")
         '
         'Button1
         '
         Me.Button1.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button1.Location = New System.Drawing.Point(129, 134)
+        Me.Button1.Location = New System.Drawing.Point(129, 138)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(75, 23)
         Me.Button1.TabIndex = 4
@@ -96,12 +96,12 @@ Partial Class about
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(332, 159)
+        Me.ClientSize = New System.Drawing.Size(332, 169)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.GroupBox1)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.MaximumSize = New System.Drawing.Size(348, 198)
-        Me.MinimumSize = New System.Drawing.Size(348, 198)
+        Me.MaximumSize = New System.Drawing.Size(348, 208)
+        Me.MinimumSize = New System.Drawing.Size(348, 208)
         Me.Name = "about"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "About Vertcoin One-Click Miner"

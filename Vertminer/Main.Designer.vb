@@ -24,49 +24,14 @@ Partial Class Main
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Main))
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.PictureBox8 = New System.Windows.Forms.PictureBox()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
-        Me.Button3 = New System.Windows.Forms.Button()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.TextBox4 = New System.Windows.Forms.TextBox()
-        Me.PictureBox6 = New System.Windows.Forms.PictureBox()
-        Me.Label15 = New System.Windows.Forms.Label()
-        Me.Label16 = New System.Windows.Forms.Label()
-        Me.Node_Fee_Text = New System.Windows.Forms.TextBox()
-        Me.Node_Donation_Text = New System.Windows.Forms.TextBox()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.PictureBox10 = New System.Windows.Forms.PictureBox()
-        Me.PictureBox9 = New System.Windows.Forms.PictureBox()
-        Me.cpu_check = New System.Windows.Forms.CheckBox()
-        Me.PictureBox4 = New System.Windows.Forms.PictureBox()
-        Me.amd_check = New System.Windows.Forms.CheckBox()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.nvidia_check = New System.Windows.Forms.CheckBox()
-        Me.PictureBox7 = New System.Windows.Forms.PictureBox()
-        Me.PictureBox5 = New System.Windows.Forms.PictureBox()
-        Me.Additional_Configuration_Text = New System.Windows.Forms.TextBox()
-        Me.Button5 = New System.Windows.Forms.Button()
-        Me.Button4 = New System.Windows.Forms.Button()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.Intensity_Text = New System.Windows.Forms.TextBox()
+        Me.TextBox3 = New System.Windows.Forms.TextBox()
         Me.Password_Text = New System.Windows.Forms.TextBox()
-        Me.PictureBox3 = New System.Windows.Forms.PictureBox()
-        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.Pool_Address_Text = New System.Windows.Forms.TextBox()
         Me.Label19 = New System.Windows.Forms.Label()
         Me.Label14 = New System.Windows.Forms.Label()
-        Me.Button2 = New System.Windows.Forms.Button()
         Me.Worker_Address_Text = New System.Windows.Forms.TextBox()
         Me.Label12 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.MenuStrip = New System.Windows.Forms.MenuStrip()
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.UpdateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -76,443 +41,94 @@ Partial Class Main
         Me.FileDirectoryToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SystemLogToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.P2PoolConfigToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.P2PoolWebInterfaceToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ContactToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.UpdateInterval = New System.Windows.Forms.Timer(Me.components)
+        Me.UpdateStatsInterval = New System.Windows.Forms.Timer(Me.components)
         Me.UpdateStats = New System.ComponentModel.BackgroundWorker()
         Me.NotifyIcon1 = New System.Windows.Forms.NotifyIcon(Me.components)
         Me.ToolTip = New System.Windows.Forms.ToolTip(Me.components)
+        Me.PictureBox9 = New System.Windows.Forms.PictureBox()
         Me.Uptime_Timer = New System.Windows.Forms.Timer(Me.components)
         Me.Uptime_Checker = New System.ComponentModel.BackgroundWorker()
         Me.Updater = New System.ComponentModel.BackgroundWorker()
         Me.WebBrowser1 = New System.Windows.Forms.WebBrowser()
         Me.Select_Data_Dir = New System.Windows.Forms.FolderBrowserDialog()
-        Me.Label7 = New System.Windows.Forms.Label()
         Me.Auto_Update_Notify = New System.ComponentModel.BackgroundWorker()
-        Me.GroupBox1.SuspendLayout()
-        CType(Me.PictureBox8, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox6, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupBox2.SuspendLayout()
-        CType(Me.PictureBox10, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox9, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox7, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox5, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.PictureBox6 = New System.Windows.Forms.PictureBox()
+        Me.PictureBox4 = New System.Windows.Forms.PictureBox()
+        Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.PictureBox3 = New System.Windows.Forms.PictureBox()
+        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
+        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.Button3 = New System.Windows.Forms.Button()
         Me.MenuStrip.SuspendLayout()
+        CType(Me.PictureBox9, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel1.SuspendLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox6, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel3.SuspendLayout()
+        CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
-        '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(49, 83)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(70, 23)
-        Me.Button1.TabIndex = 1
-        Me.Button1.Text = "Enable"
-        Me.ToolTip.SetToolTip(Me.Button1, "Toggles your local P2Pool server on/off.")
-        Me.Button1.UseVisualStyleBackColor = True
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(69, 14)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(37, 13)
-        Me.Label1.TabIndex = 5
-        Me.Label1.Text = "Status"
-        '
-        'TextBox1
-        '
-        Me.TextBox1.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBox1.Location = New System.Drawing.Point(45, 28)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(85, 20)
-        Me.TextBox1.TabIndex = 0
-        Me.TextBox1.TabStop = False
-        Me.TextBox1.Text = "Offline"
-        Me.TextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'GroupBox1
-        '
-        Me.GroupBox1.Controls.Add(Me.PictureBox8)
-        Me.GroupBox1.Controls.Add(Me.Label5)
-        Me.GroupBox1.Controls.Add(Me.ComboBox1)
-        Me.GroupBox1.Controls.Add(Me.Button3)
-        Me.GroupBox1.Controls.Add(Me.Label3)
-        Me.GroupBox1.Controls.Add(Me.TextBox4)
-        Me.GroupBox1.Controls.Add(Me.PictureBox6)
-        Me.GroupBox1.Controls.Add(Me.Label15)
-        Me.GroupBox1.Controls.Add(Me.Label16)
-        Me.GroupBox1.Controls.Add(Me.Node_Fee_Text)
-        Me.GroupBox1.Controls.Add(Me.Node_Donation_Text)
-        Me.GroupBox1.Controls.Add(Me.Button1)
-        Me.GroupBox1.Controls.Add(Me.Label1)
-        Me.GroupBox1.Controls.Add(Me.PictureBox1)
-        Me.GroupBox1.Controls.Add(Me.TextBox1)
-        Me.GroupBox1.Location = New System.Drawing.Point(11, 34)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(151, 224)
-        Me.GroupBox1.TabIndex = 0
-        Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "P2Pool"
-        '
-        'PictureBox8
-        '
-        Me.PictureBox8.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.help_small
-        Me.PictureBox8.Location = New System.Drawing.Point(11, 60)
-        Me.PictureBox8.Name = "PictureBox8"
-        Me.PictureBox8.Size = New System.Drawing.Size(15, 15)
-        Me.PictureBox8.TabIndex = 35
-        Me.PictureBox8.TabStop = False
-        Me.ToolTip.SetToolTip(Me.PictureBox8, "Selects the network in which p2pool will connect." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Network 1 is recommended for l" &
-        "arger (multi-card) miners." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Network 2 is recommended for casual miners (single-c" &
-        "ard) miners.")
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(29, 60)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(50, 13)
-        Me.Label5.TabIndex = 34
-        Me.Label5.Text = "Network:"
-        '
-        'ComboBox1
-        '
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Items.AddRange(New Object() {"1", "2"})
-        Me.ComboBox1.Location = New System.Drawing.Point(82, 56)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(40, 21)
-        Me.ComboBox1.TabIndex = 0
-        Me.ToolTip.SetToolTip(Me.ComboBox1, "Selects the network in which p2pool will connect.")
-        '
-        'Button3
-        '
-        Me.Button3.Location = New System.Drawing.Point(11, 178)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(128, 38)
-        Me.Button3.TabIndex = 2
-        Me.Button3.Text = "View P2Pool Web Interface"
-        Me.ToolTip.SetToolTip(Me.Button3, "Launches the native web stats interface for the p2pool node.  ")
-        Me.Button3.UseVisualStyleBackColor = True
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(24, 154)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(63, 13)
-        Me.Label3.TabIndex = 29
-        Me.Label3.Text = "Mining Port:"
-        '
-        'TextBox4
-        '
-        Me.TextBox4.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBox4.Location = New System.Drawing.Point(90, 150)
-        Me.TextBox4.Name = "TextBox4"
-        Me.TextBox4.ReadOnly = True
-        Me.TextBox4.Size = New System.Drawing.Size(50, 20)
-        Me.TextBox4.TabIndex = 26
-        Me.TextBox4.TabStop = False
-        Me.TextBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.ToolTip.SetToolTip(Me.TextBox4, "Port for mining.  Forward this port on your router to allow public access.")
-        '
-        'PictureBox6
-        '
-        Me.PictureBox6.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.help_small
-        Me.PictureBox6.Location = New System.Drawing.Point(31, 88)
-        Me.PictureBox6.Name = "PictureBox6"
-        Me.PictureBox6.Size = New System.Drawing.Size(15, 15)
-        Me.PictureBox6.TabIndex = 24
-        Me.PictureBox6.TabStop = False
-        Me.ToolTip.SetToolTip(Me.PictureBox6, "Toggles your local P2Pool server on/off." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "If no P2Pool is detected, the miner wil" &
-        "l automatically prompt you to download." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "NOTICE: To run P2Pool, you must have " &
-        "a Vertcoin Wallet running.")
-        '
-        'Label15
-        '
-        Me.Label15.AutoSize = True
-        Me.Label15.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label15.Location = New System.Drawing.Point(5, 134)
-        Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(82, 13)
-        Me.Label15.TabIndex = 25
-        Me.Label15.Text = "Node Donation:"
-        '
-        'Label16
-        '
-        Me.Label16.AutoSize = True
-        Me.Label16.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label16.Location = New System.Drawing.Point(30, 115)
-        Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(57, 13)
-        Me.Label16.TabIndex = 24
-        Me.Label16.Text = "Node Fee:"
-        '
-        'Node_Fee_Text
-        '
-        Me.Node_Fee_Text.BackColor = System.Drawing.SystemColors.Control
-        Me.Node_Fee_Text.Location = New System.Drawing.Point(90, 112)
-        Me.Node_Fee_Text.Name = "Node_Fee_Text"
-        Me.Node_Fee_Text.ReadOnly = True
-        Me.Node_Fee_Text.Size = New System.Drawing.Size(50, 20)
-        Me.Node_Fee_Text.TabIndex = 23
-        Me.Node_Fee_Text.TabStop = False
-        Me.Node_Fee_Text.Text = "%"
-        Me.Node_Fee_Text.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.ToolTip.SetToolTip(Me.Node_Fee_Text, "% Fee that is charged to all miner rewards on this node.  Set fee address in Sett" &
-        "ings menu. This fee can be collected by you.")
-        '
-        'Node_Donation_Text
-        '
-        Me.Node_Donation_Text.BackColor = System.Drawing.SystemColors.Control
-        Me.Node_Donation_Text.Location = New System.Drawing.Point(90, 131)
-        Me.Node_Donation_Text.Name = "Node_Donation_Text"
-        Me.Node_Donation_Text.ReadOnly = True
-        Me.Node_Donation_Text.Size = New System.Drawing.Size(50, 20)
-        Me.Node_Donation_Text.TabIndex = 22
-        Me.Node_Donation_Text.TabStop = False
-        Me.Node_Donation_Text.Text = "%"
-        Me.Node_Donation_Text.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.ToolTip.SetToolTip(Me.Node_Donation_Text, resources.GetString("Node_Donation_Text.ToolTip"))
-        '
-        'PictureBox1
-        '
-        Me.PictureBox1.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.off_small
-        Me.PictureBox1.Location = New System.Drawing.Point(20, 28)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(20, 20)
-        Me.PictureBox1.TabIndex = 0
-        Me.PictureBox1.TabStop = False
-        '
-        'GroupBox2
-        '
-        Me.GroupBox2.Controls.Add(Me.PictureBox10)
-        Me.GroupBox2.Controls.Add(Me.PictureBox9)
-        Me.GroupBox2.Controls.Add(Me.cpu_check)
-        Me.GroupBox2.Controls.Add(Me.PictureBox4)
-        Me.GroupBox2.Controls.Add(Me.amd_check)
-        Me.GroupBox2.Controls.Add(Me.Label4)
-        Me.GroupBox2.Controls.Add(Me.nvidia_check)
-        Me.GroupBox2.Controls.Add(Me.PictureBox7)
-        Me.GroupBox2.Controls.Add(Me.PictureBox5)
-        Me.GroupBox2.Controls.Add(Me.Additional_Configuration_Text)
-        Me.GroupBox2.Controls.Add(Me.Button5)
-        Me.GroupBox2.Controls.Add(Me.Button4)
-        Me.GroupBox2.Controls.Add(Me.Label6)
-        Me.GroupBox2.Controls.Add(Me.Intensity_Text)
-        Me.GroupBox2.Controls.Add(Me.Password_Text)
-        Me.GroupBox2.Controls.Add(Me.PictureBox3)
-        Me.GroupBox2.Controls.Add(Me.CheckBox1)
-        Me.GroupBox2.Controls.Add(Me.Pool_Address_Text)
-        Me.GroupBox2.Controls.Add(Me.Label19)
-        Me.GroupBox2.Controls.Add(Me.Label14)
-        Me.GroupBox2.Controls.Add(Me.Button2)
-        Me.GroupBox2.Controls.Add(Me.Worker_Address_Text)
-        Me.GroupBox2.Controls.Add(Me.Label12)
-        Me.GroupBox2.Controls.Add(Me.Label2)
-        Me.GroupBox2.Controls.Add(Me.PictureBox2)
-        Me.GroupBox2.Controls.Add(Me.TextBox2)
-        Me.GroupBox2.Location = New System.Drawing.Point(168, 34)
-        Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(347, 224)
-        Me.GroupBox2.TabIndex = 1
-        Me.GroupBox2.TabStop = False
-        Me.GroupBox2.Text = "Mining"
-        '
-        'PictureBox10
-        '
-        Me.PictureBox10.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.help_small
-        Me.PictureBox10.Location = New System.Drawing.Point(330, 100)
-        Me.PictureBox10.Name = "PictureBox10"
-        Me.PictureBox10.Size = New System.Drawing.Size(15, 15)
-        Me.PictureBox10.TabIndex = 40
-        Me.PictureBox10.TabStop = False
-        Me.ToolTip.SetToolTip(Me.PictureBox10, "This sets the intensity of the miner.  This can be used to help fine-tune miner p" &
-        "erformance.")
-        '
-        'PictureBox9
-        '
-        Me.PictureBox9.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.help_small
-        Me.PictureBox9.Location = New System.Drawing.Point(208, 59)
-        Me.PictureBox9.Name = "PictureBox9"
-        Me.PictureBox9.Size = New System.Drawing.Size(15, 15)
-        Me.PictureBox9.TabIndex = 39
-        Me.PictureBox9.TabStop = False
-        Me.ToolTip.SetToolTip(Me.PictureBox9, resources.GetString("PictureBox9.ToolTip"))
-        '
-        'cpu_check
-        '
-        Me.cpu_check.AutoSize = True
-        Me.cpu_check.Location = New System.Drawing.Point(315, 14)
-        Me.cpu_check.Name = "cpu_check"
-        Me.cpu_check.Size = New System.Drawing.Size(15, 14)
-        Me.cpu_check.TabIndex = 4
-        Me.ToolTip.SetToolTip(Me.cpu_check, "Selects this miner as Default.")
-        Me.cpu_check.UseVisualStyleBackColor = True
-        '
-        'PictureBox4
-        '
-        Me.PictureBox4.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.help_small
-        Me.PictureBox4.Location = New System.Drawing.Point(231, 143)
-        Me.PictureBox4.Name = "PictureBox4"
-        Me.PictureBox4.Size = New System.Drawing.Size(15, 15)
-        Me.PictureBox4.TabIndex = 38
-        Me.PictureBox4.TabStop = False
-        Me.ToolTip.SetToolTip(Me.PictureBox4, resources.GetString("PictureBox4.ToolTip"))
-        '
-        'amd_check
-        '
-        Me.amd_check.AutoSize = True
-        Me.amd_check.Location = New System.Drawing.Point(183, 14)
-        Me.amd_check.Name = "amd_check"
-        Me.amd_check.Size = New System.Drawing.Size(15, 14)
-        Me.amd_check.TabIndex = 0
-        Me.ToolTip.SetToolTip(Me.amd_check, "Selects this miner as Default.")
-        Me.amd_check.UseVisualStyleBackColor = True
         '
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(114, 144)
+        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 13.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.Location = New System.Drawing.Point(146, 196)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(118, 13)
-        Me.Label4.TabIndex = 37
-        Me.Label4.Text = "Additional Configuration"
+        Me.Label4.Size = New System.Drawing.Size(146, 22)
+        Me.Label4.TabIndex = 41
+        Me.Label4.Text = "Miner Hashrate"
         '
-        'nvidia_check
+        'TextBox3
         '
-        Me.nvidia_check.AutoSize = True
-        Me.nvidia_check.Location = New System.Drawing.Point(250, 14)
-        Me.nvidia_check.Name = "nvidia_check"
-        Me.nvidia_check.Size = New System.Drawing.Size(15, 14)
-        Me.nvidia_check.TabIndex = 2
-        Me.ToolTip.SetToolTip(Me.nvidia_check, "Selects this miner as Default.")
-        Me.nvidia_check.UseVisualStyleBackColor = True
-        '
-        'PictureBox7
-        '
-        Me.PictureBox7.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.off_small
-        Me.PictureBox7.Location = New System.Drawing.Point(289, 10)
-        Me.PictureBox7.Name = "PictureBox7"
-        Me.PictureBox7.Size = New System.Drawing.Size(20, 20)
-        Me.PictureBox7.TabIndex = 35
-        Me.PictureBox7.TabStop = False
-        '
-        'PictureBox5
-        '
-        Me.PictureBox5.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.off_small
-        Me.PictureBox5.Location = New System.Drawing.Point(224, 10)
-        Me.PictureBox5.Name = "PictureBox5"
-        Me.PictureBox5.Size = New System.Drawing.Size(20, 20)
-        Me.PictureBox5.TabIndex = 34
-        Me.PictureBox5.TabStop = False
-        '
-        'Additional_Configuration_Text
-        '
-        Me.Additional_Configuration_Text.BackColor = System.Drawing.SystemColors.Window
-        Me.Additional_Configuration_Text.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Additional_Configuration_Text.Location = New System.Drawing.Point(6, 160)
-        Me.Additional_Configuration_Text.Multiline = True
-        Me.Additional_Configuration_Text.Name = "Additional_Configuration_Text"
-        Me.Additional_Configuration_Text.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.Additional_Configuration_Text.Size = New System.Drawing.Size(335, 55)
-        Me.Additional_Configuration_Text.TabIndex = 12
-        Me.ToolTip.SetToolTip(Me.Additional_Configuration_Text, "Use this field to add additional commands to your miner configuration.")
-        '
-        'Button5
-        '
-        Me.Button5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button5.Location = New System.Drawing.Point(278, 31)
-        Me.Button5.Name = "Button5"
-        Me.Button5.Size = New System.Drawing.Size(60, 23)
-        Me.Button5.TabIndex = 5
-        Me.Button5.Text = "CPU"
-        Me.ToolTip.SetToolTip(Me.Button5, "Toggles your miner on/off.")
-        Me.Button5.UseVisualStyleBackColor = True
-        '
-        'Button4
-        '
-        Me.Button4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button4.Location = New System.Drawing.Point(212, 31)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(60, 23)
-        Me.Button4.TabIndex = 3
-        Me.Button4.Text = "Nvidia"
-        Me.ToolTip.SetToolTip(Me.Button4, "Toggles your miner on/off.")
-        Me.Button4.UseVisualStyleBackColor = True
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(286, 101)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(46, 13)
-        Me.Label6.TabIndex = 31
-        Me.Label6.Text = "Intensity"
-        '
-        'Intensity_Text
-        '
-        Me.Intensity_Text.BackColor = System.Drawing.SystemColors.Window
-        Me.Intensity_Text.Location = New System.Drawing.Point(278, 117)
-        Me.Intensity_Text.MaxLength = 5
-        Me.Intensity_Text.Name = "Intensity_Text"
-        Me.Intensity_Text.Size = New System.Drawing.Size(62, 20)
-        Me.Intensity_Text.TabIndex = 11
-        Me.Intensity_Text.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.ToolTip.SetToolTip(Me.Intensity_Text, "This sets the intensity of the miner.  This can be used to help fine-tune miner p" &
-        "erformance." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Leave blank or set to '0' to use your miner's default intensity set" &
-        "ting.")
+        Me.TextBox3.BackColor = System.Drawing.Color.DarkSlateGray
+        Me.TextBox3.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox3.Font = New System.Drawing.Font("MS Reference Sans Serif", 29.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox3.ForeColor = System.Drawing.SystemColors.Control
+        Me.TextBox3.Location = New System.Drawing.Point(47, 221)
+        Me.TextBox3.Multiline = True
+        Me.TextBox3.Name = "TextBox3"
+        Me.TextBox3.ReadOnly = True
+        Me.TextBox3.Size = New System.Drawing.Size(341, 57)
+        Me.TextBox3.TabIndex = 40
+        Me.TextBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'Password_Text
         '
         Me.Password_Text.BackColor = System.Drawing.SystemColors.Window
-        Me.Password_Text.Location = New System.Drawing.Point(210, 117)
+        Me.Password_Text.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Password_Text.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Password_Text.Location = New System.Drawing.Point(352, 165)
+        Me.Password_Text.Multiline = True
         Me.Password_Text.Name = "Password_Text"
-        Me.Password_Text.Size = New System.Drawing.Size(62, 20)
+        Me.Password_Text.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.Password_Text.Size = New System.Drawing.Size(62, 27)
         Me.Password_Text.TabIndex = 10
         Me.Password_Text.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.ToolTip.SetToolTip(Me.Password_Text, "Miner password.  Most often used for centralized pools.")
-        '
-        'PictureBox3
-        '
-        Me.PictureBox3.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.help_small
-        Me.PictureBox3.Location = New System.Drawing.Point(125, 36)
-        Me.PictureBox3.Name = "PictureBox3"
-        Me.PictureBox3.Size = New System.Drawing.Size(15, 15)
-        Me.PictureBox3.TabIndex = 28
-        Me.PictureBox3.TabStop = False
-        Me.ToolTip.SetToolTip(Me.PictureBox3, resources.GetString("PictureBox3.ToolTip"))
-        '
-        'CheckBox1
-        '
-        Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.Location = New System.Drawing.Point(12, 54)
-        Me.CheckBox1.Name = "CheckBox1"
-        Me.CheckBox1.Size = New System.Drawing.Size(111, 17)
-        Me.CheckBox1.TabIndex = 6
-        Me.CheckBox1.Text = "Use Local P2Pool"
-        Me.ToolTip.SetToolTip(Me.CheckBox1, "Select this to point your miner directly to your local p2pool node.")
-        Me.CheckBox1.UseVisualStyleBackColor = True
         '
         'Pool_Address_Text
         '
         Me.Pool_Address_Text.BackColor = System.Drawing.SystemColors.Window
         Me.Pool_Address_Text.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Pool_Address_Text.Location = New System.Drawing.Point(6, 76)
+        Me.Pool_Address_Text.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.5!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Pool_Address_Text.Location = New System.Drawing.Point(12, 109)
         Me.Pool_Address_Text.Multiline = True
         Me.Pool_Address_Text.Name = "Pool_Address_Text"
         Me.Pool_Address_Text.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.Pool_Address_Text.Size = New System.Drawing.Size(335, 20)
+        Me.Pool_Address_Text.Size = New System.Drawing.Size(411, 27)
         Me.Pool_Address_Text.TabIndex = 7
         Me.Pool_Address_Text.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.ToolTip.SetToolTip(Me.Pool_Address_Text, resources.GetString("Pool_Address_Text.ToolTip"))
@@ -520,40 +136,33 @@ Partial Class Main
         'Label19
         '
         Me.Label19.AutoSize = True
-        Me.Label19.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label19.Location = New System.Drawing.Point(139, 60)
+        Me.Label19.Font = New System.Drawing.Font("Microsoft Sans Serif", 13.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label19.Location = New System.Drawing.Point(153, 83)
         Me.Label19.Name = "Label19"
-        Me.Label19.Size = New System.Drawing.Size(69, 13)
+        Me.Label19.Size = New System.Drawing.Size(129, 22)
         Me.Label19.TabIndex = 21
         Me.Label19.Text = "Pool Address"
         '
         'Label14
         '
         Me.Label14.AutoSize = True
-        Me.Label14.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label14.Location = New System.Drawing.Point(46, 101)
+        Me.Label14.Font = New System.Drawing.Font("Microsoft Sans Serif", 13.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label14.Location = New System.Drawing.Point(65, 140)
         Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(118, 13)
+        Me.Label14.Size = New System.Drawing.Size(215, 22)
         Me.Label14.TabIndex = 16
         Me.Label14.Text = "Worker/Wallet Address"
-        '
-        'Button2
-        '
-        Me.Button2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button2.Location = New System.Drawing.Point(146, 31)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(60, 23)
-        Me.Button2.TabIndex = 1
-        Me.Button2.Text = "AMD"
-        Me.ToolTip.SetToolTip(Me.Button2, "Toggles your miner on/off." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "AMD miner does not currently support failover pools.")
-        Me.Button2.UseVisualStyleBackColor = True
         '
         'Worker_Address_Text
         '
         Me.Worker_Address_Text.BackColor = System.Drawing.SystemColors.Window
-        Me.Worker_Address_Text.Location = New System.Drawing.Point(6, 117)
+        Me.Worker_Address_Text.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Worker_Address_Text.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Worker_Address_Text.Location = New System.Drawing.Point(12, 165)
+        Me.Worker_Address_Text.Multiline = True
         Me.Worker_Address_Text.Name = "Worker_Address_Text"
-        Me.Worker_Address_Text.Size = New System.Drawing.Size(198, 20)
+        Me.Worker_Address_Text.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.Worker_Address_Text.Size = New System.Drawing.Size(334, 27)
         Me.Worker_Address_Text.TabIndex = 8
         Me.Worker_Address_Text.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.ToolTip.SetToolTip(Me.Worker_Address_Text, "Wallet address that payouts will be received on.")
@@ -561,129 +170,119 @@ Partial Class Main
         'Label12
         '
         Me.Label12.AutoSize = True
-        Me.Label12.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label12.Location = New System.Drawing.Point(215, 101)
+        Me.Label12.Font = New System.Drawing.Font("Microsoft Sans Serif", 13.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label12.Location = New System.Drawing.Point(335, 140)
         Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(53, 13)
+        Me.Label12.Size = New System.Drawing.Size(97, 22)
         Me.Label12.TabIndex = 14
         Me.Label12.Text = "Password"
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(47, 14)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(37, 13)
-        Me.Label2.TabIndex = 15
-        Me.Label2.Text = "Status"
-        '
-        'PictureBox2
-        '
-        Me.PictureBox2.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.off_small
-        Me.PictureBox2.Location = New System.Drawing.Point(157, 10)
-        Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(20, 20)
-        Me.PictureBox2.TabIndex = 0
-        Me.PictureBox2.TabStop = False
-        '
-        'TextBox2
-        '
-        Me.TextBox2.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBox2.Location = New System.Drawing.Point(23, 28)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(85, 20)
-        Me.TextBox2.TabIndex = 16
-        Me.TextBox2.TabStop = False
-        Me.TextBox2.Text = "Offline"
-        Me.TextBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'MenuStrip
         '
         Me.MenuStrip.AutoSize = False
-        Me.MenuStrip.BackColor = System.Drawing.SystemColors.Control
+        Me.MenuStrip.BackColor = System.Drawing.Color.DarkGreen
         Me.MenuStrip.Dock = System.Windows.Forms.DockStyle.None
-        Me.MenuStrip.Font = New System.Drawing.Font("Segoe UI", 10.0!)
+        Me.MenuStrip.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.MenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.EditToolStripMenuItem, Me.ViewToolStripMenuItem, Me.HelpToolStripMenuItem})
-        Me.MenuStrip.Location = New System.Drawing.Point(2, 4)
+        Me.MenuStrip.Location = New System.Drawing.Point(59, 2)
         Me.MenuStrip.Name = "MenuStrip"
-        Me.MenuStrip.Size = New System.Drawing.Size(299, 26)
+        Me.MenuStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.System
+        Me.MenuStrip.Size = New System.Drawing.Size(273, 50)
         Me.MenuStrip.TabIndex = 85
         Me.MenuStrip.Text = "MenuStrip"
         '
         'FileToolStripMenuItem
         '
         Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UpdateToolStripMenuItem, Me.ExitToolStripMenuItem})
+        Me.FileToolStripMenuItem.ForeColor = System.Drawing.SystemColors.Control
         Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
-        Me.FileToolStripMenuItem.Size = New System.Drawing.Size(41, 22)
+        Me.FileToolStripMenuItem.Size = New System.Drawing.Size(53, 46)
         Me.FileToolStripMenuItem.Text = "File"
         '
         'UpdateToolStripMenuItem
         '
+        Me.UpdateToolStripMenuItem.BackColor = System.Drawing.SystemColors.Control
+        Me.UpdateToolStripMenuItem.ForeColor = System.Drawing.Color.DarkSlateGray
         Me.UpdateToolStripMenuItem.Name = "UpdateToolStripMenuItem"
-        Me.UpdateToolStripMenuItem.Size = New System.Drawing.Size(123, 24)
+        Me.UpdateToolStripMenuItem.Size = New System.Drawing.Size(152, 28)
         Me.UpdateToolStripMenuItem.Text = "Update"
         '
         'ExitToolStripMenuItem
         '
+        Me.ExitToolStripMenuItem.ForeColor = System.Drawing.Color.DarkSlateGray
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(123, 24)
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(152, 28)
         Me.ExitToolStripMenuItem.Text = "Exit"
         '
         'EditToolStripMenuItem
         '
+        Me.EditToolStripMenuItem.ForeColor = System.Drawing.SystemColors.Control
         Me.EditToolStripMenuItem.Name = "EditToolStripMenuItem"
-        Me.EditToolStripMenuItem.Size = New System.Drawing.Size(70, 22)
+        Me.EditToolStripMenuItem.Size = New System.Drawing.Size(88, 46)
         Me.EditToolStripMenuItem.Text = "Settings"
         '
         'ViewToolStripMenuItem
         '
-        Me.ViewToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileDirectoryToolStripMenuItem, Me.SystemLogToolStripMenuItem, Me.P2PoolConfigToolStripMenuItem})
+        Me.ViewToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileDirectoryToolStripMenuItem, Me.SystemLogToolStripMenuItem, Me.P2PoolConfigToolStripMenuItem, Me.P2PoolWebInterfaceToolStripMenuItem})
+        Me.ViewToolStripMenuItem.ForeColor = System.Drawing.SystemColors.Control
         Me.ViewToolStripMenuItem.Name = "ViewToolStripMenuItem"
-        Me.ViewToolStripMenuItem.Size = New System.Drawing.Size(50, 22)
+        Me.ViewToolStripMenuItem.Size = New System.Drawing.Size(64, 46)
         Me.ViewToolStripMenuItem.Text = "View"
         '
         'FileDirectoryToolStripMenuItem
         '
+        Me.FileDirectoryToolStripMenuItem.ForeColor = System.Drawing.Color.DarkSlateGray
         Me.FileDirectoryToolStripMenuItem.Name = "FileDirectoryToolStripMenuItem"
-        Me.FileDirectoryToolStripMenuItem.Size = New System.Drawing.Size(165, 24)
+        Me.FileDirectoryToolStripMenuItem.Size = New System.Drawing.Size(261, 28)
         Me.FileDirectoryToolStripMenuItem.Text = "Miner Config"
         '
         'SystemLogToolStripMenuItem
         '
+        Me.SystemLogToolStripMenuItem.ForeColor = System.Drawing.Color.DarkSlateGray
         Me.SystemLogToolStripMenuItem.Name = "SystemLogToolStripMenuItem"
-        Me.SystemLogToolStripMenuItem.Size = New System.Drawing.Size(165, 24)
+        Me.SystemLogToolStripMenuItem.Size = New System.Drawing.Size(261, 28)
         Me.SystemLogToolStripMenuItem.Text = "One-Click Log"
         '
         'P2PoolConfigToolStripMenuItem
         '
+        Me.P2PoolConfigToolStripMenuItem.ForeColor = System.Drawing.Color.DarkSlateGray
         Me.P2PoolConfigToolStripMenuItem.Name = "P2PoolConfigToolStripMenuItem"
-        Me.P2PoolConfigToolStripMenuItem.Size = New System.Drawing.Size(165, 24)
+        Me.P2PoolConfigToolStripMenuItem.Size = New System.Drawing.Size(261, 28)
         Me.P2PoolConfigToolStripMenuItem.Text = "P2Pool Config"
+        '
+        'P2PoolWebInterfaceToolStripMenuItem
+        '
+        Me.P2PoolWebInterfaceToolStripMenuItem.ForeColor = System.Drawing.Color.DarkSlateGray
+        Me.P2PoolWebInterfaceToolStripMenuItem.Name = "P2PoolWebInterfaceToolStripMenuItem"
+        Me.P2PoolWebInterfaceToolStripMenuItem.Size = New System.Drawing.Size(261, 28)
+        Me.P2PoolWebInterfaceToolStripMenuItem.Text = "P2Pool Web Interface"
         '
         'HelpToolStripMenuItem
         '
         Me.HelpToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AboutToolStripMenuItem, Me.ContactToolStripMenuItem})
+        Me.HelpToolStripMenuItem.ForeColor = System.Drawing.SystemColors.Control
         Me.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem"
-        Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(49, 22)
+        Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(62, 46)
         Me.HelpToolStripMenuItem.Text = "Help"
         '
         'AboutToolStripMenuItem
         '
+        Me.AboutToolStripMenuItem.ForeColor = System.Drawing.Color.DarkSlateGray
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(126, 24)
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(152, 28)
         Me.AboutToolStripMenuItem.Text = "About"
         '
         'ContactToolStripMenuItem
         '
+        Me.ContactToolStripMenuItem.ForeColor = System.Drawing.Color.DarkSlateGray
         Me.ContactToolStripMenuItem.Name = "ContactToolStripMenuItem"
-        Me.ContactToolStripMenuItem.Size = New System.Drawing.Size(126, 24)
+        Me.ContactToolStripMenuItem.Size = New System.Drawing.Size(152, 28)
         Me.ContactToolStripMenuItem.Text = "Contact"
         '
-        'UpdateInterval
+        'UpdateStatsInterval
         '
-        Me.UpdateInterval.Enabled = True
-        Me.UpdateInterval.Interval = 2000
+        Me.UpdateStatsInterval.Enabled = True
+        Me.UpdateStatsInterval.Interval = 1000
         '
         'UpdateStats
         '
@@ -695,6 +294,16 @@ Partial Class Main
         Me.NotifyIcon1.Icon = CType(resources.GetObject("NotifyIcon1.Icon"), System.Drawing.Icon)
         Me.NotifyIcon1.Text = "Vertcoin One-Click Miner"
         Me.NotifyIcon1.Visible = True
+        '
+        'PictureBox9
+        '
+        Me.PictureBox9.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.help_small
+        Me.PictureBox9.Location = New System.Drawing.Point(278, 88)
+        Me.PictureBox9.Name = "PictureBox9"
+        Me.PictureBox9.Size = New System.Drawing.Size(15, 15)
+        Me.PictureBox9.TabIndex = 39
+        Me.PictureBox9.TabStop = False
+        Me.ToolTip.SetToolTip(Me.PictureBox9, resources.GetString("PictureBox9.ToolTip"))
         '
         'Uptime_Timer
         '
@@ -710,7 +319,7 @@ Partial Class Main
         '
         'WebBrowser1
         '
-        Me.WebBrowser1.Location = New System.Drawing.Point(495, 4)
+        Me.WebBrowser1.Location = New System.Drawing.Point(780, 213)
         Me.WebBrowser1.MinimumSize = New System.Drawing.Size(20, 20)
         Me.WebBrowser1.Name = "WebBrowser1"
         Me.WebBrowser1.Size = New System.Drawing.Size(20, 20)
@@ -722,78 +331,240 @@ Partial Class Main
         Me.Select_Data_Dir.RootFolder = System.Environment.SpecialFolder.MyComputer
         Me.Select_Data_Dir.ShowNewFolderButton = False
         '
+        'Auto_Update_Notify
+        '
+        Me.Auto_Update_Notify.WorkerSupportsCancellation = True
+        '
+        'Panel1
+        '
+        Me.Panel1.BackColor = System.Drawing.Color.DarkGreen
+        Me.Panel1.Controls.Add(Me.PictureBox1)
+        Me.Panel1.Controls.Add(Me.PictureBox6)
+        Me.Panel1.Controls.Add(Me.PictureBox4)
+        Me.Panel1.Controls.Add(Me.MenuStrip)
+        Me.Panel1.ForeColor = System.Drawing.SystemColors.Control
+        Me.Panel1.Location = New System.Drawing.Point(0, 0)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(435, 52)
+        Me.Panel1.TabIndex = 88
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.ocmlogo
+        Me.PictureBox1.Location = New System.Drawing.Point(0, 0)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(50, 50)
+        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
+        Me.PictureBox1.TabIndex = 90
+        Me.PictureBox1.TabStop = False
+        '
+        'PictureBox6
+        '
+        Me.PictureBox6.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.minimize
+        Me.PictureBox6.Location = New System.Drawing.Point(351, 13)
+        Me.PictureBox6.Name = "PictureBox6"
+        Me.PictureBox6.Size = New System.Drawing.Size(25, 25)
+        Me.PictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox6.TabIndex = 92
+        Me.PictureBox6.TabStop = False
+        '
+        'PictureBox4
+        '
+        Me.PictureBox4.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.greenx
+        Me.PictureBox4.Location = New System.Drawing.Point(389, 13)
+        Me.PictureBox4.Name = "PictureBox4"
+        Me.PictureBox4.Size = New System.Drawing.Size(25, 25)
+        Me.PictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox4.TabIndex = 91
+        Me.PictureBox4.TabStop = False
+        '
+        'Panel3
+        '
+        Me.Panel3.BackColor = System.Drawing.Color.DarkSlateGray
+        Me.Panel3.Controls.Add(Me.Button3)
+        Me.Panel3.Controls.Add(Me.ComboBox1)
+        Me.Panel3.Controls.Add(Me.Button1)
+        Me.Panel3.Controls.Add(Me.Label2)
+        Me.Panel3.Controls.Add(Me.Label7)
+        Me.Panel3.Controls.Add(Me.Label4)
+        Me.Panel3.Controls.Add(Me.Label1)
+        Me.Panel3.Controls.Add(Me.TextBox3)
+        Me.Panel3.Controls.Add(Me.TextBox1)
+        Me.Panel3.Controls.Add(Me.PictureBox9)
+        Me.Panel3.Controls.Add(Me.TextBox2)
+        Me.Panel3.Controls.Add(Me.CheckBox1)
+        Me.Panel3.Controls.Add(Me.Label12)
+        Me.Panel3.Controls.Add(Me.Worker_Address_Text)
+        Me.Panel3.Controls.Add(Me.Label14)
+        Me.Panel3.Controls.Add(Me.Password_Text)
+        Me.Panel3.Controls.Add(Me.Label19)
+        Me.Panel3.Controls.Add(Me.PictureBox3)
+        Me.Panel3.Controls.Add(Me.Pool_Address_Text)
+        Me.Panel3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Panel3.ForeColor = System.Drawing.SystemColors.Control
+        Me.Panel3.Location = New System.Drawing.Point(0, 50)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Size = New System.Drawing.Size(435, 285)
+        Me.Panel3.TabIndex = 91
+        '
+        'PictureBox3
+        '
+        Me.PictureBox3.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.help_small
+        Me.PictureBox3.Location = New System.Drawing.Point(109, 9)
+        Me.PictureBox3.Name = "PictureBox3"
+        Me.PictureBox3.Size = New System.Drawing.Size(15, 15)
+        Me.PictureBox3.TabIndex = 28
+        Me.PictureBox3.TabStop = False
+        Me.ToolTip.SetToolTip(Me.PictureBox3, "Select your hardware type to launch the respective miner for your hardware.")
+        '
+        'CheckBox1
+        '
+        Me.CheckBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.CheckBox1.AutoSize = True
+        Me.CheckBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CheckBox1.Location = New System.Drawing.Point(300, 56)
+        Me.CheckBox1.Name = "CheckBox1"
+        Me.CheckBox1.Size = New System.Drawing.Size(118, 17)
+        Me.CheckBox1.TabIndex = 6
+        Me.CheckBox1.Text = "Run Local Node"
+        Me.ToolTip.SetToolTip(Me.CheckBox1, "Select this to point your miner directly to your local p2pool node.")
+        Me.CheckBox1.UseVisualStyleBackColor = True
+        '
+        'TextBox2
+        '
+        Me.TextBox2.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox2.Location = New System.Drawing.Point(12, 27)
+        Me.TextBox2.Name = "TextBox2"
+        Me.TextBox2.ReadOnly = True
+        Me.TextBox2.Size = New System.Drawing.Size(132, 22)
+        Me.TextBox2.TabIndex = 16
+        Me.TextBox2.TabStop = False
+        Me.TextBox2.Text = "Offline"
+        Me.TextBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'TextBox1
+        '
+        Me.TextBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TextBox1.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox1.Location = New System.Drawing.Point(291, 27)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.ReadOnly = True
+        Me.TextBox1.Size = New System.Drawing.Size(132, 22)
+        Me.TextBox1.TabIndex = 43
+        Me.TextBox1.TabStop = False
+        Me.TextBox1.Text = "Offline"
+        Me.TextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'Label1
+        '
+        Me.Label1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(303, 6)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(109, 18)
+        Me.Label1.TabIndex = 42
+        Me.Label1.Text = "Local P2Pool"
+        '
         'Label7
         '
         Me.Label7.AutoSize = True
         Me.Label7.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Label7.Enabled = False
         Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.ForeColor = System.Drawing.Color.Blue
-        Me.Label7.Location = New System.Drawing.Point(380, 13)
+        Me.Label7.ForeColor = System.Drawing.Color.Yellow
+        Me.Label7.Location = New System.Drawing.Point(150, 5)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(135, 17)
         Me.Label7.TabIndex = 87
         Me.Label7.Text = "Update Available!"
         Me.Label7.Visible = False
         '
-        'Auto_Update_Notify
+        'Label2
         '
-        Me.Auto_Update_Notify.WorkerSupportsCancellation = True
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Location = New System.Drawing.Point(53, 6)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(50, 18)
+        Me.Label2.TabIndex = 15
+        Me.Label2.Text = "Miner"
+        '
+        'Button1
+        '
+        Me.Button1.BackColor = System.Drawing.Color.DarkGreen
+        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button1.ForeColor = System.Drawing.SystemColors.Control
+        Me.Button1.Location = New System.Drawing.Point(156, 27)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(123, 22)
+        Me.Button1.TabIndex = 44
+        Me.Button1.Text = "Find P2Pool Nodes"
+        Me.ToolTip.SetToolTip(Me.Button1, resources.GetString("Button1.ToolTip"))
+        Me.Button1.UseVisualStyleBackColor = False
+        '
+        'ComboBox1
+        '
+        Me.ComboBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ComboBox1.FormattingEnabled = True
+        Me.ComboBox1.Items.AddRange(New Object() {"AMD", "NVIDIA", "CPU"})
+        Me.ComboBox1.Location = New System.Drawing.Point(12, 56)
+        Me.ComboBox1.Name = "ComboBox1"
+        Me.ComboBox1.Size = New System.Drawing.Size(79, 21)
+        Me.ComboBox1.TabIndex = 88
+        '
+        'Button3
+        '
+        Me.Button3.BackColor = System.Drawing.Color.DarkGreen
+        Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.Button3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button3.ForeColor = System.Drawing.SystemColors.Control
+        Me.Button3.Location = New System.Drawing.Point(97, 55)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(47, 23)
+        Me.Button3.TabIndex = 90
+        Me.Button3.Text = "Start"
+        Me.ToolTip.SetToolTip(Me.Button3, "Toggles your miner on/off.")
+        Me.Button3.UseVisualStyleBackColor = False
         '
         'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(525, 266)
-        Me.Controls.Add(Me.Label7)
+        Me.ClientSize = New System.Drawing.Size(435, 335)
+        Me.Controls.Add(Me.Panel3)
+        Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.WebBrowser1)
-        Me.Controls.Add(Me.MenuStrip)
-        Me.Controls.Add(Me.GroupBox2)
-        Me.Controls.Add(Me.GroupBox1)
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
-        Me.MaximumSize = New System.Drawing.Size(541, 305)
-        Me.MinimumSize = New System.Drawing.Size(541, 305)
+        Me.MaximumSize = New System.Drawing.Size(435, 335)
+        Me.MinimumSize = New System.Drawing.Size(435, 335)
         Me.Name = "Main"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Vertcoin One-Click Miner - BETA"
-        Me.GroupBox1.ResumeLayout(False)
-        Me.GroupBox1.PerformLayout()
-        CType(Me.PictureBox8, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox6, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupBox2.ResumeLayout(False)
-        Me.GroupBox2.PerformLayout()
-        CType(Me.PictureBox10, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox9, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox7, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox5, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.MenuStrip.ResumeLayout(False)
         Me.MenuStrip.PerformLayout()
+        CType(Me.PictureBox9, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel1.ResumeLayout(False)
+        Me.Panel1.PerformLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox6, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel3.ResumeLayout(False)
+        Me.Panel3.PerformLayout()
+        CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
-    Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
-    Friend WithEvents Button1 As System.Windows.Forms.Button
-    Friend WithEvents Label1 As System.Windows.Forms.Label
-    Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
-    Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
-    Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox
-    Friend WithEvents Button2 As System.Windows.Forms.Button
-    Friend WithEvents Label2 As System.Windows.Forms.Label
-    Friend WithEvents PictureBox2 As System.Windows.Forms.PictureBox
-    Friend WithEvents TextBox2 As System.Windows.Forms.TextBox
     Friend WithEvents Label14 As System.Windows.Forms.Label
     Friend WithEvents Worker_Address_Text As System.Windows.Forms.TextBox
     Friend WithEvents Label12 As System.Windows.Forms.Label
     Friend WithEvents Password_Text As System.Windows.Forms.TextBox
     Friend WithEvents Label19 As System.Windows.Forms.Label
-    Friend WithEvents CheckBox1 As System.Windows.Forms.CheckBox
     Friend WithEvents Pool_Address_Text As System.Windows.Forms.TextBox
     Friend WithEvents MenuStrip As System.Windows.Forms.MenuStrip
     Friend WithEvents FileToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
@@ -806,42 +577,34 @@ Partial Class Main
     Friend WithEvents HelpToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents AboutToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ContactToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents PictureBox6 As System.Windows.Forms.PictureBox
-    Friend WithEvents PictureBox3 As System.Windows.Forms.PictureBox
-    Friend WithEvents UpdateInterval As System.Windows.Forms.Timer
+    Friend WithEvents UpdateStatsInterval As System.Windows.Forms.Timer
     Public WithEvents UpdateStats As System.ComponentModel.BackgroundWorker
     Friend WithEvents NotifyIcon1 As System.Windows.Forms.NotifyIcon
     Friend WithEvents ToolTip As System.Windows.Forms.ToolTip
-    Friend WithEvents Label3 As System.Windows.Forms.Label
-    Friend WithEvents TextBox4 As System.Windows.Forms.TextBox
-    Friend WithEvents Label6 As System.Windows.Forms.Label
-    Friend WithEvents Intensity_Text As System.Windows.Forms.TextBox
-    Friend WithEvents Button3 As System.Windows.Forms.Button
     Friend WithEvents Uptime_Timer As System.Windows.Forms.Timer
     Friend WithEvents Uptime_Checker As System.ComponentModel.BackgroundWorker
-    Friend WithEvents Label15 As System.Windows.Forms.Label
-    Friend WithEvents Label16 As System.Windows.Forms.Label
-    Friend WithEvents Node_Fee_Text As System.Windows.Forms.TextBox
-    Friend WithEvents Node_Donation_Text As System.Windows.Forms.TextBox
     Friend WithEvents Updater As System.ComponentModel.BackgroundWorker
     Friend WithEvents WebBrowser1 As System.Windows.Forms.WebBrowser
     Friend WithEvents Select_Data_Dir As System.Windows.Forms.FolderBrowserDialog
-    Friend WithEvents cpu_check As System.Windows.Forms.CheckBox
-    Friend WithEvents PictureBox4 As System.Windows.Forms.PictureBox
-    Friend WithEvents amd_check As System.Windows.Forms.CheckBox
-    Friend WithEvents Label4 As System.Windows.Forms.Label
-    Friend WithEvents nvidia_check As System.Windows.Forms.CheckBox
-    Friend WithEvents PictureBox7 As System.Windows.Forms.PictureBox
-    Friend WithEvents PictureBox5 As System.Windows.Forms.PictureBox
-    Friend WithEvents Additional_Configuration_Text As System.Windows.Forms.TextBox
-    Friend WithEvents Button5 As System.Windows.Forms.Button
-    Friend WithEvents Button4 As System.Windows.Forms.Button
-    Friend WithEvents Label5 As Label
-    Friend WithEvents ComboBox1 As ComboBox
-    Friend WithEvents PictureBox8 As PictureBox
-    Friend WithEvents Label7 As Label
     Friend WithEvents Auto_Update_Notify As System.ComponentModel.BackgroundWorker
     Friend WithEvents P2PoolConfigToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents PictureBox9 As PictureBox
-    Friend WithEvents PictureBox10 As PictureBox
+    Friend WithEvents Label4 As Label
+    Friend WithEvents TextBox3 As TextBox
+    Friend WithEvents P2PoolWebInterfaceToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents Panel1 As System.Windows.Forms.Panel
+    Friend WithEvents PictureBox4 As System.Windows.Forms.PictureBox
+    Friend WithEvents Panel3 As System.Windows.Forms.Panel
+    Friend WithEvents PictureBox6 As System.Windows.Forms.PictureBox
+    Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents Button3 As Button
+    Friend WithEvents ComboBox1 As ComboBox
+    Friend WithEvents Button1 As Button
+    Friend WithEvents Label2 As Label
+    Friend WithEvents Label7 As Label
+    Friend WithEvents Label1 As Label
+    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents TextBox2 As TextBox
+    Friend WithEvents CheckBox1 As CheckBox
+    Friend WithEvents PictureBox3 As PictureBox
 End Class

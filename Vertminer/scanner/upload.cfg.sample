@@ -1,0 +1,19 @@
+// RENAME THIS FILE TO upload.cfg TO ENABLE UPLOADING
+
+{
+	interval : 1000 * 60 * 15,		// upload every 5 min
+
+	ftp : // upload to FTP
+	{
+		address : "ftp://somehost.com/public_html/",
+		username : "username",
+		password : "password"
+	},
+
+/*
+	scp : // copy to another system via SCP
+	{
+		address : "username@host:path/"
+	}
+*/	
+}

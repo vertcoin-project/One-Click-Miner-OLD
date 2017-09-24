@@ -24,26 +24,18 @@ Partial Class settings
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(settings))
-        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
-        Me.CheckBox2 = New System.Windows.Forms.CheckBox()
         Me.CheckBox3 = New System.Windows.Forms.CheckBox()
         Me.CheckBox4 = New System.Windows.Forms.CheckBox()
         Me.CheckBox6 = New System.Windows.Forms.CheckBox()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.PictureBox9 = New System.Windows.Forms.PictureBox()
         Me.CheckBox9 = New System.Windows.Forms.CheckBox()
         Me.PictureBox6 = New System.Windows.Forms.PictureBox()
         Me.CheckBox5 = New System.Windows.Forms.CheckBox()
         Me.PictureBox4 = New System.Windows.Forms.PictureBox()
         Me.PictureBox3 = New System.Windows.Forms.PictureBox()
-        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.Button5 = New System.Windows.Forms.Button()
         Me.Fee_Address_Text = New System.Windows.Forms.MaskedTextBox()
         Me.Label14 = New System.Windows.Forms.Label()
-        Me.PictureBox5 = New System.Windows.Forms.PictureBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.TextBox4 = New System.Windows.Forms.TextBox()
@@ -55,282 +47,187 @@ Partial Class settings
         Me.Label3 = New System.Windows.Forms.Label()
         Me.TextBox3 = New System.Windows.Forms.TextBox()
         Me.ToolTip = New System.Windows.Forms.ToolTip(Me.components)
-        Me.PictureBox7 = New System.Windows.Forms.PictureBox()
-        Me.PictureBox8 = New System.Windows.Forms.PictureBox()
-        Me.GroupBox3 = New System.Windows.Forms.GroupBox()
-        Me.CheckBox7 = New System.Windows.Forms.CheckBox()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.CheckBox8 = New System.Windows.Forms.CheckBox()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
-        Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
+        Me.PictureBox10 = New System.Windows.Forms.PictureBox()
+        Me.Intensity_Text = New System.Windows.Forms.TextBox()
+        Me.PictureBox12 = New System.Windows.Forms.PictureBox()
         Me.Button1 = New System.Windows.Forms.Button()
-        Me.GroupBox1.SuspendLayout()
+        Me.Button5 = New System.Windows.Forms.Button()
+        Me.PictureBox5 = New System.Windows.Forms.PictureBox()
+        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
+        Me.PictureBox8 = New System.Windows.Forms.PictureBox()
+        Me.CheckBox7 = New System.Windows.Forms.CheckBox()
+        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
+        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.PictureBox11 = New System.Windows.Forms.PictureBox()
+        Me.PictureBox14 = New System.Windows.Forms.PictureBox()
+        Me.PictureBox15 = New System.Windows.Forms.PictureBox()
+        Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         CType(Me.PictureBox9, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupBox2.SuspendLayout()
+        CType(Me.PictureBox10, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox12, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox5, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox7, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox8, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel1.SuspendLayout()
+        CType(Me.PictureBox11, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox14, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox15, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel2.SuspendLayout()
+        Me.GroupBox2.SuspendLayout()
+        Me.GroupBox1.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.SuspendLayout()
-        '
-        'CheckBox1
-        '
-        Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.Location = New System.Drawing.Point(163, 93)
-        Me.CheckBox1.Name = "CheckBox1"
-        Me.CheckBox1.Size = New System.Drawing.Size(105, 17)
-        Me.CheckBox1.TabIndex = 6
-        Me.CheckBox1.Text = "Autostart P2Pool"
-        Me.ToolTip.SetToolTip(Me.CheckBox1, "Toggle to autostart P2Pool when Vertcoin One-Click Miner launches.")
-        Me.CheckBox1.UseVisualStyleBackColor = True
-        '
-        'CheckBox2
-        '
-        Me.CheckBox2.AutoSize = True
-        Me.CheckBox2.Location = New System.Drawing.Point(31, 65)
-        Me.CheckBox2.Name = "CheckBox2"
-        Me.CheckBox2.Size = New System.Drawing.Size(95, 17)
-        Me.CheckBox2.TabIndex = 2
-        Me.CheckBox2.Text = "Hide Windows"
-        Me.ToolTip.SetToolTip(Me.CheckBox2, "Toggle to hide P2Pool and mining windows when launched.")
-        Me.CheckBox2.UseVisualStyleBackColor = True
         '
         'CheckBox3
         '
         Me.CheckBox3.AutoSize = True
         Me.CheckBox3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CheckBox3.Location = New System.Drawing.Point(31, 43)
+        Me.CheckBox3.Location = New System.Drawing.Point(29, 117)
         Me.CheckBox3.Name = "CheckBox3"
         Me.CheckBox3.Size = New System.Drawing.Size(102, 17)
         Me.CheckBox3.TabIndex = 1
         Me.CheckBox3.Text = "Minimize to Tray"
-        Me.ToolTip.SetToolTip(Me.CheckBox3, "Toggle to start Vertcoin One-Click Miner minimized to your system tray." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "This wil" &
-        "l also automatically minimize the software to your system tray when the 'minimiz" &
-        "e' button is clicked.")
+        Me.ToolTip.SetToolTip(Me.CheckBox3, "Toggle to minimize the OCM into your system tray whenever minimize is clicked.")
         Me.CheckBox3.UseVisualStyleBackColor = True
         '
         'CheckBox4
         '
         Me.CheckBox4.AutoSize = True
-        Me.CheckBox4.Location = New System.Drawing.Point(31, 87)
+        Me.CheckBox4.Location = New System.Drawing.Point(29, 96)
         Me.CheckBox4.Name = "CheckBox4"
         Me.CheckBox4.Size = New System.Drawing.Size(76, 17)
         Me.CheckBox4.TabIndex = 3
         Me.CheckBox4.Text = "Use UPnP"
-        Me.ToolTip.SetToolTip(Me.CheckBox4, "Toggle to enable UPnP.  This will automatically set up port forwarding for P2Pool" &
+        Me.ToolTip.SetToolTip(Me.CheckBox4, "Toggle to enable UPnP.  This will automatically set up port forwarding for P2Pool" & _
         " on compatible routers." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "***Still in development***")
         Me.CheckBox4.UseVisualStyleBackColor = True
         '
         'CheckBox6
         '
         Me.CheckBox6.AutoSize = True
-        Me.CheckBox6.Location = New System.Drawing.Point(31, 109)
+        Me.CheckBox6.Location = New System.Drawing.Point(164, 138)
         Me.CheckBox6.Name = "CheckBox6"
         Me.CheckBox6.Size = New System.Drawing.Size(106, 17)
         Me.CheckBox6.TabIndex = 4
         Me.CheckBox6.Text = "Keep Miner Alive"
-        Me.ToolTip.SetToolTip(Me.CheckBox6, "Periodically checks to see if miner is still running.  If miner is not detected, " &
+        Me.ToolTip.SetToolTip(Me.CheckBox6, "Periodically checks to see if miner is still running.  If miner is not detected, " & _
         "it will restart the miner process automatically.")
         Me.CheckBox6.UseVisualStyleBackColor = True
-        '
-        'GroupBox1
-        '
-        Me.GroupBox1.Controls.Add(Me.PictureBox9)
-        Me.GroupBox1.Controls.Add(Me.CheckBox9)
-        Me.GroupBox1.Controls.Add(Me.PictureBox6)
-        Me.GroupBox1.Controls.Add(Me.CheckBox5)
-        Me.GroupBox1.Controls.Add(Me.PictureBox4)
-        Me.GroupBox1.Controls.Add(Me.PictureBox3)
-        Me.GroupBox1.Controls.Add(Me.PictureBox2)
-        Me.GroupBox1.Controls.Add(Me.PictureBox1)
-        Me.GroupBox1.Controls.Add(Me.CheckBox2)
-        Me.GroupBox1.Controls.Add(Me.CheckBox6)
-        Me.GroupBox1.Controls.Add(Me.CheckBox3)
-        Me.GroupBox1.Controls.Add(Me.CheckBox4)
-        Me.GroupBox1.Location = New System.Drawing.Point(12, 12)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(165, 156)
-        Me.GroupBox1.TabIndex = 7
-        Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "General"
         '
         'PictureBox9
         '
         Me.PictureBox9.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.help_small
-        Me.PictureBox9.Location = New System.Drawing.Point(11, 21)
+        Me.PictureBox9.Location = New System.Drawing.Point(9, 75)
         Me.PictureBox9.Name = "PictureBox9"
         Me.PictureBox9.Size = New System.Drawing.Size(15, 15)
         Me.PictureBox9.TabIndex = 15
         Me.PictureBox9.TabStop = False
-        Me.ToolTip.SetToolTip(Me.PictureBox9, "Toggle to start Vertcoin One-Click Miner minimized to your toolbar.")
+        Me.ToolTip.SetToolTip(Me.PictureBox9, "Toggle to start the OCM when Windows starts.")
         '
         'CheckBox9
         '
         Me.CheckBox9.AutoSize = True
         Me.CheckBox9.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CheckBox9.Location = New System.Drawing.Point(31, 21)
+        Me.CheckBox9.Location = New System.Drawing.Point(29, 75)
         Me.CheckBox9.Name = "CheckBox9"
         Me.CheckBox9.Size = New System.Drawing.Size(117, 17)
         Me.CheckBox9.TabIndex = 0
         Me.CheckBox9.Text = "Start with Windows"
-        Me.ToolTip.SetToolTip(Me.CheckBox9, "Toggle to start Vertcoin One-Click Miner minimized to your toolbar.")
+        Me.ToolTip.SetToolTip(Me.CheckBox9, "Toggle to start the OCM when Windows starts." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10))
         Me.CheckBox9.UseVisualStyleBackColor = True
         '
         'PictureBox6
         '
         Me.PictureBox6.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.help_small
-        Me.PictureBox6.Location = New System.Drawing.Point(11, 131)
+        Me.PictureBox6.Location = New System.Drawing.Point(143, 117)
         Me.PictureBox6.Name = "PictureBox6"
         Me.PictureBox6.Size = New System.Drawing.Size(15, 15)
         Me.PictureBox6.TabIndex = 11
         Me.PictureBox6.TabStop = False
-        Me.ToolTip.SetToolTip(Me.PictureBox6, "Periodically checks to see if P2Pool is still running.  If P2Pool is not detected" &
+        Me.ToolTip.SetToolTip(Me.PictureBox6, "Periodically checks to see if P2Pool is still running.  If P2Pool is not detected" & _
         ", it will restart the P2Pool process automatically.")
         '
         'CheckBox5
         '
         Me.CheckBox5.AutoSize = True
-        Me.CheckBox5.Location = New System.Drawing.Point(32, 131)
+        Me.CheckBox5.Location = New System.Drawing.Point(164, 117)
         Me.CheckBox5.Name = "CheckBox5"
         Me.CheckBox5.Size = New System.Drawing.Size(114, 17)
         Me.CheckBox5.TabIndex = 5
         Me.CheckBox5.Text = "Keep P2Pool Alive"
-        Me.ToolTip.SetToolTip(Me.CheckBox5, "Periodically checks to see if P2Pool is still running.  If P2Pool is not detected" &
+        Me.ToolTip.SetToolTip(Me.CheckBox5, "Periodically checks to see if P2Pool is still running.  If P2Pool is not detected" & _
         ", it will restart the P2Pool process automatically.")
         Me.CheckBox5.UseVisualStyleBackColor = True
         '
         'PictureBox4
         '
         Me.PictureBox4.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.help_small
-        Me.PictureBox4.Location = New System.Drawing.Point(11, 109)
+        Me.PictureBox4.Location = New System.Drawing.Point(143, 138)
         Me.PictureBox4.Name = "PictureBox4"
         Me.PictureBox4.Size = New System.Drawing.Size(15, 15)
         Me.PictureBox4.TabIndex = 9
         Me.PictureBox4.TabStop = False
-        Me.ToolTip.SetToolTip(Me.PictureBox4, "Periodically checks to see if miner is still running.  If miner is not detected, " &
+        Me.ToolTip.SetToolTip(Me.PictureBox4, "Periodically checks to see if miner is still running.  If miner is not detected, " & _
         "it will restart the miner process automatically.")
         '
         'PictureBox3
         '
         Me.PictureBox3.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.help_small
-        Me.PictureBox3.Location = New System.Drawing.Point(11, 87)
+        Me.PictureBox3.Location = New System.Drawing.Point(9, 96)
         Me.PictureBox3.Name = "PictureBox3"
         Me.PictureBox3.Size = New System.Drawing.Size(15, 15)
         Me.PictureBox3.TabIndex = 8
         Me.PictureBox3.TabStop = False
-        Me.ToolTip.SetToolTip(Me.PictureBox3, "Toggle to enable UPnP.  This will automatically set up port forwarding for P2Pool" &
+        Me.ToolTip.SetToolTip(Me.PictureBox3, "Toggle to enable UPnP.  This will automatically set up port forwarding for P2Pool" & _
         " on compatible routers." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "***Still in development***" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10))
-        '
-        'PictureBox2
-        '
-        Me.PictureBox2.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.help_small
-        Me.PictureBox2.Location = New System.Drawing.Point(11, 65)
-        Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(15, 15)
-        Me.PictureBox2.TabIndex = 7
-        Me.PictureBox2.TabStop = False
-        Me.ToolTip.SetToolTip(Me.PictureBox2, "Toggle to hide P2Pool and mining windows when launched.")
         '
         'PictureBox1
         '
         Me.PictureBox1.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.help_small
-        Me.PictureBox1.Location = New System.Drawing.Point(11, 43)
+        Me.PictureBox1.Location = New System.Drawing.Point(9, 117)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(15, 15)
         Me.PictureBox1.TabIndex = 6
         Me.PictureBox1.TabStop = False
-        Me.ToolTip.SetToolTip(Me.PictureBox1, "Toggle to start Vertcoin One-Click Miner minimized to your system tray.")
-        '
-        'GroupBox2
-        '
-        Me.GroupBox2.Controls.Add(Me.Button1)
-        Me.GroupBox2.Controls.Add(Me.Label6)
-        Me.GroupBox2.Controls.Add(Me.Button5)
-        Me.GroupBox2.Controls.Add(Me.Fee_Address_Text)
-        Me.GroupBox2.Controls.Add(Me.CheckBox1)
-        Me.GroupBox2.Controls.Add(Me.Label14)
-        Me.GroupBox2.Controls.Add(Me.PictureBox5)
-        Me.GroupBox2.Controls.Add(Me.Label4)
-        Me.GroupBox2.Controls.Add(Me.Label5)
-        Me.GroupBox2.Controls.Add(Me.TextBox4)
-        Me.GroupBox2.Controls.Add(Me.TextBox5)
-        Me.GroupBox2.Controls.Add(Me.Label15)
-        Me.GroupBox2.Controls.Add(Me.Label16)
-        Me.GroupBox2.Controls.Add(Me.Node_Fee)
-        Me.GroupBox2.Controls.Add(Me.Node_Donation)
-        Me.GroupBox2.Controls.Add(Me.Label3)
-        Me.GroupBox2.Controls.Add(Me.TextBox3)
-        Me.GroupBox2.Location = New System.Drawing.Point(183, 12)
-        Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(305, 156)
-        Me.GroupBox2.TabIndex = 8
-        Me.GroupBox2.TabStop = False
-        Me.GroupBox2.Text = "P2Pool"
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(159, 11)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(113, 13)
-        Me.Label6.TabIndex = 42
-        Me.Label6.Text = "Set to Default Settings"
-        '
-        'Button5
-        '
-        Me.Button5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button5.Location = New System.Drawing.Point(149, 28)
-        Me.Button5.Name = "Button5"
-        Me.Button5.Size = New System.Drawing.Size(81, 23)
-        Me.Button5.TabIndex = 4
-        Me.Button5.Text = "VTC Data Dir"
-        Me.ToolTip.SetToolTip(Me.Button5, "Resets the Vertcoin Data Directory to the default value." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "If the One-Click Miner " &
-        "cannot find the default directory, it will prompt you to select your alternative" &
-        " location when P2Pool is started.")
-        Me.Button5.UseVisualStyleBackColor = True
+        Me.ToolTip.SetToolTip(Me.PictureBox1, "Toggle to minimize the OCM into your system tray whenever minimize is clicked." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10))
         '
         'Fee_Address_Text
         '
-        Me.Fee_Address_Text.Location = New System.Drawing.Point(6, 129)
+        Me.Fee_Address_Text.Location = New System.Drawing.Point(15, 144)
         Me.Fee_Address_Text.Name = "Fee_Address_Text"
-        Me.Fee_Address_Text.Size = New System.Drawing.Size(267, 20)
+        Me.Fee_Address_Text.Size = New System.Drawing.Size(244, 20)
         Me.Fee_Address_Text.TabIndex = 7
         Me.Fee_Address_Text.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.ToolTip.SetToolTip(Me.Fee_Address_Text, "Address that Fee % will be sent to.")
+        Me.ToolTip.SetToolTip(Me.Fee_Address_Text, "Address that the mining fee % will be sent to.")
         '
         'Label14
         '
         Me.Label14.AutoSize = True
         Me.Label14.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label14.Location = New System.Drawing.Point(106, 113)
+        Me.Label14.Location = New System.Drawing.Point(104, 128)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(66, 13)
         Me.Label14.TabIndex = 40
         Me.Label14.Text = "Fee Address"
         '
-        'PictureBox5
-        '
-        Me.PictureBox5.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.help_small
-        Me.PictureBox5.Location = New System.Drawing.Point(142, 93)
-        Me.PictureBox5.Name = "PictureBox5"
-        Me.PictureBox5.Size = New System.Drawing.Size(15, 15)
-        Me.PictureBox5.TabIndex = 19
-        Me.PictureBox5.TabStop = False
-        Me.ToolTip.SetToolTip(Me.PictureBox5, "Toggle to autostart P2Pool when Vertcoin One-Click Miner launches.")
-        '
         'Label4
         '
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(10, 43)
+        Me.Label4.Location = New System.Drawing.Point(21, 50)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(63, 13)
         Me.Label4.TabIndex = 37
@@ -340,7 +237,7 @@ Partial Class settings
         '
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(21, 25)
+        Me.Label5.Location = New System.Drawing.Point(32, 32)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(52, 13)
         Me.Label5.TabIndex = 36
@@ -349,7 +246,7 @@ Partial Class settings
         'TextBox4
         '
         Me.TextBox4.BackColor = System.Drawing.Color.White
-        Me.TextBox4.Location = New System.Drawing.Point(77, 22)
+        Me.TextBox4.Location = New System.Drawing.Point(88, 29)
         Me.TextBox4.Name = "TextBox4"
         Me.TextBox4.Size = New System.Drawing.Size(50, 20)
         Me.TextBox4.TabIndex = 0
@@ -359,7 +256,7 @@ Partial Class settings
         'TextBox5
         '
         Me.TextBox5.BackColor = System.Drawing.Color.White
-        Me.TextBox5.Location = New System.Drawing.Point(77, 41)
+        Me.TextBox5.Location = New System.Drawing.Point(88, 48)
         Me.TextBox5.Name = "TextBox5"
         Me.TextBox5.Size = New System.Drawing.Size(50, 20)
         Me.TextBox5.TabIndex = 1
@@ -370,7 +267,7 @@ Partial Class settings
         '
         Me.Label15.AutoSize = True
         Me.Label15.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label15.Location = New System.Drawing.Point(20, 87)
+        Me.Label15.Location = New System.Drawing.Point(31, 94)
         Me.Label15.Name = "Label15"
         Me.Label15.Size = New System.Drawing.Size(53, 13)
         Me.Label15.TabIndex = 33
@@ -380,7 +277,7 @@ Partial Class settings
         '
         Me.Label16.AutoSize = True
         Me.Label16.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label16.Location = New System.Drawing.Point(45, 68)
+        Me.Label16.Location = New System.Drawing.Point(56, 75)
         Me.Label16.Name = "Label16"
         Me.Label16.Size = New System.Drawing.Size(28, 13)
         Me.Label16.TabIndex = 32
@@ -389,7 +286,7 @@ Partial Class settings
         'Node_Fee
         '
         Me.Node_Fee.BackColor = System.Drawing.Color.White
-        Me.Node_Fee.Location = New System.Drawing.Point(77, 65)
+        Me.Node_Fee.Location = New System.Drawing.Point(88, 72)
         Me.Node_Fee.Name = "Node_Fee"
         Me.Node_Fee.Size = New System.Drawing.Size(50, 20)
         Me.Node_Fee.TabIndex = 2
@@ -399,7 +296,7 @@ Partial Class settings
         'Node_Donation
         '
         Me.Node_Donation.BackColor = System.Drawing.Color.White
-        Me.Node_Donation.Location = New System.Drawing.Point(77, 84)
+        Me.Node_Donation.Location = New System.Drawing.Point(88, 91)
         Me.Node_Donation.Name = "Node_Donation"
         Me.Node_Donation.Size = New System.Drawing.Size(50, 20)
         Me.Node_Donation.TabIndex = 3
@@ -410,7 +307,7 @@ Partial Class settings
         '
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(171, 53)
+        Me.Label3.Location = New System.Drawing.Point(168, 32)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(89, 13)
         Me.Label3.TabIndex = 21
@@ -419,177 +316,349 @@ Partial Class settings
         'TextBox3
         '
         Me.TextBox3.BackColor = System.Drawing.SystemColors.Window
-        Me.TextBox3.Location = New System.Drawing.Point(190, 70)
+        Me.TextBox3.Location = New System.Drawing.Point(187, 48)
         Me.TextBox3.Name = "TextBox3"
         Me.TextBox3.Size = New System.Drawing.Size(50, 20)
         Me.TextBox3.TabIndex = 5
         Me.TextBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.ToolTip.SetToolTip(Me.TextBox3, "Select the maximum amount of connections you would like to limit P2Pool to.")
         '
-        'PictureBox7
+        'PictureBox10
         '
-        Me.PictureBox7.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.help_small
-        Me.PictureBox7.Location = New System.Drawing.Point(7, 125)
-        Me.PictureBox7.Name = "PictureBox7"
-        Me.PictureBox7.Size = New System.Drawing.Size(15, 15)
-        Me.PictureBox7.TabIndex = 20
-        Me.PictureBox7.TabStop = False
-        Me.ToolTip.SetToolTip(Me.PictureBox7, "Toggle to mine only when idle. (CPU below certain % for X minutes)")
+        Me.PictureBox10.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.help_small
+        Me.PictureBox10.Location = New System.Drawing.Point(12, 87)
+        Me.PictureBox10.Name = "PictureBox10"
+        Me.PictureBox10.Size = New System.Drawing.Size(15, 15)
+        Me.PictureBox10.TabIndex = 43
+        Me.PictureBox10.TabStop = False
+        Me.ToolTip.SetToolTip(Me.PictureBox10, "This sets the intensity of the miner.  This can be used to help fine-tune miner p" & _
+        "erformance." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Set to 0 to allow the miner to automatically select the intensity f" & _
+        "or you.")
+        '
+        'Intensity_Text
+        '
+        Me.Intensity_Text.BackColor = System.Drawing.SystemColors.Window
+        Me.Intensity_Text.Location = New System.Drawing.Point(33, 84)
+        Me.Intensity_Text.MaxLength = 5
+        Me.Intensity_Text.Name = "Intensity_Text"
+        Me.Intensity_Text.Size = New System.Drawing.Size(62, 20)
+        Me.Intensity_Text.TabIndex = 41
+        Me.Intensity_Text.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.ToolTip.SetToolTip(Me.Intensity_Text, "This sets the intensity of the miner.  This can be used to help fine-tune miner p" & _
+        "erformance." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Leave blank or set to '0' to use your miner's default intensity set" & _
+        "ting.")
+        '
+        'PictureBox12
+        '
+        Me.PictureBox12.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.help_small
+        Me.PictureBox12.Location = New System.Drawing.Point(205, 74)
+        Me.PictureBox12.Name = "PictureBox12"
+        Me.PictureBox12.Size = New System.Drawing.Size(15, 15)
+        Me.PictureBox12.TabIndex = 46
+        Me.PictureBox12.TabStop = False
+        Me.ToolTip.SetToolTip(Me.PictureBox12, resources.GetString("PictureBox12.ToolTip"))
+        '
+        'Button1
+        '
+        Me.Button1.BackColor = System.Drawing.Color.DarkGreen
+        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button1.Location = New System.Drawing.Point(159, 34)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(50, 23)
+        Me.Button1.TabIndex = 46
+        Me.Button1.Text = "OCM"
+        Me.ToolTip.SetToolTip(Me.Button1, "Resets the Vertcoin Data Directory to the default value." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "If the One-Click Miner " & _
+        "cannot find the default directory, it will prompt you to select your alternative" & _
+        " location when P2Pool is started.")
+        Me.Button1.UseVisualStyleBackColor = False
+        '
+        'Button5
+        '
+        Me.Button5.BackColor = System.Drawing.Color.DarkGreen
+        Me.Button5.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.Button5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button5.Location = New System.Drawing.Point(72, 34)
+        Me.Button5.Name = "Button5"
+        Me.Button5.Size = New System.Drawing.Size(81, 23)
+        Me.Button5.TabIndex = 44
+        Me.Button5.Text = "VTC Data Dir"
+        Me.ToolTip.SetToolTip(Me.Button5, "Resets the Vertcoin Data Directory to the default value." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "If the One-Click Miner " & _
+        "cannot find the default directory, it will prompt you to select your alternative" & _
+        " location when P2Pool is started.")
+        Me.Button5.UseVisualStyleBackColor = False
+        '
+        'PictureBox5
+        '
+        Me.PictureBox5.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.help_small
+        Me.PictureBox5.Location = New System.Drawing.Point(143, 96)
+        Me.PictureBox5.Name = "PictureBox5"
+        Me.PictureBox5.Size = New System.Drawing.Size(15, 15)
+        Me.PictureBox5.TabIndex = 48
+        Me.PictureBox5.TabStop = False
+        Me.ToolTip.SetToolTip(Me.PictureBox5, "Toggle to autostart P2Pool when the OCM launches.")
+        '
+        'CheckBox1
+        '
+        Me.CheckBox1.AutoSize = True
+        Me.CheckBox1.Location = New System.Drawing.Point(164, 96)
+        Me.CheckBox1.Name = "CheckBox1"
+        Me.CheckBox1.Size = New System.Drawing.Size(105, 17)
+        Me.CheckBox1.TabIndex = 47
+        Me.CheckBox1.Text = "Autostart P2Pool"
+        Me.ToolTip.SetToolTip(Me.CheckBox1, "Toggle to autostart P2Pool when the OCM launches." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10))
+        Me.CheckBox1.UseVisualStyleBackColor = True
         '
         'PictureBox8
         '
         Me.PictureBox8.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.help_small
-        Me.PictureBox8.Location = New System.Drawing.Point(23, 102)
+        Me.PictureBox8.Location = New System.Drawing.Point(143, 75)
         Me.PictureBox8.Name = "PictureBox8"
         Me.PictureBox8.Size = New System.Drawing.Size(15, 15)
-        Me.PictureBox8.TabIndex = 19
+        Me.PictureBox8.TabIndex = 51
         Me.PictureBox8.TabStop = False
-        Me.ToolTip.SetToolTip(Me.PictureBox8, "Toggle to autostart mining when Vertcoin One-Click Miner launches.")
-        '
-        'GroupBox3
-        '
-        Me.GroupBox3.Controls.Add(Me.PictureBox7)
-        Me.GroupBox3.Controls.Add(Me.PictureBox8)
-        Me.GroupBox3.Controls.Add(Me.CheckBox7)
-        Me.GroupBox3.Controls.Add(Me.Label1)
-        Me.GroupBox3.Controls.Add(Me.Label2)
-        Me.GroupBox3.Controls.Add(Me.TextBox1)
-        Me.GroupBox3.Controls.Add(Me.CheckBox8)
-        Me.GroupBox3.Controls.Add(Me.TextBox2)
-        Me.GroupBox3.Location = New System.Drawing.Point(494, 12)
-        Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(168, 156)
-        Me.GroupBox3.TabIndex = 9
-        Me.GroupBox3.TabStop = False
-        Me.GroupBox3.Text = "Mining"
+        Me.ToolTip.SetToolTip(Me.PictureBox8, "Toggle to autostart mining when the OCM launches.")
         '
         'CheckBox7
         '
         Me.CheckBox7.AutoSize = True
-        Me.CheckBox7.Location = New System.Drawing.Point(44, 102)
+        Me.CheckBox7.Location = New System.Drawing.Point(164, 75)
         Me.CheckBox7.Name = "CheckBox7"
         Me.CheckBox7.Size = New System.Drawing.Size(102, 17)
-        Me.CheckBox7.TabIndex = 2
+        Me.CheckBox7.TabIndex = 49
         Me.CheckBox7.Text = "Autostart Mining"
-        Me.ToolTip.SetToolTip(Me.CheckBox7, "Toggle to autostart mining when Vertcoin One-Click Miner launches.")
+        Me.ToolTip.SetToolTip(Me.CheckBox7, "Toggle to autostart mining when the OCM launches." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10))
         Me.CheckBox7.UseVisualStyleBackColor = True
+        '
+        'PictureBox2
+        '
+        Me.PictureBox2.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.help_small
+        Me.PictureBox2.Location = New System.Drawing.Point(205, 14)
+        Me.PictureBox2.Name = "PictureBox2"
+        Me.PictureBox2.Size = New System.Drawing.Size(15, 15)
+        Me.PictureBox2.TabIndex = 47
+        Me.PictureBox2.TabStop = False
+        Me.ToolTip.SetToolTip(Me.PictureBox2, "Select the maximum amount of connections you would like to limit P2Pool to.")
+        '
+        'ComboBox1
+        '
+        Me.ComboBox1.FormattingEnabled = True
+        Me.ComboBox1.Items.AddRange(New Object() {"1", "2"})
+        Me.ComboBox1.Location = New System.Drawing.Point(192, 108)
+        Me.ComboBox1.Name = "ComboBox1"
+        Me.ComboBox1.Size = New System.Drawing.Size(40, 21)
+        Me.ComboBox1.TabIndex = 44
+        Me.ToolTip.SetToolTip(Me.ComboBox1, "Select the network in which p2pool will connect.")
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label6.Location = New System.Drawing.Point(82, 17)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(113, 13)
+        Me.Label6.TabIndex = 45
+        Me.Label6.Text = "Set to Default Settings"
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label9.Location = New System.Drawing.Point(189, 92)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(47, 13)
+        Me.Label9.TabIndex = 45
+        Me.Label9.Text = "Network"
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label7.Location = New System.Drawing.Point(41, 68)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(46, 13)
+        Me.Label7.TabIndex = 42
+        Me.Label7.Text = "Intensity"
+        '
+        'Panel1
+        '
+        Me.Panel1.BackColor = System.Drawing.Color.DarkGreen
+        Me.Panel1.Controls.Add(Me.Label1)
+        Me.Panel1.Controls.Add(Me.PictureBox11)
+        Me.Panel1.Controls.Add(Me.PictureBox14)
+        Me.Panel1.Controls.Add(Me.PictureBox15)
+        Me.Panel1.ForeColor = System.Drawing.SystemColors.Control
+        Me.Panel1.Location = New System.Drawing.Point(0, 0)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(719, 52)
+        Me.Panel1.TabIndex = 89
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(44, 60)
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(67, 13)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(85, 13)
-        Me.Label1.TabIndex = 18
-        Me.Label1.Text = "Restart Delay (s)"
+        Me.Label1.Size = New System.Drawing.Size(91, 26)
+        Me.Label1.TabIndex = 93
+        Me.Label1.Text = "Settings"
         '
-        'Label2
+        'PictureBox11
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(50, 21)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(72, 13)
-        Me.Label2.TabIndex = 17
-        Me.Label2.Text = "Mining Idle (s)"
+        Me.PictureBox11.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.ocmlogo
+        Me.PictureBox11.Location = New System.Drawing.Point(0, 0)
+        Me.PictureBox11.Name = "PictureBox11"
+        Me.PictureBox11.Size = New System.Drawing.Size(50, 50)
+        Me.PictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
+        Me.PictureBox11.TabIndex = 90
+        Me.PictureBox11.TabStop = False
         '
-        'TextBox1
+        'PictureBox14
         '
-        Me.TextBox1.BackColor = System.Drawing.SystemColors.Window
-        Me.TextBox1.Location = New System.Drawing.Point(44, 76)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(85, 20)
-        Me.TextBox1.TabIndex = 1
-        Me.TextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.PictureBox14.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.PictureBox14.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.minimize
+        Me.PictureBox14.Location = New System.Drawing.Point(646, 13)
+        Me.PictureBox14.Name = "PictureBox14"
+        Me.PictureBox14.Size = New System.Drawing.Size(25, 25)
+        Me.PictureBox14.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox14.TabIndex = 92
+        Me.PictureBox14.TabStop = False
         '
-        'CheckBox8
+        'PictureBox15
         '
-        Me.CheckBox8.AutoSize = True
-        Me.CheckBox8.Enabled = False
-        Me.CheckBox8.Location = New System.Drawing.Point(28, 125)
-        Me.CheckBox8.Name = "CheckBox8"
-        Me.CheckBox8.Size = New System.Drawing.Size(134, 17)
-        Me.CheckBox8.TabIndex = 3
-        Me.CheckBox8.Text = "Start Mining When Idle"
-        Me.ToolTip.SetToolTip(Me.CheckBox8, "Toggle to mine only when idle. (CPU below certain % for X minutes)")
-        Me.CheckBox8.UseVisualStyleBackColor = True
+        Me.PictureBox15.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.PictureBox15.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.greenx
+        Me.PictureBox15.Location = New System.Drawing.Point(684, 13)
+        Me.PictureBox15.Name = "PictureBox15"
+        Me.PictureBox15.Size = New System.Drawing.Size(25, 25)
+        Me.PictureBox15.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox15.TabIndex = 91
+        Me.PictureBox15.TabStop = False
         '
-        'TextBox2
+        'Panel2
         '
-        Me.TextBox2.BackColor = System.Drawing.SystemColors.Window
-        Me.TextBox2.Enabled = False
-        Me.TextBox2.Location = New System.Drawing.Point(44, 37)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(85, 20)
-        Me.TextBox2.TabIndex = 0
-        Me.TextBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.Panel2.BackColor = System.Drawing.Color.DarkSlateGray
+        Me.Panel2.Controls.Add(Me.GroupBox2)
+        Me.Panel2.Controls.Add(Me.GroupBox1)
+        Me.Panel2.Controls.Add(Me.GroupBox3)
+        Me.Panel2.Location = New System.Drawing.Point(0, 50)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(719, 193)
+        Me.Panel2.TabIndex = 90
         '
-        'Button1
+        'GroupBox2
         '
-        Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button1.Location = New System.Drawing.Point(236, 28)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(50, 23)
-        Me.Button1.TabIndex = 43
-        Me.Button1.Text = "OCM"
-        Me.ToolTip.SetToolTip(Me.Button1, "Resets the Vertcoin Data Directory to the default value." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "If the One-Click Miner " &
-        "cannot find the default directory, it will prompt you to select your alternative" &
-        " location when P2Pool is started.")
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.GroupBox2.Controls.Add(Me.PictureBox2)
+        Me.GroupBox2.Controls.Add(Me.Label5)
+        Me.GroupBox2.Controls.Add(Me.PictureBox12)
+        Me.GroupBox2.Controls.Add(Me.Node_Donation)
+        Me.GroupBox2.Controls.Add(Me.Label9)
+        Me.GroupBox2.Controls.Add(Me.TextBox4)
+        Me.GroupBox2.Controls.Add(Me.ComboBox1)
+        Me.GroupBox2.Controls.Add(Me.Fee_Address_Text)
+        Me.GroupBox2.Controls.Add(Me.Label16)
+        Me.GroupBox2.Controls.Add(Me.TextBox5)
+        Me.GroupBox2.Controls.Add(Me.Label15)
+        Me.GroupBox2.Controls.Add(Me.Label3)
+        Me.GroupBox2.Controls.Add(Me.Label14)
+        Me.GroupBox2.Controls.Add(Me.Node_Fee)
+        Me.GroupBox2.Controls.Add(Me.TextBox3)
+        Me.GroupBox2.Controls.Add(Me.Label4)
+        Me.GroupBox2.ForeColor = System.Drawing.SystemColors.Control
+        Me.GroupBox2.Location = New System.Drawing.Point(315, 8)
+        Me.GroupBox2.Name = "GroupBox2"
+        Me.GroupBox2.Size = New System.Drawing.Size(275, 173)
+        Me.GroupBox2.TabIndex = 12
+        Me.GroupBox2.TabStop = False
+        Me.GroupBox2.Text = "P2Pool"
+        '
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.Button5)
+        Me.GroupBox1.Controls.Add(Me.PictureBox8)
+        Me.GroupBox1.Controls.Add(Me.PictureBox1)
+        Me.GroupBox1.Controls.Add(Me.PictureBox3)
+        Me.GroupBox1.Controls.Add(Me.CheckBox7)
+        Me.GroupBox1.Controls.Add(Me.PictureBox4)
+        Me.GroupBox1.Controls.Add(Me.PictureBox5)
+        Me.GroupBox1.Controls.Add(Me.CheckBox6)
+        Me.GroupBox1.Controls.Add(Me.CheckBox1)
+        Me.GroupBox1.Controls.Add(Me.CheckBox5)
+        Me.GroupBox1.Controls.Add(Me.Button1)
+        Me.GroupBox1.Controls.Add(Me.CheckBox3)
+        Me.GroupBox1.Controls.Add(Me.PictureBox6)
+        Me.GroupBox1.Controls.Add(Me.Label6)
+        Me.GroupBox1.Controls.Add(Me.CheckBox4)
+        Me.GroupBox1.Controls.Add(Me.PictureBox9)
+        Me.GroupBox1.Controls.Add(Me.CheckBox9)
+        Me.GroupBox1.ForeColor = System.Drawing.SystemColors.Control
+        Me.GroupBox1.Location = New System.Drawing.Point(12, 8)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(287, 173)
+        Me.GroupBox1.TabIndex = 11
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "General"
+        '
+        'GroupBox3
+        '
+        Me.GroupBox3.Controls.Add(Me.PictureBox10)
+        Me.GroupBox3.Controls.Add(Me.Label7)
+        Me.GroupBox3.Controls.Add(Me.Intensity_Text)
+        Me.GroupBox3.ForeColor = System.Drawing.SystemColors.Control
+        Me.GroupBox3.Location = New System.Drawing.Point(596, 8)
+        Me.GroupBox3.Name = "GroupBox3"
+        Me.GroupBox3.Size = New System.Drawing.Size(113, 173)
+        Me.GroupBox3.TabIndex = 12
+        Me.GroupBox3.TabStop = False
+        Me.GroupBox3.Text = "Mining"
         '
         'settings
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(674, 173)
-        Me.Controls.Add(Me.GroupBox3)
-        Me.Controls.Add(Me.GroupBox2)
-        Me.Controls.Add(Me.GroupBox1)
+        Me.ClientSize = New System.Drawing.Size(719, 243)
+        Me.Controls.Add(Me.Panel2)
+        Me.Controls.Add(Me.Panel1)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
+        Me.MaximumSize = New System.Drawing.Size(719, 243)
+        Me.MinimumSize = New System.Drawing.Size(719, 243)
         Me.Name = "settings"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Settings"
-        Me.GroupBox1.ResumeLayout(False)
-        Me.GroupBox1.PerformLayout()
         CType(Me.PictureBox9, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox10, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox12, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox5, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox8, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel1.ResumeLayout(False)
+        Me.Panel1.PerformLayout()
+        CType(Me.PictureBox11, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox14, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox15, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel2.ResumeLayout(False)
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
-        CType(Me.PictureBox5, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox7, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox8, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox3.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
-    Friend WithEvents CheckBox1 As System.Windows.Forms.CheckBox
-    Friend WithEvents CheckBox2 As System.Windows.Forms.CheckBox
     Friend WithEvents CheckBox3 As System.Windows.Forms.CheckBox
     Friend WithEvents CheckBox4 As System.Windows.Forms.CheckBox
     Friend WithEvents CheckBox6 As System.Windows.Forms.CheckBox
-    Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
-    Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox
     Friend WithEvents ToolTip As System.Windows.Forms.ToolTip
     Friend WithEvents PictureBox4 As System.Windows.Forms.PictureBox
     Friend WithEvents PictureBox3 As System.Windows.Forms.PictureBox
-    Friend WithEvents PictureBox2 As System.Windows.Forms.PictureBox
     Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
-    Friend WithEvents PictureBox5 As System.Windows.Forms.PictureBox
-    Friend WithEvents GroupBox3 As System.Windows.Forms.GroupBox
-    Friend WithEvents PictureBox7 As System.Windows.Forms.PictureBox
-    Friend WithEvents PictureBox8 As System.Windows.Forms.PictureBox
-    Friend WithEvents CheckBox7 As System.Windows.Forms.CheckBox
-    Friend WithEvents Label1 As System.Windows.Forms.Label
-    Friend WithEvents Label2 As System.Windows.Forms.Label
-    Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
-    Friend WithEvents CheckBox8 As System.Windows.Forms.CheckBox
-    Friend WithEvents TextBox2 As System.Windows.Forms.TextBox
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents TextBox3 As System.Windows.Forms.TextBox
     Friend WithEvents Label4 As System.Windows.Forms.Label
@@ -606,8 +675,28 @@ Partial Class settings
     Friend WithEvents Fee_Address_Text As System.Windows.Forms.MaskedTextBox
     Friend WithEvents PictureBox9 As System.Windows.Forms.PictureBox
     Friend WithEvents CheckBox9 As System.Windows.Forms.CheckBox
-    Friend WithEvents Label6 As System.Windows.Forms.Label
-    Friend WithEvents Button5 As System.Windows.Forms.Button
     Friend WithEvents FolderBrowserDialog1 As System.Windows.Forms.FolderBrowserDialog
+    Friend WithEvents PictureBox10 As PictureBox
+    Friend WithEvents Label7 As Label
+    Friend WithEvents Intensity_Text As TextBox
+    Friend WithEvents Label9 As Label
+    Friend WithEvents ComboBox1 As ComboBox
+    Friend WithEvents PictureBox12 As PictureBox
+    Friend WithEvents PictureBox8 As PictureBox
+    Friend WithEvents CheckBox7 As CheckBox
+    Friend WithEvents PictureBox5 As PictureBox
+    Friend WithEvents CheckBox1 As CheckBox
     Friend WithEvents Button1 As Button
+    Friend WithEvents Button5 As Button
+    Friend WithEvents Label6 As Label
+    Friend WithEvents PictureBox2 As PictureBox
+    Friend WithEvents Panel1 As Panel
+    Friend WithEvents PictureBox11 As PictureBox
+    Friend WithEvents PictureBox14 As PictureBox
+    Friend WithEvents PictureBox15 As PictureBox
+    Friend WithEvents Panel2 As Panel
+    Friend WithEvents GroupBox2 As GroupBox
+    Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents GroupBox3 As GroupBox
+    Friend WithEvents Label1 As Label
 End Class

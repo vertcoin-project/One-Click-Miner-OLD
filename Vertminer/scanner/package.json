@@ -1,0 +1,22 @@
+{
+  "name": "p2pool-scanner",
+  "author": {
+    "name": "Litecoin Project",
+    "email": "contact@litecoin.org"
+  },
+  "version": "0.0.1",
+  "dependencies": {
+    "express": "3.*",
+    "json" : "*",
+    "underscore" : "*"
+  },
+  "engines": {
+    "node": "*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/litecoin-project/p2pool-scanner.git"
+  },
+  "readmeFilename": "README.md"
+
+}

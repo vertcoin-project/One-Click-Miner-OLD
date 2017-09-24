@@ -1,25 +1,31 @@
 ﻿Imports System.Environment
 Imports System.IO
+Imports System.Web.Script.Serialization
+Imports Newtonsoft.Json
+Imports Newtonsoft.Json.Linq
 
 Public Class settings
+
+    Dim JSONConverter As JavaScriptSerializer = New JavaScriptSerializer()
 
     Private Sub settings_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         Try
-            Node_Fee.Text = P2P_Node_Fee & "%"
-            Node_Donation.Text = P2P_Donation & "%"
-            TextBox3.Text = MaxConnections
-            TextBox2.Text = MiningIdle
-            TextBox1.Text = RestartDelay
+            Invoke(New MethodInvoker(AddressOf Style))
+            Node_Fee.Text = p2pool_node_fee & "%"
+            Node_Donation.Text = p2pool_donation & "%"
+            TextBox3.Text = max_connections
             TextBox4.Text = p2pool_port
             TextBox5.Text = mining_port
-            Fee_Address_Text.Text = P2P_Node_Fee_Address
-            If Keep_Miner_Alive = True Then
+            Intensity_Text.Text = mining_intensity
+            Fee_Address_Text.Text = p2pool_fee_address
+            ComboBox1.SelectedItem = p2pool_network
+            If keep_miner_alive = True Then
                 CheckBox6.Checked = True
             Else
                 CheckBox6.Checked = False
             End If
-            If Keep_P2Pool_Alive = True Then
+            If keep_p2pool_alive = True Then
                 CheckBox5.Checked = True
             Else
                 CheckBox5.Checked = False
@@ -29,12 +35,7 @@ Public Class settings
             Else
                 CheckBox3.Checked = False
             End If
-            If hide_windows = True Then
-                CheckBox2.Checked = True
-            Else
-                CheckBox2.Checked = False
-            End If
-            If use_UPnP = True Then
+            If use_upnp = True Then
                 CheckBox4.Checked = True
             Else
                 CheckBox4.Checked = False
@@ -54,37 +55,28 @@ Public Class settings
             Else
                 CheckBox7.Checked = False
             End If
-            If start_mining_when_idle = True Then
-                CheckBox8.Checked = True
-            Else
-                CheckBox8.Checked = False
-            End If
-            If P2P_Network = 1 Then
+            If p2pool_network = "1" Then
                 If p2pool_port = "9347" Or p2pool_port = "" Then
                     p2pool_port = "9346"
                 End If
                 If mining_port = "9181" Or mining_port = "" Then
                     mining_port = "9171"
                 End If
-                TextBox4.Text = p2pool_port
-                TextBox5.Text = mining_port
-            ElseIf P2P_Network = 2 Then
+            ElseIf p2pool_network = "2" Then
                 If p2pool_port = "9346" Or p2pool_port = "" Then
                     p2pool_port = "9347"
                 End If
                 If mining_port = "9171" Or mining_port = "" Then
                     mining_port = "9181"
                 End If
-                TextBox4.Text = p2pool_port
-                TextBox5.Text = mining_port
             End If
         Catch ex As Exception
             MsgBox(ex.Message)
-            NewLog = NewLog & Environment.NewLine
-            NewLog = NewLog & ("- " & Date.Parse(Now) & ", " & "Settings(), " & ex.Message)
+            newlog = newlog & Environment.NewLine
+            newlog = newlog & ("- " & Date.Parse(Now) & ", " & "Settings(), " & ex.Message)
         Finally
-            NewLog = NewLog & Environment.NewLine
-            NewLog = NewLog & ("- " & Date.Parse(Now) & ", " & "Settings() Loaded: OK.")
+            newlog = newlog & Environment.NewLine
+            newlog = newlog & ("- " & Date.Parse(Now) & ", " & "Settings() Loaded: OK.")
         End Try
 
     End Sub
@@ -92,22 +84,22 @@ Public Class settings
     Private Sub Settings_Closing(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles MyBase.Closing
 
         Try
+            If Not Intensity_Text.Text = "" And Not Intensity_Text.Text = 0.ToString Then
+                mining_intensity = Convert.ToDecimal(Intensity_Text.Text)
+            End If
             If Not Node_Fee.Text = "" Then
-                P2P_Node_Fee = Convert.ToInt32(Node_Fee.Text.Replace("%", ""))
+                p2pool_node_fee = Convert.ToInt32(Node_Fee.Text.Replace("%", ""))
             End If
             If Not Node_Donation.Text = "" Then
-                P2P_Donation = Convert.ToInt32(Node_Donation.Text.Replace("%", ""))
+                p2pool_donation = Convert.ToInt32(Node_Donation.Text.Replace("%", ""))
             End If
             If Not TextBox3.Text = "" Then
-                MaxConnections = TextBox3.Text
+                max_connections = TextBox3.Text
             End If
             If Fee_Address_Text.Text = "" Then
-                P2P_Node_Fee_Address = "VpBsRnN749jYHE9hT8dZreznHfmFMdE1yG" 'If fee address is empty, default to Dev Donation address to keep config alive.
+                p2pool_fee_address = "VpBsRnN749jYHE9hT8dZreznHfmFMdE1yG" 'If fee address is empty, default to Dev Donation address to keep config alive.
             Else
-                P2P_Node_Fee_Address = Fee_Address_Text.Text
-            End If
-            If Not TextBox1.Text = "" Then
-                RestartDelay = TextBox1.Text
+                p2pool_fee_address = Fee_Address_Text.Text
             End If
             If Not TextBox4.Text = "" Then
                 p2pool_port = TextBox4.Text
@@ -115,23 +107,15 @@ Public Class settings
             If Not TextBox5.Text = "" Then
                 mining_port = TextBox5.Text
             End If
-            If Not TextBox2.Text = "" Then
-                MiningIdle = TextBox2.Text
-            End If
             If CheckBox3.Checked = True Then
                 start_minimized = True
             Else
                 start_minimized = False
             End If
-            If CheckBox2.Checked = True Then
-                hide_windows = True
-            Else
-                hide_windows = False
-            End If
             If CheckBox4.Checked = True Then
-                use_UPnP = True
+                use_upnp = True
             Else
-                use_UPnP = False
+                use_upnp = False
             End If
             If CheckBox1.Checked = True Then
                 autostart_p2pool = True
@@ -143,42 +127,37 @@ Public Class settings
             Else
                 autostart_mining = False
             End If
-            If CheckBox8.Checked = True Then
-                start_mining_when_idle = True
-            Else
-                start_mining_when_idle = False
-            End If
             If CheckBox6.Checked = True Then
-                Keep_Miner_Alive = True
+                keep_miner_alive = True
             Else
-                Keep_Miner_Alive = False
+                keep_miner_alive = False
             End If
             If CheckBox5.Checked = True Then
-                Keep_P2Pool_Alive = True
+                keep_p2pool_alive = True
             Else
-                Keep_P2Pool_Alive = False
+                keep_p2pool_alive = False
             End If
             If CheckBox9.Checked = True Then
                 start_with_windows = True
             Else
                 start_with_windows = False
             End If
-            'Saves current settings.
-            Invoke(New MethodInvoker(AddressOf main.SaveSettingsIni))
-            'Adds startup entry to registry after settings have been saved.
-            Invoke(New MethodInvoker(AddressOf main.StartWithWindows))
-            'Updates the timer interval to the selected miner restart delay.
-            If RestartDelay <= 0 Then
-                RestartDelay = 1
+            If ComboBox1.SelectedItem = "1" Then
+                p2pool_network = "1"
+            ElseIf ComboBox1.SelectedItem = "2" Then
+                p2pool_network = "2"
             End If
-            Main.Uptime_Timer.Interval = RestartDelay * 1000
+            'Saves current settings.
+            Invoke(New MethodInvoker(AddressOf Main.SaveSettingsJSON))
+            'Adds startup entry to registry after settings have been saved.
+            Invoke(New MethodInvoker(AddressOf Main.StartWithWindows))
         Catch ex As Exception
             MsgBox(ex.Message)
-            NewLog = NewLog & Environment.NewLine
-            NewLog = NewLog & ("- " & Date.Parse(Now) & ", " & "Settings(), " & ex.Message)
+            newlog = newlog & Environment.NewLine
+            newlog = newlog & ("- " & Date.Parse(Now) & ", " & "Settings(), " & ex.Message)
         Finally
-            NewLog = NewLog & Environment.NewLine
-            NewLog = NewLog & ("- " & Date.Parse(Now) & ", " & "Settings() Closed: OK.")
+            newlog = newlog & Environment.NewLine
+            newlog = newlog & ("- " & Date.Parse(Now) & ", " & "Settings() Closed: OK.")
         End Try
 
     End Sub
@@ -188,68 +167,120 @@ Public Class settings
         Dim result1 As DialogResult = MsgBox("Set Vertcoin Data Diretory to default location in AppData\Roaming?", MessageBoxButtons.OKCancel)
         If result1 = DialogResult.OK Then
             appdata = GetFolderPath(SpecialFolder.ApplicationData) & "\Vertcoin"
+            MsgBox("Vertcoin Data Directory set to default.")
         End If
-        MsgBox("Vertcoin Data Directory set to default.")
 
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Do
-            Try
-                If System.IO.File.Exists(SettingsIni) = True Then
-                    Dim objWriter As New System.IO.StreamWriter(SettingsIni)
-                    objWriter.WriteLine(appdata)
-                    objWriter.WriteLine("Start Minimized=false")
-                    objWriter.WriteLine("Hide Windows=false")
-                    objWriter.WriteLine("Start With Windows=false")
-                    objWriter.WriteLine("Autostart P2Pool=false")
-                    objWriter.WriteLine("Autostart Mining=false")
-                    objWriter.WriteLine("Mine When Idle=false")
-                    objWriter.WriteLine("Keep Miner Alive=false")
-                    objWriter.WriteLine("Keep P2Pool Alive=false")
-                    objWriter.WriteLine("Use UPnP=false")
-                    objWriter.WriteLine("P2Pool Network=1")
-                    objWriter.WriteLine("P2Pool Node Fee (%)=0")
-                    objWriter.WriteLine("P2Pool Donation (%)=1")
-                    objWriter.WriteLine("Maximum P2Pool Connections=50")
-                    objWriter.WriteLine("Mining Idle (s)=0")
-                    objWriter.WriteLine("Mining Restart Delay (s)=2")
-                    objWriter.WriteLine("P2Pool Port=9346")
-                    objWriter.WriteLine("Mining Port=9171")
-                    objWriter.WriteLine("Mining Intensity=0")
-                    Intensity = 0
-                    objWriter.WriteLine("Worker Name=VpBsRnN749jYHE9hT8dZreznHfmFMdE1yG")
-                    Worker = "VpBsRnN749jYHE9hT8dZreznHfmFMdE1yG"
-                    objWriter.WriteLine("Worker Password=x")
-                    Password = "x"
-                    objWriter.WriteLine("P2Pool Fee Address=VpBsRnN749jYHE9hT8dZreznHfmFMdE1yG")
-                    objWriter.WriteLine("Pool URL=stratum+tcp://vtc.alwayshashing.com:9171")
-                    Pool_Address = "stratum+tcp://vtc.alwayshashing.com:9171"
-                    objWriter.WriteLine("One-Click Version=" & Miner_Version)
-                    objWriter.WriteLine("P2Pool Version=" & P2Pool_Version)
-                    objWriter.WriteLine("AMD Miner Version=" & AMD_Version)
-                    objWriter.WriteLine("Nvidia Miner Version=" & Nvidia_Version)
-                    objWriter.WriteLine("CPU Miner Version=" & CPU_Version)
-                    objWriter.WriteLine("Default Miner=")
-                    objWriter.Write("Additional Miner Config=")
-                    additional_config = ""
-                    objWriter.Close()
-                End If
-                Exit Do
-            Catch ex As IOException
-                'Settings.ini is still in use so pause before trying again.
-                System.Threading.Thread.Sleep(100)
-                NewLog = NewLog & Environment.NewLine
-                NewLog = NewLog & ("- " & Date.Parse(Now) & ", " & "Main() SaveSettings: " & ex.Message)
-            Finally
-                NewLog = NewLog & Environment.NewLine
-                NewLog = NewLog & ("- " & Date.Parse(Now) & ", " & "Main() SaveSettings: OK.")
-                MsgBox("Settings set back to defaults.")
-                Invoke(New MethodInvoker(AddressOf Main.LoadSettingsIni))
-                Invoke(New MethodInvoker(AddressOf Main.Update_P2Pool_Text))
-                Invoke(New MethodInvoker(AddressOf Main.Update_Miner_Text))
-            End Try
-        Loop
+
+        Try
+            Dim newjson = New Settings_JSON
+            newjson.appdata = ""
+            newjson.start_minimized = "false"
+            newjson.start_with_windows = "false"
+            newjson.autostart_p2pool = "false"
+            newjson.autostart_mining = "false"
+            newjson.mine_when_idle = "false"
+            newjson.keep_miner_alive = "false"
+            newjson.keep_p2pool_alive = "false"
+            newjson.use_upnp = "false"
+            newjson.p2pool_network = "1"
+            newjson.p2pool_node_fee = "0"
+            newjson.p2pool_donation = "1"
+            newjson.max_connections = "50"
+            newjson.p2pool_port = "9346"
+            newjson.mining_port = "9171"
+            newjson.mining_intensity = 0
+            newjson.p2pool_fee_address = "VpBsRnN749jYHE9hT8dZreznHfmFMdE1yG"
+            newjson.miner_version = Application.ProductVersion
+            newjson.p2pool_version = p2pool_version
+            newjson.amd_version = amd_version
+            newjson.nvidia_version = nvidia_version
+            newjson.cpu_version = cpu_version
+            newjson.default_miner = ""
+            newjson.pools.Clear()
+            Dim poolcount = pools.Count()
+            Dim workercount = workers.Count()
+            Dim passwordcount = passwords.Count()
+            Dim count As Decimal = Decimal.MaxValue
+            count = Math.Min(count, poolcount)
+            count = Math.Min(count, workercount)
+            count = Math.Min(count, passwordcount)
+            If Not count = 0 Then
+                For x = 0 To count - 1
+                    If Not pools(x) = "" And Not workers(x) = "" And Not passwords(x) = "" Then
+                        Dim pooljson As Pools_JSON = New Pools_JSON()
+                        pooljson.url = pools(x)
+                        pooljson.user = workers(x)
+                        pooljson.pass = passwords(x)
+                        newjson.pools.Add(pooljson)
+                    End If
+                Next
+            End If
+            Dim jsonstring = JSONConverter.Serialize(newjson)
+            Dim jsonFormatted As String = JValue.Parse(jsonstring).ToString(Formatting.Indented)
+            File.WriteAllText(settingsfile, jsonFormatted)
+        Catch ex As IOException
+            newlog = newlog & Environment.NewLine
+            newlog = newlog & ("- " & Date.Parse(Now) & ", " & "Main() SaveSettings: " & ex.Message)
+        Finally
+            newlog = newlog & Environment.NewLine
+            newlog = newlog & ("- " & Date.Parse(Now) & ", " & "Main() SaveSettings: OK.")
+            MsgBox("Settings set back to defaults.")
+            Invoke(New MethodInvoker(AddressOf Main.LoadSettingsJSON))
+            Invoke(New MethodInvoker(AddressOf Main.Update_Miner_Text))
+        End Try
 
     End Sub
+
+    Public Sub Style()
+
+        Panel1.BackColor = Color.FromArgb(27, 92, 46)
+        Button1.BackColor = Color.FromArgb(27, 92, 46)
+        Button5.BackColor = Color.FromArgb(27, 92, 46)
+        Panel2.BackColor = Color.FromArgb(41, 54, 61)
+        'TextBox3.BackColor = Color.FromArgb(41, 54, 61)
+        'MenuStrip.BackColor = Color.FromArgb(27, 92, 46)
+
+    End Sub
+
+    Dim drag As Boolean = False
+    Dim mousex As Integer, mousey As Integer
+
+    Private Sub Panel1_MouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles Panel1.MouseDown, Panel2.MouseDown, PictureBox11.MouseDown, Label1.MouseDown
+
+        drag = True
+        mousex = Windows.Forms.Cursor.Position.X - Me.Left
+        mousey = Windows.Forms.Cursor.Position.Y - Me.Top
+
+    End Sub
+
+    Private Sub Panel1_MouseMove(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles Panel1.MouseMove, Panel2.MouseMove, PictureBox11.MouseMove, Label1.MouseMove
+
+        If drag Then
+            Me.Left = Windows.Forms.Cursor.Position.X - mousex
+            Me.Top = Windows.Forms.Cursor.Position.Y - mousey
+        End If
+
+    End Sub
+
+    Private Sub Panel1_MouseUp(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles Panel1.MouseUp, Panel2.MouseUp, PictureBox11.MouseUp, Label1.MouseUp
+
+        drag = False
+
+    End Sub
+
+    Private Sub PictureBox14_Click(sender As Object, e As EventArgs) Handles PictureBox14.Click
+
+        Me.WindowState = FormWindowState.Minimized
+
+    End Sub
+
+    Private Sub PictureBox15_Click(sender As Object, e As EventArgs) Handles PictureBox15.Click
+
+        Me.Close()
+
+    End Sub
+
 End Class

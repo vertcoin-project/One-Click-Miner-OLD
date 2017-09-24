@@ -118,55 +118,30 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <metadata name="ToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>441, 19</value>
+    <value>22, 45</value>
   </metadata>
   <metadata name="ToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>441, 19</value>
+    <value>22, 45</value>
   </metadata>
-  <data name="Node_Donation_Text.ToolTip" xml:space="preserve">
-    <value>% Donation that is charged to all miner rewards on this node.  This % is sent directly to the Vertcoin Dev Address upon each solved block.
-Please consider that the Vertcoin Development team runs purely on donations, and yours would be greatly appreciated!</value>
-  </data>
-  <data name="PictureBox9.ToolTip" xml:space="preserve">
-    <value>Enter the URL (usually including port) into the Pool Address field.
-To use multiple pools for redundancy, hit ENTER after the first pool to enter more.
-Only P2Pool nodes are supported as failover.  AMD miner does not currently support failover pools.
-Use ↑ and ↓ keys to cycle through entered pools.
-
-If mining on a public P2Pool node, make sure your worker name = your wallet address.
-If you are using the local p2pool on the OCM, it will automatically use your wallet address.</value>
-  </data>
-  <data name="PictureBox4.ToolTip" xml:space="preserve">
-    <value>Use this field to add additional commands to your miner configuration.
-Be certain the syntax of the command is correct, otherwise the miner will refuse to launch correctly.
-Use ↑ and ↓ keys to cycle through entered configuration text.
-Use at your own comfort.</value>
-  </data>
-  <data name="PictureBox3.ToolTip" xml:space="preserve">
-    <value>Use the following 3 buttons to launch the respective miner for your hardware.
-Check the box above the miner button if you wish to select it as your default miner.
-This will tell the One-Click Miner to remember which miner you prefer for use.</value>
-  </data>
   <data name="Pool_Address_Text.ToolTip" xml:space="preserve">
     <value>Enter the URL (usually including port) into the Pool Address field.
 To use multiple pools for redundancy, hit ENTER after the first pool to enter more.
 Only P2Pool nodes are supported as failover.  AMD miner does not currently support failover pools.
 Use ↑ and ↓ keys to cycle through entered pools.
 
-If mining on a public P2Pool node, make sure your worker name = your wallet address.
-If you are using the local p2pool on the OCM, it will automatically use your wallet address.</value>
+If mining on a public P2Pool node, make sure your worker name = your wallet address.</value>
   </data>
   <metadata name="MenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <metadata name="UpdateInterval.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>108, 18</value>
+  <metadata name="UpdateStatsInterval.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>362, 19</value>
   </metadata>
   <metadata name="UpdateStats.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>228, 19</value>
+    <value>318, 49</value>
   </metadata>
   <metadata name="NotifyIcon1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>334, 19</value>
+    <value>110, 19</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="NotifyIcon1.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -783,20 +758,36 @@ If you are using the local p2pool on the OCM, it will automatically use your wal
         A/8/Z5MSxjBZRngAAAAASUVORK5CYII=
 </value>
   </data>
+  <data name="PictureBox9.ToolTip" xml:space="preserve">
+    <value>Enter the URL (usually including port) into the Pool Address field.
+To use multiple pools for redundancy, hit ENTER after the first pool to enter more.
+Only P2Pool nodes are supported as failover.  AMD miner does not currently support failover pools.
+Use ↑ and ↓ keys to cycle through entered pools.
+
+If mining on a public P2Pool node, make sure your worker name = your wallet address.</value>
+  </data>
   <metadata name="Uptime_Timer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>698, 21</value>
+    <value>731, 15</value>
   </metadata>
   <metadata name="Uptime_Checker.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>809, 22</value>
+    <value>725, 42</value>
   </metadata>
   <metadata name="Updater.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>982, 22</value>
+    <value>599, 30</value>
   </metadata>
   <metadata name="Select_Data_Dir.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>527, 20</value>
+    <value>100, 46</value>
   </metadata>
   <metadata name="Auto_Update_Notify.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1078, 22</value>
+    <value>423, 47</value>
+  </metadata>
+  <data name="Button1.ToolTip" xml:space="preserve">
+    <value>Locate P2Pool nodes that are nearest to you.
+It is recommended to add multiple nodes to your pool list for failover redundancy.
+That way in the event that your pool goes down, you'll just continue to mine on another node.</value>
+  </data>
+  <metadata name="$this.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
   </metadata>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
