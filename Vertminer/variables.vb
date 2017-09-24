@@ -55,7 +55,6 @@ Module variables
 
     'Settings
     Public Property start_minimized As Boolean
-    Public Property hide_windows As Boolean
     Public Property start_with_windows As Boolean
     Public Property autostart_p2pool As Boolean
     Public Property autostart_mining As Boolean
@@ -108,8 +107,6 @@ Module variables
     Public Property minersettingsfile As String
     Public Property mining_intensity As Decimal = 0
     Public Property pool As String
-    Public Property worker As String
-    Public Property password As String
     Public Property pools As New ArrayList()
     Public Property workers As New ArrayList()
     Public Property passwords As New ArrayList()
