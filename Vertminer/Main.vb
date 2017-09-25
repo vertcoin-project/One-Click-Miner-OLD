@@ -69,13 +69,6 @@ Public Class Main
                 'P2Pool is already running
                 CheckBox1.Checked = True
             End If
-            If amd_detected = True Or nvidia_detected = True Or cpu_detected = True Then
-                'Miner is already running
-                Pool_Address_Text.Enabled = False
-                Worker_Address_Text.Enabled = False
-                Worker_Address_Text.Enabled = False
-                Password_Text.Enabled = False
-            End If
             'Autostart variables
             If autostart_mining = True Then
                 If default_miner = "amd" Then
@@ -696,7 +689,11 @@ Public Class Main
             End If
         Next
         If api_connected = True Then
-            TextBox3.Text = miner_hashrate & " Kh/s"
+            If miner_hashrate < 1000 Then
+                TextBox3.Text = Convert.ToDecimal(miner_hashrate) & " Kh/s"
+            Else
+                TextBox3.Text = Math.Round((Convert.ToDecimal(miner_hashrate) / 1000), 2) & " Mh/s"
+            End If
         End If
 
     End Sub
@@ -909,7 +906,6 @@ Public Class Main
             newjson.mining_port = mining_port
             newjson.mining_intensity = mining_intensity
             newjson.p2pool_fee_address = p2pool_fee_address
-            newjson.miner_version = miner_version
             newjson.p2pool_version = p2pool_version
             newjson.amd_version = amd_version
             newjson.nvidia_version = nvidia_version
@@ -972,7 +968,6 @@ Public Class Main
             mining_port = settingsJSON.mining_port
             mining_intensity = settingsJSON.mining_intensity
             p2pool_fee_address = settingsJSON.p2pool_fee_address
-            miner_version = settingsJSON.miner_version
             p2pool_version = settingsJSON.p2pool_version
             amd_version = settingsJSON.amd_version
             nvidia_version = settingsJSON.nvidia_version
@@ -995,7 +990,6 @@ Public Class Main
             End If
             Invoke(New MethodInvoker(AddressOf Update_Miner_Text))
         Catch ex As IOException
-            MsgBox(ex.Message)
             newlog = newlog & Environment.NewLine
             newlog = newlog & ("- " & Date.Parse(Now) & ", " & "Main() LoadSettings: " & ex.Message)
         Finally
@@ -1043,7 +1037,6 @@ Public Class Main
             newjson.mining_port = mining_port
             newjson.mining_intensity = mining_intensity
             newjson.p2pool_fee_address = p2pool_fee_address
-            newjson.miner_version = miner_version
             newjson.p2pool_version = p2pool_version
             newjson.amd_version = amd_version
             newjson.nvidia_version = nvidia_version
@@ -1351,11 +1344,6 @@ Public Class Main
             End If
             If amd_detected = True Or nvidia_detected = True Or cpu_detected = True Then
                 ' Process is running
-                If CheckBox1.Checked = False Then
-                    Pool_Address_Text.Enabled = True
-                End If
-                Worker_Address_Text.Enabled = True
-                Password_Text.Enabled = True
             Else
                 ' Process is not running
                 'JSON Configuration
@@ -1365,10 +1353,6 @@ Public Class Main
                 psi.UseShellExecute = False
                 Button3.Text = "Stop"
                 Process.Start(psi)
-                Pool_Address_Text.Enabled = False
-                Worker_Address_Text.Enabled = False
-                Worker_Address_Text.Enabled = False
-                Password_Text.Enabled = False
 
                 'Command Line Configuration
                 'mining_running = True
@@ -1400,7 +1384,6 @@ Public Class Main
                 ''Additional_Configuration_Text.Enabled = False
             End If
         Catch ex As Exception
-            MsgBox(ex.Message)
             newlog = newlog & Environment.NewLine
             newlog = newlog & ("- " & Date.Parse(Now) & ", " & "Main() Start_Miner: " & ex.Message)
             Invoke(New MethodInvoker(AddressOf SaveSettingsJSON))
@@ -1421,7 +1404,6 @@ Public Class Main
                 End If
             Next
         Catch ex As Exception
-            MsgBox(ex.Message)
             newlog = newlog & Environment.NewLine
             newlog = newlog & ("- " & Date.Parse(Now) & ", " & "Main() Kill_Miner: " & ex.Message)
             Invoke(New MethodInvoker(AddressOf SaveSettingsJSON))
@@ -1435,16 +1417,9 @@ Public Class Main
     Public Sub Stop_Miner()
 
         Try
-            If CheckBox1.Checked = False Then
-                Pool_Address_Text.Enabled = True
-            End If
-            Worker_Address_Text.Enabled = True
-            Worker_Address_Text.Enabled = True
-            Password_Text.Enabled = True
             TextBox3.Text = ""
             Button3.Text = "Start"
         Catch ex As Exception
-            MsgBox(ex.Message)
             newlog = newlog & Environment.NewLine
             newlog = newlog & ("- " & Date.Parse(Now) & ", " & "Main() Stop_Miner: " & ex.Message)
             Invoke(New MethodInvoker(AddressOf SaveSettingsJSON))
@@ -1476,7 +1451,6 @@ Public Class Main
                 Process.Start(psi)
             End If
         Catch ex As Exception
-            MsgBox(ex.Message)
             newlog = newlog & Environment.NewLine
             newlog = newlog & ("- " & Date.Parse(Now) & ", " & "Main() Start_P2Pool: " & ex.Message)
             Invoke(New MethodInvoker(AddressOf SaveSettingsJSON))
@@ -1497,7 +1471,6 @@ Public Class Main
                 End If
             Next
         Catch ex As Exception
-            MsgBox(ex.Message)
             newlog = newlog & Environment.NewLine
             newlog = newlog & ("- " & Date.Parse(Now) & ", " & "Main() Kill_P2Pool: " & ex.Message)
             Invoke(New MethodInvoker(AddressOf SaveSettingsJSON))
@@ -1791,7 +1764,6 @@ Public Class Main
             End If
             Uptime_Checker.CancelAsync()
         Catch ex As Exception
-            MsgBox(ex.Message)
         End Try
 
     End Sub
