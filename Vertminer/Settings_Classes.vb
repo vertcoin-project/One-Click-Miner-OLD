@@ -33,27 +33,45 @@
     'use Public Property pools As New List(Of Pools_JSON) instead of pools arraylist and worker/password strings
 End Class
 
-Public Class Miner_Settings_JSON
-
-    Public Property pools As New List(Of Pools_JSON)
-    Public Property algo As String
-    Public Property intensity As Decimal
-
-    'Public Property devices As ArrayList
-    'Public Property diff_factor As Decimal
-    'Public Property diff_multiplier As Decimal
-    'Public Property cert As String
-    'Public Property proxy As String
-    'Public Property threads As Integer
-    'Public Property scantime As Integer
-
-End Class
-
 Public Class Pools_JSON
 
     Public Property url As String
     Public Property user As String
     Public Property pass As String
+
+End Class
+
+Public Class AMD_Miner_Settings_JSON
+
+    Public Property pools As New List(Of AMD_Pools_JSON)
+    Public Property algorithm As String
+    Public Property intensity As Decimal
+
+End Class
+
+Public Class AMD_Pools_JSON
+
+    Public Property url As String
+    Public Property user As String
+    Public Property userpass As String
+
+End Class
+
+Public Class NVIDIA_Miner_Settings_JSON
+
+    Public Property pools As New List(Of Pools_JSON)
+    Public Property algo As String
+    Public Property intensity As Decimal
+
+End Class
+
+Public Class CPU_Miner_Settings_JSON
+
+    Public Property url As String
+    Public Property user As String
+    Public Property pass As String
+    Public Property algo As String
+    Public Property intensity As Decimal
 
 End Class
 

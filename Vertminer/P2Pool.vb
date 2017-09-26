@@ -41,11 +41,11 @@ Public Class P2Pool
         Catch ex As Exception
             MsgBox(ex.Message)
             newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & Date.Parse(Now) & ", " & "P2PoolScanner(), " & ex.Message)
+            newlog = newlog & ("- " & timenow & ", " & "P2PoolScanner(), " & ex.Message)
             Invoke(New MethodInvoker(AddressOf Main.SaveSettingsJSON))
         Finally
             newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & Date.Parse(Now) & ", " & "P2PoolScanner(), Loaded: OK")
+            newlog = newlog & ("- " & timenow & ", " & "P2PoolScanner(), Loaded: OK")
         End Try
 
     End Sub
@@ -70,11 +70,11 @@ Public Class P2Pool
         Catch ex As Exception
             MsgBox(ex.Message)
             newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & Date.Parse(Now) & ", " & "SaveScannerData(), " & ex.Message)
+            newlog = newlog & ("- " & timenow & ", " & "SaveScannerData(), " & ex.Message)
             Invoke(New MethodInvoker(AddressOf Main.SaveSettingsJSON))
         Finally
             newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & Date.Parse(Now) & ", " & "SaveScannerData(), Loaded: OK")
+            newlog = newlog & ("- " & timenow & ", " & "SaveScannerData(), Loaded: OK")
         End Try
 
     End Sub
@@ -192,11 +192,11 @@ Public Class P2Pool
             Catch ex As Exception
                 MsgBox(ex.Message)
                 newlog = newlog & Environment.NewLine
-                newlog = newlog & ("- " & Date.Parse(Now) & ", " & "Network1Scanner(), " & ex.Message)
+                newlog = newlog & ("- " & timenow & ", " & "Network1Scanner(), " & ex.Message)
                 Invoke(New MethodInvoker(AddressOf Main.SaveSettingsJSON))
             Finally
                 newlog = newlog & Environment.NewLine
-                newlog = newlog & ("- " & Date.Parse(Now) & ", " & "Network1Scanner(), Scan Completed: OK")
+                newlog = newlog & ("- " & timenow & ", " & "Network1Scanner(), Scan Completed: OK")
             End Try
         End If
         'Network 2
@@ -270,11 +270,11 @@ Public Class P2Pool
             Catch ex As Exception
                 MsgBox(ex.Message)
                 newlog = newlog & Environment.NewLine
-                newlog = newlog & ("- " & Date.Parse(Now) & ", " & "Network2Scanner(), " & ex.Message)
+                newlog = newlog & ("- " & timenow & ", " & "Network2Scanner(), " & ex.Message)
                 Invoke(New MethodInvoker(AddressOf Main.SaveSettingsJSON))
             Finally
                 newlog = newlog & Environment.NewLine
-                newlog = newlog & ("- " & Date.Parse(Now) & ", " & "Network2Scanner(), Scan Completed: OK")
+                newlog = newlog & ("- " & timenow & ", " & "Network2Scanner(), Scan Completed: OK")
             End Try
         End If
         BeginInvoke(New MethodInvoker(AddressOf Loading_Stop))
@@ -335,7 +335,8 @@ Public Class P2Pool
             Next
             'JSON Configuration
             If Not default_miner = "" Then
-                Dim newjson As Miner_Settings_JSON = New Miner_Settings_JSON()
+                Dim newjson
+                Dim jsonstring As String
                 Dim poolcount = pools.Count()
                 Dim workercount = workers.Count()
                 Dim passwordcount = passwords.Count()
@@ -343,26 +344,47 @@ Public Class P2Pool
                 count = Math.Min(count, poolcount)
                 count = Math.Min(count, workercount)
                 count = Math.Min(count, passwordcount)
-                If default_miner.Contains("amd") Then
+                If default_miner = "amd" Then
+                    newjson = New AMD_Miner_Settings_JSON()
                     minersettingsfile = amdfolder & "\sgminer.conf"
-                ElseIf default_miner.Contains("nvidia") Then
-                    minersettingsfile = nvidiafolder & "\ccminer.conf"
-                ElseIf default_miner.Contains("cpu") Then
-                    minersettingsfile = cpufolder & "\cpuminer.conf"
-                End If
-                For x As Integer = 0 To count - 1
-                    Dim pooljson As Pools_JSON = New Pools_JSON()
-                    pooljson.url = pools(x)
-                    pooljson.user = workers(x)
-                    pooljson.pass = passwords(x)
-                    newjson.pools.Add(pooljson)
-                Next
-                newjson.algo = "lyra2v2"
-                If Not mining_intensity = 0 Then
+                    For x As Integer = 0 To count - 1
+                        Dim pooljson As AMD_Pools_JSON = New AMD_Pools_JSON()
+                        pooljson.url = pools(x)
+                        pooljson.user = workers(x)
+                        pooljson.userpass = passwords(x)
+                        newjson.pools.Add(pooljson)
+                    Next
+                    newjson.algorithm = "Lyra2REv2"
                     newjson.intensity = mining_intensity
+                    jsonstring = JSONConverter.Serialize(newjson)
+                    jsonstring = jsonstring.Insert(jsonstring.Length - 1, ",""no-extranonce""" & ": " & "true")
+                ElseIf default_miner = "nvidia" Then
+                    newjson = New NVIDIA_Miner_Settings_JSON()
+                    minersettingsfile = nvidiafolder & "\ccminer.conf"
+                    newjson.algo = "lyra2v2"
+                    newjson.intensity = mining_intensity
+                    For x As Integer = 0 To count - 1
+                        Dim pooljson As Pools_JSON = New Pools_JSON()
+                        pooljson.url = pools(x)
+                        pooljson.user = workers(x)
+                        pooljson.pass = passwords(x)
+                        newjson.pools.Add(pooljson)
+                    Next
+                    jsonstring = JSONConverter.Serialize(newjson)
+                ElseIf default_miner = "cpu" Then
+                    newjson = New CPU_Miner_Settings_JSON()
+                    minersettingsfile = cpufolder & "\cpuminer-conf.json"
+                    If count > 0 Then
+                        newjson.url = pools(0)
+                        newjson.user = workers(0)
+                        newjson.pass = passwords(0)
+                    End If
+                    newjson.algo = "lyra2rev2"
+                    newjson.intensity = mining_intensity
+                    jsonstring = JSONConverter.Serialize(newjson)
                 End If
-                Dim jsonstring = JSONConverter.Serialize(newjson)
-                File.WriteAllText(minersettingsfile, jsonstring)
+                Dim jsonFormatted As String = JValue.Parse(jsonstring).ToString(Formatting.Indented)
+                File.WriteAllText(minersettingsfile, jsonFormatted)
                 Invoke(New MethodInvoker(AddressOf populate_config))
                 MsgBox("Pool(s) added successfully!")
             Else

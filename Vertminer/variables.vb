@@ -1,8 +1,11 @@
-﻿Imports System.Net
+﻿Imports System.Globalization
+Imports System.Net
 
 Module variables
 
     'General
+    Public Property timenow As String
+    Public Property culture = CultureInfo.InvariantCulture
     Public Property miner_version = Application.ProductVersion
     Public Property p2pool_version = "0.0.0.0"
     Public Property amd_version = "0.0.0.0"
@@ -49,7 +52,7 @@ Module variables
     Public Property network2data As DataSet
 
     ''Miner
-    Public Property miner_hashrate As String
+    Public Property miner_hashrate As Decimal
     ''P2Pool
     Public Property p2pool_loaded As Boolean
 

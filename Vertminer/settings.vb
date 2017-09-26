@@ -73,10 +73,10 @@ Public Class settings
         Catch ex As Exception
             MsgBox(ex.Message)
             newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & Date.Parse(Now) & ", " & "Settings(), " & ex.Message)
+            newlog = newlog & ("- " & timenow & ", " & "Settings(), " & ex.Message)
         Finally
             newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & Date.Parse(Now) & ", " & "Settings() Loaded: OK.")
+            newlog = newlog & ("- " & timenow & ", " & "Settings() Loaded: OK.")
         End Try
 
     End Sub
@@ -84,7 +84,7 @@ Public Class settings
     Private Sub Settings_Closing(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles MyBase.Closing
 
         Try
-            If Not Intensity_Text.Text = "" And Not Intensity_Text.Text = 0.ToString Then
+            If Not Intensity_Text.Text = "" Then
                 mining_intensity = Convert.ToDecimal(Intensity_Text.Text)
             End If
             If Not Node_Fee.Text = "" Then
@@ -154,10 +154,10 @@ Public Class settings
         Catch ex As Exception
             MsgBox(ex.Message)
             newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & Date.Parse(Now) & ", " & "Settings(), " & ex.Message)
+            newlog = newlog & ("- " & timenow & ", " & "Settings(), " & ex.Message)
         Finally
             newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & Date.Parse(Now) & ", " & "Settings() Closed: OK.")
+            newlog = newlog & ("- " & timenow & ", " & "Settings() Closed: OK.")
         End Try
 
     End Sub
@@ -223,10 +223,10 @@ Public Class settings
             File.WriteAllText(settingsfile, jsonFormatted)
         Catch ex As IOException
             newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & Date.Parse(Now) & ", " & "Main() SaveSettings: " & ex.Message)
+            newlog = newlog & ("- " & timenow & ", " & "Main() SaveSettings: " & ex.Message)
         Finally
             newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & Date.Parse(Now) & ", " & "Main() SaveSettings: OK.")
+            newlog = newlog & ("- " & timenow & ", " & "Main() SaveSettings: OK.")
             MsgBox("Settings set back to defaults.")
             Invoke(New MethodInvoker(AddressOf Main.LoadSettingsJSON))
             Invoke(New MethodInvoker(AddressOf Main.Update_Miner_Text))

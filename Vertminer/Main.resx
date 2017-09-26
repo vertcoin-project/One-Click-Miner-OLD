@@ -766,6 +766,11 @@ Use ↑ and ↓ keys to cycle through entered pools.
 
 If mining on a public P2Pool node, make sure your worker name = your wallet address.</value>
   </data>
+  <data name="Button1.ToolTip" xml:space="preserve">
+    <value>Locate P2Pool nodes that are nearest to you.
+It is recommended to add multiple nodes to your pool list for failover redundancy.
+That way in the event that your pool goes down, you'll just continue to mine on another node.</value>
+  </data>
   <metadata name="Uptime_Timer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>731, 15</value>
   </metadata>
@@ -781,11 +786,9 @@ If mining on a public P2Pool node, make sure your worker name = your wallet addr
   <metadata name="Auto_Update_Notify.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>423, 47</value>
   </metadata>
-  <data name="Button1.ToolTip" xml:space="preserve">
-    <value>Locate P2Pool nodes that are nearest to you.
-It is recommended to add multiple nodes to your pool list for failover redundancy.
-That way in the event that your pool goes down, you'll just continue to mine on another node.</value>
-  </data>
+  <metadata name="Clock.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>920, 33</value>
+  </metadata>
   <metadata name="$this.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>

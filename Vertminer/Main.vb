@@ -9,6 +9,7 @@ Imports System.Text
 Imports System.Web.Script.Serialization
 Imports Newtonsoft.Json
 Imports Newtonsoft.Json.Linq
+Imports System.Globalization
 
 Public Class Main
 
@@ -104,10 +105,10 @@ Public Class Main
         Catch ex As Exception
             MsgBox(ex.Message)
             newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & Date.Parse(Now) & ", " & "Main(), " & ex.Message)
+            newlog = newlog & ("- " & timenow & ", " & "Main(), " & ex.Message)
         Finally
             newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & Date.Parse(Now) & ", " & "Main() Loaded: OK, V:" & Application.ProductVersion)
+            newlog = newlog & ("- " & timenow & ", " & "Main() Loaded: OK, V:" & Application.ProductVersion)
         End Try
 
     End Sub
@@ -148,7 +149,7 @@ Public Class Main
     Private Sub Main_Closing(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles MyBase.Closing
 
         newlog = newlog & Environment.NewLine
-        newlog = newlog & ("- " & Date.Parse(Now) & ", " & "Main(), Closed: OK")
+        newlog = newlog & ("- " & timenow & ", " & "Main(), Closed: OK")
         newlog = newlog & Environment.NewLine
         newlog = newlog & ("================================================================================")
         File.WriteAllText(syslog, newlog)
@@ -279,11 +280,11 @@ Public Class Main
         Catch ex As Exception
             MsgBox(ex.Message)
             newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & Date.Parse(Now) & ", " & "Main() UPnP: " & ex.Message)
+            newlog = newlog & ("- " & timenow & ", " & "Main() UPnP: " & ex.Message)
             Invoke(New MethodInvoker(AddressOf SaveSettingsJSON))
         Finally
             newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & Date.Parse(Now) & ", " & "Main() UPnP: SET OK. Ports set: " & mining_port & "," & p2pool_port)
+            newlog = newlog & ("- " & timenow & ", " & "Main() UPnP: SET OK. Ports set: " & mining_port & "," & p2pool_port)
         End Try
 
     End Sub
@@ -347,11 +348,11 @@ Public Class Main
         Catch ex As Exception
             MsgBox(ex.Message)
             newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & Date.Parse(Now) & ", " & "Main() Download_Miner: " & ex.Message)
+            newlog = newlog & ("- " & timenow & ", " & "Main() Download_Miner: " & ex.Message)
             Invoke(New MethodInvoker(AddressOf SaveSettingsJSON))
         Finally
             newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & Date.Parse(Now) & ", " & "Main() Download_Miner: Downloaded OK.")
+            newlog = newlog & ("- " & timenow & ", " & "Main() Download_Miner: Downloaded OK.")
         End Try
 
     End Sub
@@ -375,11 +376,11 @@ Public Class Main
         Catch ex As Exception
             MsgBox("An issue occurred during the download.  Please try again.")
             newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & Date.Parse(Now) & ", " & "Main() Download_P2Pool: " & ex.Message)
+            newlog = newlog & ("- " & timenow & ", " & "Main() Download_P2Pool: " & ex.Message)
             Invoke(New MethodInvoker(AddressOf SaveSettingsJSON))
         Finally
             newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & Date.Parse(Now) & ", " & "Main() Download_P2Pool: Downloaded OK.")
+            newlog = newlog & ("- " & timenow & ", " & "Main() Download_P2Pool: Downloaded OK.")
         End Try
 
     End Sub
@@ -398,11 +399,11 @@ Public Class Main
         Catch ex As Exception
             MsgBox("An issue occurred during the download.  Please try again.")
             newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & Date.Parse(Now) & ", " & "Main() Download_P2PoolInterface: " & ex.Message)
+            newlog = newlog & ("- " & timenow & ", " & "Main() Download_P2PoolInterface: " & ex.Message)
             Invoke(New MethodInvoker(AddressOf SaveSettingsJSON))
         Finally
             newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & Date.Parse(Now) & ", " & "Main() Download_P2PoolInterface: Downloaded OK.")
+            newlog = newlog & ("- " & timenow & ", " & "Main() Download_P2PoolInterface: Downloaded OK.")
         End Try
 
     End Sub
@@ -525,11 +526,11 @@ Public Class Main
         Catch ex As Exception
             MsgBox("An issue occurred during the download.  Please try again.")
             newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & Date.Parse(Now) & ", " & "Main() MinerDownloadCompleted: " & ex.Message)
+            newlog = newlog & ("- " & timenow & ", " & "Main() MinerDownloadCompleted: " & ex.Message)
             Invoke(New MethodInvoker(AddressOf SaveSettingsJSON))
         Finally
             newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & Date.Parse(Now) & ", " & "Main() MinerDownloadCompleted: OK.")
+            newlog = newlog & ("- " & timenow & ", " & "Main() MinerDownloadCompleted: OK.")
         End Try
 
     End Sub
@@ -562,8 +563,11 @@ Public Class Main
                     Next
                     System.IO.Directory.Delete(folder)
                 Next
-                If System.IO.File.Exists(p2poolfolder & "\Start P2Pool.bat") = True Then
-                    System.IO.File.Delete(p2poolfolder & "\Start P2Pool.bat")
+                If System.IO.File.Exists(p2poolfolder & "\Start P2Pool Network 1.bat") = True Then
+                    System.IO.File.Delete(p2poolfolder & "\Start P2Pool Network 1.bat")
+                End If
+                If System.IO.File.Exists(p2poolfolder & "\Start P2Pool Network 2.bat") = True Then
+                    System.IO.File.Delete(p2poolfolder & "\Start P2Pool Network 2.bat")
                 End If
                 'Create default p2pool config
                 If System.IO.File.Exists(p2pool_config_file) = False Then
@@ -576,11 +580,11 @@ Public Class Main
         Catch ex As Exception
             MsgBox("An issue occurred during the download.  Please try again.")
             newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & Date.Parse(Now) & ", " & "Main() P2PoolDownloadCompleted: " & ex.Message)
+            newlog = newlog & ("- " & timenow & ", " & "Main() P2PoolDownloadCompleted: " & ex.Message)
             Invoke(New MethodInvoker(AddressOf SaveSettingsJSON))
         Finally
             newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & Date.Parse(Now) & ", " & "Main() P2PoolDownloadCompleted: OK.")
+            newlog = newlog & ("- " & timenow & ", " & "Main() P2PoolDownloadCompleted: OK.")
         End Try
 
     End Sub
@@ -607,11 +611,11 @@ Public Class Main
         Catch ex As Exception
             MsgBox("An issue occurred during the download.  Please try again.")
             newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & Date.Parse(Now) & ", " & "Main() P2PoolInterfaceDownloadCompleted: " & ex.Message)
+            newlog = newlog & ("- " & timenow & ", " & "Main() P2PoolInterfaceDownloadCompleted: " & ex.Message)
             Invoke(New MethodInvoker(AddressOf SaveSettingsJSON))
         Finally
             newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & Date.Parse(Now) & ", " & "Main() P2PoolInterfaceDownloadCompleted: OK.")
+            newlog = newlog & ("- " & timenow & ", " & "Main() P2PoolInterfaceDownloadCompleted: OK.")
         End Try
 
     End Sub
@@ -645,6 +649,7 @@ Public Class Main
             Else
                 TextBox2.Text = "Waiting for share"
             End If
+            Button3.Text = "Stop"
         Else
             TextBox2.Text = "Offline"
         End If
@@ -655,8 +660,25 @@ Public Class Main
             Else
                 TextBox1.Text = "Loading"
             End If
+            CheckBox1.Checked = True
         Else
             TextBox1.Text = "Offline"
+        End If
+        'Miner Hashrate
+        If api_connected = True Then
+            If miner_hashrate < 1000 Then
+                miner_hashrate = Math.Round(miner_hashrate, 2)
+                TextBox3.Text = miner_hashrate.ToString(CultureInfo.CreateSpecificCulture("en-US")) & " Kh/s"
+            ElseIf miner_hashrate >= 1000 And miner_hashrate < 1000000 Then
+                miner_hashrate = Math.Round((miner_hashrate / 1000), 2)
+                TextBox3.Text = miner_hashrate.ToString(CultureInfo.CreateSpecificCulture("en-US")) & " Mh/s"
+            ElseIf miner_hashrate >= 1000000 And miner_hashrate < 1000000000 Then
+                miner_hashrate = Math.Round((miner_hashrate / 1000000), 2)
+                TextBox3.Text = miner_hashrate.ToString(CultureInfo.CreateSpecificCulture("en-US")) & " Gh/s"
+            ElseIf miner_hashrate >= 1000000000 And miner_hashrate < 1000000000000 Then
+                miner_hashrate = Math.Round((miner_hashrate / 1000000000), 2)
+                TextBox3.Text = miner_hashrate.ToString(CultureInfo.CreateSpecificCulture("en-US")) & " Th/s"
+            End If
         End If
 
     End Sub
@@ -688,13 +710,6 @@ Public Class Main
                 Password_Text.Text = Password_Text.Text & Environment.NewLine & item
             End If
         Next
-        If api_connected = True Then
-            If miner_hashrate < 1000 Then
-                TextBox3.Text = Convert.ToDecimal(miner_hashrate) & " Kh/s"
-            Else
-                TextBox3.Text = Math.Round((Convert.ToDecimal(miner_hashrate) / 1000), 2) & " Mh/s"
-            End If
-        End If
 
     End Sub
 
@@ -937,11 +952,11 @@ Public Class Main
         Catch ex As IOException
             MsgBox(ex.Message)
             newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & Date.Parse(Now) & ", " & "Main() UpdateSettings: " & ex.Message)
+            newlog = newlog & ("- " & timenow & ", " & "Main() UpdateSettings: " & ex.Message)
             Invoke(New MethodInvoker(AddressOf SaveSettingsJSON))
         Finally
             newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & Date.Parse(Now) & ", " & "Main() UpdateSettings: OK.")
+            newlog = newlog & ("- " & timenow & ", " & "Main() UpdateSettings: OK.")
         End Try
 
     End Sub
@@ -991,10 +1006,10 @@ Public Class Main
             Invoke(New MethodInvoker(AddressOf Update_Miner_Text))
         Catch ex As IOException
             newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & Date.Parse(Now) & ", " & "Main() LoadSettings: " & ex.Message)
+            newlog = newlog & ("- " & timenow & ", " & "Main() LoadSettings: " & ex.Message)
         Finally
             newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & Date.Parse(Now) & ", " & "Main() LoadSettings: OK.")
+            newlog = newlog & ("- " & timenow & ", " & "Main() LoadSettings: OK.")
         End Try
 
     End Sub
@@ -1066,10 +1081,10 @@ Public Class Main
             File.WriteAllText(settingsfile, jsonFormatted)
         Catch ex As IOException
             newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & Date.Parse(Now) & ", " & "Main() SaveSettings: " & ex.Message)
+            newlog = newlog & ("- " & timenow & ", " & "Main() SaveSettings: " & ex.Message)
         Finally
             newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & Date.Parse(Now) & ", " & "Main() SaveSettings: OK.")
+            newlog = newlog & ("- " & timenow & ", " & "Main() SaveSettings: OK.")
         End Try
 
     End Sub
@@ -1196,11 +1211,11 @@ Public Class Main
         Catch ex As Exception
             MsgBox(ex.Message)
             newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & Date.Parse(Now) & ", " & "Main() Update_P2Pool_Config: " & ex.Message)
+            newlog = newlog & ("- " & timenow & ", " & "Main() Update_P2Pool_Config: " & ex.Message)
             Invoke(New MethodInvoker(AddressOf SaveSettingsJSON))
         Finally
             newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & Date.Parse(Now) & ", " & "Main() Update_P2Pool_Config: OK.")
+            newlog = newlog & ("- " & timenow & ", " & "Main() Update_P2Pool_Config: OK.")
         End Try
 
     End Sub
@@ -1210,7 +1225,8 @@ Public Class Main
         Try
             'JSON Configuration
             pools.Clear()
-            Dim newjson As Miner_Settings_JSON = New Miner_Settings_JSON()
+            Dim newjson
+            Dim jsonstring As String
             For Each line As String In Pool_Address_Text.Lines
                 If Not line = "" Then
                     pools.Add(line)
@@ -1234,24 +1250,44 @@ Public Class Main
             count = Math.Min(count, workercount)
             count = Math.Min(count, passwordcount)
             If amdminer = True Then
+                newjson = New AMD_Miner_Settings_JSON()
                 minersettingsfile = amdfolder & "\sgminer.conf"
-            ElseIf nvidiaminer = True Then
-                minersettingsfile = nvidiafolder & "\ccminer.conf"
-            ElseIf cpuminer = True Then
-                minersettingsfile = cpufolder & "\cpuminer.conf"
-            End If
-            For x As Integer = 0 To count - 1
-                Dim pooljson As Pools_JSON = New Pools_JSON()
-                pooljson.url = pools(x)
-                pooljson.user = workers(x)
-                pooljson.pass = passwords(x)
-                newjson.pools.Add(pooljson)
-            Next
-            newjson.algo = "lyra2v2"
-            If Not mining_intensity = 0 Then
+                For x As Integer = 0 To count - 1
+                    Dim pooljson As AMD_Pools_JSON = New AMD_Pools_JSON()
+                    pooljson.url = pools(x)
+                    pooljson.user = workers(x)
+                    pooljson.userpass = passwords(x)
+                    newjson.pools.Add(pooljson)
+                Next
+                newjson.algorithm = "Lyra2REv2"
                 newjson.intensity = mining_intensity
+                jsonstring = JSONConverter.Serialize(newjson)
+                jsonstring = jsonstring.Insert(jsonstring.Length - 1, ",""no-extranonce""" & ": " & "true")
+            ElseIf nvidiaminer = True Then
+                newjson = New NVIDIA_Miner_Settings_JSON()
+                minersettingsfile = nvidiafolder & "\ccminer.conf"
+                newjson.algo = "lyra2v2"
+                newjson.intensity = mining_intensity
+                For x As Integer = 0 To count - 1
+                    Dim pooljson As Pools_JSON = New Pools_JSON()
+                    pooljson.url = pools(x)
+                    pooljson.user = workers(x)
+                    pooljson.pass = passwords(x)
+                    newjson.pools.Add(pooljson)
+                Next
+                jsonstring = JSONConverter.Serialize(newjson)
+            ElseIf cpuminer = True Then
+                newjson = New CPU_Miner_Settings_JSON()
+                minersettingsfile = cpufolder & "\cpuminer-conf.json"
+                If count > 0 Then
+                    newjson.url = pools(0)
+                    newjson.user = workers(0)
+                    newjson.pass = passwords(0)
+                End If
+                newjson.algo = "lyra2rev2"
+                newjson.intensity = mining_intensity
+                jsonstring = JSONConverter.Serialize(newjson)
             End If
-            Dim jsonstring = JSONConverter.Serialize(newjson)
             Dim jsonFormatted As String = JValue.Parse(jsonstring).ToString(Formatting.Indented)
             File.WriteAllText(minersettingsfile, jsonFormatted)
 
@@ -1311,11 +1347,11 @@ Public Class Main
         Catch ex As Exception
             MsgBox(ex.Message)
             newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & Date.Parse(Now) & ", " & "Main() Update_Miner_Config: " & ex.Message)
+            newlog = newlog & ("- " & timenow & ", " & "Main() Update_Miner_Config: " & ex.Message)
             Invoke(New MethodInvoker(AddressOf SaveSettingsJSON))
         Finally
             newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & Date.Parse(Now) & ", " & "Main() Update_Miner_Config: OK.")
+            newlog = newlog & ("- " & timenow & ", " & "Main() Update_Miner_Config: OK.")
         End Try
 
     End Sub
@@ -1385,11 +1421,11 @@ Public Class Main
             End If
         Catch ex As Exception
             newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & Date.Parse(Now) & ", " & "Main() Start_Miner: " & ex.Message)
+            newlog = newlog & ("- " & timenow & ", " & "Main() Start_Miner: " & ex.Message)
             Invoke(New MethodInvoker(AddressOf SaveSettingsJSON))
         Finally
             newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & Date.Parse(Now) & ", " & "Main() Start_Miner: OK.")
+            newlog = newlog & ("- " & timenow & ", " & "Main() Start_Miner: OK.")
         End Try
 
     End Sub
@@ -1405,11 +1441,11 @@ Public Class Main
             Next
         Catch ex As Exception
             newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & Date.Parse(Now) & ", " & "Main() Kill_Miner: " & ex.Message)
+            newlog = newlog & ("- " & timenow & ", " & "Main() Kill_Miner: " & ex.Message)
             Invoke(New MethodInvoker(AddressOf SaveSettingsJSON))
         Finally
             newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & Date.Parse(Now) & ", " & "Main() Kill_Miner: OK.")
+            newlog = newlog & ("- " & timenow & ", " & "Main() Kill_Miner: OK.")
         End Try
 
     End Sub
@@ -1421,7 +1457,7 @@ Public Class Main
             Button3.Text = "Start"
         Catch ex As Exception
             newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & Date.Parse(Now) & ", " & "Main() Stop_Miner: " & ex.Message)
+            newlog = newlog & ("- " & timenow & ", " & "Main() Stop_Miner: " & ex.Message)
             Invoke(New MethodInvoker(AddressOf SaveSettingsJSON))
         Finally
 
@@ -1452,11 +1488,11 @@ Public Class Main
             End If
         Catch ex As Exception
             newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & Date.Parse(Now) & ", " & "Main() Start_P2Pool: " & ex.Message)
+            newlog = newlog & ("- " & timenow & ", " & "Main() Start_P2Pool: " & ex.Message)
             Invoke(New MethodInvoker(AddressOf SaveSettingsJSON))
         Finally
             newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & Date.Parse(Now) & ", " & "Main() Start_P2Pool: OK.")
+            newlog = newlog & ("- " & timenow & ", " & "Main() Start_P2Pool: OK.")
         End Try
 
     End Sub
@@ -1472,11 +1508,11 @@ Public Class Main
             Next
         Catch ex As Exception
             newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & Date.Parse(Now) & ", " & "Main() Kill_P2Pool: " & ex.Message)
+            newlog = newlog & ("- " & timenow & ", " & "Main() Kill_P2Pool: " & ex.Message)
             Invoke(New MethodInvoker(AddressOf SaveSettingsJSON))
         Finally
             newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & Date.Parse(Now) & ", " & "Main() Kill_P2Pool: OK.")
+            newlog = newlog & ("- " & timenow & ", " & "Main() Kill_P2Pool: OK.")
         End Try
 
     End Sub
@@ -1593,7 +1629,7 @@ Public Class Main
                     Dim RawData() As String = returndata.Split(";")
                     For Each line As String In RawData
                         If line.Contains("KHS=") And Not line.Contains("NETKHS=") Then
-                            miner_hashrate = (line.Replace("KHS=", ""))
+                            miner_hashrate = Convert.ToDecimal((line.Replace("KHS=", "")))
                         End If
                     Next
                 Else
@@ -1605,7 +1641,7 @@ Public Class Main
                 End If
                 tcpClient.Close()
                 networkStream.Close()
-                BeginInvoke(New MethodInvoker(AddressOf Update_Miner_Text))
+                'BeginInvoke(New MethodInvoker(AddressOf Update_Miner_Text))
             End If
             'P2Pool API
             If p2pool_detected = True Then
@@ -1641,7 +1677,7 @@ Public Class Main
             ElseIf default_miner = "nvidia" Then
                 miner_config_file = settingsfolder & "\nvidia\ccminer.conf"
             ElseIf default_miner = "cpu" Then
-                miner_config_file = settingsfolder & "\cpu\cpuminer.conf"
+                miner_config_file = settingsfolder & "\cpu\cpuminer-conf.json"
             End If
             If System.IO.File.Exists(miner_config_file) = True Then
                 Process.Start("notepad.exe", miner_config_file)
@@ -1651,11 +1687,11 @@ Public Class Main
         Catch ex As Exception
             MsgBox(ex.Message)
             newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & Date.Parse(Now) & ", " & "MinerConfigToolStripMenuItem(), Load Miner Config: " & ex.Message)
+            newlog = newlog & ("- " & timenow & ", " & "MinerConfigToolStripMenuItem(), Load Miner Config: " & ex.Message)
             Invoke(New MethodInvoker(AddressOf SaveSettingsJSON))
         Finally
             newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & Date.Parse(Now) & ", " & "MinerConfigToolStripMenuItem(), Load Miner Config: OK")
+            newlog = newlog & ("- " & timenow & ", " & "MinerConfigToolStripMenuItem(), Load Miner Config: OK")
         End Try
 
     End Sub
@@ -1667,11 +1703,11 @@ Public Class Main
         Catch ex As Exception
             MsgBox(ex.Message)
             newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & Date.Parse(Now) & ", " & "SystemLogToolStripMenuItem(), Load Miner Log: " & ex.Message)
+            newlog = newlog & ("- " & timenow & ", " & "SystemLogToolStripMenuItem(), Load Miner Log: " & ex.Message)
             Invoke(New MethodInvoker(AddressOf SaveSettingsJSON))
         Finally
             newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & Date.Parse(Now) & ", " & "SystemLogToolStripMenuItem(), Load Miner Log: OK")
+            newlog = newlog & ("- " & timenow & ", " & "SystemLogToolStripMenuItem(), Load Miner Log: OK")
         End Try
 
     End Sub
@@ -1688,11 +1724,11 @@ Public Class Main
         Catch ex As Exception
             MsgBox(ex.Message)
             newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & Date.Parse(Now) & ", " & "P2PoolConfigToolStripMenuItem(), Load P2Pool Config: " & ex.Message)
+            newlog = newlog & ("- " & timenow & ", " & "P2PoolConfigToolStripMenuItem(), Load P2Pool Config: " & ex.Message)
             Invoke(New MethodInvoker(AddressOf SaveSettingsJSON))
         Finally
             newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & Date.Parse(Now) & ", " & "P2PoolConfigToolStripMenuItem(), Load P2Pool Config: OK")
+            newlog = newlog & ("- " & timenow & ", " & "P2PoolConfigToolStripMenuItem(), Load P2Pool Config: OK")
         End Try
 
     End Sub
@@ -1711,11 +1747,11 @@ Public Class Main
         Catch ex As Exception
             MsgBox(ex.Message)
             newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & Date.Parse(Now) & ", " & "Contact(), " & ex.Message)
+            newlog = newlog & ("- " & timenow & ", " & "Contact(), " & ex.Message)
             Invoke(New MethodInvoker(AddressOf SaveSettingsJSON))
         Finally
             newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & Date.Parse(Now) & ", " & "Contact(), Load Browser: OK")
+            newlog = newlog & ("- " & timenow & ", " & "Contact(), Load Browser: OK")
         End Try
 
     End Sub
@@ -1929,11 +1965,11 @@ Public Class Main
         Catch ex As Exception
             MsgBox(ex.Message)
             newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & Date.Parse(Now) & ", " & "Main() Check_RPC_Settings: " & ex.Message)
+            newlog = newlog & ("- " & timenow & ", " & "Main() Check_RPC_Settings: " & ex.Message)
             Invoke(New MethodInvoker(AddressOf SaveSettingsJSON))
         Finally
             newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & Date.Parse(Now) & ", " & "Main() Check_RPC_Settings: OK.")
+            newlog = newlog & ("- " & timenow & ", " & "Main() Check_RPC_Settings: OK.")
         End Try
 
     End Sub
@@ -1960,11 +1996,11 @@ Public Class Main
         Catch ex As Exception
             MsgBox(ex.Message)
             newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & Date.Parse(Now) & ", " & "Main() Generate_RPC_Settings: " & ex.Message)
+            newlog = newlog & ("- " & timenow & ", " & "Main() Generate_RPC_Settings: " & ex.Message)
             Invoke(New MethodInvoker(AddressOf SaveSettingsJSON))
         Finally
             newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & Date.Parse(Now) & ", " & "Main() Generate_RPC_Settings: OK.")
+            newlog = newlog & ("- " & timenow & ", " & "Main() Generate_RPC_Settings: OK.")
         End Try
 
     End Sub
@@ -2192,11 +2228,11 @@ Public Class Main
         Catch ex As Exception
             MsgBox(ex.Message)
             newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & Date.Parse(Now) & ", " & "LoadP2PoolInterface(), " & ex.Message)
+            newlog = newlog & ("- " & timenow & ", " & "LoadP2PoolInterface(), " & ex.Message)
             Invoke(New MethodInvoker(AddressOf SaveSettingsJSON))
         Finally
             newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & Date.Parse(Now) & ", " & "LoadP2PoolInterface(), Load Browser: OK")
+            newlog = newlog & ("- " & timenow & ", " & "LoadP2PoolInterface(), Load Browser: OK")
         End Try
 
     End Sub
@@ -2357,6 +2393,25 @@ Public Class Main
     Private Sub PictureBox6_Click(sender As Object, e As EventArgs) Handles PictureBox6.Click
 
         Me.WindowState = FormWindowState.Minimized
+
+    End Sub
+
+    Private Sub Clock_Tick(sender As Object, e As EventArgs) Handles Clock.Tick
+
+        Dim time As DateTime = DateTime.Now
+        timenow = time.ToString("r", culture)
+
+    End Sub
+
+    Private Sub MinerWindowToolStripMenuItem_Click(sender As Object, e As EventArgs)
+
+
+
+    End Sub
+
+    Private Sub P2PoolWindowToolStripMenuItem_Click(sender As Object, e As EventArgs)
+
+
 
     End Sub
 
