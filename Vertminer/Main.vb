@@ -1229,17 +1229,17 @@ Public Class Main
             Dim jsonstring As String
             For Each line As String In Pool_Address_Text.Lines
                 If Not line = "" Then
-                    pools.Add(line)
+                    pools.Add(line.Trim())
                 End If
             Next
             For Each line As String In Worker_Address_Text.Lines
                 If Not line = "" Then
-                    workers.Add(line)
+                    workers.Add(line.Trim())
                 End If
             Next
             For Each line As String In Password_Text.Lines
                 If Not line = "" Then
-                    passwords.Add(line)
+                    passwords.Add(line.Trim())
                 End If
             Next
             Dim poolcount = pools.Count()
