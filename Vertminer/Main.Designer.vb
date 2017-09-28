@@ -241,7 +241,7 @@ Partial Class Main
         Me.CheckBox1.Location = New System.Drawing.Point(300, 56)
         Me.CheckBox1.Name = "CheckBox1"
         Me.CheckBox1.Size = New System.Drawing.Size(118, 17)
-        Me.CheckBox1.TabIndex = 6
+        Me.CheckBox1.TabIndex = 3
         Me.CheckBox1.Text = "Run Local Node"
         Me.ToolTip.SetToolTip(Me.CheckBox1, "Select this to point your miner directly to your local p2pool node.")
         Me.CheckBox1.UseVisualStyleBackColor = True
@@ -255,7 +255,7 @@ Partial Class Main
         Me.Button1.Location = New System.Drawing.Point(156, 27)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(123, 22)
-        Me.Button1.TabIndex = 44
+        Me.Button1.TabIndex = 0
         Me.Button1.Text = "Find P2Pool Nodes"
         Me.ToolTip.SetToolTip(Me.Button1, resources.GetString("Button1.ToolTip"))
         Me.Button1.UseVisualStyleBackColor = False
@@ -269,7 +269,7 @@ Partial Class Main
         Me.Button3.Location = New System.Drawing.Point(97, 55)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(47, 23)
-        Me.Button3.TabIndex = 90
+        Me.Button3.TabIndex = 2
         Me.Button3.Text = "Start"
         Me.ToolTip.SetToolTip(Me.Button3, "Toggles your miner on/off.")
         Me.Button3.UseVisualStyleBackColor = False
@@ -303,7 +303,7 @@ Partial Class Main
         Me.Button2.Location = New System.Drawing.Point(332, 199)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(91, 23)
-        Me.Button2.TabIndex = 91
+        Me.Button2.TabIndex = 5
         Me.Button2.Text = "Add Pool"
         Me.ToolTip.SetToolTip(Me.Button2, "Toggles your miner on/off.")
         Me.Button2.UseVisualStyleBackColor = False
@@ -317,14 +317,14 @@ Partial Class Main
         Me.Button4.Location = New System.Drawing.Point(12, 199)
         Me.Button4.Name = "Button4"
         Me.Button4.Size = New System.Drawing.Size(91, 23)
-        Me.Button4.TabIndex = 93
+        Me.Button4.TabIndex = 4
         Me.Button4.Text = "Remove Pool"
         Me.ToolTip.SetToolTip(Me.Button4, "Toggles your miner on/off.")
         Me.Button4.UseVisualStyleBackColor = False
         '
         'Uptime_Timer
         '
-        Me.Uptime_Timer.Interval = 1000
+        Me.Uptime_Timer.Interval = 500
         '
         'Uptime_Checker
         '
@@ -426,7 +426,6 @@ Partial Class Main
         '
         Me.DataGridView1.AllowUserToAddRows = False
         Me.DataGridView1.AllowUserToDeleteRows = False
-        Me.DataGridView1.AllowUserToOrderColumns = True
         Me.DataGridView1.AllowUserToResizeRows = False
         Me.DataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
         Me.DataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
@@ -435,7 +434,7 @@ Partial Class Main
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.RowHeadersVisible = False
         Me.DataGridView1.Size = New System.Drawing.Size(411, 85)
-        Me.DataGridView1.TabIndex = 92
+        Me.DataGridView1.TabIndex = 6
         '
         'ComboBox1
         '
@@ -445,7 +444,7 @@ Partial Class Main
         Me.ComboBox1.Location = New System.Drawing.Point(12, 56)
         Me.ComboBox1.Name = "ComboBox1"
         Me.ComboBox1.Size = New System.Drawing.Size(79, 21)
-        Me.ComboBox1.TabIndex = 88
+        Me.ComboBox1.TabIndex = 1
         '
         'Label2
         '

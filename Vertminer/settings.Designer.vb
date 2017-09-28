@@ -98,7 +98,7 @@ Partial Class settings
         Me.CheckBox3.Location = New System.Drawing.Point(29, 117)
         Me.CheckBox3.Name = "CheckBox3"
         Me.CheckBox3.Size = New System.Drawing.Size(102, 17)
-        Me.CheckBox3.TabIndex = 1
+        Me.CheckBox3.TabIndex = 4
         Me.CheckBox3.Text = "Minimize to Tray"
         Me.ToolTip.SetToolTip(Me.CheckBox3, "Toggle to minimize the OCM into your system tray whenever minimize is clicked.")
         Me.CheckBox3.UseVisualStyleBackColor = True
@@ -111,7 +111,7 @@ Partial Class settings
         Me.CheckBox4.Size = New System.Drawing.Size(76, 17)
         Me.CheckBox4.TabIndex = 3
         Me.CheckBox4.Text = "Use UPnP"
-        Me.ToolTip.SetToolTip(Me.CheckBox4, "Toggle to enable UPnP.  This will automatically set up port forwarding for P2Pool" & _
+        Me.ToolTip.SetToolTip(Me.CheckBox4, "Toggle to enable UPnP.  This will automatically set up port forwarding for P2Pool" &
         " on compatible routers." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "***Still in development***")
         Me.CheckBox4.UseVisualStyleBackColor = True
         '
@@ -121,9 +121,9 @@ Partial Class settings
         Me.CheckBox6.Location = New System.Drawing.Point(164, 138)
         Me.CheckBox6.Name = "CheckBox6"
         Me.CheckBox6.Size = New System.Drawing.Size(106, 17)
-        Me.CheckBox6.TabIndex = 4
+        Me.CheckBox6.TabIndex = 8
         Me.CheckBox6.Text = "Keep Miner Alive"
-        Me.ToolTip.SetToolTip(Me.CheckBox6, "Periodically checks to see if miner is still running.  If miner is not detected, " & _
+        Me.ToolTip.SetToolTip(Me.CheckBox6, "Periodically checks to see if miner is still running.  If miner is not detected, " &
         "it will restart the miner process automatically.")
         Me.CheckBox6.UseVisualStyleBackColor = True
         '
@@ -144,7 +144,7 @@ Partial Class settings
         Me.CheckBox9.Location = New System.Drawing.Point(29, 75)
         Me.CheckBox9.Name = "CheckBox9"
         Me.CheckBox9.Size = New System.Drawing.Size(117, 17)
-        Me.CheckBox9.TabIndex = 0
+        Me.CheckBox9.TabIndex = 2
         Me.CheckBox9.Text = "Start with Windows"
         Me.ToolTip.SetToolTip(Me.CheckBox9, "Toggle to start the OCM when Windows starts." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10))
         Me.CheckBox9.UseVisualStyleBackColor = True
@@ -157,7 +157,7 @@ Partial Class settings
         Me.PictureBox6.Size = New System.Drawing.Size(15, 15)
         Me.PictureBox6.TabIndex = 11
         Me.PictureBox6.TabStop = False
-        Me.ToolTip.SetToolTip(Me.PictureBox6, "Periodically checks to see if P2Pool is still running.  If P2Pool is not detected" & _
+        Me.ToolTip.SetToolTip(Me.PictureBox6, "Periodically checks to see if P2Pool is still running.  If P2Pool is not detected" &
         ", it will restart the P2Pool process automatically.")
         '
         'CheckBox5
@@ -166,9 +166,9 @@ Partial Class settings
         Me.CheckBox5.Location = New System.Drawing.Point(164, 117)
         Me.CheckBox5.Name = "CheckBox5"
         Me.CheckBox5.Size = New System.Drawing.Size(114, 17)
-        Me.CheckBox5.TabIndex = 5
+        Me.CheckBox5.TabIndex = 7
         Me.CheckBox5.Text = "Keep P2Pool Alive"
-        Me.ToolTip.SetToolTip(Me.CheckBox5, "Periodically checks to see if P2Pool is still running.  If P2Pool is not detected" & _
+        Me.ToolTip.SetToolTip(Me.CheckBox5, "Periodically checks to see if P2Pool is still running.  If P2Pool is not detected" &
         ", it will restart the P2Pool process automatically.")
         Me.CheckBox5.UseVisualStyleBackColor = True
         '
@@ -180,7 +180,7 @@ Partial Class settings
         Me.PictureBox4.Size = New System.Drawing.Size(15, 15)
         Me.PictureBox4.TabIndex = 9
         Me.PictureBox4.TabStop = False
-        Me.ToolTip.SetToolTip(Me.PictureBox4, "Periodically checks to see if miner is still running.  If miner is not detected, " & _
+        Me.ToolTip.SetToolTip(Me.PictureBox4, "Periodically checks to see if miner is still running.  If miner is not detected, " &
         "it will restart the miner process automatically.")
         '
         'PictureBox3
@@ -191,7 +191,7 @@ Partial Class settings
         Me.PictureBox3.Size = New System.Drawing.Size(15, 15)
         Me.PictureBox3.TabIndex = 8
         Me.PictureBox3.TabStop = False
-        Me.ToolTip.SetToolTip(Me.PictureBox3, "Toggle to enable UPnP.  This will automatically set up port forwarding for P2Pool" & _
+        Me.ToolTip.SetToolTip(Me.PictureBox3, "Toggle to enable UPnP.  This will automatically set up port forwarding for P2Pool" &
         " on compatible routers." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "***Still in development***" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10))
         '
         'PictureBox1
@@ -209,7 +209,7 @@ Partial Class settings
         Me.Fee_Address_Text.Location = New System.Drawing.Point(15, 144)
         Me.Fee_Address_Text.Name = "Fee_Address_Text"
         Me.Fee_Address_Text.Size = New System.Drawing.Size(244, 20)
-        Me.Fee_Address_Text.TabIndex = 7
+        Me.Fee_Address_Text.TabIndex = 4
         Me.Fee_Address_Text.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.ToolTip.SetToolTip(Me.Fee_Address_Text, "Address that the mining fee % will be sent to.")
         '
@@ -259,7 +259,7 @@ Partial Class settings
         Me.TextBox5.Location = New System.Drawing.Point(88, 48)
         Me.TextBox5.Name = "TextBox5"
         Me.TextBox5.Size = New System.Drawing.Size(50, 20)
-        Me.TextBox5.TabIndex = 1
+        Me.TextBox5.TabIndex = 0
         Me.TextBox5.Text = "9171"
         Me.TextBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
@@ -299,7 +299,7 @@ Partial Class settings
         Me.Node_Donation.Location = New System.Drawing.Point(88, 91)
         Me.Node_Donation.Name = "Node_Donation"
         Me.Node_Donation.Size = New System.Drawing.Size(50, 20)
-        Me.Node_Donation.TabIndex = 3
+        Me.Node_Donation.TabIndex = 1
         Me.Node_Donation.Text = "%"
         Me.Node_Donation.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
@@ -319,7 +319,7 @@ Partial Class settings
         Me.TextBox3.Location = New System.Drawing.Point(187, 48)
         Me.TextBox3.Name = "TextBox3"
         Me.TextBox3.Size = New System.Drawing.Size(50, 20)
-        Me.TextBox3.TabIndex = 5
+        Me.TextBox3.TabIndex = 2
         Me.TextBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.ToolTip.SetToolTip(Me.TextBox3, "Select the maximum amount of connections you would like to limit P2Pool to.")
         '
@@ -331,8 +331,8 @@ Partial Class settings
         Me.PictureBox10.Size = New System.Drawing.Size(15, 15)
         Me.PictureBox10.TabIndex = 43
         Me.PictureBox10.TabStop = False
-        Me.ToolTip.SetToolTip(Me.PictureBox10, "This sets the intensity of the miner.  This can be used to help fine-tune miner p" & _
-        "erformance." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Set to 0 to allow the miner to automatically select the intensity f" & _
+        Me.ToolTip.SetToolTip(Me.PictureBox10, "This sets the intensity of the miner.  This can be used to help fine-tune miner p" &
+        "erformance." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Set to 0 to allow the miner to automatically select the intensity f" &
         "or you.")
         '
         'Intensity_Text
@@ -342,10 +342,10 @@ Partial Class settings
         Me.Intensity_Text.MaxLength = 5
         Me.Intensity_Text.Name = "Intensity_Text"
         Me.Intensity_Text.Size = New System.Drawing.Size(62, 20)
-        Me.Intensity_Text.TabIndex = 41
+        Me.Intensity_Text.TabIndex = 0
         Me.Intensity_Text.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.ToolTip.SetToolTip(Me.Intensity_Text, "This sets the intensity of the miner.  This can be used to help fine-tune miner p" & _
-        "erformance." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Leave blank or set to '0' to use your miner's default intensity set" & _
+        Me.ToolTip.SetToolTip(Me.Intensity_Text, "This sets the intensity of the miner.  This can be used to help fine-tune miner p" &
+        "erformance." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Leave blank or set to '0' to use your miner's default intensity set" &
         "ting.")
         '
         'PictureBox12
@@ -366,10 +366,10 @@ Partial Class settings
         Me.Button1.Location = New System.Drawing.Point(159, 34)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(50, 23)
-        Me.Button1.TabIndex = 46
+        Me.Button1.TabIndex = 1
         Me.Button1.Text = "OCM"
-        Me.ToolTip.SetToolTip(Me.Button1, "Resets the Vertcoin Data Directory to the default value." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "If the One-Click Miner " & _
-        "cannot find the default directory, it will prompt you to select your alternative" & _
+        Me.ToolTip.SetToolTip(Me.Button1, "Resets the Vertcoin Data Directory to the default value." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "If the One-Click Miner " &
+        "cannot find the default directory, it will prompt you to select your alternative" &
         " location when P2Pool is started.")
         Me.Button1.UseVisualStyleBackColor = False
         '
@@ -381,10 +381,10 @@ Partial Class settings
         Me.Button5.Location = New System.Drawing.Point(72, 34)
         Me.Button5.Name = "Button5"
         Me.Button5.Size = New System.Drawing.Size(81, 23)
-        Me.Button5.TabIndex = 44
+        Me.Button5.TabIndex = 0
         Me.Button5.Text = "VTC Data Dir"
-        Me.ToolTip.SetToolTip(Me.Button5, "Resets the Vertcoin Data Directory to the default value." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "If the One-Click Miner " & _
-        "cannot find the default directory, it will prompt you to select your alternative" & _
+        Me.ToolTip.SetToolTip(Me.Button5, "Resets the Vertcoin Data Directory to the default value." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "If the One-Click Miner " &
+        "cannot find the default directory, it will prompt you to select your alternative" &
         " location when P2Pool is started.")
         Me.Button5.UseVisualStyleBackColor = False
         '
@@ -404,7 +404,7 @@ Partial Class settings
         Me.CheckBox1.Location = New System.Drawing.Point(164, 96)
         Me.CheckBox1.Name = "CheckBox1"
         Me.CheckBox1.Size = New System.Drawing.Size(105, 17)
-        Me.CheckBox1.TabIndex = 47
+        Me.CheckBox1.TabIndex = 6
         Me.CheckBox1.Text = "Autostart P2Pool"
         Me.ToolTip.SetToolTip(Me.CheckBox1, "Toggle to autostart P2Pool when the OCM launches." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10))
         Me.CheckBox1.UseVisualStyleBackColor = True
@@ -425,7 +425,7 @@ Partial Class settings
         Me.CheckBox7.Location = New System.Drawing.Point(164, 75)
         Me.CheckBox7.Name = "CheckBox7"
         Me.CheckBox7.Size = New System.Drawing.Size(102, 17)
-        Me.CheckBox7.TabIndex = 49
+        Me.CheckBox7.TabIndex = 5
         Me.CheckBox7.Text = "Autostart Mining"
         Me.ToolTip.SetToolTip(Me.CheckBox7, "Toggle to autostart mining when the OCM launches." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10))
         Me.CheckBox7.UseVisualStyleBackColor = True
@@ -447,7 +447,7 @@ Partial Class settings
         Me.ComboBox1.Location = New System.Drawing.Point(192, 108)
         Me.ComboBox1.Name = "ComboBox1"
         Me.ComboBox1.Size = New System.Drawing.Size(40, 21)
-        Me.ComboBox1.TabIndex = 44
+        Me.ComboBox1.TabIndex = 3
         Me.ToolTip.SetToolTip(Me.ComboBox1, "Select the network in which p2pool will connect.")
         '
         'Label6

@@ -179,6 +179,7 @@ Public Class P2Pool
                 With DataGridView1.Columns(1)
                     .Name = "IP"
                     .ReadOnly = True
+                    .AutoSizeMode = DataGridViewAutoSizeColumnsMode.AllCells
                 End With
                 With DataGridView1.Columns(2)
                     .Name = "Version"
@@ -276,6 +277,7 @@ Public Class P2Pool
                 With DataGridView2.Columns(1)
                     .Name = "IP"
                     .ReadOnly = True
+                    .AutoSizeMode = DataGridViewAutoSizeColumnsMode.AllCells
                 End With
                 With DataGridView2.Columns(2)
                     .Name = "Version"
@@ -378,6 +380,8 @@ Public Class P2Pool
             Next
             Invoke(New MethodInvoker(AddressOf Main.Update_Pool_Info))
             Invoke(New MethodInvoker(AddressOf Main.SaveSettingsJSON))
+            MsgBox("Pool(s) added successfully.")
+            Me.Close()
         ElseIf checkcount = 0 Then
             MsgBox("Please select a pool to add.")
         Else
@@ -455,8 +459,6 @@ Public Class P2Pool
         Button1.BackColor = Color.FromArgb(27, 92, 46)
         Button2.BackColor = Color.FromArgb(27, 92, 46)
         Panel2.BackColor = Color.FromArgb(41, 54, 61)
-        'TextBox3.BackColor = Color.FromArgb(41, 54, 61)
-        'MenuStrip.BackColor = Color.FromArgb(27, 92, 46)
         DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
         DataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
 

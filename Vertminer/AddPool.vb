@@ -11,8 +11,6 @@
         Panel1.BackColor = Color.FromArgb(27, 92, 46)
         Button1.BackColor = Color.FromArgb(27, 92, 46)
         Panel2.BackColor = Color.FromArgb(41, 54, 61)
-        'TextBox3.BackColor = Color.FromArgb(41, 54, 61)
-        'MenuStrip.BackColor = Color.FromArgb(27, 92, 46)
 
     End Sub
 
@@ -36,11 +34,37 @@
             passwords.Insert(0, Password_Address.Text)
             Invoke(New MethodInvoker(AddressOf Main.Update_Pool_Info))
             Invoke(New MethodInvoker(AddressOf Main.SaveSettingsJSON))
-            MsgBox("Pool entered successfully.")
+            MsgBox("Pool(s) added successfully.")
             Me.Close()
         Else
             MsgBox("Not all fields are complete.")
         End If
+
+    End Sub
+
+    Dim drag As Boolean = False
+    Dim mousex As Integer, mousey As Integer
+
+    Private Sub Panel1_MouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles Panel1.MouseDown, Panel2.MouseDown, PictureBox11.MouseDown, Label6.MouseDown
+
+        drag = True
+        mousex = Windows.Forms.Cursor.Position.X - Me.Left
+        mousey = Windows.Forms.Cursor.Position.Y - Me.Top
+
+    End Sub
+
+    Private Sub Panel1_MouseMove(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles Panel1.MouseMove, Panel2.MouseMove, PictureBox11.MouseMove, Label6.MouseMove
+
+        If drag Then
+            Me.Left = Windows.Forms.Cursor.Position.X - mousex
+            Me.Top = Windows.Forms.Cursor.Position.Y - mousey
+        End If
+
+    End Sub
+
+    Private Sub Panel1_MouseUp(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles Panel1.MouseUp, Panel2.MouseUp, PictureBox11.MouseUp, Label6.MouseUp
+
+        drag = False
 
     End Sub
 

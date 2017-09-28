@@ -66,7 +66,7 @@ Partial Class P2Pool
         Me.Button1.Location = New System.Drawing.Point(637, 206)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(140, 26)
-        Me.Button1.TabIndex = 4
+        Me.Button1.TabIndex = 6
         Me.Button1.Text = "Add Selected Pool(s)"
         Me.Button1.UseVisualStyleBackColor = False
         '
@@ -77,7 +77,7 @@ Partial Class P2Pool
         Me.Wallet_Address.MaxLength = 100
         Me.Wallet_Address.Name = "Wallet_Address"
         Me.Wallet_Address.Size = New System.Drawing.Size(189, 20)
-        Me.Wallet_Address.TabIndex = 42
+        Me.Wallet_Address.TabIndex = 5
         Me.Wallet_Address.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'Label3
@@ -133,7 +133,7 @@ Partial Class P2Pool
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
         Me.TabControl1.Size = New System.Drawing.Size(588, 224)
-        Me.TabControl1.TabIndex = 50
+        Me.TabControl1.TabIndex = 3
         '
         'Network1
         '
@@ -163,7 +163,6 @@ Partial Class P2Pool
         '
         Me.DataGridView1.AllowUserToAddRows = False
         Me.DataGridView1.AllowUserToDeleteRows = False
-        Me.DataGridView1.AllowUserToOrderColumns = True
         Me.DataGridView1.AllowUserToResizeRows = False
         Me.DataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
         Me.DataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
@@ -172,7 +171,7 @@ Partial Class P2Pool
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.RowHeadersVisible = False
         Me.DataGridView1.Size = New System.Drawing.Size(580, 198)
-        Me.DataGridView1.TabIndex = 0
+        Me.DataGridView1.TabIndex = 1
         '
         'Network2
         '
@@ -202,7 +201,6 @@ Partial Class P2Pool
         '
         Me.DataGridView2.AllowUserToAddRows = False
         Me.DataGridView2.AllowUserToDeleteRows = False
-        Me.DataGridView2.AllowUserToOrderColumns = True
         Me.DataGridView2.AllowUserToResizeRows = False
         Me.DataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
         Me.DataGridView2.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
@@ -222,7 +220,7 @@ Partial Class P2Pool
         Me.Button2.Location = New System.Drawing.Point(652, 30)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(111, 37)
-        Me.Button2.TabIndex = 51
+        Me.Button2.TabIndex = 4
         Me.Button2.Text = "Scan"
         Me.Button2.UseVisualStyleBackColor = False
         '

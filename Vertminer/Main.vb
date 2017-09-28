@@ -713,9 +713,17 @@ Public Class Main
         chk.HeaderText = "Select"
         chk.Name = "Select"
         DataGridView1.ColumnCount = 4
-        DataGridView1.Columns(1).Name = "Pool"
-        DataGridView1.Columns(2).Name = "Worker"
-        DataGridView1.Columns(3).Name = "Password"
+        With DataGridView1.Columns(1)
+            .Name = "Pool"
+            .AutoSizeMode = DataGridViewAutoSizeColumnsMode.AllCells
+        End With
+        With DataGridView1.Columns(2)
+            .Name = "Worker"
+        End With
+        With DataGridView1.Columns(3)
+            .Name = "Password"
+        End With
+
         If count > 0 Then
             For x As Integer = 0 To count - 1
                 Dim row As String() = New String() {False, pools(x), workers(x), passwords(x)}
@@ -962,7 +970,6 @@ Public Class Main
             'File.WriteAllText(settingsfile, jsonFormatted)
             System.IO.File.Delete(settingsfolder & "\settings.ini")
         Catch ex As IOException
-            MsgBox(ex.Message)
             newlog = newlog & Environment.NewLine
             newlog = newlog & ("- " & timenow & ", " & "Main() UpdateSettings: " & ex.Message)
             Invoke(New MethodInvoker(AddressOf SaveSettingsJSON))
@@ -1111,39 +1118,6 @@ Public Class Main
                 AddPool.Show()
                 AddPool.Pool_Address.Text = "stratum+tcp://localhost:" & mining_port
             End If
-            ''Clean up pool URL's
-            'If Not Pool_Address_Text.Lines.Contains("stratum+tcp://localhost:" & mining_port) Then
-            '    pools.Insert(0, "stratum+tcp://localhost:" & mining_port)
-
-            '    'Pool_Address_Text.Text.Insert(0, "stratum+tcp://localhost:" & mining_port)
-            'End If
-            'For Each line As String In Pool_Address_Text.Lines
-            '    If Not line.Contains("http://") And Not line.Contains("stratum+tcp://") Then
-            '        line = "stratum+tcp://" & line
-            '    Else
-            '        line = line.Replace("http://", "stratum+tcp://")
-            '    End If
-            '    pools.Add(line)
-            'Next
-            'Pool_Address_Text.Text = ""
-            'For Each item In pools
-            '    If Pool_Address_Text.Text = "" Then
-            '        Pool_Address_Text.Text = item
-            '    Else
-            '        Pool_Address_Text.Text = Pool_Address_Text.Text & Environment.NewLine & item
-            '    End If
-            'Next
-            'Pool_Address_Text.SelectionStart = 0
-            'Pool_Address_Text.ScrollToCaret()
-        Else
-
-            'For Each line As String In Pool_Address_Text.Lines
-            '    'If line.Contains("localhost:" & mining_port) And Pool_Address_Text.Lines.Count >= 1 Then
-            '    '    Pool_Address_Text.Text = Pool_Address_Text.Text.Replace(line, "")
-            '    '    Pool_Address_Text.Text = Pool_Address_Text.Text.Trim()
-            '    'End If
-            '    pools.Add(line)
-            'Next
         End If
         'See if P2Pool has already been downloaded/installed
         If System.IO.Directory.Exists(p2poolfolder) = True Then
@@ -1244,7 +1218,7 @@ Public Class Main
             Dim jsonstring As String
             For Each row As DataGridViewRow In DataGridView1.Rows
                 Dim chk As DataGridViewCheckBoxCell = row.Cells(DataGridView1.Columns(0).Name)
-                If chk.Value IsNot Nothing AndAlso chk.Value = True Then
+                If chk.Value IsNot Nothing Then 'add AndAlso chk.Value = True to only add pools that are checked
                     pools.Add(DataGridView1.Rows(chk.RowIndex).Cells(1).Value)
                     workers.Add(DataGridView1.Rows(chk.RowIndex).Cells(2).Value)
                     passwords.Add(DataGridView1.Rows(chk.RowIndex).Cells(3).Value)
@@ -1376,8 +1350,6 @@ Public Class Main
             count = Math.Min(count, passwordcount)
             If count > 0 Then
                 Invoke(New MethodInvoker(AddressOf Update_Miner_Config))
-            Else
-                MsgBox("Miner settings incomplete, please check your pool url, worker/wallet address, and password.")
             End If
             If amdminer = True Then
                 miner_config = amdfolder & "\ocm_sgminer.exe"
@@ -1430,7 +1402,6 @@ Public Class Main
         Catch ex As Exception
             newlog = newlog & Environment.NewLine
             newlog = newlog & ("- " & timenow & ", " & "Main() Start_Miner: " & ex.Message)
-            Invoke(New MethodInvoker(AddressOf SaveSettingsJSON))
         Finally
             newlog = newlog & Environment.NewLine
             newlog = newlog & ("- " & timenow & ", " & "Main() Start_Miner: OK.")
@@ -1455,21 +1426,6 @@ Public Class Main
         Finally
             newlog = newlog & Environment.NewLine
             newlog = newlog & ("- " & timenow & ", " & "Main() Kill_Miner: OK.")
-        End Try
-
-    End Sub
-
-    Public Sub Stop_Miner()
-
-        Try
-            TextBox3.Text = ""
-            Button3.Text = "Start"
-        Catch ex As Exception
-            newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & timenow & ", " & "Main() Stop_Miner: " & ex.Message)
-            Invoke(New MethodInvoker(AddressOf SaveSettingsJSON))
-        Finally
-
         End Try
 
     End Sub
@@ -1791,8 +1747,6 @@ Public Class Main
                     If amd_detected = False And nvidia_detected = False And cpu_detected = False Then
                         If keep_miner_alive = True Then
                             BeginInvoke(New MethodInvoker(AddressOf Start_Miner))
-                        Else
-                            BeginInvoke(New MethodInvoker(AddressOf Stop_Miner))
                         End If
                     Else
                     End If
@@ -2257,9 +2211,10 @@ Public Class Main
         Panel1.BackColor = Color.FromArgb(27, 92, 46)
         Button1.BackColor = Color.FromArgb(27, 92, 46)
         Button3.BackColor = Color.FromArgb(27, 92, 46)
+        Button2.BackColor = Color.FromArgb(27, 92, 46)
+        Button4.BackColor = Color.FromArgb(27, 92, 46)
         Panel3.BackColor = Color.FromArgb(41, 54, 61)
         TextBox3.BackColor = Color.FromArgb(41, 54, 61)
-        'TextBox3.ForeColor = Color.FromArgb(41, 54, 61)
         MenuStrip.BackColor = Color.FromArgb(27, 92, 46)
         DataGridView1.ForeColor = Color.Black
         DataGridView1.RowsDefaultCellStyle.Font = New Font(DataGridView1.Font, FontStyle.Regular)
@@ -2315,10 +2270,10 @@ Public Class Main
                 checkcount += 1
             End If
         Next
-        If checkcount > 0 Then
-            Invoke(New MethodInvoker(AddressOf SaveSettingsJSON))
-            'Starts mining if miner software is already detected.  If not, downloads miner software.
-            If Button3.Text = "Start" Then
+        Invoke(New MethodInvoker(AddressOf SaveSettingsJSON))
+        'Starts mining if miner software is already detected.  If not, downloads miner software.
+        If Button3.Text = "Start" Then
+            If checkcount > 0 Then
                 If default_miner = "amd" Then
                     'Checks if AMD miner has already been downloaded and installed
                     If System.IO.Directory.Exists(amdfolder) = True Then
@@ -2396,17 +2351,17 @@ Public Class Main
                     End If
                 End If
                 mining_installed = False
-            ElseIf Button3.Text = "Stop" Then
+            Else
+                MsgBox("Please select an entered pool before starting miner.")
+            End If
+        ElseIf Button3.Text = "Stop" Then
                 amdminer = False
                 nvidiaminer = False
                 cpuminer = False
                 mining_initialized = False
-                BeginInvoke(New MethodInvoker(AddressOf Stop_Miner))
+                Button3.Text = "Start"
                 BeginInvoke(New MethodInvoker(AddressOf Kill_Miner))
             End If
-        Else
-            MsgBox("Please select an entered pool before starting miner.")
-        End If
 
     End Sub
 
@@ -2420,18 +2375,6 @@ Public Class Main
 
         Dim time As DateTime = DateTime.Now
         timenow = time.ToString("r", culture)
-
-    End Sub
-
-    Private Sub MinerWindowToolStripMenuItem_Click(sender As Object, e As EventArgs)
-
-
-
-    End Sub
-
-    Private Sub P2PoolWindowToolStripMenuItem_Click(sender As Object, e As EventArgs)
-
-
 
     End Sub
 
@@ -2450,6 +2393,10 @@ Public Class Main
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
 
         AddPool.Show()
+
+    End Sub
+
+    Private Sub MinerWindowToolStripMenuItem_Click(sender As Object, e As EventArgs)
 
     End Sub
 

@@ -112,7 +112,7 @@ Partial Class AddPool
         Me.Button1.Location = New System.Drawing.Point(116, 129)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(82, 26)
-        Me.Button1.TabIndex = 4
+        Me.Button1.TabIndex = 3
         Me.Button1.Text = "Add Pool"
         Me.Button1.UseVisualStyleBackColor = False
         '
@@ -123,7 +123,7 @@ Partial Class AddPool
         Me.Wallet_Address.MaxLength = 100
         Me.Wallet_Address.Name = "Wallet_Address"
         Me.Wallet_Address.Size = New System.Drawing.Size(189, 20)
-        Me.Wallet_Address.TabIndex = 42
+        Me.Wallet_Address.TabIndex = 1
         Me.Wallet_Address.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'Label3
@@ -163,7 +163,7 @@ Partial Class AddPool
         Me.Pool_Address.MaxLength = 100
         Me.Pool_Address.Name = "Pool_Address"
         Me.Pool_Address.Size = New System.Drawing.Size(274, 20)
-        Me.Pool_Address.TabIndex = 47
+        Me.Pool_Address.TabIndex = 0
         Me.Pool_Address.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'Label2
@@ -184,7 +184,7 @@ Partial Class AddPool
         Me.Password_Address.MaxLength = 100
         Me.Password_Address.Name = "Password_Address"
         Me.Password_Address.Size = New System.Drawing.Size(79, 20)
-        Me.Password_Address.TabIndex = 45
+        Me.Password_Address.TabIndex = 2
         Me.Password_Address.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'Label1
