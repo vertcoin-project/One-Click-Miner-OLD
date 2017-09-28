@@ -174,13 +174,32 @@ Public Class P2Pool
                 DataGridView1.Columns.Add(chk)
                 chk.HeaderText = "Select"
                 chk.Name = "Select"
+                chk.ReadOnly = False
                 DataGridView1.ColumnCount = 7
-                DataGridView1.Columns(1).Name = "IP"
-                DataGridView1.Columns(2).Name = "Version"
-                DataGridView1.Columns(3).Name = "Fee"
-                DataGridView1.Columns(4).Name = "Uptime"
-                DataGridView1.Columns(5).Name = "Located"
-                DataGridView1.Columns(6).Name = "Latency"
+                With DataGridView1.Columns(1)
+                    .Name = "IP"
+                    .ReadOnly = True
+                End With
+                With DataGridView1.Columns(2)
+                    .Name = "Version"
+                    .ReadOnly = True
+                End With
+                With DataGridView1.Columns(3)
+                    .Name = "Fee"
+                    .ReadOnly = True
+                End With
+                With DataGridView1.Columns(4)
+                    .Name = "Uptime"
+                    .ReadOnly = True
+                End With
+                With DataGridView1.Columns(5)
+                    .Name = "Located"
+                    .ReadOnly = True
+                End With
+                With DataGridView1.Columns(6)
+                    .Name = "Latency"
+                    .ReadOnly = True
+                End With
                 For x As Integer = 0 To count
                     Dim uptime As Decimal = (scanner1.nodes(x).stats.uptime / 60 / 60 / 24)
                     uptime = Math.Round(uptime, 1)
@@ -252,13 +271,32 @@ Public Class P2Pool
                 DataGridView2.Columns.Add(chk)
                 chk.HeaderText = "Select"
                 chk.Name = "Select"
+                chk.ReadOnly = False
                 DataGridView2.ColumnCount = 7
-                DataGridView2.Columns(1).Name = "IP"
-                DataGridView2.Columns(2).Name = "Version"
-                DataGridView2.Columns(3).Name = "Fee"
-                DataGridView2.Columns(4).Name = "Uptime"
-                DataGridView2.Columns(5).Name = "Located"
-                DataGridView2.Columns(6).Name = "Latency"
+                With DataGridView2.Columns(1)
+                    .Name = "IP"
+                    .ReadOnly = True
+                End With
+                With DataGridView2.Columns(2)
+                    .Name = "Version"
+                    .ReadOnly = True
+                End With
+                With DataGridView2.Columns(3)
+                    .Name = "Fee"
+                    .ReadOnly = True
+                End With
+                With DataGridView2.Columns(4)
+                    .Name = "Uptime"
+                    .ReadOnly = True
+                End With
+                With DataGridView2.Columns(5)
+                    .Name = "Located"
+                    .ReadOnly = True
+                End With
+                With DataGridView2.Columns(6)
+                    .Name = "Latency"
+                    .ReadOnly = True
+                End With
                 For x As Integer = 0 To count
                     Dim uptime As Decimal = (scanner2.nodes(x).stats.uptime / 60 / 60 / 24)
                     uptime = Math.Round(uptime, 1)
@@ -316,119 +354,35 @@ Public Class P2Pool
             End If
         Next
         checkcount = checkcount + checkcount2
+        Dim pool_list = String.Join(",", pools.ToArray())
         If Not Wallet_Address.Text = "" And checkcount > 0 Then
             For Each row As DataGridViewRow In DataGridView1.Rows
                 Dim chk As DataGridViewCheckBoxCell = row.Cells(DataGridView1.Columns(0).Name)
                 If chk.Value IsNot Nothing AndAlso chk.Value = True Then
-                    pools.Add(DataGridView1.Rows(chk.RowIndex).Cells(1).Value)
-                    workers.Add(Wallet_Address.Text)
-                    passwords.Add("x")
+                    If Not pool_list.Contains(DataGridView1.Rows(chk.RowIndex).Cells(1).Value) Then
+                        pools.Add(DataGridView1.Rows(chk.RowIndex).Cells(1).Value)
+                        workers.Add(Wallet_Address.Text)
+                        passwords.Add("x")
+                    End If
                 End If
             Next
             For Each row As DataGridViewRow In DataGridView2.Rows
                 Dim chk As DataGridViewCheckBoxCell = row.Cells(DataGridView2.Columns(0).Name)
                 If chk.Value IsNot Nothing AndAlso chk.Value = True Then
-                    pools.Add(DataGridView2.Rows(chk.RowIndex).Cells(1).Value)
-                    workers.Add(Wallet_Address.Text)
-                    passwords.Add("x")
+                    If Not pool_list.Contains(DataGridView2.Rows(chk.RowIndex).Cells(1).Value) Then
+                        pools.Add(DataGridView2.Rows(chk.RowIndex).Cells(1).Value)
+                        workers.Add(Wallet_Address.Text)
+                        passwords.Add("x")
+                    End If
                 End If
             Next
-            'JSON Configuration
-            If Not default_miner = "" Then
-                Dim newjson
-                Dim jsonstring As String
-                Dim poolcount = pools.Count()
-                Dim workercount = workers.Count()
-                Dim passwordcount = passwords.Count()
-                Dim count As Decimal = Decimal.MaxValue
-                count = Math.Min(count, poolcount)
-                count = Math.Min(count, workercount)
-                count = Math.Min(count, passwordcount)
-                If default_miner = "amd" Then
-                    newjson = New AMD_Miner_Settings_JSON()
-                    minersettingsfile = amdfolder & "\sgminer.conf"
-                    For x As Integer = 0 To count - 1
-                        Dim pooljson As AMD_Pools_JSON = New AMD_Pools_JSON()
-                        pooljson.url = pools(x)
-                        pooljson.user = workers(x)
-                        pooljson.userpass = passwords(x)
-                        newjson.pools.Add(pooljson)
-                    Next
-                    newjson.algorithm = "Lyra2REv2"
-                    newjson.intensity = mining_intensity
-                    jsonstring = JSONConverter.Serialize(newjson)
-                    jsonstring = jsonstring.Insert(jsonstring.Length - 1, ",""no-extranonce""" & ": " & "true")
-                ElseIf default_miner = "nvidia" Then
-                    newjson = New NVIDIA_Miner_Settings_JSON()
-                    minersettingsfile = nvidiafolder & "\ccminer.conf"
-                    newjson.algo = "lyra2v2"
-                    newjson.intensity = mining_intensity
-                    For x As Integer = 0 To count - 1
-                        Dim pooljson As Pools_JSON = New Pools_JSON()
-                        pooljson.url = pools(x)
-                        pooljson.user = workers(x)
-                        pooljson.pass = passwords(x)
-                        newjson.pools.Add(pooljson)
-                    Next
-                    jsonstring = JSONConverter.Serialize(newjson)
-                ElseIf default_miner = "cpu" Then
-                    newjson = New CPU_Miner_Settings_JSON()
-                    minersettingsfile = cpufolder & "\cpuminer-conf.json"
-                    If count > 0 Then
-                        newjson.url = pools(0)
-                        newjson.user = workers(0)
-                        newjson.pass = passwords(0)
-                    End If
-                    newjson.algo = "lyra2rev2"
-                    newjson.intensity = mining_intensity
-                    jsonstring = JSONConverter.Serialize(newjson)
-                End If
-                Dim jsonFormatted As String = JValue.Parse(jsonstring).ToString(Formatting.Indented)
-                File.WriteAllText(minersettingsfile, jsonFormatted)
-                Invoke(New MethodInvoker(AddressOf populate_config))
-                MsgBox("Pool(s) added successfully!")
-            Else
-                MsgBox("Please select a default miner in the main window first.")
-            End If
+            Invoke(New MethodInvoker(AddressOf Main.Update_Pool_Info))
+            Invoke(New MethodInvoker(AddressOf Main.SaveSettingsJSON))
         ElseIf checkcount = 0 Then
             MsgBox("Please select a pool to add.")
         Else
             MsgBox("Please enter a Wallet Address before adding pools.")
         End If
-
-    End Sub
-
-    Public Sub populate_config()
-
-        Main.Pool_Address_Text.Text = ""
-        Main.Worker_Address_Text.Text = ""
-        Main.Password_Text.Text = ""
-        For Each item In pools
-            If Not item.Contains("http://") And Not item.Contains("stratum+tcp://") Then
-                item = "stratum+tcp://" & item
-            Else
-                item = item.Replace("http://", "stratum+tcp://")
-            End If
-            If Main.Pool_Address_Text.Text = "" Then
-                Main.Pool_Address_Text.Text = item
-            Else
-                Main.Pool_Address_Text.Text = Main.Pool_Address_Text.Text & Environment.NewLine & item
-            End If
-        Next
-        For Each item In workers
-            If Main.Worker_Address_Text.Text = "" Then
-                Main.Worker_Address_Text.Text = item
-            Else
-                Main.Worker_Address_Text.Text = Main.Worker_Address_Text.Text & Environment.NewLine & item
-            End If
-        Next
-        For Each item In passwords
-            If Main.Password_Text.Text = "" Then
-                Main.Password_Text.Text = item
-            Else
-                Main.Password_Text.Text = Main.Password_Text.Text & Environment.NewLine & item
-            End If
-        Next
 
     End Sub
 
@@ -503,6 +457,8 @@ Public Class P2Pool
         Panel2.BackColor = Color.FromArgb(41, 54, 61)
         'TextBox3.BackColor = Color.FromArgb(41, 54, 61)
         'MenuStrip.BackColor = Color.FromArgb(27, 92, 46)
+        DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+        DataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
 
     End Sub
 

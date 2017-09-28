@@ -117,20 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="ToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>22, 45</value>
-  </metadata>
-  <metadata name="ToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>22, 45</value>
-  </metadata>
-  <data name="Pool_Address_Text.ToolTip" xml:space="preserve">
-    <value>Enter the URL (usually including port) into the Pool Address field.
-To use multiple pools for redundancy, hit ENTER after the first pool to enter more.
-Only P2Pool nodes are supported as failover.  AMD miner does not currently support failover pools.
-Use ↑ and ↓ keys to cycle through entered pools.
-
-If mining on a public P2Pool node, make sure your worker name = your wallet address.</value>
-  </data>
   <metadata name="MenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
@@ -758,6 +744,14 @@ If mining on a public P2Pool node, make sure your worker name = your wallet addr
         A/8/Z5MSxjBZRngAAAAASUVORK5CYII=
 </value>
   </data>
+  <metadata name="ToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>22, 45</value>
+  </metadata>
+  <data name="Button1.ToolTip" xml:space="preserve">
+    <value>Locate P2Pool nodes that are nearest to you.
+It is recommended to add multiple nodes to your pool list for failover redundancy.
+That way in the event that your pool goes down, you'll just continue to mine on another node.</value>
+  </data>
   <data name="PictureBox9.ToolTip" xml:space="preserve">
     <value>Enter the URL (usually including port) into the Pool Address field.
 To use multiple pools for redundancy, hit ENTER after the first pool to enter more.
@@ -765,11 +759,6 @@ Only P2Pool nodes are supported as failover.  AMD miner does not currently suppo
 Use ↑ and ↓ keys to cycle through entered pools.
 
 If mining on a public P2Pool node, make sure your worker name = your wallet address.</value>
-  </data>
-  <data name="Button1.ToolTip" xml:space="preserve">
-    <value>Locate P2Pool nodes that are nearest to you.
-It is recommended to add multiple nodes to your pool list for failover redundancy.
-That way in the event that your pool goes down, you'll just continue to mine on another node.</value>
   </data>
   <metadata name="Uptime_Timer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>731, 15</value>

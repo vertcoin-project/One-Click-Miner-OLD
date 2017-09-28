@@ -107,6 +107,12 @@
     <Compile Include="about.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="AddPool.Designer.vb">
+      <DependentUpon>AddPool.vb</DependentUpon>
+    </Compile>
+    <Compile Include="AddPool.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Main.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -153,6 +159,9 @@
   <ItemGroup>
     <EmbeddedResource Include="about.resx">
       <DependentUpon>about.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddPool.resx">
+      <DependentUpon>AddPool.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.vb</DependentUpon>

@@ -193,7 +193,6 @@ Public Class settings
             newjson.mining_port = "9171"
             newjson.mining_intensity = 0
             newjson.p2pool_fee_address = "VpBsRnN749jYHE9hT8dZreznHfmFMdE1yG"
-            newjson.miner_version = Application.ProductVersion
             newjson.p2pool_version = p2pool_version
             newjson.amd_version = amd_version
             newjson.nvidia_version = nvidia_version
@@ -229,7 +228,7 @@ Public Class settings
             newlog = newlog & ("- " & timenow & ", " & "Main() SaveSettings: OK.")
             MsgBox("Settings set back to defaults.")
             Invoke(New MethodInvoker(AddressOf Main.LoadSettingsJSON))
-            Invoke(New MethodInvoker(AddressOf Main.Update_Miner_Text))
+            Invoke(New MethodInvoker(AddressOf Main.Update_Pool_Info))
         End Try
 
     End Sub

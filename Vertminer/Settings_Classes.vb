@@ -17,20 +17,14 @@
     Public Property p2pool_port As String
     Public Property mining_port As String
     Public Property mining_intensity As Decimal
-    'Public Property workers As String
-    'Public Property password As String
     Public Property p2pool_fee_address As String
-    Public Property miner_version
     Public Property p2pool_version
     Public Property amd_version
     Public Property nvidia_version
     Public Property cpu_version
     Public Property default_miner As String
-    'Public Property additional_miner_config As String
     Public Property pools As New List(Of Pools_JSON)
 
-    'CHANGE GENERAL JSON SETTINGS TO ACCOUNT FOR MINER POOL JSON SETTINGS
-    'use Public Property pools As New List(Of Pools_JSON) instead of pools arraylist and worker/password strings
 End Class
 
 Public Class Pools_JSON

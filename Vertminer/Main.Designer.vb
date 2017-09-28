@@ -26,12 +26,7 @@ Partial Class Main
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Main))
         Me.Label4 = New System.Windows.Forms.Label()
         Me.TextBox3 = New System.Windows.Forms.TextBox()
-        Me.Password_Text = New System.Windows.Forms.TextBox()
-        Me.Pool_Address_Text = New System.Windows.Forms.TextBox()
         Me.Label19 = New System.Windows.Forms.Label()
-        Me.Label14 = New System.Windows.Forms.Label()
-        Me.Worker_Address_Text = New System.Windows.Forms.TextBox()
-        Me.Label12 = New System.Windows.Forms.Label()
         Me.MenuStrip = New System.Windows.Forms.MenuStrip()
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.UpdateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -49,11 +44,13 @@ Partial Class Main
         Me.UpdateStats = New System.ComponentModel.BackgroundWorker()
         Me.NotifyIcon1 = New System.Windows.Forms.NotifyIcon(Me.components)
         Me.ToolTip = New System.Windows.Forms.ToolTip(Me.components)
-        Me.PictureBox9 = New System.Windows.Forms.PictureBox()
-        Me.PictureBox3 = New System.Windows.Forms.PictureBox()
         Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Button3 = New System.Windows.Forms.Button()
+        Me.PictureBox9 = New System.Windows.Forms.PictureBox()
+        Me.PictureBox3 = New System.Windows.Forms.PictureBox()
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.Button4 = New System.Windows.Forms.Button()
         Me.Uptime_Timer = New System.Windows.Forms.Timer(Me.components)
         Me.Uptime_Checker = New System.ComponentModel.BackgroundWorker()
         Me.Updater = New System.ComponentModel.BackgroundWorker()
@@ -65,6 +62,7 @@ Partial Class Main
         Me.PictureBox6 = New System.Windows.Forms.PictureBox()
         Me.PictureBox4 = New System.Windows.Forms.PictureBox()
         Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.ComboBox1 = New System.Windows.Forms.ComboBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
@@ -80,6 +78,7 @@ Partial Class Main
         CType(Me.PictureBox6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel3.SuspendLayout()
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label4
@@ -98,41 +97,13 @@ Partial Class Main
         Me.TextBox3.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox3.Font = New System.Drawing.Font("MS Reference Sans Serif", 29.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox3.ForeColor = System.Drawing.SystemColors.Control
-        Me.TextBox3.Location = New System.Drawing.Point(47, 221)
+        Me.TextBox3.Location = New System.Drawing.Point(47, 224)
         Me.TextBox3.Multiline = True
         Me.TextBox3.Name = "TextBox3"
         Me.TextBox3.ReadOnly = True
         Me.TextBox3.Size = New System.Drawing.Size(341, 57)
         Me.TextBox3.TabIndex = 40
         Me.TextBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'Password_Text
-        '
-        Me.Password_Text.BackColor = System.Drawing.SystemColors.Window
-        Me.Password_Text.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Password_Text.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Password_Text.Location = New System.Drawing.Point(352, 165)
-        Me.Password_Text.Multiline = True
-        Me.Password_Text.Name = "Password_Text"
-        Me.Password_Text.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.Password_Text.Size = New System.Drawing.Size(62, 27)
-        Me.Password_Text.TabIndex = 10
-        Me.Password_Text.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.ToolTip.SetToolTip(Me.Password_Text, "Miner password.  Most often used for centralized pools.")
-        '
-        'Pool_Address_Text
-        '
-        Me.Pool_Address_Text.BackColor = System.Drawing.SystemColors.Window
-        Me.Pool_Address_Text.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Pool_Address_Text.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.5!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Pool_Address_Text.Location = New System.Drawing.Point(12, 109)
-        Me.Pool_Address_Text.Multiline = True
-        Me.Pool_Address_Text.Name = "Pool_Address_Text"
-        Me.Pool_Address_Text.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.Pool_Address_Text.Size = New System.Drawing.Size(411, 27)
-        Me.Pool_Address_Text.TabIndex = 7
-        Me.Pool_Address_Text.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.ToolTip.SetToolTip(Me.Pool_Address_Text, resources.GetString("Pool_Address_Text.ToolTip"))
         '
         'Label19
         '
@@ -143,40 +114,6 @@ Partial Class Main
         Me.Label19.Size = New System.Drawing.Size(129, 22)
         Me.Label19.TabIndex = 21
         Me.Label19.Text = "Pool Address"
-        '
-        'Label14
-        '
-        Me.Label14.AutoSize = True
-        Me.Label14.Font = New System.Drawing.Font("Microsoft Sans Serif", 13.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label14.Location = New System.Drawing.Point(65, 140)
-        Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(215, 22)
-        Me.Label14.TabIndex = 16
-        Me.Label14.Text = "Worker/Wallet Address"
-        '
-        'Worker_Address_Text
-        '
-        Me.Worker_Address_Text.BackColor = System.Drawing.SystemColors.Window
-        Me.Worker_Address_Text.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Worker_Address_Text.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Worker_Address_Text.Location = New System.Drawing.Point(12, 165)
-        Me.Worker_Address_Text.Multiline = True
-        Me.Worker_Address_Text.Name = "Worker_Address_Text"
-        Me.Worker_Address_Text.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.Worker_Address_Text.Size = New System.Drawing.Size(334, 27)
-        Me.Worker_Address_Text.TabIndex = 8
-        Me.Worker_Address_Text.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.ToolTip.SetToolTip(Me.Worker_Address_Text, "Wallet address that payouts will be received on.")
-        '
-        'Label12
-        '
-        Me.Label12.AutoSize = True
-        Me.Label12.Font = New System.Drawing.Font("Microsoft Sans Serif", 13.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label12.Location = New System.Drawing.Point(335, 140)
-        Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(97, 22)
-        Me.Label12.TabIndex = 14
-        Me.Label12.Text = "Password"
         '
         'MenuStrip
         '
@@ -296,26 +233,6 @@ Partial Class Main
         Me.NotifyIcon1.Text = "Vertcoin One-Click Miner"
         Me.NotifyIcon1.Visible = True
         '
-        'PictureBox9
-        '
-        Me.PictureBox9.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.help_small
-        Me.PictureBox9.Location = New System.Drawing.Point(278, 88)
-        Me.PictureBox9.Name = "PictureBox9"
-        Me.PictureBox9.Size = New System.Drawing.Size(15, 15)
-        Me.PictureBox9.TabIndex = 39
-        Me.PictureBox9.TabStop = False
-        Me.ToolTip.SetToolTip(Me.PictureBox9, resources.GetString("PictureBox9.ToolTip"))
-        '
-        'PictureBox3
-        '
-        Me.PictureBox3.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.help_small
-        Me.PictureBox3.Location = New System.Drawing.Point(109, 9)
-        Me.PictureBox3.Name = "PictureBox3"
-        Me.PictureBox3.Size = New System.Drawing.Size(15, 15)
-        Me.PictureBox3.TabIndex = 28
-        Me.PictureBox3.TabStop = False
-        Me.ToolTip.SetToolTip(Me.PictureBox3, "Select your hardware type to launch the respective miner for your hardware.")
-        '
         'CheckBox1
         '
         Me.CheckBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -356,6 +273,54 @@ Partial Class Main
         Me.Button3.Text = "Start"
         Me.ToolTip.SetToolTip(Me.Button3, "Toggles your miner on/off.")
         Me.Button3.UseVisualStyleBackColor = False
+        '
+        'PictureBox9
+        '
+        Me.PictureBox9.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.help_small
+        Me.PictureBox9.Location = New System.Drawing.Point(278, 88)
+        Me.PictureBox9.Name = "PictureBox9"
+        Me.PictureBox9.Size = New System.Drawing.Size(15, 15)
+        Me.PictureBox9.TabIndex = 39
+        Me.PictureBox9.TabStop = False
+        Me.ToolTip.SetToolTip(Me.PictureBox9, resources.GetString("PictureBox9.ToolTip"))
+        '
+        'PictureBox3
+        '
+        Me.PictureBox3.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.help_small
+        Me.PictureBox3.Location = New System.Drawing.Point(109, 9)
+        Me.PictureBox3.Name = "PictureBox3"
+        Me.PictureBox3.Size = New System.Drawing.Size(15, 15)
+        Me.PictureBox3.TabIndex = 28
+        Me.PictureBox3.TabStop = False
+        Me.ToolTip.SetToolTip(Me.PictureBox3, "Select your hardware type to launch the respective miner for your hardware.")
+        '
+        'Button2
+        '
+        Me.Button2.BackColor = System.Drawing.Color.DarkGreen
+        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.Button2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button2.ForeColor = System.Drawing.SystemColors.Control
+        Me.Button2.Location = New System.Drawing.Point(332, 199)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(91, 23)
+        Me.Button2.TabIndex = 91
+        Me.Button2.Text = "Add Pool"
+        Me.ToolTip.SetToolTip(Me.Button2, "Toggles your miner on/off.")
+        Me.Button2.UseVisualStyleBackColor = False
+        '
+        'Button4
+        '
+        Me.Button4.BackColor = System.Drawing.Color.DarkGreen
+        Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.Button4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button4.ForeColor = System.Drawing.SystemColors.Control
+        Me.Button4.Location = New System.Drawing.Point(12, 199)
+        Me.Button4.Name = "Button4"
+        Me.Button4.Size = New System.Drawing.Size(91, 23)
+        Me.Button4.TabIndex = 93
+        Me.Button4.Text = "Remove Pool"
+        Me.ToolTip.SetToolTip(Me.Button4, "Toggles your miner on/off.")
+        Me.Button4.UseVisualStyleBackColor = False
         '
         'Uptime_Timer
         '
@@ -433,6 +398,9 @@ Partial Class Main
         'Panel3
         '
         Me.Panel3.BackColor = System.Drawing.Color.DarkSlateGray
+        Me.Panel3.Controls.Add(Me.Button4)
+        Me.Panel3.Controls.Add(Me.DataGridView1)
+        Me.Panel3.Controls.Add(Me.Button2)
         Me.Panel3.Controls.Add(Me.Button3)
         Me.Panel3.Controls.Add(Me.ComboBox1)
         Me.Panel3.Controls.Add(Me.Button1)
@@ -445,19 +413,29 @@ Partial Class Main
         Me.Panel3.Controls.Add(Me.PictureBox9)
         Me.Panel3.Controls.Add(Me.TextBox2)
         Me.Panel3.Controls.Add(Me.CheckBox1)
-        Me.Panel3.Controls.Add(Me.Label12)
-        Me.Panel3.Controls.Add(Me.Worker_Address_Text)
-        Me.Panel3.Controls.Add(Me.Label14)
-        Me.Panel3.Controls.Add(Me.Password_Text)
         Me.Panel3.Controls.Add(Me.Label19)
         Me.Panel3.Controls.Add(Me.PictureBox3)
-        Me.Panel3.Controls.Add(Me.Pool_Address_Text)
         Me.Panel3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Panel3.ForeColor = System.Drawing.SystemColors.Control
         Me.Panel3.Location = New System.Drawing.Point(0, 50)
         Me.Panel3.Name = "Panel3"
         Me.Panel3.Size = New System.Drawing.Size(435, 285)
         Me.Panel3.TabIndex = 91
+        '
+        'DataGridView1
+        '
+        Me.DataGridView1.AllowUserToAddRows = False
+        Me.DataGridView1.AllowUserToDeleteRows = False
+        Me.DataGridView1.AllowUserToOrderColumns = True
+        Me.DataGridView1.AllowUserToResizeRows = False
+        Me.DataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
+        Me.DataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
+        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView1.Location = New System.Drawing.Point(12, 108)
+        Me.DataGridView1.Name = "DataGridView1"
+        Me.DataGridView1.RowHeadersVisible = False
+        Me.DataGridView1.Size = New System.Drawing.Size(411, 85)
+        Me.DataGridView1.TabIndex = 92
         '
         'ComboBox1
         '
@@ -563,15 +541,11 @@ Partial Class Main
         CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel3.ResumeLayout(False)
         Me.Panel3.PerformLayout()
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
-    Friend WithEvents Label14 As System.Windows.Forms.Label
-    Friend WithEvents Worker_Address_Text As System.Windows.Forms.TextBox
-    Friend WithEvents Label12 As System.Windows.Forms.Label
-    Friend WithEvents Password_Text As System.Windows.Forms.TextBox
     Friend WithEvents Label19 As System.Windows.Forms.Label
-    Friend WithEvents Pool_Address_Text As System.Windows.Forms.TextBox
     Friend WithEvents MenuStrip As System.Windows.Forms.MenuStrip
     Friend WithEvents FileToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents UpdateToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
@@ -614,4 +588,7 @@ Partial Class Main
     Friend WithEvents CheckBox1 As CheckBox
     Friend WithEvents PictureBox3 As PictureBox
     Friend WithEvents Clock As Timer
+    Friend WithEvents Button2 As Button
+    Friend WithEvents Button4 As Button
+    Friend WithEvents DataGridView1 As DataGridView
 End Class
