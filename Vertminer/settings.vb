@@ -18,6 +18,7 @@ Public Class settings
             TextBox4.Text = p2pool_port
             TextBox5.Text = mining_port
             Intensity_Text.Text = mining_intensity
+            Devices_Text.Text = devices
             Fee_Address_Text.Text = p2pool_fee_address
             ComboBox1.SelectedItem = p2pool_network
             If keep_miner_alive = True Then
@@ -86,6 +87,11 @@ Public Class settings
         Try
             If Not Intensity_Text.Text = "" Then
                 mining_intensity = Convert.ToDecimal(Intensity_Text.Text)
+            End If
+            If Devices_Text.Text = "" Then
+                devices = "*"
+            Else
+                devices = Devices_Text.Text
             End If
             If Not Node_Fee.Text = "" Then
                 p2pool_node_fee = Convert.ToInt32(Node_Fee.Text.Replace("%", ""))
@@ -198,6 +204,7 @@ Public Class settings
             newjson.nvidia_version = nvidia_version
             newjson.cpu_version = cpu_version
             newjson.default_miner = ""
+            newjson.devices = ""
             newjson.pools.Clear()
             Dim poolcount = pools.Count()
             Dim workercount = workers.Count()

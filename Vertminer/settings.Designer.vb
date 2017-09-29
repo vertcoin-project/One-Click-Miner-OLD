@@ -71,6 +71,9 @@ Partial Class settings
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.PictureBox7 = New System.Windows.Forms.PictureBox()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Devices_Text = New System.Windows.Forms.TextBox()
         CType(Me.PictureBox9, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -89,6 +92,7 @@ Partial Class settings
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
+        CType(Me.PictureBox7, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'CheckBox3
@@ -326,7 +330,7 @@ Partial Class settings
         'PictureBox10
         '
         Me.PictureBox10.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.help_small
-        Me.PictureBox10.Location = New System.Drawing.Point(12, 87)
+        Me.PictureBox10.Location = New System.Drawing.Point(15, 67)
         Me.PictureBox10.Name = "PictureBox10"
         Me.PictureBox10.Size = New System.Drawing.Size(15, 15)
         Me.PictureBox10.TabIndex = 43
@@ -338,7 +342,7 @@ Partial Class settings
         'Intensity_Text
         '
         Me.Intensity_Text.BackColor = System.Drawing.SystemColors.Window
-        Me.Intensity_Text.Location = New System.Drawing.Point(33, 84)
+        Me.Intensity_Text.Location = New System.Drawing.Point(36, 64)
         Me.Intensity_Text.MaxLength = 5
         Me.Intensity_Text.Name = "Intensity_Text"
         Me.Intensity_Text.Size = New System.Drawing.Size(62, 20)
@@ -474,7 +478,7 @@ Partial Class settings
         '
         Me.Label7.AutoSize = True
         Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.Location = New System.Drawing.Point(41, 68)
+        Me.Label7.Location = New System.Drawing.Point(44, 48)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(46, 13)
         Me.Label7.TabIndex = 42
@@ -601,6 +605,9 @@ Partial Class settings
         '
         'GroupBox3
         '
+        Me.GroupBox3.Controls.Add(Me.PictureBox7)
+        Me.GroupBox3.Controls.Add(Me.Label2)
+        Me.GroupBox3.Controls.Add(Me.Devices_Text)
         Me.GroupBox3.Controls.Add(Me.PictureBox10)
         Me.GroupBox3.Controls.Add(Me.Label7)
         Me.GroupBox3.Controls.Add(Me.Intensity_Text)
@@ -611,6 +618,37 @@ Partial Class settings
         Me.GroupBox3.TabIndex = 12
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Mining"
+        '
+        'PictureBox7
+        '
+        Me.PictureBox7.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.help_small
+        Me.PictureBox7.Location = New System.Drawing.Point(15, 108)
+        Me.PictureBox7.Name = "PictureBox7"
+        Me.PictureBox7.Size = New System.Drawing.Size(15, 15)
+        Me.PictureBox7.TabIndex = 46
+        Me.PictureBox7.TabStop = False
+        Me.ToolTip.SetToolTip(Me.PictureBox7, resources.GetString("PictureBox7.ToolTip"))
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Location = New System.Drawing.Point(44, 89)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(46, 13)
+        Me.Label2.TabIndex = 45
+        Me.Label2.Text = "Devices"
+        '
+        'Devices_Text
+        '
+        Me.Devices_Text.BackColor = System.Drawing.SystemColors.Window
+        Me.Devices_Text.Location = New System.Drawing.Point(36, 105)
+        Me.Devices_Text.MaxLength = 5
+        Me.Devices_Text.Name = "Devices_Text"
+        Me.Devices_Text.Size = New System.Drawing.Size(62, 20)
+        Me.Devices_Text.TabIndex = 44
+        Me.Devices_Text.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.ToolTip.SetToolTip(Me.Devices_Text, resources.GetString("Devices_Text.ToolTip"))
         '
         'settings
         '
@@ -649,6 +687,7 @@ Partial Class settings
         Me.GroupBox1.PerformLayout()
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox3.PerformLayout()
+        CType(Me.PictureBox7, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -699,4 +738,7 @@ Partial Class settings
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents GroupBox3 As GroupBox
     Friend WithEvents Label1 As Label
+    Friend WithEvents PictureBox7 As PictureBox
+    Friend WithEvents Label2 As Label
+    Friend WithEvents Devices_Text As TextBox
 End Class

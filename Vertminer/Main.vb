@@ -1007,6 +1007,7 @@ Public Class Main
             nvidia_version = settingsJSON.nvidia_version
             cpu_version = settingsJSON.cpu_version
             default_miner = settingsJSON.default_miner
+            devices = settingsJSON.devices
             pools.Clear()
             workers.Clear()
             passwords.Clear()
@@ -1069,6 +1070,7 @@ Public Class Main
             newjson.nvidia_version = nvidia_version
             newjson.cpu_version = cpu_version
             newjson.default_miner = default_miner
+            newjson.devices = devices
             newjson.pools.Clear()
             Dim poolcount = pools.Count()
             Dim workercount = workers.Count()
@@ -1243,6 +1245,7 @@ Public Class Main
                 Next
                 newjson.algorithm = "Lyra2REv2"
                 newjson.intensity = mining_intensity
+                newjson.devices = devices
                 jsonstring = JSONConverter.Serialize(newjson)
                 jsonstring = jsonstring.Insert(jsonstring.Length - 1, ",""no-extranonce""" & ": " & "true")
             ElseIf nvidiaminer = True Then
@@ -1250,6 +1253,7 @@ Public Class Main
                 minersettingsfile = nvidiafolder & "\ccminer.conf"
                 newjson.algo = "lyra2v2"
                 newjson.intensity = mining_intensity
+                newjson.devices = devices
                 For x As Integer = 0 To count - 1
                     Dim pooljson As Pools_JSON = New Pools_JSON()
                     pooljson.url = pools(x)

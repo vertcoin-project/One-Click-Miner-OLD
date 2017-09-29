@@ -23,6 +23,7 @@
     Public Property nvidia_version
     Public Property cpu_version
     Public Property default_miner As String
+    Public Property devices As String
     Public Property pools As New List(Of Pools_JSON)
 
 End Class
@@ -40,6 +41,7 @@ Public Class AMD_Miner_Settings_JSON
     Public Property pools As New List(Of AMD_Pools_JSON)
     Public Property algorithm As String
     Public Property intensity As Decimal
+    Public Property devices As String
 
 End Class
 
@@ -56,6 +58,7 @@ Public Class NVIDIA_Miner_Settings_JSON
     Public Property pools As New List(Of Pools_JSON)
     Public Property algo As String
     Public Property intensity As Decimal
+    Public Property devices As String
 
 End Class
 

@@ -109,6 +109,7 @@ Module variables
     'Miner Configuration
     Public Property minersettingsfile As String
     Public Property mining_intensity As Decimal = 0
+    Public Property devices As String
     Public Property pool As String
     Public Property pools As New ArrayList()
     Public Property workers As New ArrayList()
