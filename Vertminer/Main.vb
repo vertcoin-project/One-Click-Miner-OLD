@@ -98,8 +98,8 @@ Public Class Main
                 End If
             End If
             DataGridView1.DataSource = Nothing
-            Invoke(New MethodInvoker(AddressOf Update_Status_Text))
-            'Invoke(New MethodInvoker(AddressOf Update_Miner_Text))
+            Invoke(New MethodInvoker(AddressOf Uptime_Checker_Status_Text))
+            Invoke(New MethodInvoker(AddressOf Update_Miner_Text))
             BeginInvoke(New MethodInvoker(AddressOf Detected))
             UpdateStatsInterval.Start()
             Uptime_Timer.Start()
@@ -641,7 +641,7 @@ Public Class Main
 
     End Sub
 
-    Public Sub Update_Status_Text()
+    Public Sub Uptime_Checker_Status_Text()
 
         'Miner Info
         If amd_detected = True Or nvidia_detected = True Or cpu_detected = True Then
@@ -653,6 +653,8 @@ Public Class Main
             Button3.Text = "Stop"
         Else
             TextBox2.Text = "Offline"
+            Button3.Text = "Start"
+            TextBox3.Text = "0 kh/s"
         End If
         'P2Pool Info
         If p2pool_detected = True Then
@@ -664,12 +666,42 @@ Public Class Main
             CheckBox1.Checked = True
         Else
             TextBox1.Text = "Offline"
+            CheckBox1.Checked = False
         End If
+
+    End Sub
+
+    Public Sub Update_Miner_Text()
+
+        ''Miner Info
+        'If amd_detected = True Or nvidia_detected = True Or cpu_detected = True Then
+        '    If miner_hashrate > 0 Then
+        '        TextBox2.Text = "Running"
+        '    Else
+        '        TextBox2.Text = "Waiting for share"
+        '    End If
+        '    Button3.Text = "Stop"
+        'Else
+        '    TextBox2.Text = "Offline"
+        '    Button3.Text = "Start"
+        'End If
+        ''P2Pool Info
+        'If p2pool_detected = True Then
+        '    If p2pool_loaded = True Then
+        '        TextBox1.Text = "Running: Network " & p2pool_network
+        '    Else
+        '        TextBox1.Text = "Loading"
+        '    End If
+        '    CheckBox1.Checked = True
+        'Else
+        '    TextBox1.Text = "Offline"
+        '    CheckBox1.Checked = False
+        'End If
         'Miner Hashrate
         If api_connected = True Then
             If miner_hashrate < 1000 Then
                 miner_hashrate = Math.Round(miner_hashrate, 2)
-                TextBox3.Text = miner_hashrate.ToString(CultureInfo.CreateSpecificCulture("en-US")) & " Kh/s"
+                TextBox3.Text = miner_hashrate.ToString(CultureInfo.CreateSpecificCulture("en-US")) & " kh/s"
             ElseIf miner_hashrate >= 1000 And miner_hashrate < 1000000 Then
                 miner_hashrate = Math.Round((miner_hashrate / 1000), 2)
                 TextBox3.Text = miner_hashrate.ToString(CultureInfo.CreateSpecificCulture("en-US")) & " Mh/s"
@@ -680,6 +712,8 @@ Public Class Main
                 miner_hashrate = Math.Round((miner_hashrate / 1000000000), 2)
                 TextBox3.Text = miner_hashrate.ToString(CultureInfo.CreateSpecificCulture("en-US")) & " Th/s"
             End If
+        Else
+            TextBox3.Text = "0 kh/s"
         End If
 
     End Sub
@@ -994,6 +1028,7 @@ Public Class Main
             keep_miner_alive = settingsJSON.keep_miner_alive
             keep_p2pool_alive = settingsJSON.keep_p2pool_alive
             use_upnp = settingsJSON.use_upnp
+            show_cli = settingsJSON.show_cli
             p2pool_network = settingsJSON.p2pool_network
             p2pool_node_fee = settingsJSON.p2pool_node_fee
             p2pool_donation = settingsJSON.p2pool_donation
@@ -1057,6 +1092,7 @@ Public Class Main
             newjson.keep_miner_alive = keep_miner_alive
             newjson.keep_p2pool_alive = keep_p2pool_alive
             newjson.use_upnp = use_upnp
+            newjson.show_cli = show_cli
             newjson.p2pool_network = p2pool_network
             newjson.p2pool_node_fee = p2pool_node_fee
             newjson.p2pool_donation = p2pool_donation
@@ -1237,15 +1273,15 @@ Public Class Main
                 newjson = New AMD_Miner_Settings_JSON()
                 minersettingsfile = amdfolder & "\sgminer.conf"
                 For x As Integer = 0 To count - 1
-                    Dim pooljson As AMD_Pools_JSON = New AMD_Pools_JSON()
+                    Dim pooljson As Pools_JSON = New Pools_JSON()
                     pooljson.url = pools(x)
                     pooljson.user = workers(x)
-                    pooljson.userpass = passwords(x)
+                    pooljson.pass = passwords(x)
                     newjson.pools.Add(pooljson)
                 Next
                 newjson.algorithm = "Lyra2REv2"
                 newjson.intensity = mining_intensity
-                newjson.devices = devices
+                newjson.device = devices
                 jsonstring = JSONConverter.Serialize(newjson)
                 jsonstring = jsonstring.Insert(jsonstring.Length - 1, ",""no-extranonce""" & ": " & "true")
             ElseIf nvidiaminer = True Then
@@ -1355,23 +1391,32 @@ Public Class Main
             If count > 0 Then
                 Invoke(New MethodInvoker(AddressOf Update_Miner_Config))
             End If
-            If amdminer = True Then
-                miner_config = amdfolder & "\ocm_sgminer.exe"
-            ElseIf nvidiaminer = True Then
-                miner_config = nvidiafolder & "\ocm_ccminer.exe"
-            ElseIf cpuminer = True Then
-                miner_config = cpufolder & "\ocm_cpuminer.exe"
-            End If
             If amd_detected = True Or nvidia_detected = True Or cpu_detected = True Then
                 ' Process is running
             Else
                 ' Process is not running
                 'JSON Configuration
+                Dim psi As New ProcessStartInfo
+                If amdminer = True Then
+                    'miner_config = amdfolder & "\ocm_sgminer.exe"
+                    psi = New ProcessStartInfo("cmd")
+                    psi.Arguments = ("/K cd /d" & amdfolder & " & " & "setx GPU_MAX_ALLOC_PERCENT 100" & " & " & "setx GPU_SINGLE_ALLOC_PERCENT 100" & " & " & "ocm_sgminer.exe --api-listen --config " & "sgminer.conf" & " & " & " exit /B")
+                ElseIf nvidiaminer = True Then
+                    'miner_config = nvidiafolder & "\ocm_ccminer.exe"
+                    psi = New ProcessStartInfo(nvidiafolder & "\ocm_ccminer.exe")
+                ElseIf cpuminer = True Then
+                    'miner_config = cpufolder & "\ocm_cpuminer.exe"
+                    psi = New ProcessStartInfo(cpufolder & "\ocm_cpuminer.exe")
+                End If
                 mining_running = True
-                Dim psi As New ProcessStartInfo(miner_config)
-                psi.CreateNoWindow = True
-                psi.UseShellExecute = False
-                Button3.Text = "Stop"
+                'Dim psi As New ProcessStartInfo(miner_config)
+                If show_cli = True Then
+                    psi.CreateNoWindow = False
+                    psi.UseShellExecute = True
+                Else
+                    psi.CreateNoWindow = True
+                    psi.UseShellExecute = False
+                End If
                 Process.Start(psi)
 
                 'Command Line Configuration
@@ -1413,6 +1458,20 @@ Public Class Main
 
     End Sub
 
+    Public Sub Stop_Miner()
+
+        Button3.Text = "Start"
+        miner_hashrate = 0
+
+    End Sub
+
+    Public Sub Stop_P2Pool()
+
+        CheckBox1.Checked = False
+        TextBox1.Text = "Offline"
+
+    End Sub
+
     Public Sub Kill_Miner()
 
         Try
@@ -1448,8 +1507,13 @@ Public Class Main
             Else
                 ' Process is not running
                 Dim psi As New ProcessStartInfo("cmd")
-                psi.CreateNoWindow = True
-                psi.UseShellExecute = False
+                If show_cli = True Then
+                    psi.CreateNoWindow = False
+                    psi.UseShellExecute = True
+                Else
+                    psi.CreateNoWindow = True
+                    psi.UseShellExecute = False
+                End If
                 command = File.ReadAllText(p2pool_config_file)
                 command = command.Replace(Environment.NewLine, " & ")
                 psi.Arguments = ("/K cd /d" & p2poolfolder & " & " & command)
@@ -1587,6 +1651,7 @@ Public Class Main
                 ElseIf cpu_detected = True Then
                     tcpClient.Connect("127.0.0.1", 4048)
                 End If
+                Dim RawData() As String
                 Dim networkStream As NetworkStream = tcpClient.GetStream()
                 If networkStream.CanWrite And networkStream.CanRead Then
                     api_connected = True
@@ -1595,10 +1660,16 @@ Public Class Main
                     Dim bytes(tcpClient.ReceiveBufferSize) As Byte
                     networkStream.Read(bytes, 0, CInt(tcpClient.ReceiveBufferSize))
                     Dim returndata As String = Encoding.ASCII.GetString(bytes)
-                    Dim RawData() As String = returndata.Split(";")
+                    If amd_detected = True Then
+                        RawData = returndata.Split(",")
+                    Else
+                        RawData = returndata.Split(";")
+                    End If
                     For Each line As String In RawData
                         If line.Contains("KHS=") And Not line.Contains("NETKHS=") Then
                             miner_hashrate = Convert.ToDecimal((line.Replace("KHS=", "")))
+                        ElseIf line.Contains("KHS av=") And Not line.Contains("NETKHS=") Then
+                            miner_hashrate = Convert.ToDecimal((line.Replace("KHS av=", "")))
                         End If
                     Next
                 Else
@@ -1610,7 +1681,7 @@ Public Class Main
                 End If
                 tcpClient.Close()
                 networkStream.Close()
-                'BeginInvoke(New MethodInvoker(AddressOf Update_Miner_Text))
+                BeginInvoke(New MethodInvoker(AddressOf Update_Miner_Text))
             End If
             'P2Pool API
             If p2pool_detected = True Then
@@ -1630,7 +1701,7 @@ Public Class Main
                     p2pool_loaded = False
                 End Try
             End If
-            BeginInvoke(New MethodInvoker(AddressOf Update_Status_Text))
+            'Invoke(New MethodInvoker(AddressOf Uptime_Checker_Status_Text))
         Catch ex As Exception
             Invoke(New MethodInvoker(AddressOf SaveSettingsJSON))
         Finally
@@ -1751,8 +1822,9 @@ Public Class Main
                     If amd_detected = False And nvidia_detected = False And cpu_detected = False Then
                         If keep_miner_alive = True Then
                             BeginInvoke(New MethodInvoker(AddressOf Start_Miner))
+                        Else
+                            BeginInvoke(New MethodInvoker(AddressOf Stop_Miner))
                         End If
-                    Else
                     End If
                 Else 'Miner not initialized
                 End If
@@ -1765,6 +1837,7 @@ Public Class Main
                 Else 'P2Pool not initialized
                 End If
             End If
+            BeginInvoke(New MethodInvoker(AddressOf Uptime_Checker_Status_Text))
             Uptime_Checker.CancelAsync()
         Catch ex As Exception
         End Try
@@ -2277,6 +2350,7 @@ Public Class Main
         Invoke(New MethodInvoker(AddressOf SaveSettingsJSON))
         'Starts mining if miner software is already detected.  If not, downloads miner software.
         If Button3.Text = "Start" Then
+            Button3.Text = "Stop"
             If checkcount > 0 Then
                 If default_miner = "amd" Then
                     'Checks if AMD miner has already been downloaded and installed
@@ -2359,13 +2433,13 @@ Public Class Main
                 MsgBox("Please select an entered pool before starting miner.")
             End If
         ElseIf Button3.Text = "Stop" Then
-                amdminer = False
-                nvidiaminer = False
-                cpuminer = False
-                mining_initialized = False
-                Button3.Text = "Start"
-                BeginInvoke(New MethodInvoker(AddressOf Kill_Miner))
-            End If
+            Button3.Text = "Start"
+            amdminer = False
+            nvidiaminer = False
+            cpuminer = False
+            mining_initialized = False
+            BeginInvoke(New MethodInvoker(AddressOf Kill_Miner))
+        End If
 
     End Sub
 

@@ -61,6 +61,7 @@ Module variables
     Public Property start_with_windows As Boolean
     Public Property autostart_p2pool As Boolean
     Public Property autostart_mining As Boolean
+    Public Property show_cli As Boolean
     Public Property autostart_miner As String
     Public Property p2pool_network As String = 1
     Public Property p2pool_node_fee As Integer = 0

@@ -58,6 +58,10 @@ Partial Class settings
         Me.CheckBox7 = New System.Windows.Forms.CheckBox()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.PictureBox7 = New System.Windows.Forms.PictureBox()
+        Me.Devices_Text = New System.Windows.Forms.TextBox()
+        Me.PictureBox13 = New System.Windows.Forms.PictureBox()
+        Me.CheckBox2 = New System.Windows.Forms.CheckBox()
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
@@ -71,9 +75,7 @@ Partial Class settings
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
-        Me.PictureBox7 = New System.Windows.Forms.PictureBox()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.Devices_Text = New System.Windows.Forms.TextBox()
         CType(Me.PictureBox9, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -84,6 +86,8 @@ Partial Class settings
         CType(Me.PictureBox5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox8, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox7, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox13, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         CType(Me.PictureBox11, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox14, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -92,7 +96,6 @@ Partial Class settings
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
-        CType(Me.PictureBox7, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'CheckBox3
@@ -454,6 +457,50 @@ Partial Class settings
         Me.ComboBox1.TabIndex = 3
         Me.ToolTip.SetToolTip(Me.ComboBox1, "Select the network in which p2pool will connect.")
         '
+        'PictureBox7
+        '
+        Me.PictureBox7.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.help_small
+        Me.PictureBox7.Location = New System.Drawing.Point(15, 108)
+        Me.PictureBox7.Name = "PictureBox7"
+        Me.PictureBox7.Size = New System.Drawing.Size(15, 15)
+        Me.PictureBox7.TabIndex = 46
+        Me.PictureBox7.TabStop = False
+        Me.ToolTip.SetToolTip(Me.PictureBox7, resources.GetString("PictureBox7.ToolTip"))
+        '
+        'Devices_Text
+        '
+        Me.Devices_Text.BackColor = System.Drawing.SystemColors.Window
+        Me.Devices_Text.Location = New System.Drawing.Point(36, 105)
+        Me.Devices_Text.MaxLength = 5
+        Me.Devices_Text.Name = "Devices_Text"
+        Me.Devices_Text.Size = New System.Drawing.Size(62, 20)
+        Me.Devices_Text.TabIndex = 44
+        Me.Devices_Text.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.ToolTip.SetToolTip(Me.Devices_Text, resources.GetString("Devices_Text.ToolTip"))
+        '
+        'PictureBox13
+        '
+        Me.PictureBox13.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.help_small
+        Me.PictureBox13.Location = New System.Drawing.Point(9, 138)
+        Me.PictureBox13.Name = "PictureBox13"
+        Me.PictureBox13.Size = New System.Drawing.Size(15, 15)
+        Me.PictureBox13.TabIndex = 53
+        Me.PictureBox13.TabStop = False
+        Me.ToolTip.SetToolTip(Me.PictureBox13, "Toggle to allow Mining and P2Pool Node CLI windows to be viewed while running." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "M" &
+        "ust restart miner/p2pool if enabled while running." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10))
+        '
+        'CheckBox2
+        '
+        Me.CheckBox2.AutoSize = True
+        Me.CheckBox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CheckBox2.Location = New System.Drawing.Point(29, 138)
+        Me.CheckBox2.Name = "CheckBox2"
+        Me.CheckBox2.Size = New System.Drawing.Size(72, 17)
+        Me.CheckBox2.TabIndex = 52
+        Me.CheckBox2.Text = "Show CLI"
+        Me.ToolTip.SetToolTip(Me.CheckBox2, "Toggle to minimize the OCM into your system tray whenever minimize is clicked.")
+        Me.CheckBox2.UseVisualStyleBackColor = True
+        '
         'Label6
         '
         Me.Label6.AutoSize = True
@@ -578,6 +625,8 @@ Partial Class settings
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.PictureBox13)
+        Me.GroupBox1.Controls.Add(Me.CheckBox2)
         Me.GroupBox1.Controls.Add(Me.Button5)
         Me.GroupBox1.Controls.Add(Me.PictureBox8)
         Me.GroupBox1.Controls.Add(Me.PictureBox1)
@@ -619,16 +668,6 @@ Partial Class settings
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Mining"
         '
-        'PictureBox7
-        '
-        Me.PictureBox7.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.help_small
-        Me.PictureBox7.Location = New System.Drawing.Point(15, 108)
-        Me.PictureBox7.Name = "PictureBox7"
-        Me.PictureBox7.Size = New System.Drawing.Size(15, 15)
-        Me.PictureBox7.TabIndex = 46
-        Me.PictureBox7.TabStop = False
-        Me.ToolTip.SetToolTip(Me.PictureBox7, resources.GetString("PictureBox7.ToolTip"))
-        '
         'Label2
         '
         Me.Label2.AutoSize = True
@@ -638,17 +677,6 @@ Partial Class settings
         Me.Label2.Size = New System.Drawing.Size(46, 13)
         Me.Label2.TabIndex = 45
         Me.Label2.Text = "Devices"
-        '
-        'Devices_Text
-        '
-        Me.Devices_Text.BackColor = System.Drawing.SystemColors.Window
-        Me.Devices_Text.Location = New System.Drawing.Point(36, 105)
-        Me.Devices_Text.MaxLength = 5
-        Me.Devices_Text.Name = "Devices_Text"
-        Me.Devices_Text.Size = New System.Drawing.Size(62, 20)
-        Me.Devices_Text.TabIndex = 44
-        Me.Devices_Text.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.ToolTip.SetToolTip(Me.Devices_Text, resources.GetString("Devices_Text.ToolTip"))
         '
         'settings
         '
@@ -675,6 +703,8 @@ Partial Class settings
         CType(Me.PictureBox5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox8, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox7, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox13, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         CType(Me.PictureBox11, System.ComponentModel.ISupportInitialize).EndInit()
@@ -687,7 +717,6 @@ Partial Class settings
         Me.GroupBox1.PerformLayout()
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox3.PerformLayout()
-        CType(Me.PictureBox7, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -741,4 +770,6 @@ Partial Class settings
     Friend WithEvents PictureBox7 As PictureBox
     Friend WithEvents Label2 As Label
     Friend WithEvents Devices_Text As TextBox
+    Friend WithEvents PictureBox13 As PictureBox
+    Friend WithEvents CheckBox2 As CheckBox
 End Class

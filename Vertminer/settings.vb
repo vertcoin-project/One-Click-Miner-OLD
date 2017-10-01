@@ -56,6 +56,11 @@ Public Class settings
             Else
                 CheckBox7.Checked = False
             End If
+            If show_cli = True Then
+                CheckBox2.Checked = True
+            Else
+                CheckBox2.Checked = False
+            End If
             If p2pool_network = "1" Then
                 If p2pool_port = "9347" Or p2pool_port = "" Then
                     p2pool_port = "9346"
@@ -89,7 +94,7 @@ Public Class settings
                 mining_intensity = Convert.ToDecimal(Intensity_Text.Text)
             End If
             If Devices_Text.Text = "" Then
-                devices = "*"
+                devices = ""
             Else
                 devices = Devices_Text.Text
             End If
@@ -147,6 +152,11 @@ Public Class settings
                 start_with_windows = True
             Else
                 start_with_windows = False
+            End If
+            If CheckBox2.Checked = True Then
+                show_cli = True
+            Else
+                show_cli = False
             End If
             If ComboBox1.SelectedItem = "1" Then
                 p2pool_network = "1"

@@ -9,7 +9,8 @@
     Public Property mine_when_idle As Boolean
     Public Property keep_miner_alive As Boolean
     Public Property keep_p2pool_alive As Boolean
-    Public Property use_upnp As Boolean = False
+    Public Property use_upnp As Boolean
+    Public Property show_cli As Boolean
     Public Property p2pool_network As String
     Public Property p2pool_node_fee As Integer
     Public Property p2pool_donation As Integer
@@ -38,10 +39,10 @@ End Class
 
 Public Class AMD_Miner_Settings_JSON
 
-    Public Property pools As New List(Of AMD_Pools_JSON)
+    Public Property pools As New List(Of Pools_JSON)
     Public Property algorithm As String
     Public Property intensity As Decimal
-    Public Property devices As String
+    Public Property device As String
 
 End Class
 

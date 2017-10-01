@@ -127,22 +127,22 @@ Network 2 is recommended for casual miners (single-card &lt;100MH) miners.
 
 NOTICE: To run P2Pool, you must have a Vertcoin Wallet running locally.</value>
   </data>
-  <metadata name="FolderBrowserDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>116, 17</value>
-  </metadata>
   <data name="PictureBox7.ToolTip" xml:space="preserve">
     <value>Select which of your GPU devices to use.
 Example: '0,1,4' launches the miner using GPU's 1,2 and 5.
 Example: '0,2-5' launches the miner using GPU's 1,3,4,5,6
-Example: Blank or '*' launches miner using all GPU's.</value>
+Example: Leaving box blank launches miner using all GPU's.</value>
   </data>
   <data name="Devices_Text.ToolTip" xml:space="preserve">
     <value>Select which of your GPU devices to use.
 Example: '0,1,4' launches the miner using GPU's 1,2 and 5.
 Example: '0,2-5' launches the miner using GPU's 1,3,4,5,6
-Example: Blank or '*' launches miner using all GPU's.
+Example: Leaving box blank launches miner using all GPU's.
 </value>
   </data>
+  <metadata name="FolderBrowserDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>116, 17</value>
+  </metadata>
   <metadata name="$this.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
