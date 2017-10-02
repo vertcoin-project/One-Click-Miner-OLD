@@ -83,3 +83,9 @@ shares supplied by the pool. It is not uncommon to see a hash rate of
 0.00 kh/s if mining with a low hash rate on p2pool. The lower your hash
 rate, the longer it takes to solve a share on the pool.
 
+
+License
+-------
+
+Vertcoin One-Click Miner is released under the terms of the MIT license.
+See http://opensource.org/licenses/MIT.
