@@ -16,8 +16,7 @@ icon to launch the miner.
 **Finding P2Pool Nodes**
 
 First things first, let's find a pool to mine to. Click the 'Find P2Pool
-Nodes' button in the top-center of the OCM. You should see a screen that
-looks like this.
+Nodes' button in the top-center of the OCM.
 
 Click the 'Scan' button to scan for active nodes on the P2Pool network.
 The 'Network 1' and 'Network 2' tabs will populate with pools showing
@@ -31,9 +30,6 @@ recommended to use Network 1.*
 
 Once you have selected your pools, copy the Vertcoin wallet address you
 wish to mine to into the box and click 'Add Selected Pool(s)'.
-
-Now that you’ve added pools, the OCM main window should look something
-like this.
 
 **Hosting P2Pool Node**
 
@@ -73,12 +69,11 @@ Vertcoin, via your graphics card or your CPU (processor). There are
 essentially two types of graphics cards, AMD and Nvidia. Once you've
 decided what you want to mine with, click the drop-down box below the
 Miner status box in the top-left-hand corner of the OCM and select your
-hardware type. See below.
+hardware type.
 
 Once you've selected your hardware type, click the 'Start' button. If
 you haven't started the miner before or if there is an update available,
-you will see a pop-up message prompting a downloaded like the image
-below. Click 'OK' to download and install the miner.
+you will see a pop-up message prompting a download. Click 'OK' to download and install the miner.
 
 Now that your miner is downloaded, click the 'Start' button again to
 start mining. You will see 'Waiting for Share' or 'Running' in the Miner
@@ -86,6 +81,5 @@ status window if your miner is running. You will start to see your hash
 rate climb at the bottom of the OCM window once you start to solve
 shares supplied by the pool. It is not uncommon to see a hash rate of
 0.00 kh/s if mining with a low hash rate on p2pool. The lower your hash
-rate, the longer it takes to solve a share on the pool. See below for an
-image of the OCM mining.
+rate, the longer it takes to solve a share on the pool.
 
