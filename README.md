@@ -41,8 +41,8 @@ do is click the ‘Run Local Node’ checkbox that’s located in the
 top-right-hand corner of the OCM main window.
 
 If you haven't run a local node before or if there is an update
-available, you will see a pop-up message prompting a downloaded like the
-image below. Click 'OK' to download and install P2Pool. You will also be
+available, you will see a pop-up message prompting a download. 
+Click 'OK' to download and install P2Pool. You will also be
 prompted to add a wallet address and password to your local node address
 so the OCM can add your new node to the pool list.
 
