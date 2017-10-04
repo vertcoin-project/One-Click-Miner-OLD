@@ -99,10 +99,10 @@ Public Class settings
                 devices = Devices_Text.Text
             End If
             If Not Node_Fee.Text = "" Then
-                p2pool_node_fee = Convert.ToInt32(Node_Fee.Text.Replace("%", ""))
+                p2pool_node_fee = Convert.ToDecimal(Node_Fee.Text.Replace("%", ""))
             End If
             If Not Node_Donation.Text = "" Then
-                p2pool_donation = Convert.ToInt32(Node_Donation.Text.Replace("%", ""))
+                p2pool_donation = Convert.ToDecimal(Node_Donation.Text.Replace("%", ""))
             End If
             If Not TextBox3.Text = "" Then
                 max_connections = TextBox3.Text
