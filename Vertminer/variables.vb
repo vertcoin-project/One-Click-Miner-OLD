@@ -64,9 +64,9 @@ Module variables
     Public Property show_cli As Boolean
     Public Property autostart_miner As String
     Public Property p2pool_network As String = 1
-    Public Property p2pool_node_fee As Decimal = 0
+    Public Property p2pool_node_fee As Integer = 0
     Public Property p2pool_fee_address As String = "VpBsRnN749jYHE9hT8dZreznHfmFMdE1yG"
-    Public Property p2pool_donation As Decimal = 1
+    Public Property p2pool_donation As Integer = 1
     Public Property max_connections As Integer = 50
 
     'P2Pool Variables
