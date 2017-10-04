@@ -79,7 +79,7 @@ Public Class Main
                     mining_initialized = True
                     BeginInvoke(New MethodInvoker(AddressOf Start_Miner))
                 ElseIf default_miner = "nvidia" Then
-                    If System.IO.File.Exists(nvidiafolder & "\ocm_ccminer.exe") = True Then
+                    If System.IO.File.Exists(nvidiafolder & "\ocm_vertminer.exe") = True Then
                         nvidiaminer = True
                     End If
                     mining_initialized = True
@@ -189,7 +189,7 @@ Public Class Main
             End If
         Next
         For Each p As Process In System.Diagnostics.Process.GetProcesses
-            If p.ProcessName.Contains("ocm_ccminer") Then
+            If p.ProcessName.Contains("ocm_vertminer") Then
                 nvidia_detected = True
                 Exit For
             Else
@@ -213,7 +213,7 @@ Public Class Main
             End If
         Next
         For Each p As Process In System.Diagnostics.Process.GetProcesses
-            If p.ProcessName = ("ccminer") Or p.ProcessName = ("sgminer") Or p.ProcessName = ("cpuminer") And Not p.ProcessName.Contains("ocm") Then
+            If p.ProcessName = ("vertminer") Or p.ProcessName = ("sgminer") Or p.ProcessName = ("cpuminer") And Not p.ProcessName.Contains("ocm") Then
                 otherminer = True
                 Exit For
             Else
@@ -325,7 +325,7 @@ Public Class Main
                         System.Threading.Thread.Sleep(100)
                         System.IO.Directory.CreateDirectory(nvidiafolder)
                     End If
-                    downloadclient.DownloadFileAsync(New Uri(updatelink), settingsfolder & "\nvidia\ccminer.zip", True)
+                    downloadclient.DownloadFileAsync(New Uri(updatelink), settingsfolder & "\nvidia\vertminer.zip", True)
                 Else
                     progress.Close()
                 End If
@@ -430,8 +430,8 @@ Public Class Main
                     exe = settingsfolder & "\amd\ocm_sgminer.exe"
                     miner_config_file = settingsfolder & "\amd\config.bat"
                 ElseIf nvidiaminer = True Then
-                    zipPath = settingsfolder & "\nvidia\ccminer.zip"
-                    exe = settingsfolder & "\nvidia\ocm_ccminer.exe"
+                    zipPath = settingsfolder & "\nvidia\vertminer.zip"
+                    exe = settingsfolder & "\nvidia\ocm_vertminer.exe"
                     dll = settingsfolder & "\nvidia\msvcr120.dll"
                     miner_config_file = settingsfolder & "\nvidia\config.bat"
                 ElseIf cpuminer = True Then
@@ -701,16 +701,16 @@ Public Class Main
         If api_connected = True Then
             If miner_hashrate < 1000 Then
                 miner_hashrate = Math.Round(miner_hashrate, 2)
-                TextBox3.Text = miner_hashrate.ToString(CultureInfo.CreateSpecificCulture("en-US")) & " kh/s"
+                TextBox3.Text = miner_hashrate.ToString & " kh/s"
             ElseIf miner_hashrate >= 1000 And miner_hashrate < 1000000 Then
                 miner_hashrate = Math.Round((miner_hashrate / 1000), 2)
-                TextBox3.Text = miner_hashrate.ToString(CultureInfo.CreateSpecificCulture("en-US")) & " Mh/s"
+                TextBox3.Text = miner_hashrate.ToString & " Mh/s"
             ElseIf miner_hashrate >= 1000000 And miner_hashrate < 1000000000 Then
                 miner_hashrate = Math.Round((miner_hashrate / 1000000), 2)
-                TextBox3.Text = miner_hashrate.ToString(CultureInfo.CreateSpecificCulture("en-US")) & " Gh/s"
+                TextBox3.Text = miner_hashrate.ToString & " Gh/s"
             ElseIf miner_hashrate >= 1000000000 And miner_hashrate < 1000000000000 Then
                 miner_hashrate = Math.Round((miner_hashrate / 1000000000), 2)
-                TextBox3.Text = miner_hashrate.ToString(CultureInfo.CreateSpecificCulture("en-US")) & " Th/s"
+                TextBox3.Text = miner_hashrate.ToString & " Th/s"
             End If
         Else
             TextBox3.Text = "0 kh/s"
@@ -1286,7 +1286,7 @@ Public Class Main
                 jsonstring = jsonstring.Insert(jsonstring.Length - 1, ",""no-extranonce""" & ": " & "true")
             ElseIf nvidiaminer = True Then
                 newjson = New NVIDIA_Miner_Settings_JSON()
-                minersettingsfile = nvidiafolder & "\ccminer.conf"
+                minersettingsfile = nvidiafolder & "\vertminer.conf"
                 newjson.algo = "lyra2v2"
                 newjson.intensity = mining_intensity
                 newjson.devices = devices
@@ -1357,7 +1357,7 @@ Public Class Main
             '    miner_config = "setx GPU_MAX_HEAP_SIZE 100" & Environment.NewLine & "setx GPU_USE_SYNC_OBJECTS 1" & Environment.NewLine & "setx GPU_MAX_ALLOC_PERCENT 100" & Environment.NewLine & "setx GPU_SINGLE_ALLOC_PERCENT 100" & Environment.NewLine & "del *.bin" & Environment.NewLine & "ocm_sgminer.exe --kernel Lyra2REv2 --no-extranonce " & "-u " & worker & " -p " & password & Intensity_Buffer & additional_miner_config & pool & Environment.NewLine & "exit /B"
             'ElseIf nvidiaminer = True Then
             '    miner_config_file = settingsfolder & "\nvidia\config.bat"
-            '    miner_config = "ocm_ccminer.exe -a lyra2v2 " & "-u " & worker & " -p " & password & Intensity_Buffer & additional_miner_config & poolcommand & Environment.NewLine & "exit /B"
+            '    miner_config = "ocm_vertminer.exe -a lyra2v2 " & "-u " & worker & " -p " & password & Intensity_Buffer & additional_miner_config & poolcommand & Environment.NewLine & "exit /B"
             'ElseIf cpuminer = True Then
             '    miner_config_file = settingsfolder & "\cpu\config.bat"
             '    miner_config = "ocm_cpuminer.exe -a lyra2rev2 " & "-u " & worker & " -p " & password & " " & additional_miner_config & poolcommand & Environment.NewLine & "exit /B"
@@ -1402,8 +1402,8 @@ Public Class Main
                     psi = New ProcessStartInfo("cmd")
                     psi.Arguments = ("/K cd /d" & amdfolder & " & " & "setx GPU_MAX_ALLOC_PERCENT 100" & " & " & "setx GPU_SINGLE_ALLOC_PERCENT 100" & " & " & "ocm_sgminer.exe --api-listen --config " & "sgminer.conf" & " & " & " exit /B")
                 ElseIf nvidiaminer = True Then
-                    'miner_config = nvidiafolder & "\ocm_ccminer.exe"
-                    psi = New ProcessStartInfo(nvidiafolder & "\ocm_ccminer.exe")
+                    'miner_config = nvidiafolder & "\ocm_vertminer.exe"
+                    psi = New ProcessStartInfo(nvidiafolder & "\ocm_vertminer.exe")
                 ElseIf cpuminer = True Then
                     'miner_config = cpufolder & "\ocm_cpuminer.exe"
                     psi = New ProcessStartInfo(cpufolder & "\ocm_cpuminer.exe")
@@ -1477,7 +1477,7 @@ Public Class Main
         Try
             mining_running = False
             For Each p As Process In System.Diagnostics.Process.GetProcesses
-                If p.ProcessName.Contains("ocm_ccminer") Or p.ProcessName.Contains("ocm_sgminer") Or p.ProcessName.Contains("ocm_cpuminer") Then
+                If p.ProcessName.Contains("ocm_vertminer") Or p.ProcessName.Contains("ocm_sgminer") Or p.ProcessName.Contains("ocm_cpuminer") Then
                     p.Kill()
                 End If
             Next
@@ -1584,7 +1584,7 @@ Public Class Main
         If connection = True Then
             Dim tempnewestversion As New Version
             Dim templink As String = ""
-            Dim request As System.Net.HttpWebRequest = System.Net.HttpWebRequest.Create("http://alwayshashing.com/ocm_versions.txt")
+            Dim request As System.Net.HttpWebRequest = System.Net.HttpWebRequest.Create("http://alwayshashing.com/ocm_update.txt")
             Dim response As System.Net.HttpWebResponse = request.GetResponse()
             Dim sr As System.IO.StreamReader = New System.IO.StreamReader(response.GetResponseStream())
             'Compares current One-Click Miner version with the latest available.
@@ -1608,7 +1608,7 @@ Public Class Main
             'Compares the current version of the Nvidia miner with the latest available.
             tempnewestversion = System.Version.Parse(sr.ReadLine.Replace("nvidia=", ""))
             templink = sr.ReadLine
-            If (tempnewestversion > System.Version.Parse(nvidia_version)) And Not (System.Version.Parse(nvidia_version) = System.Version.Parse("0.0.0.0")) And (System.IO.File.Exists(nvidiafolder & "\ocm_ccminer.exe") = True) Then
+            If (tempnewestversion > System.Version.Parse(nvidia_version)) And Not (System.Version.Parse(nvidia_version) = System.Version.Parse("0.0.0.0")) And (System.IO.File.Exists(nvidiafolder & "\ocm_vertminer.exe") = True) Then
                 update_needed = True
             End If
             'Compares the current version of the CPU miner with the latest available.
@@ -1642,6 +1642,8 @@ Public Class Main
 
         Try
             'Miner API
+            System.Threading.Thread.CurrentThread.CurrentCulture = New CultureInfo("en-US")
+            System.Threading.Thread.CurrentThread.CurrentUICulture = System.Threading.Thread.CurrentThread.CurrentCulture
             If amd_detected = True Or nvidia_detected = True Or cpu_detected = True Then
                 Dim tcpClient As New System.Net.Sockets.TcpClient()
                 If amd_detected = True Then
@@ -1715,7 +1717,7 @@ Public Class Main
             If default_miner = "amd" Then
                 miner_config_file = settingsfolder & "\amd\sgminer.conf"
             ElseIf default_miner = "nvidia" Then
-                miner_config_file = settingsfolder & "\nvidia\ccminer.conf"
+                miner_config_file = settingsfolder & "\nvidia\vertminer.conf"
             ElseIf default_miner = "cpu" Then
                 miner_config_file = settingsfolder & "\cpu\cpuminer-conf.json"
             End If
@@ -2075,7 +2077,7 @@ Public Class Main
         End Try
         If connection = True Then
             update_needed = False
-            Dim request As System.Net.HttpWebRequest = System.Net.HttpWebRequest.Create("http://alwayshashing.com/ocm_versions.txt")
+            Dim request As System.Net.HttpWebRequest = System.Net.HttpWebRequest.Create("http://alwayshashing.com/ocm_update.txt")
             Dim response As System.Net.HttpWebResponse = request.GetResponse()
             Dim sr As System.IO.StreamReader = New System.IO.StreamReader(response.GetResponseStream())
             'Compares current One-Click Miner version with the latest available.
@@ -2381,7 +2383,7 @@ Public Class Main
                     'Checks if NVIDIA miner has already been downloaded and installed
                     If System.IO.Directory.Exists(nvidiafolder) = True Then
                         For Each file As String In Directory.GetFiles(nvidiafolder)
-                            If file.Contains("ocm_ccminer.exe") And Not (System.Version.Parse(nvidia_version) = System.Version.Parse("0.0.0.0")) Then
+                            If file.Contains("ocm_vertminer.exe") And Not (System.Version.Parse(nvidia_version) = System.Version.Parse("0.0.0.0")) Then
                                 mining_installed = True
                                 Exit For
                             Else
