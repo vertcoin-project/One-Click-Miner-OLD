@@ -6,6 +6,8 @@
 
 **Getting Started**
 
+A copy of this guide including images can be found [HERE](http://alwayshashing.com/ocmhowto.pdf)
+
 First off, you'll need to download the OCM. You can find the most recent
 version [HERE](https://github.com/vertcoin/One-Click-Miner/releases).
 
