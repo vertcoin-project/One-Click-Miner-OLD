@@ -3,9 +3,10 @@ Imports System.Web.Script.Serialization
 Imports Newtonsoft.Json
 Imports Newtonsoft.Json.Linq
 Imports System.Threading
+Imports VertcoinOneClickMiner.Core
 
 Public Class P2Pool
-
+    Private ReadOnly _logger As ILogger
     Dim JSONConverter As JavaScriptSerializer = New JavaScriptSerializer()
     Dim scanner1 As Node_JSON = New Node_JSON()
     Dim scanner2 As Node_JSON = New Node_JSON()
@@ -16,6 +17,11 @@ Public Class P2Pool
     Dim scanner1worker As Thread
     Dim scanner2worker As Thread
     Dim stopthread As New Boolean
+
+    Public Sub New(logger As ILogger)
+        InitializeComponent()
+        _logger = logger
+    End Sub
 
     Private Sub P2Pool_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
@@ -40,12 +46,10 @@ Public Class P2Pool
             End If
         Catch ex As Exception
             MsgBox(ex.Message)
-            newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & timenow & ", " & "P2PoolScanner(), " & ex.Message)
+            _logger.LogError(ex)
             Invoke(New MethodInvoker(AddressOf Main.SaveSettingsJSON))
         Finally
-            newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & timenow & ", " & "P2PoolScanner(), Loaded: OK")
+            _logger.Trace("Loaded: OK")
         End Try
 
     End Sub
@@ -69,12 +73,10 @@ Public Class P2Pool
             scanner2worker = Nothing
         Catch ex As Exception
             MsgBox(ex.Message)
-            newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & timenow & ", " & "SaveScannerData(), " & ex.Message)
+            _logger.LogError(ex)
             Invoke(New MethodInvoker(AddressOf Main.SaveSettingsJSON))
         Finally
-            newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & timenow & ", " & "SaveScannerData(), Loaded: OK")
+            _logger.Trace("Loaded: OK")
         End Try
 
     End Sub
@@ -211,12 +213,10 @@ Public Class P2Pool
                 scanner1worker.Start()
             Catch ex As Exception
                 MsgBox(ex.Message)
-                newlog = newlog & Environment.NewLine
-                newlog = newlog & ("- " & timenow & ", " & "Network1Scanner(), " & ex.Message)
+                _logger.LogError(ex)
                 Invoke(New MethodInvoker(AddressOf Main.SaveSettingsJSON))
             Finally
-                newlog = newlog & Environment.NewLine
-                newlog = newlog & ("- " & timenow & ", " & "Network1Scanner(), Scan Completed: OK")
+                _logger.Trace("Scan Completed: OK")
             End Try
         End If
         'Network 2
@@ -309,12 +309,10 @@ Public Class P2Pool
                 scanner2worker.Start()
             Catch ex As Exception
                 MsgBox(ex.Message)
-                newlog = newlog & Environment.NewLine
-                newlog = newlog & ("- " & timenow & ", " & "Network2Scanner(), " & ex.Message)
+                _Logger.LogError(ex)
                 Invoke(New MethodInvoker(AddressOf Main.SaveSettingsJSON))
             Finally
-                newlog = newlog & Environment.NewLine
-                newlog = newlog & ("- " & timenow & ", " & "Network2Scanner(), Scan Completed: OK")
+                _logger.Trace("Scan Completed: OK")
             End Try
         End If
         BeginInvoke(New MethodInvoker(AddressOf Loading_Stop))

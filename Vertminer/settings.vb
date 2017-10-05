@@ -3,10 +3,16 @@ Imports System.IO
 Imports System.Web.Script.Serialization
 Imports Newtonsoft.Json
 Imports Newtonsoft.Json.Linq
+Imports VertcoinOneClickMiner.Core
 
 Public Class settings
-
+    Private ReadOnly _logger As ILogger
     Dim JSONConverter As JavaScriptSerializer = New JavaScriptSerializer()
+
+    Public Sub New(logger As ILogger)
+        InitializeComponent()
+        _logger = logger
+    End Sub
 
     Private Sub settings_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
@@ -78,11 +84,9 @@ Public Class settings
             End If
         Catch ex As Exception
             MsgBox(ex.Message)
-            newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & timenow & ", " & "Settings(), " & ex.Message)
+            _logger.LogError(ex)
         Finally
-            newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & timenow & ", " & "Settings() Loaded: OK.")
+            _logger.Trace("Loaded: OK.")
         End Try
 
     End Sub
@@ -169,11 +173,9 @@ Public Class settings
             Invoke(New MethodInvoker(AddressOf Main.StartWithWindows))
         Catch ex As Exception
             MsgBox(ex.Message)
-            newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & timenow & ", " & "Settings(), " & ex.Message)
+            _logger.LogError(ex)
         Finally
-            newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & timenow & ", " & "Settings() Closed: OK.")
+            _logger.Trace("Closed: OK.")
         End Try
 
     End Sub
@@ -238,11 +240,9 @@ Public Class settings
             Dim jsonFormatted As String = JValue.Parse(jsonstring).ToString(Formatting.Indented)
             File.WriteAllText(settingsfile, jsonFormatted)
         Catch ex As IOException
-            newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & timenow & ", " & "Main() SaveSettings: " & ex.Message)
+            _logger.LogError(ex)
         Finally
-            newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & timenow & ", " & "Main() SaveSettings: OK.")
+            _logger.Trace("Main() SaveSettings: OK.")
             MsgBox("Settings set back to defaults.")
             Invoke(New MethodInvoker(AddressOf Main.LoadSettingsJSON))
             Invoke(New MethodInvoker(AddressOf Main.Update_Pool_Info))

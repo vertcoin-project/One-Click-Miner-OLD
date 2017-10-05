@@ -1,4 +1,12 @@
-﻿Public Class about
+﻿Imports VertcoinOneClickMiner.Core
+
+Public Class about
+    Private ReadOnly _logger As ILogger
+
+    Public Sub New(logger As ILogger)
+        _logger = logger
+        InitializeComponent()
+    End Sub
 
     Private Sub about_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
@@ -21,20 +29,16 @@
             Process.Start(url)
         Catch ex As Exception
             MsgBox(ex.Message)
-            NewLog = NewLog & Environment.NewLine
-            NewLog = NewLog & ("- " & Date.Parse(Now) & ", " & "About(), " & ex.Message)
+            _logger.LogError(ex)
         Finally
-            NewLog = NewLog & Environment.NewLine
-            NewLog = NewLog & ("- " & Date.Parse(Now) & ", " & "About(), Loaded: OK")
+            _logger.Trace("Loaded: OK")
         End Try
 
     End Sub
 
     Private Sub about_Close(sender As Object, e As EventArgs) Handles MyBase.FormClosed
 
-        NewLog = NewLog & Environment.NewLine
-        NewLog = NewLog & ("- " & Date.Parse(Now) & ", " & "About(), Closed: OK")
-
+        _logger.Trace("Closed: OK")
     End Sub
 
 End Class
