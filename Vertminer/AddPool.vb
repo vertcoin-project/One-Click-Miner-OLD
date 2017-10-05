@@ -1,4 +1,12 @@
-﻿Public Class AddPool
+﻿Imports VertcoinOneClickMiner.Core
+
+Public Class AddPool
+    Private ReadOnly _logger As ILogger
+
+    Public Sub New(logger As ILogger)
+        InitializeComponent()
+        _logger = logger
+    End Sub
 
     Private Sub AddPool_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 

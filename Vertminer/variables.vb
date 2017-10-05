@@ -21,8 +21,6 @@ Module variables
     Public Property p2poolfolder As String
     Public Property scannerfolder As String
     Public Property command As String
-    Public Property newlog As String
-    Public Property logfilestring As String
     Public Property platform As Boolean 'true=64-bit false=32-bit
     Public Property otherminer As Boolean
     Public Property otherp2pool As Boolean

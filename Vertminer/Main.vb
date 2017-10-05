@@ -10,10 +10,12 @@ Imports System.Web.Script.Serialization
 Imports Newtonsoft.Json
 Imports Newtonsoft.Json.Linq
 Imports System.Globalization
+Imports VertcoinOneClickMiner.Core
 
 Public Class Main
 
     Dim JSONConverter As JavaScriptSerializer = New JavaScriptSerializer()
+    Private _logger as ILogger
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
@@ -33,6 +35,9 @@ Public Class Main
             amdfolder = settingsfolder & "\amd"
             nvidiafolder = settingsfolder & "\nvidia"
             cpufolder = settingsfolder & "\cpu"
+
+            _logger = New FileLogger(syslog)
+
             If System.IO.Directory.Exists(settingsfolder) = False Then
                 System.IO.Directory.CreateDirectory(settingsfolder)
             End If
@@ -62,8 +67,6 @@ Public Class Main
             Else
                 Me.WindowState = FormWindowState.Normal
             End If
-            'Copies previous log file to string
-            logfilestring = File.ReadAllText(syslog)
             'Check if p2pool or miner are already running
             Invoke(New MethodInvoker(AddressOf Process_Check))
             If p2pool_detected = True Then
@@ -105,11 +108,9 @@ Public Class Main
             Uptime_Timer.Start()
         Catch ex As Exception
             MsgBox(ex.Message)
-            newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & timenow & ", " & "Main(), " & ex.Message)
+            _logger.LogError(ex)
         Finally
-            newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & timenow & ", " & "Main() Loaded: OK, V:" & Application.ProductVersion)
+            _logger.Trace("Loaded: OK, V:" & Application.ProductVersion)
         End Try
 
     End Sub
@@ -149,12 +150,9 @@ Public Class Main
 
     Private Sub Main_Closing(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles MyBase.Closing
 
-        newlog = newlog & Environment.NewLine
-        newlog = newlog & ("- " & timenow & ", " & "Main(), Closed: OK")
-        newlog = newlog & Environment.NewLine
-        newlog = newlog & ("================================================================================")
-        File.WriteAllText(syslog, newlog)
-        File.AppendAllText(syslog, logfilestring)
+        _logger.Trace(Environment.NewLine)
+        _logger.Trace("Closing: OK")
+
         NotifyIcon1.Dispose()
         If ComboBox1.SelectedItem = "AMD" Then
             default_miner = "amd"
@@ -166,6 +164,8 @@ Public Class Main
         Invoke(New MethodInvoker(AddressOf SaveSettingsJSON))
         Invoke(New MethodInvoker(AddressOf Kill_Miner))
         Invoke(New MethodInvoker(AddressOf Kill_P2Pool))
+
+        _logger.Trace("================================================================================")
         Application.Exit()
 
     End Sub
@@ -277,15 +277,12 @@ Public Class Main
             'Dim device = discoverer.DiscoverDeviceAsync(Open.Nat.PortMapper.Upnp, cts)
             'device.CreatePortMapAsync(New Open.Nat.Mapping(Open.Nat.Protocol.Tcp, 1600, 1700, "The mapping name"))
 
+            _logger.Trace("SET OK. Ports set: " & mining_port & "," & p2pool_port)
 
         Catch ex As Exception
             MsgBox(ex.Message)
-            newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & timenow & ", " & "Main() UPnP: " & ex.Message)
+            _logger.LogError(ex)
             Invoke(New MethodInvoker(AddressOf SaveSettingsJSON))
-        Finally
-            newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & timenow & ", " & "Main() UPnP: SET OK. Ports set: " & mining_port & "," & p2pool_port)
         End Try
 
     End Sub
@@ -348,12 +345,10 @@ Public Class Main
             End If
         Catch ex As Exception
             MsgBox(ex.Message)
-            newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & timenow & ", " & "Main() Download_Miner: " & ex.Message)
+            _logger.LogError(ex)
             Invoke(New MethodInvoker(AddressOf SaveSettingsJSON))
         Finally
-            newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & timenow & ", " & "Main() Download_Miner: Downloaded OK.")
+            _logger.Trace("Downloaded OK.")
         End Try
 
     End Sub
@@ -376,12 +371,10 @@ Public Class Main
             End If
         Catch ex As Exception
             MsgBox("An issue occurred during the download.  Please try again.")
-            newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & timenow & ", " & "Main() Download_P2Pool: " & ex.Message)
+            _logger.LogError(ex)
             Invoke(New MethodInvoker(AddressOf SaveSettingsJSON))
         Finally
-            newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & timenow & ", " & "Main() Download_P2Pool: Downloaded OK.")
+            _logger.Trace("Downloaded OK.")
         End Try
 
     End Sub
@@ -399,12 +392,10 @@ Public Class Main
             downloadclient.DownloadFileAsync(New Uri(link), p2poolfolder & "\interface.zip")
         Catch ex As Exception
             MsgBox("An issue occurred during the download.  Please try again.")
-            newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & timenow & ", " & "Main() Download_P2PoolInterface: " & ex.Message)
+            _logger.LogError(ex)
             Invoke(New MethodInvoker(AddressOf SaveSettingsJSON))
         Finally
-            newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & timenow & ", " & "Main() Download_P2PoolInterface: Downloaded OK.")
+            _logger.Trace("Downloaded OK.")
         End Try
 
     End Sub
@@ -526,12 +517,10 @@ Public Class Main
             End If
         Catch ex As Exception
             MsgBox("An issue occurred during the download.  Please try again.")
-            newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & timenow & ", " & "Main() MinerDownloadCompleted: " & ex.Message)
+            _logger.LogError(ex)
             Invoke(New MethodInvoker(AddressOf SaveSettingsJSON))
         Finally
-            newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & timenow & ", " & "Main() MinerDownloadCompleted: OK.")
+            _logger.Trace("MinerDownloadCompleted: OK.")
         End Try
 
     End Sub
@@ -580,12 +569,10 @@ Public Class Main
             End If
         Catch ex As Exception
             MsgBox("An issue occurred during the download.  Please try again.")
-            newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & timenow & ", " & "Main() P2PoolDownloadCompleted: " & ex.Message)
+            _logger.LogError(ex)
             Invoke(New MethodInvoker(AddressOf SaveSettingsJSON))
         Finally
-            newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & timenow & ", " & "Main() P2PoolDownloadCompleted: OK.")
+            _logger.Trace("P2PoolDownloadCompleted: OK.")
         End Try
 
     End Sub
@@ -611,12 +598,10 @@ Public Class Main
             p2pool_version = System.Convert.ToString(newestversion)
         Catch ex As Exception
             MsgBox("An issue occurred during the download.  Please try again.")
-            newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & timenow & ", " & "Main() P2PoolInterfaceDownloadCompleted: " & ex.Message)
+            _logger.LogError(ex)
             Invoke(New MethodInvoker(AddressOf SaveSettingsJSON))
         Finally
-            newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & timenow & ", " & "Main() P2PoolInterfaceDownloadCompleted: OK.")
+            _logger.Trace("P2PoolInterfaceDownloadCompleted: OK.")
         End Try
 
     End Sub
@@ -1004,12 +989,10 @@ Public Class Main
             'File.WriteAllText(settingsfile, jsonFormatted)
             System.IO.File.Delete(settingsfolder & "\settings.ini")
         Catch ex As IOException
-            newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & timenow & ", " & "Main() UpdateSettings: " & ex.Message)
+            _logger.LogError(ex)
             Invoke(New MethodInvoker(AddressOf SaveSettingsJSON))
         Finally
-            newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & timenow & ", " & "Main() UpdateSettings: OK.")
+            _logger.Trace("UpdateSettings: OK.")
         End Try
 
     End Sub
@@ -1060,11 +1043,9 @@ Public Class Main
             End If
             Invoke(New MethodInvoker(AddressOf Update_Pool_Info))
         Catch ex As IOException
-            newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & timenow & ", " & "Main() LoadSettings: " & ex.Message)
+            _logger.LogError(ex)
         Finally
-            newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & timenow & ", " & "Main() LoadSettings: OK.")
+            _logger.Trace("LoadSettings: OK.")
         End Try
 
     End Sub
@@ -1130,11 +1111,9 @@ Public Class Main
             Dim jsonFormatted As String = JValue.Parse(jsonstring).ToString(Formatting.Indented)
             File.WriteAllText(settingsfile, jsonFormatted)
         Catch ex As IOException
-            newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & timenow & ", " & "Main() SaveSettings: " & ex.Message)
+            _logger.LogError(ex)
         Finally
-            newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & timenow & ", " & "Main() SaveSettings: OK.")
+            _logger.Trace("SaveSettings: OK.")
         End Try
 
     End Sub
@@ -1153,8 +1132,9 @@ Public Class Main
         Dim pool_list = String.Join(",", pools.ToArray())
         If CheckBox1.Checked = True Then
             If Not pool_list.Contains("stratum+tcp://localhost:" & mining_port) Then
-                AddPool.Show()
-                AddPool.Pool_Address.Text = "stratum+tcp://localhost:" & mining_port
+                dim dialog = new AddPool(_logger)
+                dialog.Show()
+                dialog.Pool_Address.Text = "stratum+tcp://localhost:" & mining_port
             End If
         End If
         'See if P2Pool has already been downloaded/installed
@@ -1192,7 +1172,8 @@ Public Class Main
 
     Private Sub EditToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EditToolStripMenuItem.Click
 
-        settings.Show()
+        dim dialog = New settings(_logger)
+        dialog.Show()
 
     End Sub
 
@@ -1235,12 +1216,10 @@ Public Class Main
             End If
         Catch ex As Exception
             MsgBox(ex.Message)
-            newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & timenow & ", " & "Main() Update_P2Pool_Config: " & ex.Message)
+            _logger.LogError(ex)
             Invoke(New MethodInvoker(AddressOf SaveSettingsJSON))
         Finally
-            newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & timenow & ", " & "Main() Update_P2Pool_Config: OK.")
+            _logger.Trace("Update_P2Pool_Config: OK.")
         End Try
 
     End Sub
@@ -1368,12 +1347,10 @@ Public Class Main
             'objWriter.Close()
         Catch ex As Exception
             MsgBox(ex.Message)
-            newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & timenow & ", " & "Main() Update_Miner_Config: " & ex.Message)
+            _logger.LogError(ex)
             Invoke(New MethodInvoker(AddressOf SaveSettingsJSON))
         Finally
-            newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & timenow & ", " & "Main() Update_Miner_Config: OK.")
+            _logger.Trace("Update_Miner_Config: OK.")
         End Try
 
     End Sub
@@ -1449,11 +1426,9 @@ Public Class Main
                 ''Additional_Configuration_Text.Enabled = False
             End If
         Catch ex As Exception
-            newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & timenow & ", " & "Main() Start_Miner: " & ex.Message)
+            _logger.LogError(ex)
         Finally
-            newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & timenow & ", " & "Main() Start_Miner: OK.")
+            _logger.Trace("Start_Miner: OK.")
         End Try
 
     End Sub
@@ -1483,12 +1458,10 @@ Public Class Main
             Next
             miner_hashrate = 0
         Catch ex As Exception
-            newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & timenow & ", " & "Main() Kill_Miner: " & ex.Message)
+            _logger.LogError(ex)
             Invoke(New MethodInvoker(AddressOf SaveSettingsJSON))
         Finally
-            newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & timenow & ", " & "Main() Kill_Miner: OK.")
+            _logger.Trace("Kill_Miner: OK.")
         End Try
 
     End Sub
@@ -1520,12 +1493,10 @@ Public Class Main
                 Process.Start(psi)
             End If
         Catch ex As Exception
-            newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & timenow & ", " & "Main() Start_P2Pool: " & ex.Message)
+            _logger.LogError(ex)
             Invoke(New MethodInvoker(AddressOf SaveSettingsJSON))
         Finally
-            newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & timenow & ", " & "Main() Start_P2Pool: OK.")
+            _logger.Trace("Start_P2Pool: OK.")
         End Try
 
     End Sub
@@ -1540,12 +1511,10 @@ Public Class Main
                 End If
             Next
         Catch ex As Exception
-            newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & timenow & ", " & "Main() Kill_P2Pool: " & ex.Message)
+            _logger.LogError(ex)
             Invoke(New MethodInvoker(AddressOf SaveSettingsJSON))
         Finally
-            newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & timenow & ", " & "Main() Kill_P2Pool: OK.")
+            _logger.Trace("Kill_P2Pool: OK.")
         End Try
 
     End Sub
@@ -1728,12 +1697,10 @@ Public Class Main
             End If
         Catch ex As Exception
             MsgBox(ex.Message)
-            newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & timenow & ", " & "MinerConfigToolStripMenuItem(), Load Miner Config: " & ex.Message)
+            _logger.LogError(ex)
             Invoke(New MethodInvoker(AddressOf SaveSettingsJSON))
         Finally
-            newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & timenow & ", " & "MinerConfigToolStripMenuItem(), Load Miner Config: OK")
+            _logger.Trace("MinerConfigToolStripMenuItem(), Load Miner Config: OK")
         End Try
 
     End Sub
@@ -1744,12 +1711,10 @@ Public Class Main
             Process.Start("notepad.exe", syslog)
         Catch ex As Exception
             MsgBox(ex.Message)
-            newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & timenow & ", " & "SystemLogToolStripMenuItem(), Load Miner Log: " & ex.Message)
+            _logger.LogError(ex)
             Invoke(New MethodInvoker(AddressOf SaveSettingsJSON))
         Finally
-            newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & timenow & ", " & "SystemLogToolStripMenuItem(), Load Miner Log: OK")
+            _logger.Trace("SystemLogToolStripMenuItem(), Load Miner Log: OK")
         End Try
 
     End Sub
@@ -1765,19 +1730,18 @@ Public Class Main
             End If
         Catch ex As Exception
             MsgBox(ex.Message)
-            newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & timenow & ", " & "P2PoolConfigToolStripMenuItem(), Load P2Pool Config: " & ex.Message)
+            _logger.LogError(ex)
             Invoke(New MethodInvoker(AddressOf SaveSettingsJSON))
         Finally
-            newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & timenow & ", " & "P2PoolConfigToolStripMenuItem(), Load P2Pool Config: OK")
+            _logger.Trace("P2PoolConfigToolStripMenuItem(), Load P2Pool Config: OK")
         End Try
 
     End Sub
 
     Private Sub AboutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem.Click
 
-        about.Show()
+        dim dialog = new about(_logger)
+        dialog.Show()
 
     End Sub
 
@@ -1788,12 +1752,10 @@ Public Class Main
             Process.Start(url)
         Catch ex As Exception
             MsgBox(ex.Message)
-            newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & timenow & ", " & "Contact(), " & ex.Message)
+            _logger.LogError(ex)
             Invoke(New MethodInvoker(AddressOf SaveSettingsJSON))
         Finally
-            newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & timenow & ", " & "Contact(), Load Browser: OK")
+            _logger.Trace("Contact(), Load Browser: OK")
         End Try
 
     End Sub
@@ -2006,12 +1968,10 @@ Public Class Main
             End If
         Catch ex As Exception
             MsgBox(ex.Message)
-            newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & timenow & ", " & "Main() Check_RPC_Settings: " & ex.Message)
+            _logger.LogError(ex)
             Invoke(New MethodInvoker(AddressOf SaveSettingsJSON))
         Finally
-            newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & timenow & ", " & "Main() Check_RPC_Settings: OK.")
+            _logger.Trace("Main() Check_RPC_Settings: OK.")
         End Try
 
     End Sub
@@ -2037,12 +1997,10 @@ Public Class Main
             End If
         Catch ex As Exception
             MsgBox(ex.Message)
-            newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & timenow & ", " & "Main() Generate_RPC_Settings: " & ex.Message)
+            _logger.LogError(ex)
             Invoke(New MethodInvoker(AddressOf SaveSettingsJSON))
         Finally
-            newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & timenow & ", " & "Main() Generate_RPC_Settings: OK.")
+            _logger.Trace("Generate_RPC_Settings: OK.")
         End Try
 
     End Sub
@@ -2269,19 +2227,18 @@ Public Class Main
             Process.Start(url)
         Catch ex As Exception
             MsgBox(ex.Message)
-            newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & timenow & ", " & "LoadP2PoolInterface(), " & ex.Message)
+            _logger.LogError(ex)
             Invoke(New MethodInvoker(AddressOf SaveSettingsJSON))
         Finally
-            newlog = newlog & Environment.NewLine
-            newlog = newlog & ("- " & timenow & ", " & "LoadP2PoolInterface(), Load Browser: OK")
+            _logger.Trace("LoadP2PoolInterface(), Load Browser: OK")
         End Try
 
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
 
-        P2Pool.Show()
+        dim dialog = new P2Pool(_logger)
+        dialog.Show()
 
     End Sub
 
@@ -2472,7 +2429,8 @@ Public Class Main
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
 
-        AddPool.Show()
+        dim dialog = New AddPool(_logger)
+        dialog.Show()
 
     End Sub
 
