@@ -277,7 +277,7 @@ Partial Class Main
         'PictureBox9
         '
         Me.PictureBox9.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.help_small
-        Me.PictureBox9.Location = New System.Drawing.Point(278, 88)
+        Me.PictureBox9.Location = New System.Drawing.Point(288, 90)
         Me.PictureBox9.Name = "PictureBox9"
         Me.PictureBox9.Size = New System.Drawing.Size(15, 15)
         Me.PictureBox9.TabIndex = 39
@@ -287,7 +287,7 @@ Partial Class Main
         'PictureBox3
         '
         Me.PictureBox3.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.help_small
-        Me.PictureBox3.Location = New System.Drawing.Point(109, 9)
+        Me.PictureBox3.Location = New System.Drawing.Point(109, 8)
         Me.PictureBox3.Name = "PictureBox3"
         Me.PictureBox3.Size = New System.Drawing.Size(15, 15)
         Me.PictureBox3.TabIndex = 28
