@@ -113,6 +113,8 @@
     <Compile Include="AddPool.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Core\FileLogger.vb" />
+    <Compile Include="Core\SystemWrapper.vb" />
     <Compile Include="Main.vb">
       <SubType>Form</SubType>
     </Compile>
