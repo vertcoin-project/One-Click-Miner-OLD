@@ -500,7 +500,7 @@ Public Class P2Pool
 
     Sub Scanner1Thread()
 
-        'Network1 1
+        'Network 1
         Dim count As Integer = 0
         For x As Integer = 0 To scanner1.nodes.Count - 1
             Dim clientSocket As New Net.Sockets.TcpClient()
@@ -514,7 +514,7 @@ Public Class P2Pool
                         clientSocket.Close()
                         stopWatch.Stop()
                         StopWatchTimeMs = stopWatch.ElapsedMilliseconds
-                        DataGridView1.Rows(x).Cells(6).Value = StopWatchTimeMs + "ms"
+                        DataGridView1.Rows(x).Cells(6).Value = StopWatchTimeMs & "ms"
                     Catch ex As Exception
                         DataGridView1.Rows(x).Cells(6).Value = "Port Failed"
                     End Try
@@ -534,20 +534,20 @@ Public Class P2Pool
         'Network 2
         Dim count As Integer = 0
         For x = 0 To scanner2.nodes.Count - 1
-           Dim clientSocket As New Net.Sockets.TcpClient()
+            Dim clientSocket As New Net.Sockets.TcpClient()
             Dim stopWatch As New Stopwatch()
             Dim StopWatchTimeMs As String
             Try
                 If stopthread = False And scanner2worker.ThreadState = ThreadState.Running Then
                     Try
                         stopWatch.Start()
-                        clientSocket.Connect(scanner1.nodes(x).ip, "9181")
+                        clientSocket.Connect(scanner2.nodes(x).ip, "9181")
                         clientSocket.Close()
                         stopWatch.Stop()
                         StopWatchTimeMs = stopWatch.ElapsedMilliseconds
-                        DataGridView1.Rows(x).Cells(6).Value = StopWatchTimeMs + "ms"
+                        DataGridView2.Rows(x).Cells(6).Value = StopWatchTimeMs & "ms"
                     Catch ex As Exception
-                        DataGridView1.Rows(x).Cells(6).Value = "Port Failed"
+                        DataGridView2.Rows(x).Cells(6).Value = "Port Failed"
                     End Try
                 Else
                     stopthread = False
