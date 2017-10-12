@@ -503,18 +503,21 @@ Public Class P2Pool
         'Network1 1
         Dim count As Integer = 0
         For x As Integer = 0 To scanner1.nodes.Count - 1
-            Dim Result As Net.NetworkInformation.PingReply
-            Dim SendPing As New Net.NetworkInformation.Ping
-            Dim responsetime As Long
+            Dim clientSocket As New Net.Sockets.TcpClient()
+            Dim stopWatch As New Stopwatch()
+            Dim StopWatchTimeMs As String
             Try
                 If stopthread = False And scanner1worker.ThreadState = ThreadState.Running Then
-                    Result = SendPing.Send(scanner1.nodes(x).ip)
-                    responsetime = Result.RoundtripTime
-                    If Result.Status = Net.NetworkInformation.IPStatus.Success Then
-                        DataGridView1.Rows(x).Cells(6).Value = responsetime & "ms"
-                    Else
-                        DataGridView1.Rows(x).Cells(6).Value = "n/a"
-                    End If
+                    Try
+                        stopWatch.Start()
+                        clientSocket.Connect(scanner1.nodes(x).ip, "9171")
+                        clientSocket.Close()
+                        stopWatch.Stop()
+                        StopWatchTimeMs = stopWatch.ElapsedMilliseconds
+                        DataGridView1.Rows(x).Cells(6).Value = StopWatchTimeMs + "ms"
+                    Catch ex As Exception
+                        DataGridView1.Rows(x).Cells(6).Value = "Port Failed"
+                    End Try
                 Else
                     stopthread = False
                     Exit Sub
@@ -531,18 +534,21 @@ Public Class P2Pool
         'Network 2
         Dim count As Integer = 0
         For x = 0 To scanner2.nodes.Count - 1
-            Dim Result As Net.NetworkInformation.PingReply
-            Dim SendPing As New Net.NetworkInformation.Ping
-            Dim responsetime As Long
+           Dim clientSocket As New Net.Sockets.TcpClient()
+            Dim stopWatch As New Stopwatch()
+            Dim StopWatchTimeMs As String
             Try
                 If stopthread = False And scanner2worker.ThreadState = ThreadState.Running Then
-                    Result = SendPing.Send(scanner2.nodes(x).ip)
-                    responsetime = Result.RoundtripTime
-                    If Result.Status = Net.NetworkInformation.IPStatus.Success Then
-                        DataGridView2.Rows(x).Cells(6).Value = responsetime & "ms"
-                    Else
-                        DataGridView2.Rows(x).Cells(6).Value = "n/a"
-                    End If
+                    Try
+                        stopWatch.Start()
+                        clientSocket.Connect(scanner1.nodes(x).ip, "9181")
+                        clientSocket.Close()
+                        stopWatch.Stop()
+                        StopWatchTimeMs = stopWatch.ElapsedMilliseconds
+                        DataGridView1.Rows(x).Cells(6).Value = StopWatchTimeMs + "ms"
+                    Catch ex As Exception
+                        DataGridView1.Rows(x).Cells(6).Value = "Port Failed"
+                    End Try
                 Else
                     stopthread = False
                     Exit Sub
