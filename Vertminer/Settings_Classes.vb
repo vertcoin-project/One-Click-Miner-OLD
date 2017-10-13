@@ -41,7 +41,7 @@ Public Class AMD_Miner_Settings_JSON
 
     Public Property pools As New List(Of Pools_JSON)
     Public Property algorithm As String
-    Public Property intensity As Decimal
+    Public Property intensity As String
     Public Property device As String
 
 End Class
