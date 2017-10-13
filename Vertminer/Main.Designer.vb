@@ -70,6 +70,7 @@ Partial Class Main
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.Clock = New System.Windows.Forms.Timer(Me.components)
+        Me.CheckBox2 = New System.Windows.Forms.CheckBox()
         Me.MenuStrip.SuspendLayout()
         CType(Me.PictureBox9, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -398,6 +399,7 @@ Partial Class Main
         'Panel3
         '
         Me.Panel3.BackColor = System.Drawing.Color.DarkSlateGray
+        Me.Panel3.Controls.Add(Me.CheckBox2)
         Me.Panel3.Controls.Add(Me.Button4)
         Me.Panel3.Controls.Add(Me.DataGridView1)
         Me.Panel3.Controls.Add(Me.Button2)
@@ -513,6 +515,19 @@ Partial Class Main
         Me.Clock.Enabled = True
         Me.Clock.Interval = 1000
         '
+        'CheckBox2
+        '
+        Me.CheckBox2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.CheckBox2.AutoSize = True
+        Me.CheckBox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CheckBox2.Location = New System.Drawing.Point(25, 88)
+        Me.CheckBox2.Name = "CheckBox2"
+        Me.CheckBox2.Size = New System.Drawing.Size(115, 17)
+        Me.CheckBox2.TabIndex = 88
+        Me.CheckBox2.Text = "Select All Pools"
+        Me.ToolTip.SetToolTip(Me.CheckBox2, "Selects all pools in pool list.")
+        Me.CheckBox2.UseVisualStyleBackColor = True
+        '
         'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -590,4 +605,5 @@ Partial Class Main
     Friend WithEvents Button2 As Button
     Friend WithEvents Button4 As Button
     Friend WithEvents DataGridView1 As DataGridView
+    Friend WithEvents CheckBox2 As CheckBox
 End Class

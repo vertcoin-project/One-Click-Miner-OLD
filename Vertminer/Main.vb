@@ -1235,7 +1235,7 @@ Public Class Main
             Dim jsonstring As String
             For Each row As DataGridViewRow In DataGridView1.Rows
                 Dim chk As DataGridViewCheckBoxCell = row.Cells(DataGridView1.Columns(0).Name)
-                If chk.Value IsNot Nothing Then 'add AndAlso chk.Value = True to only add pools that are checked
+                If chk.Value IsNot Nothing AndAlso chk.Value = True Then 'add AndAlso chk.Value = True to only add pools that are checked
                     pools.Add(DataGridView1.Rows(chk.RowIndex).Cells(1).Value)
                     workers.Add(DataGridView1.Rows(chk.RowIndex).Cells(2).Value)
                     passwords.Add(DataGridView1.Rows(chk.RowIndex).Cells(3).Value)
@@ -2302,7 +2302,7 @@ Public Class Main
         Dim checkcount = 0
         For Each row As DataGridViewRow In DataGridView1.Rows
             Dim chk As DataGridViewCheckBoxCell = row.Cells(DataGridView1.Columns(0).Name)
-            If chk.Value IsNot Nothing Then
+            If chk.Value = True Then
                 checkcount += 1
             End If
         Next
@@ -2389,7 +2389,7 @@ Public Class Main
                 End If
                 mining_installed = False
             Else
-                MsgBox("Please select an entered pool before starting miner.")
+                MsgBox("Please select at least one pool before starting miner.")
             End If
         ElseIf Button3.Text = "Stop" Then
             Button3.Text = "Start"
@@ -2435,6 +2435,26 @@ Public Class Main
     End Sub
 
     Private Sub MinerWindowToolStripMenuItem_Click(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Private Sub CheckBox2_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox2.CheckedChanged
+
+        If CheckBox2.Checked = True Then
+            For Each row As DataGridViewRow In DataGridView1.Rows
+                Dim chk As DataGridViewCheckBoxCell = row.Cells(DataGridView1.Columns(0).Name)
+                If chk.Value = False Then
+                    chk.Value = True
+                End If
+            Next
+        Else
+            For Each row As DataGridViewRow In DataGridView1.Rows
+                Dim chk As DataGridViewCheckBoxCell = row.Cells(DataGridView1.Columns(0).Name)
+                If chk.Value = True Then
+                    chk.Value = False
+                End If
+            Next
+        End If
 
     End Sub
 

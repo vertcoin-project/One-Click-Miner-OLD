@@ -200,13 +200,14 @@ Public Class P2Pool
                     .ReadOnly = True
                 End With
                 With DataGridView1.Columns(6)
-                    .Name = "Latency"
+                    .Name = "Latency(ms)"
                     .ReadOnly = True
+                    .ValueType = GetType(Int32)
                 End With
                 For x As Integer = 0 To count
                     Dim uptime As Decimal = (scanner1.nodes(x).stats.uptime / 60 / 60 / 24)
                     uptime = Math.Round(uptime, 1)
-                    Dim row As String() = New String() {False, (scanner1.nodes(x).ip & ":9171"), scanner1.nodes(x).stats.version, (scanner1.nodes(x).fee & "%"), (uptime & " days"), scanner1.nodes(x).geo.country, "..."}
+                    Dim row As String() = New String() {False, (scanner1.nodes(x).ip & ":9171"), scanner1.nodes(x).stats.version, (scanner1.nodes(x).fee & "%"), (uptime & " days"), scanner1.nodes(x).geo.country, Nothing}
                     DataGridView1.Rows.Add(row)
                 Next
                 scanner1worker = New Thread(AddressOf Scanner1Thread)
@@ -296,13 +297,14 @@ Public Class P2Pool
                     .ReadOnly = True
                 End With
                 With DataGridView2.Columns(6)
-                    .Name = "Latency"
+                    .Name = "Latency(ms)"
                     .ReadOnly = True
+                    .ValueType = GetType(Int32)
                 End With
                 For x As Integer = 0 To count
                     Dim uptime As Decimal = (scanner2.nodes(x).stats.uptime / 60 / 60 / 24)
                     uptime = Math.Round(uptime, 1)
-                    Dim row As String() = New String() {False, (scanner2.nodes(x).ip & ":9181"), scanner2.nodes(x).stats.version, (scanner2.nodes(x).fee & "%"), (uptime & " days"), scanner2.nodes(x).geo.country, "..."}
+                    Dim row As String() = New String() {False, (scanner2.nodes(x).ip & ":9181"), scanner2.nodes(x).stats.version, (scanner2.nodes(x).fee & "%"), (uptime & " days"), scanner2.nodes(x).geo.country, Nothing}
                     DataGridView2.Rows.Add(row)
                 Next
                 scanner2worker = New Thread(AddressOf Scanner2Thread)
@@ -462,42 +464,6 @@ Public Class P2Pool
 
     End Sub
 
-    Public Sub Network1_Ping(count As Integer)
-
-        Dim Result As Net.NetworkInformation.PingReply
-        Dim SendPing As New Net.NetworkInformation.Ping
-        Dim responsetime As Long
-        Try
-            Result = SendPing.Send(scanner1.nodes(count).ip)
-            responsetime = Result.RoundtripTime
-            If Result.Status = Net.NetworkInformation.IPStatus.Success Then
-                DataGridView1.Rows(count).Cells(6).Value = responsetime & "ms"
-            Else
-                DataGridView1.Rows(count).Cells(6).Value = "n/a"
-            End If
-        Catch ex As Exception
-        End Try
-
-    End Sub
-
-    Public Sub Network2_Ping(count As Integer)
-
-        Dim Result As Net.NetworkInformation.PingReply
-        Dim SendPing As New Net.NetworkInformation.Ping
-        Dim responsetime As Long
-        Try
-            Result = SendPing.Send(scanner2.nodes(count).ip)
-            responsetime = Result.RoundtripTime
-            If Result.Status = Net.NetworkInformation.IPStatus.Success Then
-                DataGridView2.Rows(count).Cells(6).Value = responsetime & "ms"
-            Else
-                DataGridView2.Rows(count).Cells(6).Value = "n/a"
-            End If
-        Catch ex As Exception
-        End Try
-
-    End Sub
-
     Sub Scanner1Thread()
 
         'Network 1
@@ -505,7 +471,7 @@ Public Class P2Pool
         For x As Integer = 0 To scanner1.nodes.Count - 1
             Dim clientSocket As New Net.Sockets.TcpClient()
             Dim stopWatch As New Stopwatch()
-            Dim StopWatchTimeMs As String
+            Dim StopWatchTimeMs As Int32
             Try
                 If stopthread = False And scanner1worker.ThreadState = ThreadState.Running Then
                     Try
@@ -514,9 +480,9 @@ Public Class P2Pool
                         clientSocket.Close()
                         stopWatch.Stop()
                         StopWatchTimeMs = stopWatch.ElapsedMilliseconds
-                        DataGridView1.Rows(x).Cells(6).Value = StopWatchTimeMs & "ms"
+                        DataGridView1.Rows(x).Cells(6).Value = StopWatchTimeMs
                     Catch ex As Exception
-                        DataGridView1.Rows(x).Cells(6).Value = "Port Failed"
+                        DataGridView1.Rows(x).Cells(6).Value = 999
                     End Try
                 Else
                     stopthread = False
@@ -536,7 +502,7 @@ Public Class P2Pool
         For x = 0 To scanner2.nodes.Count - 1
             Dim clientSocket As New Net.Sockets.TcpClient()
             Dim stopWatch As New Stopwatch()
-            Dim StopWatchTimeMs As String
+            Dim StopWatchTimeMs As Int32
             Try
                 If stopthread = False And scanner2worker.ThreadState = ThreadState.Running Then
                     Try
@@ -545,9 +511,9 @@ Public Class P2Pool
                         clientSocket.Close()
                         stopWatch.Stop()
                         StopWatchTimeMs = stopWatch.ElapsedMilliseconds
-                        DataGridView2.Rows(x).Cells(6).Value = StopWatchTimeMs & "ms"
+                        DataGridView2.Rows(x).Cells(6).Value = StopWatchTimeMs
                     Catch ex As Exception
-                        DataGridView2.Rows(x).Cells(6).Value = "Port Failed"
+                        DataGridView2.Rows(x).Cells(6).Value = 999
                     End Try
                 Else
                     stopthread = False
