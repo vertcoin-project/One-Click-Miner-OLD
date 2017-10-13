@@ -50,7 +50,7 @@ Public Class AMD_Pools_JSON
 
     Public Property url As String
     Public Property user As String
-    Public Property userpass As String
+    Public Property pass As String
 
 End Class
 

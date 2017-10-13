@@ -1251,13 +1251,19 @@ Public Class Main
             If amdminer = True Then
                 newjson = New AMD_Miner_Settings_JSON()
                 minersettingsfile = amdfolder & "\sgminer.conf"
-                For x As Integer = 0 To count - 1
-                    Dim pooljson As Pools_JSON = New Pools_JSON()
-                    pooljson.url = pools(x)
-                    pooljson.user = workers(x)
-                    pooljson.pass = passwords(x)
+                'For x As Integer = count - 1 To 0 Step -1
+                Dim pooljson As Pools_JSON = New Pools_JSON()
+                'pooljson.url = pools(x)
+                'pooljson.user = workers(x)
+                'pooljson.pass = passwords(x)
+                'Until amd support is ready in vertminer, sgminer will not allow failover pool support. Use first selected pool.
+                If count > 0 Then
+                        pooljson.url = pools(0)
+                        pooljson.user = workers(0)
+                        pooljson.pass = passwords(0)
+                    End If
                     newjson.pools.Add(pooljson)
-                Next
+                'Next
                 newjson.algorithm = "Lyra2REv2"
                 newjson.intensity = mining_intensity
                 newjson.device = devices
@@ -1269,7 +1275,7 @@ Public Class Main
                 newjson.algo = "lyra2v2"
                 newjson.intensity = mining_intensity
                 newjson.devices = devices
-                For x As Integer = 0 To count - 1
+                For x As Integer = count - 1 To 0 Step -1
                     Dim pooljson As Pools_JSON = New Pools_JSON()
                     pooljson.url = pools(x)
                     pooljson.user = workers(x)
@@ -1280,6 +1286,7 @@ Public Class Main
             ElseIf cpuminer = True Then
                 newjson = New CPU_Miner_Settings_JSON()
                 minersettingsfile = cpufolder & "\cpuminer-conf.json"
+                'No failover pool support in cpuminer. Use first selected pool.
                 If count > 0 Then
                     newjson.url = pools(0)
                     newjson.user = workers(0)
