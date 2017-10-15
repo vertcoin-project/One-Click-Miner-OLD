@@ -1298,60 +1298,6 @@ Public Class Main
             End If
             Dim jsonFormatted As String = JValue.Parse(jsonstring).ToString(Formatting.Indented)
             File.WriteAllText(minersettingsfile, jsonFormatted)
-
-            'Command Line Configuration
-            'pools.Clear()
-            'Dim poolcommand As String = ""
-            ''Clean up pool URL's
-            'For Each line As String In Pool_Address_Text.Lines
-            '    If Not line.Contains("http://") And Not line.Contains("stratum+tcp://") Then
-            '        line = "stratum+tcp://" & line
-            '    Else
-            '        line = line.Replace("http://", "stratum+tcp://")
-            '    End If
-            '    pools.Add(line)
-            '    poolcommand = poolcommand & "-o " & line.Replace(vbCr, "").Replace(vbLf, "").Trim & " "
-            'Next
-            'If Not Worker_Address_Text.Text = "" Then
-            '    worker = Worker_Address_Text.Text
-            'Else
-            '    MsgBox("No valid address detected, using default address to developer fund.")
-            '    worker = "VpBsRnN749jYHE9hT8dZreznHfmFMdE1yG"
-            'End If
-            'If Not Password_Text.Text = "" Then
-            '    password = Password_Text.Text
-            'Else
-            '    password = "x"
-            'End If
-            'Dim Intensity_Buffer As String = ""
-            'If Not mining_intensity = Nothing And Not mining_intensity = 0 Then
-            '    If amdminer = True Then
-            '        Intensity_Buffer = " -I " & mining_intensity & " "
-            '    ElseIf nvidiaminer = True Then
-            '        Intensity_Buffer = " -i " & mining_intensity & " "
-            '    End If
-            'ElseIf mining_intensity = 0 Then
-            '    Intensity_Buffer = " "
-            'End If
-            'If Not additional_miner_config = "" Then
-            '    If Not additional_miner_config(additional_miner_config.Length - 1) = " " Then
-            '        additional_miner_config = additional_miner_config & " "
-            '    End If
-            'End If
-            'If amdminer = True Then
-            '    miner_config_file = settingsfolder & "\amd\config.bat"
-            '    miner_config = "setx GPU_MAX_HEAP_SIZE 100" & Environment.NewLine & "setx GPU_USE_SYNC_OBJECTS 1" & Environment.NewLine & "setx GPU_MAX_ALLOC_PERCENT 100" & Environment.NewLine & "setx GPU_SINGLE_ALLOC_PERCENT 100" & Environment.NewLine & "del *.bin" & Environment.NewLine & "ocm_sgminer.exe --kernel Lyra2REv2 --no-extranonce " & "-u " & worker & " -p " & password & Intensity_Buffer & additional_miner_config & pool & Environment.NewLine & "exit /B"
-            'ElseIf nvidiaminer = True Then
-            '    miner_config_file = settingsfolder & "\nvidia\config.bat"
-            '    miner_config = "ocm_vertminer.exe -a lyra2v2 " & "-u " & worker & " -p " & password & Intensity_Buffer & additional_miner_config & poolcommand & Environment.NewLine & "exit /B"
-            'ElseIf cpuminer = True Then
-            '    miner_config_file = settingsfolder & "\cpu\config.bat"
-            '    miner_config = "ocm_cpuminer.exe -a lyra2rev2 " & "-u " & worker & " -p " & password & " " & additional_miner_config & poolcommand & Environment.NewLine & "exit /B"
-            'End If
-            ''Update miner config
-            'Dim objWriter As New System.IO.StreamWriter(miner_config_file)
-            'objWriter.WriteLine(miner_config)
-            'objWriter.Close()
         Catch ex As Exception
             MsgBox(ex.Message)
             _logger.LogError(ex)
@@ -1402,35 +1348,6 @@ Public Class Main
                     psi.UseShellExecute = False
                 End If
                 Process.Start(psi)
-
-                'Command Line Configuration
-                'mining_running = True
-                'command = File.ReadAllText(miner_config)
-                'command = command.Replace(Environment.NewLine, " & ")
-                'Dim psi As New ProcessStartInfo("cmd")
-                'psi.CreateNoWindow = True
-                'psi.UseShellExecute = False
-                'If amdminer = True Then
-                '    psi.Arguments = ("/K cd /d" & amdfolder & " & " & command)
-                '    PictureBox2.Image = VertcoinOneClickMiner.My.Resources.Resources.on_small
-                '    Button2.Text = "Disable"
-                'ElseIf nvidiaminer = True Then
-                '    psi.Arguments = ("/K cd /d" & nvidiafolder & " & " & command)
-                '    PictureBox5.Image = VertcoinOneClickMiner.My.Resources.Resources.on_small
-                '    Button4.Text = "Disable"
-                'ElseIf cpuminer = True Then
-                '    psi.Arguments = ("/K cd /d" & cpufolder & " & " & command)
-                '    PictureBox7.Image = VertcoinOneClickMiner.My.Resources.Resources.on_small
-                '    Button5.Text = "Disable"
-                'End If
-                'Process.Start(psi)
-                ''TextBox2.Text = "Online"
-                'Pool_Address_Text.Enabled = False
-                'Worker_Address_Text.Enabled = False
-                'Worker_Address_Text.Enabled = False
-                'Password_Text.Enabled = False
-                ''Intensity_Text.Enabled = False
-                ''Additional_Configuration_Text.Enabled = False
             End If
         Catch ex As Exception
             _logger.LogError(ex)
