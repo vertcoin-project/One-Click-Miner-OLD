@@ -18,15 +18,6 @@ Public Class settings
 
         Try
             Invoke(New MethodInvoker(AddressOf Style))
-            Node_Fee.Text = p2pool_node_fee & "%"
-            Node_Donation.Text = p2pool_donation & "%"
-            TextBox3.Text = max_connections
-            TextBox4.Text = p2pool_port
-            TextBox5.Text = mining_port
-            Intensity_Text.Text = mining_intensity
-            Devices_Text.Text = devices
-            Fee_Address_Text.Text = p2pool_fee_address
-            ComboBox1.SelectedItem = p2pool_network
             If keep_miner_alive = True Then
                 CheckBox6.Checked = True
             Else
@@ -82,6 +73,15 @@ Public Class settings
                     mining_port = "9181"
                 End If
             End If
+            Node_Fee.Text = p2pool_node_fee & "%"
+            Node_Donation.Text = p2pool_donation & "%"
+            TextBox3.Text = max_connections
+            TextBox4.Text = p2pool_port
+            TextBox5.Text = mining_port
+            Intensity_Text.Text = mining_intensity
+            Devices_Text.Text = devices
+            Fee_Address_Text.Text = p2pool_fee_address
+            ComboBox1.SelectedItem = p2pool_network
         Catch ex As Exception
             MsgBox(ex.Message)
             _logger.LogError(ex)
@@ -288,6 +288,26 @@ Public Class settings
     Private Sub PictureBox14_Click(sender As Object, e As EventArgs) Handles PictureBox14.Click
 
         Me.WindowState = FormWindowState.Minimized
+
+    End Sub
+
+    Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox1.SelectedIndexChanged
+
+        If ComboBox1.SelectedItem = 1 Then
+            If TextBox4.Text = "9347" Or TextBox4.Text = "" Then
+                TextBox4.Text = "9346"
+            End If
+            If TextBox5.Text = "9181" Or TextBox5.Text = "" Then
+                TextBox5.Text = "9171"
+            End If
+        ElseIf ComboBox1.SelectedItem = 2 Then
+            If TextBox4.Text = "9346" Or TextBox4.Text = "" Then
+                TextBox4.Text = "9347"
+            End If
+            If TextBox5.Text = "9171" Or TextBox5.Text = "" Then
+                TextBox5.Text = "9181"
+            End If
+        End If
 
     End Sub
 
