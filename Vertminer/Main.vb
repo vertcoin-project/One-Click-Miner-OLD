@@ -745,7 +745,7 @@ Public Class Main
 
         If count > 0 Then
             For x As Integer = 0 To count - 1
-                Dim row As String() = New String() {False, pools(x), workers(x), passwords(x)}
+                Dim row As String() = New String() {selected(x), pools(x), workers(x), passwords(x)}
                 DataGridView1.Rows.Add(row)
             Next
         End If
@@ -1029,6 +1029,7 @@ Public Class Main
             pools.Clear()
             workers.Clear()
             passwords.Clear()
+            selected.Clear()
             Dim count = settingsJSON.pools.Count
             If Not count = 0 Then
                 For x = 0 To count - 1
@@ -1038,6 +1039,7 @@ Public Class Main
                         pools.Add(poolJSON.url)
                         workers.Add(poolJSON.user)
                         passwords.Add(poolJSON.pass)
+                        selected.Add(poolJSON.checked)
                     End If
                 Next
             End If
@@ -1056,12 +1058,18 @@ Public Class Main
             pools.Clear()
             workers.Clear()
             passwords.Clear()
+            selected.Clear()
             For Each row As DataGridViewRow In DataGridView1.Rows
                 Dim chk As DataGridViewCheckBoxCell = row.Cells(DataGridView1.Columns(0).Name)
                 If chk.Value IsNot Nothing Then
                     pools.Add(DataGridView1.Rows(chk.RowIndex).Cells(1).Value)
                     workers.Add(DataGridView1.Rows(chk.RowIndex).Cells(2).Value)
                     passwords.Add(DataGridView1.Rows(chk.RowIndex).Cells(3).Value)
+                    If chk.Value = False Then
+                        selected.Add(False)
+                    Else
+                        selected.Add(True)
+                    End If
                 End If
             Next
             Dim newjson As Settings_JSON = New Settings_JSON()
@@ -1103,6 +1111,7 @@ Public Class Main
                         pooljson.url = pools(x)
                         pooljson.user = workers(x)
                         pooljson.pass = passwords(x)
+                        pooljson.checked = selected(x)
                         newjson.pools.Add(pooljson)
                     End If
                 Next
@@ -1252,7 +1261,7 @@ Public Class Main
                 newjson = New AMD_Miner_Settings_JSON()
                 minersettingsfile = amdfolder & "\sgminer.conf"
                 'For x As Integer = count - 1 To 0 Step -1
-                Dim pooljson As Pools_JSON = New Pools_JSON()
+                Dim pooljson As AMD_Pools_JSON = New AMD_Pools_JSON()
                 'pooljson.url = pools(x)
                 'pooljson.user = workers(x)
                 'pooljson.pass = passwords(x)
@@ -1276,7 +1285,7 @@ Public Class Main
                 newjson.intensity = mining_intensity
                 newjson.devices = devices
                 For x As Integer = count - 1 To 0 Step -1
-                    Dim pooljson As Pools_JSON = New Pools_JSON()
+                    Dim pooljson As NVIDIA_Pools_JSON = New NVIDIA_Pools_JSON()
                     pooljson.url = pools(x)
                     pooljson.user = workers(x)
                     pooljson.pass = passwords(x)

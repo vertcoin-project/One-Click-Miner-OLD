@@ -113,5 +113,6 @@ Module variables
     Public Property pools As New ArrayList()
     Public Property workers As New ArrayList()
     Public Property passwords As New ArrayList()
+    Public Property selected As New ArrayList()
 
 End Module
