@@ -1681,7 +1681,7 @@ Public Class Main
     Private Sub ContactToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ContactToolStripMenuItem.Click
 
         Try
-            Dim url As String = "http://slack.vtconline.org"
+            Dim url As String = "https://discordapp.com/invite/Yb6EHNy"
             Process.Start(url)
         Catch ex As Exception
             MsgBox(ex.Message)

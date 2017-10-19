@@ -51,6 +51,7 @@ Partial Class Main
         Me.PictureBox3 = New System.Windows.Forms.PictureBox()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button4 = New System.Windows.Forms.Button()
+        Me.CheckBox2 = New System.Windows.Forms.CheckBox()
         Me.Uptime_Timer = New System.Windows.Forms.Timer(Me.components)
         Me.Uptime_Checker = New System.ComponentModel.BackgroundWorker()
         Me.Updater = New System.ComponentModel.BackgroundWorker()
@@ -70,7 +71,6 @@ Partial Class Main
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.Clock = New System.Windows.Forms.Timer(Me.components)
-        Me.CheckBox2 = New System.Windows.Forms.CheckBox()
         Me.MenuStrip.SuspendLayout()
         CType(Me.PictureBox9, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -123,7 +123,7 @@ Partial Class Main
         Me.MenuStrip.Dock = System.Windows.Forms.DockStyle.None
         Me.MenuStrip.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.MenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.EditToolStripMenuItem, Me.ViewToolStripMenuItem, Me.HelpToolStripMenuItem})
-        Me.MenuStrip.Location = New System.Drawing.Point(59, 2)
+        Me.MenuStrip.Location = New System.Drawing.Point(62, 2)
         Me.MenuStrip.Name = "MenuStrip"
         Me.MenuStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.System
         Me.MenuStrip.Size = New System.Drawing.Size(273, 50)
@@ -143,14 +143,14 @@ Partial Class Main
         Me.UpdateToolStripMenuItem.BackColor = System.Drawing.SystemColors.Control
         Me.UpdateToolStripMenuItem.ForeColor = System.Drawing.Color.DarkSlateGray
         Me.UpdateToolStripMenuItem.Name = "UpdateToolStripMenuItem"
-        Me.UpdateToolStripMenuItem.Size = New System.Drawing.Size(140, 28)
+        Me.UpdateToolStripMenuItem.Size = New System.Drawing.Size(152, 28)
         Me.UpdateToolStripMenuItem.Text = "Update"
         '
         'ExitToolStripMenuItem
         '
         Me.ExitToolStripMenuItem.ForeColor = System.Drawing.Color.DarkSlateGray
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(140, 28)
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(152, 28)
         Me.ExitToolStripMenuItem.Text = "Exit"
         '
         'EditToolStripMenuItem
@@ -208,14 +208,14 @@ Partial Class Main
         '
         Me.AboutToolStripMenuItem.ForeColor = System.Drawing.Color.DarkSlateGray
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(143, 28)
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(152, 28)
         Me.AboutToolStripMenuItem.Text = "About"
         '
         'ContactToolStripMenuItem
         '
         Me.ContactToolStripMenuItem.ForeColor = System.Drawing.Color.DarkSlateGray
         Me.ContactToolStripMenuItem.Name = "ContactToolStripMenuItem"
-        Me.ContactToolStripMenuItem.Size = New System.Drawing.Size(143, 28)
+        Me.ContactToolStripMenuItem.Size = New System.Drawing.Size(152, 28)
         Me.ContactToolStripMenuItem.Text = "Contact"
         '
         'UpdateStatsInterval
@@ -323,6 +323,19 @@ Partial Class Main
         Me.ToolTip.SetToolTip(Me.Button4, "Toggles your miner on/off.")
         Me.Button4.UseVisualStyleBackColor = False
         '
+        'CheckBox2
+        '
+        Me.CheckBox2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.CheckBox2.AutoSize = True
+        Me.CheckBox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CheckBox2.Location = New System.Drawing.Point(25, 88)
+        Me.CheckBox2.Name = "CheckBox2"
+        Me.CheckBox2.Size = New System.Drawing.Size(115, 17)
+        Me.CheckBox2.TabIndex = 88
+        Me.CheckBox2.Text = "Select All Pools"
+        Me.ToolTip.SetToolTip(Me.CheckBox2, "Selects all pools in pool list.")
+        Me.CheckBox2.UseVisualStyleBackColor = True
+        '
         'Uptime_Timer
         '
         Me.Uptime_Timer.Interval = 500
@@ -379,7 +392,7 @@ Partial Class Main
         'PictureBox6
         '
         Me.PictureBox6.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.minimize
-        Me.PictureBox6.Location = New System.Drawing.Point(351, 13)
+        Me.PictureBox6.Location = New System.Drawing.Point(357, 13)
         Me.PictureBox6.Name = "PictureBox6"
         Me.PictureBox6.Size = New System.Drawing.Size(25, 25)
         Me.PictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -389,7 +402,7 @@ Partial Class Main
         'PictureBox4
         '
         Me.PictureBox4.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.greenx
-        Me.PictureBox4.Location = New System.Drawing.Point(389, 13)
+        Me.PictureBox4.Location = New System.Drawing.Point(395, 13)
         Me.PictureBox4.Name = "PictureBox4"
         Me.PictureBox4.Size = New System.Drawing.Size(25, 25)
         Me.PictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -514,19 +527,6 @@ Partial Class Main
         '
         Me.Clock.Enabled = True
         Me.Clock.Interval = 1000
-        '
-        'CheckBox2
-        '
-        Me.CheckBox2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.CheckBox2.AutoSize = True
-        Me.CheckBox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CheckBox2.Location = New System.Drawing.Point(25, 88)
-        Me.CheckBox2.Name = "CheckBox2"
-        Me.CheckBox2.Size = New System.Drawing.Size(115, 17)
-        Me.CheckBox2.TabIndex = 88
-        Me.CheckBox2.Text = "Select All Pools"
-        Me.ToolTip.SetToolTip(Me.CheckBox2, "Selects all pools in pool list.")
-        Me.CheckBox2.UseVisualStyleBackColor = True
         '
         'Main
         '
