@@ -658,30 +658,6 @@ Public Class Main
 
     Public Sub Update_Miner_Text()
 
-        ''Miner Info
-        'If amd_detected = True Or nvidia_detected = True Or cpu_detected = True Then
-        '    If miner_hashrate > 0 Then
-        '        TextBox2.Text = "Running"
-        '    Else
-        '        TextBox2.Text = "Waiting for share"
-        '    End If
-        '    Button3.Text = "Stop"
-        'Else
-        '    TextBox2.Text = "Offline"
-        '    Button3.Text = "Start"
-        'End If
-        ''P2Pool Info
-        'If p2pool_detected = True Then
-        '    If p2pool_loaded = True Then
-        '        TextBox1.Text = "Running: Network " & p2pool_network
-        '    Else
-        '        TextBox1.Text = "Loading"
-        '    End If
-        '    CheckBox1.Checked = True
-        'Else
-        '    TextBox1.Text = "Offline"
-        '    CheckBox1.Checked = False
-        'End If
         'Miner Hashrate
         If api_connected = True Then
             If miner_hashrate < 1000 Then
@@ -742,7 +718,11 @@ Public Class Main
         With DataGridView1.Columns(3)
             .Name = "Password"
         End With
-
+        If selected.Count < count And count > 0 Then
+            For x As Integer = selected.Count To count - 1
+                selected.Add(False)
+            Next
+        End If
         If count > 0 Then
             For x As Integer = 0 To count - 1
                 Dim row As String() = New String() {selected(x), pools(x), workers(x), passwords(x)}
@@ -756,237 +736,6 @@ Public Class Main
     Public Sub Update_Settings()
 
         Try
-            'Dim worker = ""
-            'Dim pass = ""
-            'Dim Old_Settings = File.ReadAllLines(settingsfolder & "\settings.ini")
-            'For Each line In Old_Settings
-            '    If Not line = "" And line.Contains("Start Minimized=") Then
-            '        line = line.Replace("Start Minimized=", "")
-            '        If line = "" Or line.Contains("false") Then
-            '            start_minimized = "false"
-            '        ElseIf line.Contains("true") Then
-            '            start_minimized = "true"
-            '        End If
-            '    End If
-            '    If line.Contains("Start With Windows=") Then
-            '        line = line.Replace("Start With Windows=", "")
-            '        If line = "" Or line.Contains("false") Then
-            '            start_with_windows = "false"
-            '        ElseIf line.Contains("true") Then
-            '            start_with_windows = "true"
-            '        End If
-            '    End If
-            '    If line.Contains("Autostart P2Pool=") Then
-            '        line = line.Replace("Autostart P2Pool=", "")
-            '        If line = "" Or line.Contains("false") Then
-            '            autostart_p2pool = "false"
-            '        ElseIf line.Contains("true") Then
-            '            autostart_p2pool = "true"
-            '        End If
-            '    End If
-            '    If line.Contains("Autostart Mining=") Then
-            '        line = line.Replace("Autostart Mining=", "")
-            '        If line = "" Or line.Contains("false") Then
-            '            autostart_mining = "false"
-            '        ElseIf line.Contains("true") Then
-            '            autostart_mining = "true"
-            '        End If
-            '    End If
-            '    If line.Contains("Keep Miner Alive=") Then
-            '        line = line.Replace("Keep Miner Alive=", "")
-            '        If line = "" Or line.Contains("false") Then
-            '            keep_miner_alive = "false"
-            '        ElseIf line.Contains("true") Then
-            '            keep_miner_alive = "true"
-            '        End If
-            '    End If
-            '    If line.Contains("Keep P2Pool Alive=") Then
-            '        line = line.Replace("Keep P2Pool Alive=", "")
-            '        If line = "" Or line.Contains("false") Then
-            '            keep_p2pool_alive = "false"
-            '        ElseIf line.Contains("true") Then
-            '            keep_p2pool_alive = "true"
-            '        End If
-            '    End If
-            '    If line.Contains("Use UPnP=") Then
-            '        line = line.Replace("Use UPnP=", "")
-            '        If line = "" Or line.Contains("false") Then
-            '            use_upnp = "false"
-            '        ElseIf line.Contains("true") Then
-            '            use_upnp = "true"
-            '        End If
-            '    End If
-            '    If line.Contains("P2Pool Network=") Then
-            '        line = line.Replace("P2Pool Network=", "")
-            '        If line = "" Or line.Contains("1") Then
-            '            p2pool_network = 1
-            '        ElseIf line.Contains("2") Then
-            '            p2pool_network = 2
-            '        End If
-            '    End If
-            '    If line.Contains("P2Pool Node Fee (%)=") Then
-            '        line = line.Replace("P2Pool Node Fee (%)=", "")
-            '        If Not line = "" And Decimal.TryParse(line, 0.0) = True Then
-            '            p2pool_node_fee = Convert.ToDecimal(line)
-            '        Else
-            '            p2pool_node_fee = 0
-            '        End If
-            '    End If
-            '    If line.Contains("P2Pool Donation (%)=") Then
-            '        line = line.Replace("P2Pool Donation (%)=", "")
-            '        If Not line = "" And Decimal.TryParse(line, 0.0) = True Then
-            '            p2pool_donation = Convert.ToDecimal(line)
-            '        Else
-            '            p2pool_donation = 0
-            '        End If
-            '    End If
-            '    If line.Contains("Maximum P2Pool Connections=") Then
-            '        line = line.Replace("Maximum P2Pool Connections=", "")
-            '        If Not line = "" And Integer.TryParse(line, 0) = True Then
-            '            max_connections = Convert.ToInt32(line)
-            '        Else
-            '            max_connections = 0
-            '        End If
-            '    End If
-            '    If line.Contains("P2Pool Port=") Then
-            '        line = line.Replace("P2Pool Port=", "")
-            '        Dim check As Long
-            '        If Not line = "" And Long.TryParse(line, check) = True Then
-            '            p2pool_port = line
-            '        Else
-            '            p2pool_port = "9346"
-            '        End If
-            '    End If
-            '    If line.Contains("Mining Port=") Then
-            '        line = line.Replace("Mining Port=", "")
-            '        Dim check As Long
-            '        If Not line = "" And Long.TryParse(line, check) = True Then
-            '            mining_port = line
-            '        Else
-            '            mining_port = "9171"
-            '        End If
-            '    End If
-            '    If line.Contains("Mining Intensity=") Then
-            '        line = line.Replace("Mining Intensity=", "")
-            '        If Not line = "" And Decimal.TryParse(line, 0.0) = True Then
-            '            mining_intensity = Convert.ToDecimal(line)
-            '        Else
-            '            mining_intensity = 0
-            '        End If
-            '    End If
-            '    If line.Contains("P2Pool Fee Address=") Then
-            '        line = line.Replace("P2Pool Fee Address=", "")
-            '        If Not line = "" Then
-            '            p2pool_fee_address = line
-            '        Else
-            '            p2pool_fee_address = "VpBsRnN749jYHE9hT8dZreznHfmFMdE1yG"
-            '        End If
-            '    End If
-            '    If line.Contains("Pool URL=") Then
-            '        line = line.Replace("Pool URL=", "")
-            '        If Not line = "" Then
-            '            If Not line.Contains("http://") And Not line.Contains("stratum+tcp://") Then
-            '                line = "stratum+tcp://" & line
-            '            Else
-            '                line = line.Replace("http://", "stratum+tcp://")
-            '            End If
-            '            pools.Add(line)
-            '            workers.Add(worker)
-            '            passwords.Add(pass)
-            '            BeginInvoke(New MethodInvoker(AddressOf Update_Miner_Text))
-            '        End If
-            '    End If
-            '    If line.Contains("P2Pool Version=") Then
-            '        line = line.Replace("P2Pool Version=", "")
-            '        Dim check As Version = Version.Parse("0.0.0.0")
-            '        If Not line = "" And Version.TryParse(line, check) = True Then
-            '            p2pool_version = line
-            '        End If
-            '    End If
-            '    If line.Contains("AMD Miner Version=") Then
-            '        line = line.Replace("AMD Miner Version=", "")
-            '        Dim check As Version = Version.Parse("0.0.0.0")
-            '        If Not line = "" And Version.TryParse(line, check) = True Then
-            '            amd_version = line
-            '        End If
-            '    End If
-            '    If line.Contains("Nvidia Miner Version=") Then
-            '        line = line.Replace("Nvidia Miner Version=", "")
-            '        Dim check As Version = Version.Parse("0.0.0.0")
-            '        If Not line = "" And Version.TryParse(line, check) = True Then
-            '            nvidia_version = line
-            '        End If
-            '    End If
-            '    If line.Contains("CPU Miner Version=") Then
-            '        line = line.Replace("CPU Miner Version=", "")
-            '        Dim check As Version = Version.Parse("0.0.0.0")
-            '        If Not line = "" And Version.TryParse(line, check) = True Then
-            '            cpu_version = line
-            '        End If
-            '    End If
-            '    If line.Contains("Default Miner=") Then
-            '        line = line.Replace("Default Miner=", "")
-            '        If Not line = "" Then
-            '            default_miner = line
-            '        End If
-            '    End If
-            '    If line.Contains("Worker Name=") Then
-            '        line = line.Replace("Worker Name=", "")
-            '        If Not line = "" Then
-            '            worker = line
-            '        End If
-            '    End If
-            '    If line.Contains("Worker Password=") Then
-            '        line = line.Replace("Worker Password=", "")
-            '        If Not line = "" Then
-            '            pass = line
-            '        End If
-            '    End If
-            'Next
-            'Dim newjson As Settings_JSON = New Settings_JSON()
-            'newjson.appdata = appdata
-            'newjson.start_minimized = start_minimized
-            'newjson.start_with_windows = start_with_windows
-            'newjson.autostart_p2pool = autostart_p2pool
-            'newjson.autostart_mining = autostart_mining
-            'newjson.keep_miner_alive = keep_miner_alive
-            'newjson.keep_p2pool_alive = keep_p2pool_alive
-            'newjson.use_upnp = use_upnp
-            'newjson.p2pool_network = p2pool_network
-            'newjson.p2pool_node_fee = p2pool_node_fee
-            'newjson.p2pool_donation = p2pool_donation
-            'newjson.max_connections = max_connections
-            'newjson.p2pool_port = p2pool_port
-            'newjson.mining_port = mining_port
-            'newjson.mining_intensity = mining_intensity
-            'newjson.p2pool_fee_address = p2pool_fee_address
-            'newjson.p2pool_version = p2pool_version
-            'newjson.amd_version = amd_version
-            'newjson.nvidia_version = nvidia_version
-            'newjson.cpu_version = cpu_version
-            'newjson.default_miner = default_miner
-            'newjson.pools.Clear()
-            'Dim poolcount = pools.Count()
-            'Dim workercount = workers.Count()
-            'Dim passwordcount = passwords.Count()
-            'Dim count As Decimal = Decimal.MaxValue
-            'count = Math.Min(count, poolcount)
-            'count = Math.Min(count, workercount)
-            'count = Math.Min(count, passwordcount)
-            'If Not count = 0 Then
-            '    For x = 0 To count - 1
-            '        If Not pools(x) = "" And Not workers(x) = "" And Not passwords(x) = "" Then
-            '            Dim pooljson As Pools_JSON = New Pools_JSON()
-            '            pooljson.url = pools(x)
-            '            pooljson.user = workers(x)
-            '            pooljson.pass = passwords(x)
-            '            newjson.pools.Add(pooljson)
-            '        End If
-            '    Next
-            'End If
-            'Dim jsonstring = JSONConverter.Serialize(newjson)
-            'Dim jsonFormatted As String = JValue.Parse(jsonstring).ToString(Formatting.Indented)
-            'File.WriteAllText(settingsfile, jsonFormatted)
             System.IO.File.Delete(settingsfolder & "\settings.ini")
         Catch ex As IOException
             _logger.LogError(ex)
@@ -2357,6 +2106,7 @@ Public Class Main
                 pools.RemoveAt(chk.RowIndex + 1)
             End If
         Next
+        selected.Clear()
 
     End Sub
 
