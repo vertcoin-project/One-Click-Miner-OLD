@@ -1992,6 +1992,9 @@ Public Class Main
         'Starts mining if miner software is already detected.  If not, downloads miner software.
         If Button3.Text = "Start" Then
             Button3.Text = "Stop"
+            'Disables the ability to adjust Pools while running
+            Button4.Enabled = False
+            Button2.Enabled = False
             If checkcount > 0 Then
                 If default_miner = "amd" Then
                     'Checks if AMD miner has already been downloaded and installed
@@ -2072,9 +2075,13 @@ Public Class Main
                 mining_installed = False
             Else
                 MsgBox("Please select at least one pool before starting miner.")
+                Button4.Enabled = True
+                Button2.Enabled = True
             End If
         ElseIf Button3.Text = "Stop" Then
             Button3.Text = "Start"
+            Button4.Enabled = True
+            Button2.Enabled = True
             amdminer = False
             nvidiaminer = False
             cpuminer = False

@@ -37,6 +37,20 @@ Public Class AddPool
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
 
         If Not Pool_Address.Text = "" And Not Wallet_Address.Text = "" And Not Password_Address.Text = "" Then
+            'Perform a simple check on the wallet address
+            If Wallet_Address.Text.Count = 34 Then
+            Else
+                MsgBox("Vertcoin addresses are atleast 34 characters long, yours is not, please verify")
+                Exit Sub
+            End If
+
+            If Wallet_Address.Text.StartsWith("V") Then
+            Else
+                MsgBox("Vertcoin addresses start with a V, yours does not, please verify")
+                Exit Sub
+
+            End If
+
             pools.Insert(0, Pool_Address.Text)
             workers.Insert(0, Wallet_Address.Text)
             passwords.Insert(0, Password_Address.Text)
