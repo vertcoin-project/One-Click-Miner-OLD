@@ -2099,14 +2099,14 @@ Public Class Main
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
 
-        For Each row As DataGridViewRow In DataGridView1.Rows
-            Dim chk As DataGridViewCheckBoxCell = row.Cells(DataGridView1.Columns(0).Name)
-            If chk.Value = True Then
-                DataGridView1.Rows.RemoveAt(chk.RowIndex)
-                pools.RemoveAt(chk.RowIndex + 1)
+        For x As Integer = DataGridView1.Rows.Count - 1 To 0 Step -1
+            If DataGridView1.Rows(x).Cells("Select").Value Then
+                DataGridView1.Rows.Remove(DataGridView1.Rows(x))
+                pools.RemoveAt(x)
             End If
         Next
         selected.Clear()
+        BeginInvoke(New MethodInvoker(AddressOf SaveSettingsJSON))
 
     End Sub
 
