@@ -15,7 +15,7 @@ Imports VertcoinOneClickMiner.Core
 Public Class Main
 
     Dim JSONConverter As JavaScriptSerializer = New JavaScriptSerializer()
-    Private _logger as ILogger
+    Private _logger As ILogger
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
@@ -890,7 +890,7 @@ Public Class Main
         Dim pool_list = String.Join(",", pools.ToArray())
         If CheckBox1.Checked = True Then
             If Not pool_list.Contains("stratum+tcp://localhost:" & mining_port) Then
-                dim dialog = new AddPool(_logger)
+                Dim dialog = New AddPool(_logger)
                 dialog.Show()
                 dialog.Pool_Address.Text = "stratum+tcp://localhost:" & mining_port
             End If
@@ -930,7 +930,7 @@ Public Class Main
 
     Private Sub EditToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EditToolStripMenuItem.Click
 
-        dim dialog = New settings(_logger)
+        Dim dialog = New settings(_logger)
         dialog.Show()
 
     End Sub
@@ -961,7 +961,7 @@ Public Class Main
                 End If
             End If
             If Not appdata.Contains("AppData") Then
-                p2pool_config = "ocm_p2pool.exe" & network & " --give-author " & p2pool_donation & " --fee " & p2pool_node_fee & " --address " & p2pool_fee_address & " --max-conns " & max_connections & " --worker-port " & mining_port & " --p2pool-port " & p2pool_port & " --bitcoind-config-path " & appdata & "\vertcoin.conf" & Environment.NewLine & "exit /B"
+                p2pool_config = "ocm_p2pool.exe" & network & " --give-author " & p2pool_donation & " --fee " & p2pool_node_fee & " --address " & p2pool_fee_address & " --max-conns " & max_connections & " --worker-port " & mining_port & " --p2pool-port " & p2pool_port & " --bitcoind-config-path """ & appdata & "\vertcoin.conf""" & Environment.NewLine & "exit /B"
             Else
                 p2pool_config = "ocm_p2pool.exe" & network & " --give-author " & p2pool_donation & " --fee " & p2pool_node_fee & " --address " & p2pool_fee_address & " --max-conns " & max_connections & " --worker-port " & mining_port & " --p2pool-port " & p2pool_port & Environment.NewLine & "exit /B"
             End If
@@ -1016,11 +1016,11 @@ Public Class Main
                 'pooljson.pass = passwords(x)
                 'Until amd support is ready in vertminer, sgminer will not allow failover pool support. Use first selected pool.
                 If count > 0 Then
-                        pooljson.url = pools(0)
-                        pooljson.user = workers(0)
-                        pooljson.pass = passwords(0)
-                    End If
-                    newjson.pools.Add(pooljson)
+                    pooljson.url = pools(0)
+                    pooljson.user = workers(0)
+                    pooljson.pass = passwords(0)
+                End If
+                newjson.pools.Add(pooljson)
                 'Next
                 newjson.algorithm = "Lyra2REv2"
                 newjson.intensity = mining_intensity
@@ -1422,7 +1422,7 @@ Public Class Main
 
     Private Sub AboutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem.Click
 
-        dim dialog = new about(_logger)
+        Dim dialog = New about(_logger)
         dialog.Show()
 
     End Sub
@@ -1663,7 +1663,7 @@ Public Class Main
         Try
             'If no RPC settings are detected, generate a random user and password to save to append to the config file.
             Dim rnd As New Random
-            Dim str As String = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()"
+            Dim str As String = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
             If rpc_user = "" Then
                 For value As Integer = 0 To 24
                     rpc_user &= str.Chars(rnd.Next(0, str.Length - 1))
@@ -1919,7 +1919,7 @@ Public Class Main
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
 
-        dim dialog = new P2Pool(_logger)
+        Dim dialog = New P2Pool(_logger)
         dialog.Show()
 
     End Sub
@@ -2101,7 +2101,7 @@ Public Class Main
 
         For Each row As DataGridViewRow In DataGridView1.Rows
             Dim chk As DataGridViewCheckBoxCell = row.Cells(DataGridView1.Columns(0).Name)
-            If chk.Value IsNot Nothing AndAlso chk.Value = True Then
+            If chk.Value = True Then
                 DataGridView1.Rows.RemoveAt(chk.RowIndex)
                 pools.RemoveAt(chk.RowIndex + 1)
             End If
@@ -2112,7 +2112,7 @@ Public Class Main
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
 
-        dim dialog = New AddPool(_logger)
+        Dim dialog = New AddPool(_logger)
         dialog.Show()
 
     End Sub
