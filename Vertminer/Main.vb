@@ -751,7 +751,9 @@ Public Class Main
         Try
             Dim settingsJSON As Settings_JSON = New Settings_JSON()
             Dim settings_string As String = File.ReadAllText(settingsfile)
-            settingsJSON = JSONConverter.Deserialize(Of Settings_JSON)(settings_string)
+            If Not String.IsNullOrEmpty(settings_string) Then
+                settingsJSON = JSONConverter.Deserialize(Of Settings_JSON)(settings_string)
+            End If
             appdata = settingsJSON.appdata
             start_minimized = settingsJSON.start_minimized
             start_with_windows = settingsJSON.start_with_windows
@@ -866,8 +868,10 @@ Public Class Main
                 Next
             End If
             Dim jsonstring = JSONConverter.Serialize(newjson)
-            Dim jsonFormatted As String = JValue.Parse(jsonstring).ToString(Formatting.Indented)
-            File.WriteAllText(settingsfile, jsonFormatted)
+            If Not String.IsNullOrEmpty(jsonstring) Then
+                Dim jsonFormatted As String = JValue.Parse(jsonstring).ToString(Formatting.Indented)
+                File.WriteAllText(settingsfile, jsonFormatted)
+            End If
         Catch ex As IOException
             _logger.LogError(ex)
         Finally
@@ -990,7 +994,7 @@ Public Class Main
             workers.Clear()
             passwords.Clear()
             Dim newjson
-            Dim jsonstring As String
+            Dim jsonstring As String = ""
             For Each row As DataGridViewRow In DataGridView1.Rows
                 Dim chk As DataGridViewCheckBoxCell = row.Cells(DataGridView1.Columns(0).Name)
                 If chk.Value IsNot Nothing AndAlso chk.Value = True Then 'add AndAlso chk.Value = True to only add pools that are checked
@@ -1054,8 +1058,10 @@ Public Class Main
                 newjson.intensity = mining_intensity
                 jsonstring = JSONConverter.Serialize(newjson)
             End If
-            Dim jsonFormatted As String = JValue.Parse(jsonstring).ToString(Formatting.Indented)
-            File.WriteAllText(minersettingsfile, jsonFormatted)
+            If Not String.IsNullOrEmpty(jsonstring) Then
+                Dim jsonFormatted As String = JValue.Parse(jsonstring).ToString(Formatting.Indented)
+                File.WriteAllText(minersettingsfile, jsonFormatted)
+            End If
         Catch ex As Exception
             MsgBox(ex.Message)
             _logger.LogError(ex)

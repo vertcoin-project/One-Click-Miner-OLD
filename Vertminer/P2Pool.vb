@@ -148,13 +148,17 @@ Public Class P2Pool
             Try
                 Dim p2pool_api As Object = Nothing
                 Dim newjson As String = ""
+                Dim jsonformatted As String = ""
                 Dim request As System.Net.HttpWebRequest = System.Net.HttpWebRequest.Create(host)
                 Dim response As System.Net.HttpWebResponse = request.GetResponse()
                 Using sr As System.IO.StreamReader = New System.IO.StreamReader(response.GetResponseStream())
                     p2pool_api = p2pool_api & sr.ReadLine
                 End Using
-                Dim jsonformatted As String = JValue.Parse(p2pool_api).ToString(Formatting.Indented)
-                File.WriteAllText(scannerfolder & "\network1.json", jsonformatted)
+                If Not String.IsNullOrEmpty(p2pool_api) Then
+                    jsonformatted = JValue.Parse(p2pool_api).ToString(Formatting.Indented)
+                    File.WriteAllText(scannerfolder & "\network1.json", jsonformatted)
+                    jsonformatted = ""
+                End If
                 System.Threading.Thread.Sleep(100)
                 p2pool_api = File.ReadAllLines(scannerfolder & "\network1.json")
                 For Each line As String In p2pool_api
@@ -168,8 +172,10 @@ Public Class P2Pool
                 newjson = newjson.Insert(1, Environment.NewLine & """nodes"":[")
                 newjson = newjson.Insert(newjson.Length - 1, "]")
                 newjson = newjson.Replace(" ", "").Replace(vbCr, "").Replace(vbLf, "").Trim
-                jsonformatted = JValue.Parse(newjson).ToString(Formatting.Indented)
-                File.WriteAllText(scannerfolder & "\network1.json", jsonformatted)
+                If Not String.IsNullOrEmpty(newjson) Then
+                    jsonformatted = JValue.Parse(newjson).ToString(Formatting.Indented)
+                    File.WriteAllText(scannerfolder & "\network1.json", jsonformatted)
+                End If
                 scanner1 = JSONConverter.Deserialize(Of Node_JSON)(jsonformatted)
                 Dim count = scanner1.nodes.Count - 1
                 Dim chk As New DataGridViewCheckBoxColumn()
@@ -244,13 +250,17 @@ Public Class P2Pool
             Try
                 Dim p2pool_api As Object = Nothing
                 Dim newjson As String = ""
+                Dim jsonformatted As String = ""
                 Dim request As System.Net.HttpWebRequest = System.Net.HttpWebRequest.Create(host)
                 Dim response As System.Net.HttpWebResponse = request.GetResponse()
                 Using sr As System.IO.StreamReader = New System.IO.StreamReader(response.GetResponseStream())
                     p2pool_api = p2pool_api & sr.ReadLine
                 End Using
-                Dim jsonformatted As String = JValue.Parse(p2pool_api).ToString(Formatting.Indented)
-                File.WriteAllText(scannerfolder & "\network2.json", jsonformatted)
+                If Not String.IsNullOrEmpty(p2pool_api) Then
+                    jsonformatted = JValue.Parse(p2pool_api).ToString(Formatting.Indented)
+                    File.WriteAllText(scannerfolder & "\network2.json", jsonformatted)
+                    jsonformatted = ""
+                End If
                 System.Threading.Thread.Sleep(100)
                 p2pool_api = File.ReadAllLines(scannerfolder & "\network2.json")
                 For Each line As String In p2pool_api
@@ -264,8 +274,10 @@ Public Class P2Pool
                 newjson = newjson.Insert(1, Environment.NewLine & """nodes"":[")
                 newjson = newjson.Insert(newjson.Length - 1, "]")
                 newjson = newjson.Replace(" ", "").Replace(vbCr, "").Replace(vbLf, "").Trim
-                jsonformatted = JValue.Parse(newjson).ToString(Formatting.Indented)
-                File.WriteAllText(scannerfolder & "\network2.json", jsonformatted)
+                If Not String.IsNullOrEmpty(newjson) Then
+                    jsonformatted = JValue.Parse(newjson).ToString(Formatting.Indented)
+                    File.WriteAllText(scannerfolder & "\network2.json", jsonformatted)
+                End If
                 scanner2 = New Node_JSON()
                 scanner2 = JSONConverter.Deserialize(Of Node_JSON)(jsonformatted)
                 Dim count = scanner2.nodes.Count - 1

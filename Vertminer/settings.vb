@@ -203,6 +203,7 @@ Public Class settings
             newjson.keep_miner_alive = "false"
             newjson.keep_p2pool_alive = "false"
             newjson.use_upnp = "false"
+            newjson.show_cli = "false"
             newjson.p2pool_network = "1"
             newjson.p2pool_node_fee = "0"
             newjson.p2pool_donation = "1"
@@ -237,8 +238,10 @@ Public Class settings
                 Next
             End If
             Dim jsonstring = JSONConverter.Serialize(newjson)
-            Dim jsonFormatted As String = JValue.Parse(jsonstring).ToString(Formatting.Indented)
-            File.WriteAllText(settingsfile, jsonFormatted)
+            If Not String.IsNullOrEmpty(jsonstring) Then
+                Dim jsonFormatted As String = JValue.Parse(jsonstring).ToString(Formatting.Indented)
+                File.WriteAllText(settingsfile, jsonFormatted)
+            End If
         Catch ex As IOException
             _logger.LogError(ex)
         Finally
