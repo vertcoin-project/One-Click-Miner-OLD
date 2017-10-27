@@ -1985,6 +1985,25 @@ Public Class Main
 
     End Sub
 
+    'Checks if miner has already been downloaded and installed
+    Private Function IsMinerInstalled(folder As String, exe As String, version As Object) As Boolean
+        If System.IO.Directory.Exists(folder) Then
+            For Each file As String In Directory.GetFiles(folder)
+                If file.Contains(exe) And Not (System.Version.Parse(version) = System.Version.Parse("0.0.0.0")) Then
+                    Return True
+                End If
+            Next
+        End If
+
+        Return False
+    End Function
+
+    Private Sub SetMinerBooleans(default_miner As String)
+        cpuminer = (default_miner = "cpu")
+        amdminer = (default_miner = "amd")
+        nvidiaminer = (default_miner = "nvidia")
+    End Sub
+
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
 
         Dim checkcount = 0
@@ -2000,79 +2019,46 @@ Public Class Main
             Button3.Text = "Stop"
             If checkcount > 0 Then
                 If default_miner = "amd" Then
-                    'Checks if AMD miner has already been downloaded and installed
-                    If System.IO.Directory.Exists(amdfolder) = True Then
-                        For Each file As String In Directory.GetFiles(amdfolder)
-                            If file.Contains("ocm_sgminer.exe") And Not (System.Version.Parse(amd_version) = System.Version.Parse("0.0.0.0")) Then
-                                mining_installed = True
-                                Exit For
-                            Else
-                                mining_installed = False
-                            End If
-                        Next
-                    End If
-                    cpuminer = False
-                    amdminer = True
-                    nvidiaminer = False
-                    If mining_installed = True Then
-                        mining_initialized = True
-                        BeginInvoke(New MethodInvoker(AddressOf Start_Miner))
-                    Else
+                    mining_installed = IsMinerInstalled(amdfolder, "ocm_sgminer.exe", amd_version)
+                    If Not mining_installed Then
                         If Not Updater.IsBusy Then
+                            SetMinerBooleans(default_miner)
                             amd_update = True
                             canceldownloadasync = False
                             Updater.RunWorkerAsync()
                         End If
-                    End If
-                ElseIf default_miner = "nvidia" Then
-                    'Checks if NVIDIA miner has already been downloaded and installed
-                    If System.IO.Directory.Exists(nvidiafolder) = True Then
-                        For Each file As String In Directory.GetFiles(nvidiafolder)
-                            If file.Contains("ocm_vertminer.exe") And Not (System.Version.Parse(nvidia_version) = System.Version.Parse("0.0.0.0")) Then
-                                mining_installed = True
-                                Exit For
-                            Else
-                                mining_installed = False
-                            End If
-                        Next
-                    End If
-                    cpuminer = False
-                    amdminer = False
-                    nvidiaminer = True
-                    If mining_installed = True Then
+                    Else
+                        SetMinerBooleans(default_miner)
                         mining_initialized = True
                         BeginInvoke(New MethodInvoker(AddressOf Start_Miner))
-                    Else
+                    End If
+                ElseIf default_miner = "nvidia" Then
+                    mining_installed = IsMinerInstalled(nvidiafolder, "ocm_vertminer.exe", nvidia_version)
+                    If Not mining_installed Then
                         If Not Updater.IsBusy Then
+                            SetMinerBooleans(default_miner)
                             nvidia_update = True
                             canceldownloadasync = False
                             Updater.RunWorkerAsync()
                         End If
-                    End If
-                ElseIf default_miner = "cpu" Then
-                    'Checks if CPU miner has already been downloaded and installed
-                    If System.IO.Directory.Exists(cpufolder) = True Then
-                        For Each file As String In Directory.GetFiles(cpufolder)
-                            If file.Contains("ocm_cpuminer.exe") And Not (System.Version.Parse(cpu_version) = System.Version.Parse("0.0.0.0")) Then
-                                mining_installed = True
-                                Exit For
-                            Else
-                                mining_installed = False
-                            End If
-                        Next
-                    End If
-                    cpuminer = True
-                    amdminer = False
-                    nvidiaminer = False
-                    If mining_installed = True Then
+                    Else
+                        SetMinerBooleans(default_miner)
                         mining_initialized = True
                         BeginInvoke(New MethodInvoker(AddressOf Start_Miner))
-                    Else
+                    End If
+                ElseIf default_miner = "cpu" Then
+                    mining_installed = IsMinerInstalled(cpufolder, "ocm_cpuminer.exe", cpu_version)
+                    If Not mining_installed Then
                         If Not Updater.IsBusy Then
+                            SetMinerBooleans(default_miner)
                             cpu_update = True
                             canceldownloadasync = False
                             Updater.RunWorkerAsync()
                         End If
+                    Else
+                        SetMinerBooleans(default_miner)
+                        mining_initialized = True
+                        BeginInvoke(New MethodInvoker(AddressOf Start_Miner))
                     End If
                 End If
                 mining_installed = False
