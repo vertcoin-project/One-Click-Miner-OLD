@@ -14,6 +14,7 @@ Imports VertcoinOneClickMiner.Core
 
 Public Class Main
 
+    Dim Pool_Click As New DataGridViewCellEventHandler(AddressOf dataGridView1_CellContentClick)
     Dim JSONConverter As JavaScriptSerializer = New JavaScriptSerializer()
     Private _logger As ILogger
 
@@ -167,6 +168,14 @@ Public Class Main
 
         _logger.Trace("================================================================================")
         Application.Exit()
+
+    End Sub
+
+    Private Sub dataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
+
+        If e.ColumnIndex = 1 Then
+            System.Diagnostics.Process.Start(DataGridView1(1, e.RowIndex).Value.ToString.Replace("stratum+tcp", "http"))
+        End If
 
     End Sub
 
@@ -704,14 +713,18 @@ Public Class Main
         pools.Clear()
         pools = poolbuff
         Dim chk As New DataGridViewCheckBoxColumn()
-        DataGridView1.Columns.Add(chk)
         chk.HeaderText = "Select"
         chk.Name = "Select"
+        DataGridView1.Columns.Add(chk)
+        Dim link As New DataGridViewLinkColumn()
+        link.HeaderText = "Pool"
+        link.Name = "Pool"
+        DataGridView1.Columns.Add(link)
         DataGridView1.ColumnCount = 4
-        With DataGridView1.Columns(1)
-            .Name = "Pool"
-            .AutoSizeMode = DataGridViewAutoSizeColumnsMode.AllCells
-        End With
+        'With DataGridView1.Columns(1)
+        '    .Name = "Pool"
+        '    .AutoSizeMode = DataGridViewAutoSizeColumnsMode.AllCells
+        'End With
         With DataGridView1.Columns(2)
             .Name = "Worker"
         End With
@@ -1407,25 +1420,6 @@ Public Class Main
 
     End Sub
 
-    Private Sub P2PoolConfigToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles P2PoolConfigToolStripMenuItem.Click
-
-        Try
-            p2pool_config_file = settingsfolder & "\p2pool\start_p2pool.bat"
-            If System.IO.File.Exists(p2pool_config_file) = True Then
-                Process.Start("notepad.exe", p2pool_config_file)
-            Else
-                MsgBox("No p2pool config file found.")
-            End If
-        Catch ex As Exception
-            MsgBox(ex.Message)
-            _logger.LogError(ex)
-            Invoke(New MethodInvoker(AddressOf SaveSettingsJSON))
-        Finally
-            _logger.Trace("P2PoolConfigToolStripMenuItem(), Load P2Pool Config: OK")
-        End Try
-
-    End Sub
-
     Private Sub AboutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem.Click
 
         Dim dialog = New about(_logger)
@@ -1908,7 +1902,7 @@ Public Class Main
 
     End Sub
 
-    Private Sub P2PoolWebInterfaceToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles P2PoolWebInterfaceToolStripMenuItem.Click
+    Private Sub P2PoolWebInterfaceToolStripMenuItem_Click(sender As Object, e As EventArgs)
 
         Try
             Dim url As String = pools(0).replace("stratum+tcp", "http")

@@ -119,7 +119,7 @@ Partial Class settings
         Me.CheckBox4.TabIndex = 3
         Me.CheckBox4.Text = "Use UPnP"
         Me.ToolTip.SetToolTip(Me.CheckBox4, "Toggle to enable UPnP.  This will automatically set up port forwarding for P2Pool" &
-        " on compatible routers." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "***Still in development***")
+        " on compatible routers.")
         Me.CheckBox4.UseVisualStyleBackColor = True
         '
         'CheckBox6
@@ -199,7 +199,7 @@ Partial Class settings
         Me.PictureBox3.TabIndex = 8
         Me.PictureBox3.TabStop = False
         Me.ToolTip.SetToolTip(Me.PictureBox3, "Toggle to enable UPnP.  This will automatically set up port forwarding for P2Pool" &
-        " on compatible routers." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "***Still in development***" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10))
+        " on compatible routers." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10))
         '
         'PictureBox1
         '
@@ -259,6 +259,7 @@ Partial Class settings
         Me.TextBox4.TabIndex = 0
         Me.TextBox4.Text = "9346"
         Me.TextBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.ToolTip.SetToolTip(Me.TextBox4, "Port in which other P2Pool nodes and node scanners can connect to your node." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10))
         '
         'TextBox5
         '
@@ -269,6 +270,7 @@ Partial Class settings
         Me.TextBox5.TabIndex = 0
         Me.TextBox5.Text = "9171"
         Me.TextBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.ToolTip.SetToolTip(Me.TextBox5, "Port in which miners can connect to your node to mine.")
         '
         'Label15
         '
@@ -299,6 +301,8 @@ Partial Class settings
         Me.Node_Fee.TabIndex = 2
         Me.Node_Fee.Text = "%"
         Me.Node_Fee.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.ToolTip.SetToolTip(Me.Node_Fee, "This is the percentage of work done by miners on your node that is paid as a fee " &
+        "to you as the node operator." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10))
         '
         'Node_Donation
         '
@@ -309,6 +313,8 @@ Partial Class settings
         Me.Node_Donation.TabIndex = 1
         Me.Node_Donation.Text = "%"
         Me.Node_Donation.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.ToolTip.SetToolTip(Me.Node_Donation, "This is the percentage of work done by miners on your node that is donated to Ver" &
+        "tcoin Development.")
         '
         'Label3
         '

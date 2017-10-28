@@ -36,7 +36,6 @@ Partial Class Main
         Me.FileDirectoryToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SystemLogToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.P2PoolConfigToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.P2PoolWebInterfaceToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ContactToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -143,14 +142,14 @@ Partial Class Main
         Me.UpdateToolStripMenuItem.BackColor = System.Drawing.SystemColors.Control
         Me.UpdateToolStripMenuItem.ForeColor = System.Drawing.Color.DarkSlateGray
         Me.UpdateToolStripMenuItem.Name = "UpdateToolStripMenuItem"
-        Me.UpdateToolStripMenuItem.Size = New System.Drawing.Size(152, 28)
+        Me.UpdateToolStripMenuItem.Size = New System.Drawing.Size(140, 28)
         Me.UpdateToolStripMenuItem.Text = "Update"
         '
         'ExitToolStripMenuItem
         '
         Me.ExitToolStripMenuItem.ForeColor = System.Drawing.Color.DarkSlateGray
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(152, 28)
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(140, 28)
         Me.ExitToolStripMenuItem.Text = "Exit"
         '
         'EditToolStripMenuItem
@@ -162,7 +161,7 @@ Partial Class Main
         '
         'ViewToolStripMenuItem
         '
-        Me.ViewToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileDirectoryToolStripMenuItem, Me.SystemLogToolStripMenuItem, Me.P2PoolConfigToolStripMenuItem, Me.P2PoolWebInterfaceToolStripMenuItem})
+        Me.ViewToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileDirectoryToolStripMenuItem, Me.SystemLogToolStripMenuItem, Me.P2PoolConfigToolStripMenuItem})
         Me.ViewToolStripMenuItem.ForeColor = System.Drawing.SystemColors.Control
         Me.ViewToolStripMenuItem.Name = "ViewToolStripMenuItem"
         Me.ViewToolStripMenuItem.Size = New System.Drawing.Size(64, 46)
@@ -172,29 +171,22 @@ Partial Class Main
         '
         Me.FileDirectoryToolStripMenuItem.ForeColor = System.Drawing.Color.DarkSlateGray
         Me.FileDirectoryToolStripMenuItem.Name = "FileDirectoryToolStripMenuItem"
-        Me.FileDirectoryToolStripMenuItem.Size = New System.Drawing.Size(261, 28)
+        Me.FileDirectoryToolStripMenuItem.Size = New System.Drawing.Size(200, 28)
         Me.FileDirectoryToolStripMenuItem.Text = "Miner Config"
         '
         'SystemLogToolStripMenuItem
         '
         Me.SystemLogToolStripMenuItem.ForeColor = System.Drawing.Color.DarkSlateGray
         Me.SystemLogToolStripMenuItem.Name = "SystemLogToolStripMenuItem"
-        Me.SystemLogToolStripMenuItem.Size = New System.Drawing.Size(261, 28)
+        Me.SystemLogToolStripMenuItem.Size = New System.Drawing.Size(200, 28)
         Me.SystemLogToolStripMenuItem.Text = "One-Click Log"
         '
         'P2PoolConfigToolStripMenuItem
         '
         Me.P2PoolConfigToolStripMenuItem.ForeColor = System.Drawing.Color.DarkSlateGray
         Me.P2PoolConfigToolStripMenuItem.Name = "P2PoolConfigToolStripMenuItem"
-        Me.P2PoolConfigToolStripMenuItem.Size = New System.Drawing.Size(261, 28)
+        Me.P2PoolConfigToolStripMenuItem.Size = New System.Drawing.Size(200, 28)
         Me.P2PoolConfigToolStripMenuItem.Text = "P2Pool Config"
-        '
-        'P2PoolWebInterfaceToolStripMenuItem
-        '
-        Me.P2PoolWebInterfaceToolStripMenuItem.ForeColor = System.Drawing.Color.DarkSlateGray
-        Me.P2PoolWebInterfaceToolStripMenuItem.Name = "P2PoolWebInterfaceToolStripMenuItem"
-        Me.P2PoolWebInterfaceToolStripMenuItem.Size = New System.Drawing.Size(261, 28)
-        Me.P2PoolWebInterfaceToolStripMenuItem.Text = "P2Pool Web Interface"
         '
         'HelpToolStripMenuItem
         '
@@ -208,14 +200,14 @@ Partial Class Main
         '
         Me.AboutToolStripMenuItem.ForeColor = System.Drawing.Color.DarkSlateGray
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(152, 28)
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(143, 28)
         Me.AboutToolStripMenuItem.Text = "About"
         '
         'ContactToolStripMenuItem
         '
         Me.ContactToolStripMenuItem.ForeColor = System.Drawing.Color.DarkSlateGray
         Me.ContactToolStripMenuItem.Name = "ContactToolStripMenuItem"
-        Me.ContactToolStripMenuItem.Size = New System.Drawing.Size(152, 28)
+        Me.ContactToolStripMenuItem.Size = New System.Drawing.Size(143, 28)
         Me.ContactToolStripMenuItem.Text = "Contact"
         '
         'UpdateStatsInterval
@@ -585,7 +577,6 @@ Partial Class Main
     Friend WithEvents PictureBox9 As PictureBox
     Friend WithEvents Label4 As Label
     Friend WithEvents TextBox3 As TextBox
-    Friend WithEvents P2PoolWebInterfaceToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents Panel1 As System.Windows.Forms.Panel
     Friend WithEvents PictureBox4 As System.Windows.Forms.PictureBox
     Friend WithEvents Panel3 As System.Windows.Forms.Panel
