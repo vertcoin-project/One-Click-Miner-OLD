@@ -39,9 +39,9 @@ Public Class Main
 
             _logger = New FileLogger(syslog)
 
-            If System.IO.Directory.Exists(settingsfolder) = False Then
-                System.IO.Directory.CreateDirectory(settingsfolder)
-            End If
+            
+            System.IO.Directory.CreateDirectory(settingsfolder)
+           
             If System.IO.File.Exists(settingsfolder & "\Settings.ini") = True Then
                 Invoke(New MethodInvoker(AddressOf Update_Settings))
             Else
