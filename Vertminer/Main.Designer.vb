@@ -62,6 +62,7 @@ Partial Class Main
         Me.PictureBox6 = New System.Windows.Forms.PictureBox()
         Me.PictureBox4 = New System.Windows.Forms.PictureBox()
         Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.Label5 = New System.Windows.Forms.Label()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.ComboBox1 = New System.Windows.Forms.ComboBox()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -70,6 +71,9 @@ Partial Class Main
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.Clock = New System.Windows.Forms.Timer(Me.components)
+        Me.Idle_Check = New System.Windows.Forms.Timer(Me.components)
+        Me.Idle_Worker = New System.ComponentModel.BackgroundWorker()
+        Me.Idle_Timer = New System.Windows.Forms.Timer(Me.components)
         Me.MenuStrip.SuspendLayout()
         CType(Me.PictureBox9, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -259,7 +263,7 @@ Partial Class Main
         Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.Button3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button3.ForeColor = System.Drawing.SystemColors.Control
-        Me.Button3.Location = New System.Drawing.Point(97, 55)
+        Me.Button3.Location = New System.Drawing.Point(55, 82)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(47, 23)
         Me.Button3.TabIndex = 2
@@ -270,7 +274,7 @@ Partial Class Main
         'PictureBox9
         '
         Me.PictureBox9.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.help_small
-        Me.PictureBox9.Location = New System.Drawing.Point(288, 90)
+        Me.PictureBox9.Location = New System.Drawing.Point(284, 90)
         Me.PictureBox9.Name = "PictureBox9"
         Me.PictureBox9.Size = New System.Drawing.Size(15, 15)
         Me.PictureBox9.TabIndex = 39
@@ -320,7 +324,7 @@ Partial Class Main
         Me.CheckBox2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.CheckBox2.AutoSize = True
         Me.CheckBox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CheckBox2.Location = New System.Drawing.Point(25, 88)
+        Me.CheckBox2.Location = New System.Drawing.Point(306, 90)
         Me.CheckBox2.Name = "CheckBox2"
         Me.CheckBox2.Size = New System.Drawing.Size(115, 17)
         Me.CheckBox2.TabIndex = 88
@@ -404,6 +408,7 @@ Partial Class Main
         'Panel3
         '
         Me.Panel3.BackColor = System.Drawing.Color.DarkSlateGray
+        Me.Panel3.Controls.Add(Me.Label5)
         Me.Panel3.Controls.Add(Me.CheckBox2)
         Me.Panel3.Controls.Add(Me.Button4)
         Me.Panel3.Controls.Add(Me.DataGridView1)
@@ -429,6 +434,19 @@ Partial Class Main
         Me.Panel3.Size = New System.Drawing.Size(435, 285)
         Me.Panel3.TabIndex = 91
         '
+        'Label5
+        '
+        Me.Label5.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label5.AutoSize = True
+        Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.Location = New System.Drawing.Point(162, 52)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(110, 26)
+        Me.Label5.TabIndex = 90
+        Me.Label5.Text = "Vertminer includes" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "2% Dev Fee"
+        Me.Label5.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.Label5.Visible = False
+        '
         'DataGridView1
         '
         Me.DataGridView1.AllowUserToAddRows = False
@@ -447,10 +465,10 @@ Partial Class Main
         '
         Me.ComboBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Items.AddRange(New Object() {"AMD", "NVIDIA", "CPU"})
+        Me.ComboBox1.Items.AddRange(New Object() {"AMD-sgminer", "NVIDIA-ccminer", "NVIDIA-vertminer", "CPU-cpuminer"})
         Me.ComboBox1.Location = New System.Drawing.Point(12, 56)
         Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(79, 21)
+        Me.ComboBox1.Size = New System.Drawing.Size(132, 21)
         Me.ComboBox1.TabIndex = 1
         '
         'Label2
@@ -519,6 +537,17 @@ Partial Class Main
         '
         Me.Clock.Enabled = True
         Me.Clock.Interval = 1000
+        '
+        'Idle_Check
+        '
+        Me.Idle_Check.Interval = 10000
+        '
+        'Idle_Worker
+        '
+        '
+        'Idle_Timer
+        '
+        Me.Idle_Timer.Interval = 1000
         '
         'Main
         '
@@ -597,4 +626,8 @@ Partial Class Main
     Friend WithEvents Button4 As Button
     Friend WithEvents DataGridView1 As DataGridView
     Friend WithEvents CheckBox2 As CheckBox
+    Friend WithEvents Label5 As Label
+    Friend WithEvents Idle_Check As Timer
+    Friend WithEvents Idle_Worker As System.ComponentModel.BackgroundWorker
+    Friend WithEvents Idle_Timer As Timer
 End Class

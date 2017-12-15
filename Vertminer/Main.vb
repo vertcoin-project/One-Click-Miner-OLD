@@ -11,6 +11,7 @@ Imports Newtonsoft.Json
 Imports Newtonsoft.Json.Linq
 Imports System.Globalization
 Imports VertcoinOneClickMiner.Core
+Imports OpenHardwareMonitor.Hardware
 
 Public Class Main
 
@@ -28,7 +29,20 @@ Public Class Main
             Else
                 platform = False '32-bit
             End If
-            settingsfolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) & "\Vertcoin One-Click Miner"
+            settingsfolder = My.Settings.settingsfolder
+            If settingsfolder = "" Then
+                Dim result1 As DialogResult = MsgBox("Please select the location that you would like the OCM to store it's settings, miner, and p2pool data.", MessageBoxButtons.OKCancel)
+                If result1 = DialogResult.OK Then
+                    Dim result2 As Windows.Forms.DialogResult = Select_Data_Dir.ShowDialog()
+                    If result2 = Windows.Forms.DialogResult.OK Then
+                        settingsfolder = Select_Data_Dir.SelectedPath
+                    End If
+                ElseIf result1 = DialogResult.Cancel Then
+                    settingsfolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) & "\Vertcoin One-Click Miner"
+                End If
+                My.Settings.settingsfolder = settingsfolder
+                My.Settings.Save()
+            End If
             settingsfile = settingsfolder & "\Settings.json"
             syslog = settingsfolder & "\SysLog.txt"
             p2poolfolder = settingsfolder & "\p2pool"
@@ -36,12 +50,11 @@ Public Class Main
             amdfolder = settingsfolder & "\amd"
             nvidiafolder = settingsfolder & "\nvidia"
             cpufolder = settingsfolder & "\cpu"
-
+            sgminerfolder = amdfolder & "\sgminer"
+            ccminerfolder = nvidiafolder & "\ccminer"
+            vertminerfolder = nvidiafolder & "\vertminer"
+            cpuminerfolder = cpufolder & "\cpuminer"
             _logger = New FileLogger(syslog)
-
-            If System.IO.Directory.Exists(settingsfolder) = False Then
-                System.IO.Directory.CreateDirectory(settingsfolder)
-            End If
             If System.IO.File.Exists(settingsfolder & "\Settings.ini") = True Then
                 Invoke(New MethodInvoker(AddressOf Update_Settings))
             Else
@@ -55,12 +68,14 @@ Public Class Main
             'Load Settings
             Invoke(New MethodInvoker(AddressOf LoadSettingsJSON))
             'Check for default miner selected.  This is kept separate from autostart to allow user to see checkbox.
-            If default_miner = "amd" Then
-                ComboBox1.SelectedItem = "AMD"
-            ElseIf default_miner = "nvidia" Then
-                ComboBox1.SelectedItem = "NVIDIA"
-            ElseIf default_miner = "cpu" Then
-                ComboBox1.SelectedItem = "CPU"
+            If default_miner = "amd-sgminer" Then
+                ComboBox1.SelectedItem = "AMD-sgminer"
+            ElseIf default_miner = "nvidia-ccminer" Then
+                ComboBox1.SelectedItem = "NVIDIA-ccminer"
+            ElseIf default_miner = "nvidia-vertminer" Then
+                ComboBox1.SelectedItem = "NVIDIA-vertminer"
+            ElseIf default_miner = "cpu-cpuminer" Then
+                ComboBox1.SelectedItem = "CPU-cpuminer"
             End If
             'Window state on start
             If start_minimized = True Then
@@ -76,20 +91,26 @@ Public Class Main
             End If
             'Autostart variables
             If autostart_mining = True Then
-                If default_miner = "amd" Then
-                    If System.IO.File.Exists(amdfolder & "\ocm_sgminer.exe") = True Then
+                If default_miner = "amd-sgminer" Then
+                    If System.IO.File.Exists(sgminerfolder & "\ocm_sgminer.exe") = True Then
                         amdminer = True
                     End If
                     mining_initialized = True
                     BeginInvoke(New MethodInvoker(AddressOf Start_Miner))
-                ElseIf default_miner = "nvidia" Then
-                    If System.IO.File.Exists(nvidiafolder & "\ocm_vertminer.exe") = True Then
+                ElseIf default_miner = "nvidia-ccminer" Then
+                    If System.IO.File.Exists(ccminerfolder & "\ocm_ccminer.exe") = True Then
                         nvidiaminer = True
                     End If
                     mining_initialized = True
                     BeginInvoke(New MethodInvoker(AddressOf Start_Miner))
-                ElseIf default_miner = "cpu" Then
-                    If System.IO.File.Exists(cpufolder & "\ocm_cpuminer.exe") = True Then
+                ElseIf default_miner = "nvidia-vertminer" Then
+                    If System.IO.File.Exists(vertminerfolder & "\ocm_vertminer.exe") = True Then
+                        nvidiaminer = True
+                    End If
+                    mining_initialized = True
+                    BeginInvoke(New MethodInvoker(AddressOf Start_Miner))
+                ElseIf default_miner = "cpu-cpuminer" Then
+                    If System.IO.File.Exists(cpuminerfolder & "\ocm_cpuminer.exe") = True Then
                         cpuminer = True
                     End If
                     mining_initialized = True
@@ -107,6 +128,7 @@ Public Class Main
             BeginInvoke(New MethodInvoker(AddressOf Detected))
             UpdateStatsInterval.Start()
             Uptime_Timer.Start()
+            Idle_Check.Start()
         Catch ex As Exception
             MsgBox(ex.Message)
             _logger.LogError(ex)
@@ -155,12 +177,14 @@ Public Class Main
         _logger.Trace("Closing: OK")
 
         NotifyIcon1.Dispose()
-        If ComboBox1.SelectedItem = "AMD" Then
-            default_miner = "amd"
-        ElseIf ComboBox1.SelectedItem = "NVIDIA" Then
-            default_miner = "nvidia"
-        ElseIf ComboBox1.SelectedItem = "CPU" Then
-            default_miner = "cpu"
+        If ComboBox1.SelectedItem = "AMD-sgminer" Then
+            default_miner = "amd-sgminer"
+        ElseIf ComboBox1.SelectedItem = "NVIDIA-ccminer" Then
+            default_miner = "nvidia-ccminer"
+        ElseIf ComboBox1.SelectedItem = "NVIDIA-vertminer" Then
+            default_miner = "nvidia-vertminer"
+        ElseIf ComboBox1.SelectedItem = "CPU-cpuminer" Then
+            default_miner = "cpu-cpuminer"
         End If
         Invoke(New MethodInvoker(AddressOf SaveSettingsJSON))
         Invoke(New MethodInvoker(AddressOf Kill_Miner))
@@ -172,6 +196,14 @@ Public Class Main
     End Sub
 
     Private Sub dataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
+
+        If e.ColumnIndex = 1 Then
+            System.Diagnostics.Process.Start(DataGridView1(1, e.RowIndex).Value.ToString.Replace("stratum+tcp", "http"))
+        End If
+
+    End Sub
+
+    Private Sub dataGridView1_CellContentDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentDoubleClick
 
         If e.ColumnIndex = 1 Then
             System.Diagnostics.Process.Start(DataGridView1(1, e.RowIndex).Value.ToString.Replace("stratum+tcp", "http"))
@@ -198,7 +230,7 @@ Public Class Main
             End If
         Next
         For Each p As Process In System.Diagnostics.Process.GetProcesses
-            If p.ProcessName.Contains("ocm_vertminer") Then
+            If p.ProcessName.Contains("ocm_ccminer") Or p.ProcessName.Contains("ocm_vertminer") Then
                 nvidia_detected = True
                 Exit For
             Else
@@ -306,50 +338,70 @@ Public Class Main
             AddHandler downloadclient.DownloadFileCompleted, AddressOf Client_MinerDownloadCompleted
             'Compares the current version of the AMD miner with the latest available.
             If amdminer = True Then
-                If (newestversion > System.Version.Parse(amd_version)) Or mining_installed = False Then
-                    If System.IO.Directory.Exists(amdfolder) = False Then
-                        'If AMD miner doesn't already exist, create folder and download
-                        System.IO.Directory.CreateDirectory(amdfolder)
+                If default_miner = "amd-sgminer" Then
+                    If (sgminer_new_version > System.Version.Parse(sgminer_version)) Or mining_installed = False Then
+                        If System.IO.Directory.Exists(sgminerfolder) = False Then
+                            'If AMD miner doesn't already exist, create folder and download
+                            System.IO.Directory.CreateDirectory(sgminerfolder)
+                        Else
+                            System.IO.Directory.Delete(sgminerfolder, True)
+                            System.Threading.Thread.Sleep(100)
+                            System.IO.Directory.CreateDirectory(sgminerfolder)
+                        End If
+                        downloadclient.DownloadFileAsync(New Uri(sgminer_updatelink), sgminerfolder & "\sgminer.zip", True)
                     Else
-                        System.IO.Directory.Delete(amdfolder, True)
-                        System.Threading.Thread.Sleep(100)
-                        System.IO.Directory.CreateDirectory(amdfolder)
+                        progress.Close()
                     End If
-                    downloadclient.DownloadFileAsync(New Uri(updatelink), settingsfolder & "\amd\sgminer.zip", True)
-                Else
-                    progress.Close()
                 End If
             End If
             'Compares the current version of the Nvidia miner with the latest available.
             If nvidiaminer = True Then
-                If newestversion > System.Version.Parse(nvidia_version) Or mining_installed = False Then
-                    If System.IO.Directory.Exists(nvidiafolder) = False Then
-                        'If Nvidia miner doesn't already exist, create folder and download
-                        System.IO.Directory.CreateDirectory(nvidiafolder)
+                If default_miner = "nvidia-ccminer" Then
+                    If ccminer_new_version > System.Version.Parse(ccminer_version) Or mining_installed = False Then
+                        If System.IO.Directory.Exists(ccminerfolder) = False Then
+                            'If Nvidia miner doesn't already exist, create folder and download
+                            System.IO.Directory.CreateDirectory(ccminerfolder)
+                        Else
+                            System.IO.Directory.Delete(ccminerfolder, True)
+                            System.Threading.Thread.Sleep(100)
+                            System.IO.Directory.CreateDirectory(ccminerfolder)
+                        End If
+                        downloadclient.DownloadFileAsync(New Uri(ccminer_updatelink), ccminerfolder & "\ccminer.zip", True)
                     Else
-                        System.IO.Directory.Delete(nvidiafolder, True)
-                        System.Threading.Thread.Sleep(100)
-                        System.IO.Directory.CreateDirectory(nvidiafolder)
+                        progress.Close()
                     End If
-                    downloadclient.DownloadFileAsync(New Uri(updatelink), settingsfolder & "\nvidia\vertminer.zip", True)
-                Else
-                    progress.Close()
+                ElseIf default_miner = "nvidia-vertminer" Then
+                    If vertminer_new_version > System.Version.Parse(vertminer_version) Or mining_installed = False Then
+                        If System.IO.Directory.Exists(vertminerfolder) = False Then
+                            'If Nvidia miner doesn't already exist, create folder and download
+                            System.IO.Directory.CreateDirectory(vertminerfolder)
+                        Else
+                            System.IO.Directory.Delete(vertminerfolder, True)
+                            System.Threading.Thread.Sleep(100)
+                            System.IO.Directory.CreateDirectory(vertminerfolder)
+                        End If
+                        downloadclient.DownloadFileAsync(New Uri(vertminer_updatelink), vertminerfolder & "\vertminer.zip", True)
+                    Else
+                        progress.Close()
+                    End If
                 End If
             End If
             'Compares the current version of the CPU miner with the latest available.
             If cpuminer = True Then
-                If newestversion > System.Version.Parse(cpu_version) Or mining_installed = False Then
-                    If System.IO.Directory.Exists(cpufolder) = False Then
-                        'If CPU miner doesn't already exist, create folder and download
-                        System.IO.Directory.CreateDirectory(cpufolder)
+                If default_miner = "cpu-cpuminer" Then
+                    If cpuminer_new_version > System.Version.Parse(cpuminer_version) Or mining_installed = False Then
+                        If System.IO.Directory.Exists(cpuminerfolder) = False Then
+                            'If CPU miner doesn't already exist, create folder and download
+                            System.IO.Directory.CreateDirectory(cpuminerfolder)
+                        Else
+                            System.IO.Directory.Delete(cpuminerfolder, True)
+                            System.Threading.Thread.Sleep(100)
+                            System.IO.Directory.CreateDirectory(cpuminerfolder)
+                        End If
+                        downloadclient.DownloadFileAsync(New Uri(cpuminer_updatelink), cpuminerfolder & "\cpuminer.zip", True)
                     Else
-                        System.IO.Directory.Delete(cpufolder, True)
-                        System.Threading.Thread.Sleep(100)
-                        System.IO.Directory.CreateDirectory(cpufolder)
+                        progress.Close()
                     End If
-                    downloadclient.DownloadFileAsync(New Uri(updatelink), settingsfolder & "\cpu\cpuminer.zip", True)
-                Else
-                    progress.Close()
                 End If
             End If
         Catch ex As Exception
@@ -370,13 +422,13 @@ Public Class Main
             downloadclient = New WebClient
             AddHandler downloadclient.DownloadProgressChanged, AddressOf Client_ProgressChanged
             AddHandler downloadclient.DownloadFileCompleted, AddressOf Client_P2PoolDownloadCompleted
-            If (newestversion > System.Version.Parse(p2pool_version)) Or p2pool_installed = False Then
+            If (p2pool_new_version > System.Version.Parse(p2pool_version)) Or p2pool_installed = False Then
                 'Create p2pool directory and download/extract p2pool components into directory
                 If System.IO.Directory.Exists(p2poolfolder) = False Then
                     System.IO.Directory.CreateDirectory(p2poolfolder)
                 End If
                 MsgBox("Please note, you must also run a Vertcoin Wallet to use P2Pool locally.")
-                downloadclient.DownloadFileAsync(New Uri(updatelink), p2poolfolder & "\p2pool.zip", True)
+                downloadclient.DownloadFileAsync(New Uri(p2pool_updatelink), p2poolfolder & "\p2pool.zip", True)
             End If
         Catch ex As Exception
             MsgBox("An issue occurred during the download.  Please try again.")
@@ -426,18 +478,27 @@ Public Class Main
             If canceldownloadasync = False Then
                 'Download proper miner and extract into respective directories
                 If amdminer = True Then
-                    zipPath = settingsfolder & "\amd\sgminer.zip"
-                    exe = settingsfolder & "\amd\ocm_sgminer.exe"
-                    miner_config_file = settingsfolder & "\amd\config.bat"
+                    If default_miner = "amd-sgminer" Then
+                        zipPath = settingsfolder & "\amd\sgminer\sgminer.zip"
+                        exe = settingsfolder & "\amd\sgminer\ocm_sgminer.exe"
+                        miner_config_file = settingsfolder & "\amd\sgminer\config.bat"
+                    End If
                 ElseIf nvidiaminer = True Then
-                    zipPath = settingsfolder & "\nvidia\vertminer.zip"
-                    exe = settingsfolder & "\nvidia\ocm_vertminer.exe"
-                    dll = settingsfolder & "\nvidia\msvcr120.dll"
-                    miner_config_file = settingsfolder & "\nvidia\config.bat"
+                    If default_miner = "nvidia-ccminer" Then
+                        zipPath = settingsfolder & "\nvidia\ccminer\ccminer.zip"
+                        exe = settingsfolder & "\nvidia\ccminer\ocm_ccminer.exe"
+                        dll = settingsfolder & "\nvidia\ccminer\msvcr120.dll"
+                        miner_config_file = settingsfolder & "\nvidia\ccminer\config.bat"
+                    ElseIf default_miner = "nvidia-vertminer" Then
+                        zipPath = settingsfolder & "\nvidia\vertminer\vertminer.zip"
+                        exe = settingsfolder & "\nvidia\vertminer\ocm_vertminer.exe"
+                        dll = settingsfolder & "\nvidia\vertminer\msvcr120.dll"
+                        miner_config_file = settingsfolder & "\nvidia\vertminer\config.bat"
+                    End If
                 ElseIf cpuminer = True Then
-                    zipPath = settingsfolder & "\cpu\cpuminer.zip"
-                    exe = settingsfolder & "\cpu\ocm_cpuminer.exe"
-                    miner_config_file = settingsfolder & "\cpu\config.bat"
+                    zipPath = settingsfolder & "\cpu\cpuminer\cpuminer.zip"
+                    exe = settingsfolder & "\cpu\cpuminer\ocm_cpuminer.exe"
+                    miner_config_file = settingsfolder & "\cpu\cpuminer\config.bat"
                 End If
                 Using archive As ZipArchive = ZipFile.OpenRead(zipPath)
                     'If platform = True Then '64-bit
@@ -513,11 +574,17 @@ Public Class Main
                     update_complete = True
                 End If
                 If amdminer = True Then
-                    amd_version = System.Convert.ToString(newestversion)
+                    If default_miner = "amd-sgminer" Then
+                        sgminer_version = System.Convert.ToString(sgminer_new_version)
+                    End If
                 ElseIf nvidiaminer = True Then
-                    nvidia_version = System.Convert.ToString(newestversion)
+                    If default_miner = "nvidia-ccminer" Then
+                        ccminer_version = System.Convert.ToString(ccminer_new_version)
+                    ElseIf default_miner = "nvidia-vertminer" Then
+                        vertminer_version = System.Convert.ToString(vertminer_new_version)
+                    End If
                 ElseIf cpuminer = True Then
-                    cpu_version = System.Convert.ToString(newestversion)
+                    cpuminer_version = System.Convert.ToString(cpuminer_new_version)
                 End If
                 amdminer = False
                 nvidiaminer = False
@@ -575,6 +642,7 @@ Public Class Main
                     objWriter.Close()
                 End If
                 Invoke(New MethodInvoker(AddressOf Download_P2PoolInterface))
+                p2pool_version = System.Convert.ToString(p2pool_new_version)
             End If
         Catch ex As Exception
             MsgBox("An issue occurred during the download.  Please try again.")
@@ -604,7 +672,6 @@ Public Class Main
                 update_complete = True
                 BeginInvoke(New MethodInvoker(AddressOf Start_P2Pool))
             End If
-            p2pool_version = System.Convert.ToString(newestversion)
         Catch ex As Exception
             MsgBox("An issue occurred during the download.  Please try again.")
             _logger.LogError(ex)
@@ -649,6 +716,9 @@ Public Class Main
             TextBox2.Text = "Offline"
             Button3.Text = "Start"
             TextBox3.Text = "0 kh/s"
+            amdminer = False
+            nvidiaminer = False
+            cpuminer = False
         End If
         'P2Pool Info
         If p2pool_detected = True Then
@@ -738,13 +808,12 @@ Public Class Main
         End If
         If count > 0 Then
             For x As Integer = 0 To count - 1
-                Dim row As String() = New String() {selected(x), pools(x), workers(x), passwords(x)}
+                Dim row As Object() = New Object() {selected(x), pools(x), workers(x), passwords(x)}
                 DataGridView1.Rows.Add(row)
             Next
         End If
 
     End Sub
-
 
     Public Sub Update_Settings()
 
@@ -772,6 +841,7 @@ Public Class Main
             start_with_windows = settingsJSON.start_with_windows
             autostart_p2pool = settingsJSON.autostart_p2pool
             autostart_mining = settingsJSON.autostart_mining
+            mine_when_idle = settingsJSON.mine_when_idle
             keep_miner_alive = settingsJSON.keep_miner_alive
             keep_p2pool_alive = settingsJSON.keep_p2pool_alive
             use_upnp = settingsJSON.use_upnp
@@ -785,9 +855,10 @@ Public Class Main
             mining_intensity = settingsJSON.mining_intensity
             p2pool_fee_address = settingsJSON.p2pool_fee_address
             p2pool_version = settingsJSON.p2pool_version
-            amd_version = settingsJSON.amd_version
-            nvidia_version = settingsJSON.nvidia_version
-            cpu_version = settingsJSON.cpu_version
+            sgminer_version = settingsJSON.sgminer_version
+            ccminer_version = settingsJSON.ccminer_version
+            vertminer_version = settingsJSON.vertminer_version
+            cpuminer_version = settingsJSON.cpuminer_version
             default_miner = settingsJSON.default_miner
             devices = settingsJSON.devices
             pools.Clear()
@@ -842,6 +913,7 @@ Public Class Main
             newjson.start_with_windows = start_with_windows
             newjson.autostart_p2pool = autostart_p2pool
             newjson.autostart_mining = autostart_mining
+            newjson.mine_when_idle = mine_when_idle
             newjson.keep_miner_alive = keep_miner_alive
             newjson.keep_p2pool_alive = keep_p2pool_alive
             newjson.use_upnp = use_upnp
@@ -855,9 +927,10 @@ Public Class Main
             newjson.mining_intensity = mining_intensity
             newjson.p2pool_fee_address = p2pool_fee_address
             newjson.p2pool_version = p2pool_version
-            newjson.amd_version = amd_version
-            newjson.nvidia_version = nvidia_version
-            newjson.cpu_version = cpu_version
+            newjson.sgminer_version = sgminer_version
+            newjson.ccminer_version = ccminer_version
+            newjson.vertminer_version = vertminer_version
+            newjson.cpuminer_version = cpuminer_version
             newjson.default_miner = default_miner
             newjson.devices = devices
             newjson.pools.Clear()
@@ -1025,7 +1098,9 @@ Public Class Main
             count = Math.Min(count, passwordcount)
             If amdminer = True Then
                 newjson = New AMD_Miner_Settings_JSON()
-                minersettingsfile = amdfolder & "\sgminer.conf"
+                If default_miner = "amd-sgminer" Then
+                    minersettingsfile = sgminerfolder & "\sgminer.conf"
+                End If
                 'For x As Integer = count - 1 To 0 Step -1
                 Dim pooljson As AMD_Pools_JSON = New AMD_Pools_JSON()
                 'pooljson.url = pools(x)
@@ -1046,7 +1121,11 @@ Public Class Main
                 jsonstring = jsonstring.Insert(jsonstring.Length - 1, ",""no-extranonce""" & ": " & "true")
             ElseIf nvidiaminer = True Then
                 newjson = New NVIDIA_Miner_Settings_JSON()
-                minersettingsfile = nvidiafolder & "\vertminer.conf"
+                If default_miner = "nvidia-ccminer" Then
+                    minersettingsfile = ccminerfolder & "\ccminer.conf"
+                ElseIf default_miner = "nvidia-vertminer" Then
+                    minersettingsfile = vertminerfolder & "\vertminer.conf"
+                End If
                 newjson.algo = "lyra2v2"
                 newjson.intensity = mining_intensity
                 newjson.devices = devices
@@ -1060,7 +1139,9 @@ Public Class Main
                 jsonstring = JSONConverter.Serialize(newjson)
             ElseIf cpuminer = True Then
                 newjson = New CPU_Miner_Settings_JSON()
-                minersettingsfile = cpufolder & "\cpuminer-conf.json"
+                If default_miner = "cpu-cpuminer" Then
+                    minersettingsfile = cpuminerfolder & "\cpuminer-conf.json"
+                End If
                 'No failover pool support in cpuminer. Use first selected pool.
                 If count > 0 Then
                     newjson.url = pools(0)
@@ -1105,15 +1186,22 @@ Public Class Main
                 'JSON Configuration
                 Dim psi As New ProcessStartInfo
                 If amdminer = True Then
-                    'miner_config = amdfolder & "\ocm_sgminer.exe"
-                    psi = New ProcessStartInfo("cmd")
-                    psi.Arguments = ("/K cd /d" & amdfolder & " & " & "setx GPU_MAX_ALLOC_PERCENT 100" & " & " & "setx GPU_SINGLE_ALLOC_PERCENT 100" & " & " & "ocm_sgminer.exe --api-listen --config " & "sgminer.conf" & " & " & " exit /B")
+                    If default_miner = "amd-sgminer" Then
+                        'miner_config = amdfolder & "\ocm_sgminer.exe"
+                        psi = New ProcessStartInfo("cmd")
+                        psi.Arguments = ("/K cd /d" & sgminerfolder & " & " & "setx GPU_MAX_ALLOC_PERCENT 100" & " & " & "setx GPU_SINGLE_ALLOC_PERCENT 100" & " & " & "ocm_sgminer.exe --api-listen --config " & "sgminer.conf" & " & " & " exit /B")
+                    End If
                 ElseIf nvidiaminer = True Then
-                    'miner_config = nvidiafolder & "\ocm_vertminer.exe"
-                    psi = New ProcessStartInfo(nvidiafolder & "\ocm_vertminer.exe")
+                    If default_miner = "nvidia-ccminer" Then
+                        'miner_config = nvidiafolder & "\ocm_vertminer.exe"
+                        psi = New ProcessStartInfo(ccminerfolder & "\ocm_ccminer.exe")
+                    ElseIf default_miner = "nvidia-vertminer" Then
+                        'miner_config = nvidiafolder & "\ocm_vertminer.exe"
+                        psi = New ProcessStartInfo(vertminerfolder & "\ocm_vertminer.exe")
+                    End If
                 ElseIf cpuminer = True Then
                     'miner_config = cpufolder & "\ocm_cpuminer.exe"
-                    psi = New ProcessStartInfo(cpufolder & "\ocm_cpuminer.exe")
+                    psi = New ProcessStartInfo(cpuminerfolder & "\ocm_cpuminer.exe")
                 End If
                 mining_running = True
                 'Dim psi As New ProcessStartInfo(miner_config)
@@ -1153,7 +1241,7 @@ Public Class Main
         Try
             mining_running = False
             For Each p As Process In System.Diagnostics.Process.GetProcesses
-                If p.ProcessName.Contains("ocm_vertminer") Or p.ProcessName.Contains("ocm_sgminer") Or p.ProcessName.Contains("ocm_cpuminer") Then
+                If p.ProcessName.Contains("ocm_ccminer") Or p.ProcessName.Contains("ocm_vertminer") Or p.ProcessName.Contains("ocm_sgminer") Or p.ProcessName.Contains("ocm_cpuminer") Then
                     p.Kill()
                 End If
             Next
@@ -1254,7 +1342,7 @@ Public Class Main
         If connection = True Then
             Dim tempnewestversion As New Version
             Dim templink As String = ""
-            Dim request As System.Net.HttpWebRequest = System.Net.HttpWebRequest.Create("http://alwayshashing.com/ocm_update.txt")
+            Dim request As System.Net.HttpWebRequest = System.Net.HttpWebRequest.Create("http://alwayshashing.com/ocm_test.txt")
             Dim response As System.Net.HttpWebResponse = request.GetResponse()
             Dim sr As System.IO.StreamReader = New System.IO.StreamReader(response.GetResponseStream())
             'Compares current One-Click Miner version with the latest available.
@@ -1269,22 +1357,28 @@ Public Class Main
             If (tempnewestversion > System.Version.Parse(p2pool_version)) And Not (System.Version.Parse(p2pool_version) = System.Version.Parse("0.0.0.0")) Then
                 update_needed = True
             End If
-            'Compares the current version of the AMD miner with the latest available.
-            tempnewestversion = System.Version.Parse(sr.ReadLine.Replace("amd=", ""))
+            'sgminer - Compares the current version of the AMD miner with the latest available.
+            tempnewestversion = System.Version.Parse(sr.ReadLine.Replace("amd-sgminer=", ""))
             templink = sr.ReadLine
-            If (tempnewestversion > System.Version.Parse(amd_version)) And Not (System.Version.Parse(amd_version) = System.Version.Parse("0.0.0.0")) And (System.IO.File.Exists(amdfolder & "\ocm_sgminer.exe") = True) Then
+            If (tempnewestversion > System.Version.Parse(sgminer_version)) And Not (System.Version.Parse(sgminer_version) = System.Version.Parse("0.0.0.0")) And (System.IO.File.Exists(sgminerfolder & "\ocm_sgminer.exe") = True) Then
                 update_needed = True
             End If
-            'Compares the current version of the Nvidia miner with the latest available.
-            tempnewestversion = System.Version.Parse(sr.ReadLine.Replace("nvidia=", ""))
+            'ccminer - Compares the current version of the Nvidiaminer with the latest available.
+            tempnewestversion = System.Version.Parse(sr.ReadLine.Replace("nvidia-ccminer=", ""))
             templink = sr.ReadLine
-            If (tempnewestversion > System.Version.Parse(nvidia_version)) And Not (System.Version.Parse(nvidia_version) = System.Version.Parse("0.0.0.0")) And (System.IO.File.Exists(nvidiafolder & "\ocm_vertminer.exe") = True) Then
+            If (tempnewestversion > System.Version.Parse(ccminer_version)) And Not (System.Version.Parse(ccminer_version) = System.Version.Parse("0.0.0.0")) And (System.IO.File.Exists(ccminerfolder & "\ocm_ccminer.exe") = True) Then
                 update_needed = True
             End If
-            'Compares the current version of the CPU miner with the latest available.
-            tempnewestversion = System.Version.Parse(sr.ReadLine.Replace("cpu=", ""))
+            'vertminer - Compares the current version of the Nvidia miner with the latest available.
+            tempnewestversion = System.Version.Parse(sr.ReadLine.Replace("nvidia-vertminer=", ""))
             templink = sr.ReadLine
-            If (tempnewestversion > System.Version.Parse(cpu_version)) And Not (System.Version.Parse(cpu_version) = System.Version.Parse("0.0.0.0")) And (System.IO.File.Exists(cpufolder & "\ocm_cpuminer.exe") = True) Then
+            If (tempnewestversion > System.Version.Parse(vertminer_version)) And Not (System.Version.Parse(vertminer_version) = System.Version.Parse("0.0.0.0")) And (System.IO.File.Exists(vertminerfolder & "\ocm_vertminer.exe") = True) Then
+                update_needed = True
+            End If
+            'cpuminer - Compares the current version of the CPU miner with the latest available.
+            tempnewestversion = System.Version.Parse(sr.ReadLine.Replace("cpu-cpuminer=", ""))
+            templink = sr.ReadLine
+            If (tempnewestversion > System.Version.Parse(cpuminer_version)) And Not (System.Version.Parse(cpuminer_version) = System.Version.Parse("0.0.0.0")) And (System.IO.File.Exists(cpuminerfolder & "\ocm_cpuminer.exe") = True) Then
                 update_needed = True
             End If
             Invoke(New MethodInvoker(AddressOf Update_Notification))
@@ -1384,12 +1478,14 @@ Public Class Main
     Private Sub FileDirectoryToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FileDirectoryToolStripMenuItem.Click
 
         Try
-            If default_miner = "amd" Then
-                miner_config_file = settingsfolder & "\amd\sgminer.conf"
-            ElseIf default_miner = "nvidia" Then
-                miner_config_file = settingsfolder & "\nvidia\vertminer.conf"
-            ElseIf default_miner = "cpu" Then
-                miner_config_file = settingsfolder & "\cpu\cpuminer-conf.json"
+            If default_miner = "amd-sgminer" Then
+                miner_config_file = sgminerfolder & "\sgminer.conf"
+            ElseIf default_miner = "nvidia-ccminer" Then
+                miner_config_file = ccminerfolder & "\ccminer.conf"
+            ElseIf default_miner = "nvidia-vertminer" Then
+                miner_config_file = vertminerfolder & "\vertminer.conf"
+            ElseIf default_miner = "cpu-cpuminer" Then
+                miner_config_file = cpuminerfolder & "\cpuminer-conf.json"
             End If
             If System.IO.File.Exists(miner_config_file) = True Then
                 Process.Start("notepad.exe", miner_config_file)
@@ -1717,17 +1813,31 @@ Public Class Main
         End Try
         If connection = True Then
             update_needed = False
-            Dim request As System.Net.HttpWebRequest = System.Net.HttpWebRequest.Create("http://alwayshashing.com/ocm_update.txt")
+            Dim request As System.Net.HttpWebRequest = System.Net.HttpWebRequest.Create("http://alwayshashing.com/ocm_test.txt")
             Dim response As System.Net.HttpWebResponse = request.GetResponse()
             Dim sr As System.IO.StreamReader = New System.IO.StreamReader(response.GetResponseStream())
+            'Read versions and update links
+            ocm_new_version = System.Version.Parse(sr.ReadLine.Replace("miner=", ""))
+            ocm_updatelink = sr.ReadLine
+            p2pool_new_version = System.Version.Parse(sr.ReadLine.Replace("p2pool=", ""))
+            p2pool_updatelink = sr.ReadLine
+            sgminer_new_version = System.Version.Parse(sr.ReadLine.Replace("amd-sgminer=", ""))
+            sgminer_updatelink = sr.ReadLine
+            ccminer_new_version = System.Version.Parse(sr.ReadLine.Replace("nvidia-ccminer=", ""))
+            ccminer_updatelink = sr.ReadLine
+            vertminer_new_version = System.Version.Parse(sr.ReadLine.Replace("nvidia-vertminer=", ""))
+            vertminer_updatelink = sr.ReadLine
+            cpuminer_new_version = System.Version.Parse(sr.ReadLine.Replace("cpu-cpuminer=", ""))
+            cpuminer_updatelink = sr.ReadLine
+            sr.Close()
             'Compares current One-Click Miner version with the latest available.
-            newestversion = System.Version.Parse(sr.ReadLine.Replace("miner=", ""))
-            updatelink = sr.ReadLine
-            If (newestversion > System.Version.Parse(miner_version)) Then
+            'newestversion = System.Version.Parse(SR.ReadLine.Replace("miner=", ""))
+            'updatelink = SR.ReadLine
+            If (ocm_new_version > System.Version.Parse(miner_version)) Then
                 Dim result1 As DialogResult = MsgBox("Update found for One-Click Miner! Click OK to download." & Environment.NewLine & "Please close program before installing.", MessageBoxButtons.OKCancel)
                 If result1 = DialogResult.OK Then
                     update_needed = True
-                    Process.Start(updatelink)
+                    Process.Start(ocm_updatelink)
                 ElseIf result1 = DialogResult.Cancel Then
                     update_complete = True
                 End If
@@ -1741,8 +1851,8 @@ Public Class Main
                 update_complete = False
             End If
             'Compares the current version of P2Pool with the latest available.
-            newestversion = System.Version.Parse(sr.ReadLine.Replace("p2pool=", ""))
-            updatelink = sr.ReadLine
+            'newestversion = System.Version.Parse(SR.ReadLine.Replace("p2pool=", ""))
+            'updatelink = SR.ReadLine
             If p2pool_update = True Then
                 Dim result1 As DialogResult = MsgBox("Update found for P2Pool! Click OK to download and install.", MessageBoxButtons.OKCancel)
                 If result1 = DialogResult.OK Then
@@ -1750,7 +1860,7 @@ Public Class Main
                     Invoke(New MethodInvoker(AddressOf Download_P2Pool))
                 End If
             Else
-                If newestversion > System.Version.Parse(p2pool_version) And amd_update = False And nvidia_update = False And cpu_update = False And Not (System.Version.Parse(p2pool_version) = System.Version.Parse("0.0.0.0")) Then
+                If p2pool_new_version > System.Version.Parse(p2pool_version) And amd_update = False And nvidia_update = False And cpu_update = False And Not (System.Version.Parse(p2pool_version) = System.Version.Parse("0.0.0.0")) Then
                     Dim result1 As DialogResult = MsgBox("Update found for P2Pool! Click OK to download and install.", MessageBoxButtons.OKCancel)
                     update_needed = True
                     If result1 = DialogResult.OK Then
@@ -1768,11 +1878,11 @@ Public Class Main
                 Loop
                 update_complete = False
             End If
-            'Compares the current version of the AMD miner with the latest available.
-            newestversion = System.Version.Parse(sr.ReadLine.Replace("amd=", ""))
-            updatelink = sr.ReadLine
+            'sgminer - Compares the current version of the AMD miner with the latest available.
+            'newestversion = System.Version.Parse(SR.ReadLine.Replace("amd-sgminer=", ""))
+            'updatelink = SR.ReadLine
             If amd_update = True Then
-                Dim result1 As DialogResult = MsgBox("Update found for AMD Miner! Click OK to download.", MessageBoxButtons.OKCancel)
+                Dim result1 As DialogResult = MsgBox("Update found for AMD-sgminer! Click OK to download.", MessageBoxButtons.OKCancel)
                 If result1 = DialogResult.OK Then
                     update_needed = True
                     Invoke(New MethodInvoker(AddressOf Download_Miner))
@@ -1780,8 +1890,8 @@ Public Class Main
                     cancel = True
                 End If
             Else
-                If newestversion > System.Version.Parse(amd_version) And p2pool_update = False And nvidia_update = False And cpu_update = False Then
-                    Dim result1 As DialogResult = MsgBox("Update found for AMD Miner! Click OK to download.", MessageBoxButtons.OKCancel)
+                If sgminer_new_version > System.Version.Parse(sgminer_version) And p2pool_update = False And nvidia_update = False And cpu_update = False Then
+                    Dim result1 As DialogResult = MsgBox("Update found for AMD-sgminer! Click OK to download.", MessageBoxButtons.OKCancel)
                     update_needed = True
                     If result1 = DialogResult.OK Then
                         amdminer = True
@@ -1800,30 +1910,56 @@ Public Class Main
                 Loop
                 update_complete = False
             End If
-            'Compares the current version of the Nvidia miner with the latest available.
-            newestversion = System.Version.Parse(sr.ReadLine.Replace("nvidia=", ""))
-            updatelink = sr.ReadLine
+            'ccminer - Compares the current version of the Nvidia miner with the latest available.
+            'newestversion = System.Version.Parse(SR.ReadLine.Replace("nvidia-ccminer=", ""))
+            'updatelink = SR.ReadLine
             If nvidia_update = True Then
-                Dim result1 As DialogResult = MsgBox("Update found for Nvidia Miner! Click OK to download.", MessageBoxButtons.OKCancel)
-                If result1 = DialogResult.OK Then
-                    update_needed = True
-                    Invoke(New MethodInvoker(AddressOf Download_Miner))
-                ElseIf result1 = DialogResult.Cancel Then
-                    cancel = True
-                End If
-            Else
-                If newestversion > System.Version.Parse(nvidia_version) And p2pool_update = False And amd_update = False And cpu_update = False Then
-                    Dim result1 As DialogResult = MsgBox("Update found for Nvidia Miner! Click OK to download.", MessageBoxButtons.OKCancel)
-                    update_needed = True
+                If default_miner = "nvidia-ccminer" Then
+                    Dim result1 As DialogResult = MsgBox("Update found for Nvidia-ccminer! Click OK to download.", MessageBoxButtons.OKCancel)
                     If result1 = DialogResult.OK Then
-                        nvidiaminer = True
+                        update_needed = True
                         Invoke(New MethodInvoker(AddressOf Download_Miner))
                     ElseIf result1 = DialogResult.Cancel Then
-                        update_complete = True
                         cancel = True
                     End If
-                Else
-                    update_needed = False
+                ElseIf default_miner = "nvidia-vertminer" Then
+                    Dim result1 As DialogResult = MsgBox("Update found for Nvidia-vertminer! Click OK to download.", MessageBoxButtons.OKCancel)
+                    If result1 = DialogResult.OK Then
+                        update_needed = True
+                        Invoke(New MethodInvoker(AddressOf Download_Miner))
+                    ElseIf result1 = DialogResult.Cancel Then
+                        cancel = True
+                    End If
+                End If
+            Else
+                If default_miner = "nvidia-ccminer" Then
+                    If ccminer_new_version > System.Version.Parse(ccminer_version) And p2pool_update = False And amd_update = False And cpu_update = False Then
+                        Dim result1 As DialogResult = MsgBox("Update found for Nvidia-ccminer! Click OK to download.", MessageBoxButtons.OKCancel)
+                        update_needed = True
+                        If result1 = DialogResult.OK Then
+                            nvidiaminer = True
+                            Invoke(New MethodInvoker(AddressOf Download_Miner))
+                        ElseIf result1 = DialogResult.Cancel Then
+                            update_complete = True
+                            cancel = True
+                        End If
+                    Else
+                        update_needed = False
+                    End If
+                ElseIf default_miner = "nvidia-vertminer" Then
+                    If vertminer_new_version > System.Version.Parse(ccminer_version) And p2pool_update = False And amd_update = False And cpu_update = False Then
+                        Dim result1 As DialogResult = MsgBox("Update found for Nvidia-vertminer! Click OK to download.", MessageBoxButtons.OKCancel)
+                        update_needed = True
+                        If result1 = DialogResult.OK Then
+                            nvidiaminer = True
+                            Invoke(New MethodInvoker(AddressOf Download_Miner))
+                        ElseIf result1 = DialogResult.Cancel Then
+                            update_complete = True
+                            cancel = True
+                        End If
+                    Else
+                        update_needed = False
+                    End If
                 End If
             End If
             If update_needed = True Then
@@ -1832,11 +1968,11 @@ Public Class Main
                 Loop
                 update_complete = False
             End If
-            'Compares the current version of the CPU miner with the latest available.
-            newestversion = System.Version.Parse(sr.ReadLine.Replace("cpu=", ""))
-            updatelink = sr.ReadLine
+            'cpuminer - Compares the current version of the CPU miner with the latest available.
+            'newestversion = System.Version.Parse(SR.ReadLine.Replace("cpu-cpuminer=", ""))
+            'updatelink = SR.ReadLine
             If cpu_update = True Then
-                Dim result1 As DialogResult = MsgBox("Update found for CPU Miner! Click OK to download.", MessageBoxButtons.OKCancel)
+                Dim result1 As DialogResult = MsgBox("Update found for CPU-cpuminer! Click OK to download.", MessageBoxButtons.OKCancel)
                 If result1 = DialogResult.OK Then
                     update_needed = True
                     Invoke(New MethodInvoker(AddressOf Download_Miner))
@@ -1844,8 +1980,8 @@ Public Class Main
                     cancel = True
                 End If
             Else
-                If newestversion > System.Version.Parse(cpu_version) And p2pool_update = False And amd_update = False And nvidia_update = False Then
-                    Dim result1 As DialogResult = MsgBox("Update found for CPU Miner! Click OK to download.", MessageBoxButtons.OKCancel)
+                If cpuminer_new_version > System.Version.Parse(cpuminer_version) And p2pool_update = False And amd_update = False And nvidia_update = False Then
+                    Dim result1 As DialogResult = MsgBox("Update found for CPU-cpuminer! Click OK to download.", MessageBoxButtons.OKCancel)
                     update_needed = True
                     If result1 = DialogResult.OK Then
                         cpuminer = True
@@ -1866,7 +2002,7 @@ Public Class Main
             If update_needed = False And p2pool_update = False And amd_update = False And nvidia_update = False And cpu_update = False And cancel = False Then
                 MsgBox("There are no updates available.")
             End If
-            sr.Close()
+            'SR.Close()
         End If
         p2pool_update = False
         amd_update = False
@@ -1969,18 +2105,25 @@ Public Class Main
 
     Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox1.SelectedIndexChanged
 
-        If ComboBox1.SelectedItem = "AMD" Then
-            default_miner = "amd"
-        ElseIf ComboBox1.SelectedItem = "NVIDIA" Then
-            default_miner = "nvidia"
-        ElseIf ComboBox1.SelectedItem = "CPU" Then
-            default_miner = "cpu"
+        If ComboBox1.SelectedItem = "AMD-sgminer" Then
+            default_miner = "amd-sgminer"
+            Label5.Visible = False
+        ElseIf ComboBox1.SelectedItem = "NVIDIA-ccminer" Then
+            default_miner = "nvidia-ccminer"
+            Label5.Visible = False
+        ElseIf ComboBox1.SelectedItem = "NVIDIA-vertminer" Then
+            default_miner = "nvidia-vertminer"
+            Label5.Visible = True
+        ElseIf ComboBox1.SelectedItem = "CPU-cpuminer" Then
+            default_miner = "cpu-cpuminer"
+            Label5.Visible = False
         End If
 
     End Sub
 
     'Checks if miner has already been downloaded and installed
     Private Function IsMinerInstalled(folder As String, exe As String, version As Object) As Boolean
+
         If System.IO.Directory.Exists(folder) Then
             For Each file As String In Directory.GetFiles(folder)
                 If file.Contains(exe) And Not (System.Version.Parse(version) = System.Version.Parse("0.0.0.0")) Then
@@ -1988,14 +2131,19 @@ Public Class Main
                 End If
             Next
         End If
-
         Return False
+
     End Function
 
     Private Sub SetMinerBooleans(default_miner As String)
-        cpuminer = (default_miner = "cpu")
-        amdminer = (default_miner = "amd")
-        nvidiaminer = (default_miner = "nvidia")
+
+        cpuminer = (default_miner = "cpu-cpuminer")
+        amdminer = (default_miner = "amd-sgminer")
+        'nvidiaminer = (default_miner = "nvidia-ccminer") Or (default_miner = "nvidia-vertminer")
+        If default_miner = "nvidia-ccminer" Or default_miner = "nvidia-vertminer" Then
+            nvidiaminer = True
+        End If
+
     End Sub
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
@@ -2011,9 +2159,9 @@ Public Class Main
         'Starts mining if miner software is already detected.  If not, downloads miner software.
         If Button3.Text = "Start" Then
             Button3.Text = "Stop"
-            If checkcount > 0 Then
-                If default_miner = "amd" Then
-                    mining_installed = IsMinerInstalled(amdfolder, "ocm_sgminer.exe", amd_version)
+            If checkcount > 0 Then 'If at least one pool is selected
+                If default_miner = "amd-sgminer" Then
+                    mining_installed = IsMinerInstalled(sgminerfolder, "ocm_sgminer.exe", sgminer_version)
                     If Not mining_installed Then
                         If Not Updater.IsBusy Then
                             SetMinerBooleans(default_miner)
@@ -2026,8 +2174,8 @@ Public Class Main
                         mining_initialized = True
                         BeginInvoke(New MethodInvoker(AddressOf Start_Miner))
                     End If
-                ElseIf default_miner = "nvidia" Then
-                    mining_installed = IsMinerInstalled(nvidiafolder, "ocm_vertminer.exe", nvidia_version)
+                ElseIf default_miner = "nvidia-ccminer" Then
+                    mining_installed = IsMinerInstalled(ccminerfolder, "ocm_ccminer.exe", ccminer_version)
                     If Not mining_installed Then
                         If Not Updater.IsBusy Then
                             SetMinerBooleans(default_miner)
@@ -2040,8 +2188,22 @@ Public Class Main
                         mining_initialized = True
                         BeginInvoke(New MethodInvoker(AddressOf Start_Miner))
                     End If
-                ElseIf default_miner = "cpu" Then
-                    mining_installed = IsMinerInstalled(cpufolder, "ocm_cpuminer.exe", cpu_version)
+                ElseIf default_miner = "nvidia-vertminer" Then
+                    mining_installed = IsMinerInstalled(vertminerfolder, "ocm_vertminer.exe", vertminer_version)
+                    If Not mining_installed Then
+                        If Not Updater.IsBusy Then
+                            SetMinerBooleans(default_miner)
+                            nvidia_update = True
+                            canceldownloadasync = False
+                            Updater.RunWorkerAsync()
+                        End If
+                    Else
+                        SetMinerBooleans(default_miner)
+                        mining_initialized = True
+                        BeginInvoke(New MethodInvoker(AddressOf Start_Miner))
+                    End If
+                ElseIf default_miner = "cpu-cpuminer" Then
+                    mining_installed = IsMinerInstalled(cpuminerfolder, "ocm_cpuminer.exe", cpuminer_version)
                     If Not mining_installed Then
                         If Not Updater.IsBusy Then
                             SetMinerBooleans(default_miner)
@@ -2124,6 +2286,87 @@ Public Class Main
                 End If
             Next
         End If
+
+    End Sub
+
+    Private Sub P2PoolConfigToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles P2PoolConfigToolStripMenuItem.Click
+
+        Try
+            Process.Start("notepad.exe", p2pool_config_file)
+        Catch ex As Exception
+            MsgBox(ex.Message)
+            _logger.LogError(ex)
+            Invoke(New MethodInvoker(AddressOf SaveSettingsJSON))
+        Finally
+            _logger.Trace("P2PoolConfigToolStripMenuItem(), Load P2Pool Config: OK")
+        End Try
+
+    End Sub
+
+    Private Sub Idle_Check_Tick(sender As Object, e As EventArgs) Handles Idle_Check.Tick
+
+        If mine_when_idle = True Then
+            If Not (Idle_Worker.IsBusy) Then
+                'MsgBox("Idle Start")
+                Idle_Worker.RunWorkerAsync()
+                Idle_Timer.Start()
+            End If
+        End If
+
+    End Sub
+
+    Private Sub Idle_Worker_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles Idle_Worker.DoWork
+
+        Dim cp As New Computer
+        cp.Open()
+        cp.GPUEnabled = True
+        cp.CPUEnabled = True
+        Dim Info As String = ""
+        For i As Integer = 0 To cp.Hardware.Count() - 1
+            If cp.Hardware(i).HardwareType = HardwareType.GpuAti Then
+                If default_miner = "amd-sgminer" And amdminer = False Then
+                    If cp.Hardware(i).Sensors(4).Value < 10 And idle_ticker >= 20 Then
+                        SetMinerBooleans(default_miner)
+                        mining_initialized = True
+                        BeginInvoke(New MethodInvoker(AddressOf Start_Miner))
+                    ElseIf cp.Hardware(i).Sensors(4).Value >= 10 Then
+                        idle_ticker = 0
+                    End If
+                ElseIf amdminer = True Then
+                    idle_ticker = 0
+                End If
+            ElseIf cp.Hardware(i).HardwareType = HardwareType.GpuNvidia Then
+                If (default_miner = "nvidia-ccminer" Or default_miner = "nvidia-vertminer") And nvidiaminer = False Then
+                    If cp.Hardware(i).Sensors(4).Value < 10 And idle_ticker >= 20 Then
+                        SetMinerBooleans(default_miner)
+                        mining_initialized = True
+                        BeginInvoke(New MethodInvoker(AddressOf Start_Miner))
+                    ElseIf cp.Hardware(i).Sensors(4).Value >= 10 Then
+                        idle_ticker = 0
+                    End If
+                ElseIf nvidiaminer = True Then
+                    idle_ticker = 0
+                End If
+            ElseIf cp.Hardware(i).HardwareType = HardwareType.CPU Then
+                If default_miner = "cpu-cpuminer" And cpuminer = False Then
+                    If cp.Hardware(i).Sensors(4).Value < 20 And idle_ticker >= 20 Then
+                        SetMinerBooleans(default_miner)
+                        mining_initialized = True
+                        BeginInvoke(New MethodInvoker(AddressOf Start_Miner))
+                    ElseIf cp.Hardware(i).Sensors(4).Value >= 20 Then
+                        idle_ticker = 0
+                    End If
+                ElseIf cpuminer = True Then
+                    idle_ticker = 0
+                End If
+            End If
+        Next
+
+    End Sub
+
+    Private Sub Idle_Timer_Tick_1(sender As Object, e As EventArgs) Handles Idle_Timer.Tick
+
+        idle_ticker += 1
 
     End Sub
 

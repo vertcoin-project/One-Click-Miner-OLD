@@ -8,9 +8,10 @@ Module variables
     Public Property culture = CultureInfo.InvariantCulture
     Public Property miner_version = Application.ProductVersion
     Public Property p2pool_version = "0.0.0.0"
-    Public Property amd_version = "0.0.0.0"
-    Public Property nvidia_version = "0.0.0.0"
-    Public Property cpu_version = "0.0.0.0"
+    Public Property sgminer_version = "0.0.0.0"
+    Public Property ccminer_version = "0.0.0.0"
+    Public Property vertminer_version = "0.0.0.0"
+    Public Property cpuminer_version = "0.0.0.0"
     Public Property settingsfolder As String
     Public Property appdata As String
     Public Property settingsfile As String
@@ -18,6 +19,10 @@ Module variables
     Public Property amdfolder As String
     Public Property nvidiafolder As String
     Public Property cpufolder As String
+    Public Property sgminerfolder As String
+    Public Property ccminerfolder As String
+    Public Property vertminerfolder As String
+    Public Property cpuminerfolder As String
     Public Property p2poolfolder As String
     Public Property scannerfolder As String
     Public Property command As String
@@ -33,7 +38,6 @@ Module variables
     Public Property update_needed As Boolean
     Public Property autocheck_updates As Boolean
     Public Property update_complete As Boolean
-    Public Property newestversion As New Version
     Public Property updatelink As String
     Public Property p2pool_update As Boolean
     Public Property amd_update As Boolean
@@ -41,11 +45,24 @@ Module variables
     Public Property cpu_update As Boolean
     Public Property downloadclient As New WebClient
     Public Property canceldownloadasync As Boolean
+    'Versions and Links
+    Public Property ocm_new_version As New Version
+    Public Property p2pool_new_version As New Version
+    Public Property sgminer_new_version As New Version
+    Public Property ccminer_new_version As New Version
+    Public Property vertminer_new_version As New Version
+    Public Property cpuminer_new_version As New Version
+    Public Property ocm_updatelink As String
+    Public Property p2pool_updatelink As String
+    Public Property sgminer_updatelink As String
+    Public Property ccminer_updatelink As String
+    Public Property vertminer_updatelink As String
+    Public Property cpuminer_updatelink As String
 
     'API Variables
     Public Property api_connected As Boolean
-    Public Property api_network1_hosts() = {"http://scanner1.alwayshashing.com:8085/api", "https://scanner.vtconline.org/api"}
-    Public Property api_network2_hosts() = {"http://scanner2.alwayshashing.com:8085/api"}
+    Public Property api_network1_hosts() = {"http://scanner1.alwayshashing.com/api.json"}
+    Public Property api_network2_hosts() = {"http://scanner2.alwayshashing.com/api.json"}
     Public Property network1data As DataSet
     Public Property network2data As DataSet
 
@@ -59,6 +76,8 @@ Module variables
     Public Property start_with_windows As Boolean
     Public Property autostart_p2pool As Boolean
     Public Property autostart_mining As Boolean
+    Public Property mine_when_idle As Boolean
+    Public Property idle_ticker As Integer = 0
     Public Property show_cli As Boolean
     Public Property autostart_miner As String
     Public Property p2pool_network As String = 1

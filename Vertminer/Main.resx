@@ -124,7 +124,7 @@
     <value>362, 19</value>
   </metadata>
   <metadata name="UpdateStats.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>318, 49</value>
+    <value>245, 53</value>
   </metadata>
   <metadata name="NotifyIcon1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>110, 19</value>
@@ -745,7 +745,7 @@
 </value>
   </data>
   <metadata name="ToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>22, 45</value>
+    <value>17, 53</value>
   </metadata>
   <data name="Button1.ToolTip" xml:space="preserve">
     <value>Locate P2Pool nodes that are nearest to you.
@@ -764,19 +764,28 @@ If mining on a public P2Pool node, make sure your worker name = your wallet addr
     <value>731, 15</value>
   </metadata>
   <metadata name="Uptime_Checker.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>725, 42</value>
+    <value>525, 53</value>
   </metadata>
   <metadata name="Updater.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>599, 30</value>
+    <value>1084, 14</value>
   </metadata>
   <metadata name="Select_Data_Dir.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>100, 46</value>
+    <value>109, 53</value>
   </metadata>
   <metadata name="Auto_Update_Notify.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>423, 47</value>
+    <value>363, 53</value>
   </metadata>
   <metadata name="Clock.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>920, 33</value>
+    <value>1180, 14</value>
+  </metadata>
+  <metadata name="Idle_Check.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>853, 13</value>
+  </metadata>
+  <metadata name="Idle_Worker.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>886, 46</value>
+  </metadata>
+  <metadata name="Idle_Timer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>949, 13</value>
   </metadata>
   <metadata name="$this.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>

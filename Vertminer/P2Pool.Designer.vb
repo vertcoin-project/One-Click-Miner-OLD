@@ -152,11 +152,11 @@ Partial Class P2Pool
         Me.Label1.AutoSize = True
         Me.Label1.BackColor = System.Drawing.SystemColors.AppWorkspace
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(251, 89)
+        Me.Label1.Location = New System.Drawing.Point(212, 89)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(78, 20)
+        Me.Label1.Size = New System.Drawing.Size(157, 20)
         Me.Label1.TabIndex = 1
-        Me.Label1.Text = "Loading..."
+        Me.Label1.Text = "Loading, please wait."
         Me.Label1.Visible = False
         '
         'DataGridView1

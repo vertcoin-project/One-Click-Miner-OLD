@@ -20,9 +20,10 @@
     Public Property mining_intensity As Decimal
     Public Property p2pool_fee_address As String
     Public Property p2pool_version
-    Public Property amd_version
-    Public Property nvidia_version
-    Public Property cpu_version
+    Public Property sgminer_version
+    Public Property ccminer_version
+    Public Property vertminer_version
+    Public Property cpuminer_version
     Public Property default_miner As String
     Public Property devices As String
     Public Property pools As New List(Of Pools_JSON)

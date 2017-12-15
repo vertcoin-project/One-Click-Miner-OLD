@@ -58,6 +58,11 @@ Public Class settings
             Else
                 CheckBox2.Checked = False
             End If
+            If mine_when_idle = True Then
+                CheckBox10.Checked = True
+            Else
+                CheckBox10.Checked = False
+            End If
             If p2pool_network = "1" Then
                 If p2pool_port = "9347" Or p2pool_port = "" Then
                     p2pool_port = "9346"
@@ -162,6 +167,11 @@ Public Class settings
             Else
                 show_cli = False
             End If
+            If CheckBox10.Checked = True Then
+                mine_when_idle = True
+            Else
+                mine_when_idle = False
+            End If
             If ComboBox1.SelectedItem = "1" Then
                 p2pool_network = "1"
             ElseIf ComboBox1.SelectedItem = "2" Then
@@ -182,74 +192,47 @@ Public Class settings
 
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
 
-        Dim result1 As DialogResult = MsgBox("Set Vertcoin Data Diretory to default location in AppData\Roaming?", MessageBoxButtons.OKCancel)
+        Dim result1 As DialogResult = MsgBox("Please select the location of your Vertcoin Data Directory.", MessageBoxButtons.OKCancel)
         If result1 = DialogResult.OK Then
-            appdata = GetFolderPath(SpecialFolder.ApplicationData) & "\Vertcoin"
-            MsgBox("Vertcoin Data Directory set to default.")
+            Dim result2 As Windows.Forms.DialogResult = dir_browse.ShowDialog()
+            If result2 = Windows.Forms.DialogResult.OK Then
+                appdata = dir_browse.SelectedPath
+            End If
         End If
 
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
 
-        Try
-            Dim newjson = New Settings_JSON
-            newjson.appdata = ""
-            newjson.start_minimized = "false"
-            newjson.start_with_windows = "false"
-            newjson.autostart_p2pool = "false"
-            newjson.autostart_mining = "false"
-            newjson.mine_when_idle = "false"
-            newjson.keep_miner_alive = "false"
-            newjson.keep_p2pool_alive = "false"
-            newjson.use_upnp = "false"
-            newjson.show_cli = "false"
-            newjson.p2pool_network = "1"
-            newjson.p2pool_node_fee = "0"
-            newjson.p2pool_donation = "1"
-            newjson.max_connections = "50"
-            newjson.p2pool_port = "9346"
-            newjson.mining_port = "9171"
-            newjson.mining_intensity = 0
-            newjson.p2pool_fee_address = "VpBsRnN749jYHE9hT8dZreznHfmFMdE1yG"
-            newjson.p2pool_version = p2pool_version
-            newjson.amd_version = amd_version
-            newjson.nvidia_version = nvidia_version
-            newjson.cpu_version = cpu_version
-            newjson.default_miner = ""
-            newjson.devices = ""
-            newjson.pools.Clear()
-            Dim poolcount = pools.Count()
-            Dim workercount = workers.Count()
-            Dim passwordcount = passwords.Count()
-            Dim count As Decimal = Decimal.MaxValue
-            count = Math.Min(count, poolcount)
-            count = Math.Min(count, workercount)
-            count = Math.Min(count, passwordcount)
-            If Not count = 0 Then
-                For x = 0 To count - 1
-                    If Not pools(x) = "" And Not workers(x) = "" And Not passwords(x) = "" Then
-                        Dim pooljson As Pools_JSON = New Pools_JSON()
-                        pooljson.url = pools(x)
-                        pooljson.user = workers(x)
-                        pooljson.pass = passwords(x)
-                        newjson.pools.Add(pooljson)
-                    End If
-                Next
-            End If
-            Dim jsonstring = JSONConverter.Serialize(newjson)
-            If Not String.IsNullOrEmpty(jsonstring) Then
-                Dim jsonFormatted As String = JValue.Parse(jsonstring).ToString(Formatting.Indented)
-                File.WriteAllText(settingsfile, jsonFormatted)
-            End If
-        Catch ex As IOException
-            _logger.LogError(ex)
-        Finally
-            _logger.Trace("Main() SaveSettings: OK.")
-            MsgBox("Settings set back to defaults.")
-            Invoke(New MethodInvoker(AddressOf Main.LoadSettingsJSON))
-            Invoke(New MethodInvoker(AddressOf Main.Update_Pool_Info))
-        End Try
+        Dim result2 As DialogResult = MsgBox("Would you like to reset the OCM settings to default?", MessageBoxButtons.OKCancel)
+        If result2 = DialogResult.OK Then
+            Try
+                CheckBox9.Checked = False
+                CheckBox4.Checked = False
+                CheckBox3.Checked = False
+                CheckBox2.Checked = False
+                CheckBox7.Checked = False
+                CheckBox1.Checked = False
+                CheckBox5.Checked = False
+                CheckBox6.Checked = False
+                CheckBox10.Checked = False
+                ComboBox1.SelectedIndex = 0
+                Node_Fee.Text = "0"
+                Node_Donation.Text = "1"
+                TextBox3.Text = "50"
+                TextBox4.Text = "9346"
+                TextBox5.Text = "9171"
+                Intensity_Text.Text = 0
+                default_miner = ""
+                Devices_Text.Text = ""
+                Invoke(New MethodInvoker(AddressOf Main.SaveSettingsJSON))
+            Catch ex As IOException
+                _logger.LogError(ex)
+            Finally
+                _logger.Trace("Main() SaveSettings: OK.")
+                MsgBox("Settings set back to defaults and closing Settings Menu.")
+            End Try
+        End If
 
     End Sub
 
@@ -258,6 +241,10 @@ Public Class settings
         Panel1.BackColor = Color.FromArgb(27, 92, 46)
         Button1.BackColor = Color.FromArgb(27, 92, 46)
         Button5.BackColor = Color.FromArgb(27, 92, 46)
+        Button6.BackColor = Color.FromArgb(27, 92, 46)
+        Button2.BackColor = Color.FromArgb(27, 92, 46)
+        Button3.BackColor = Color.FromArgb(27, 92, 46)
+        Button4.BackColor = Color.FromArgb(27, 92, 46)
         Panel2.BackColor = Color.FromArgb(41, 54, 61)
 
     End Sub
@@ -309,6 +296,36 @@ Public Class settings
             End If
             If TextBox5.Text = "9171" Or TextBox5.Text = "" Then
                 TextBox5.Text = "9181"
+            End If
+        End If
+
+    End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+
+        Intensity_Text.Text = "11"
+
+    End Sub
+
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+
+        Intensity_Text.Text = "12"
+
+    End Sub
+
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+
+        Intensity_Text.Text = "0"
+
+    End Sub
+
+    Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
+
+        Dim result1 As DialogResult = MsgBox("Please select the location that you would like the OCM to store it's settings, miner, and p2pool data.", MessageBoxButtons.OKCancel)
+        If result1 = DialogResult.OK Then
+            Dim result2 As Windows.Forms.DialogResult = dir_browse.ShowDialog()
+            If result2 = Windows.Forms.DialogResult.OK Then
+                settingsfolder = dir_browse.SelectedPath
             End If
         End If
 

@@ -194,12 +194,14 @@ Public Class P2Pool
                     .ReadOnly = True
                 End With
                 With DataGridView1.Columns(3)
-                    .Name = "Fee"
+                    .Name = "Fee(%)"
                     .ReadOnly = True
+                    .ValueType = GetType(Int32)
                 End With
                 With DataGridView1.Columns(4)
-                    .Name = "Uptime"
+                    .Name = "Uptime(days)"
                     .ReadOnly = True
+                    .ValueType = GetType(Int32)
                 End With
                 With DataGridView1.Columns(5)
                     .Name = "Located"
@@ -209,11 +211,12 @@ Public Class P2Pool
                     .Name = "Latency(ms)"
                     .ReadOnly = True
                     .ValueType = GetType(Int32)
+
                 End With
                 For x As Integer = 0 To count
                     Dim uptime As Decimal = (scanner1.nodes(x).stats.uptime / 60 / 60 / 24)
                     uptime = Math.Round(uptime, 1)
-                    Dim row As String() = New String() {False, (scanner1.nodes(x).ip & ":9171"), scanner1.nodes(x).stats.version, (scanner1.nodes(x).fee & "%"), (uptime & " days"), scanner1.nodes(x).geo.country, Nothing}
+                    Dim row As Object() = New Object() {False, (scanner1.nodes(x).ip & ":9171"), scanner1.nodes(x).stats.version, scanner1.nodes(x).fee, uptime, scanner1.nodes(x).geo.country, Nothing}
                     DataGridView1.Rows.Add(row)
                 Next
                 scanner1worker = New Thread(AddressOf Scanner1Thread)
@@ -297,12 +300,14 @@ Public Class P2Pool
                     .ReadOnly = True
                 End With
                 With DataGridView2.Columns(3)
-                    .Name = "Fee"
+                    .Name = "Fee (%)"
                     .ReadOnly = True
+                    .ValueType = GetType(Int32)
                 End With
                 With DataGridView2.Columns(4)
-                    .Name = "Uptime"
+                    .Name = "Uptime(days)"
                     .ReadOnly = True
+                    .ValueType = GetType(Int32)
                 End With
                 With DataGridView2.Columns(5)
                     .Name = "Located"
@@ -316,7 +321,7 @@ Public Class P2Pool
                 For x As Integer = 0 To count
                     Dim uptime As Decimal = (scanner2.nodes(x).stats.uptime / 60 / 60 / 24)
                     uptime = Math.Round(uptime, 1)
-                    Dim row As String() = New String() {False, (scanner2.nodes(x).ip & ":9181"), scanner2.nodes(x).stats.version, (scanner2.nodes(x).fee & "%"), (uptime & " days"), scanner2.nodes(x).geo.country, Nothing}
+                    Dim row As Object() = New Object() {False, (scanner2.nodes(x).ip & ":9181"), scanner2.nodes(x).stats.version, scanner2.nodes(x).fee, uptime, scanner2.nodes(x).geo.country, Nothing}
                     DataGridView2.Rows.Add(row)
                 Next
                 scanner2worker = New Thread(AddressOf Scanner2Thread)
