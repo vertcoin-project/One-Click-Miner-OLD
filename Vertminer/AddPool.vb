@@ -40,6 +40,7 @@ Public Class AddPool
             pools.Insert(0, Pool_Address.Text)
             workers.Insert(0, Wallet_Address.Text)
             passwords.Insert(0, Password_Address.Text)
+            descriptions.Insert(0, "")
             Invoke(New MethodInvoker(AddressOf Main.Update_Pool_Info))
             Invoke(New MethodInvoker(AddressOf Main.SaveSettingsJSON))
             MsgBox("Pool(s) added successfully.")

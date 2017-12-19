@@ -214,7 +214,7 @@ Public Class Main
     Public Sub Process_Check()
 
         For Each p As Process In System.Diagnostics.Process.GetProcesses
-            If p.ProcessName.Contains("ocm_p2pool") Then
+            If p.ProcessName.Contains("ocm_p2pool") Then ' And p.Id = p2pool_process
                 p2pool_detected = True
                 Exit For
             Else
@@ -222,7 +222,7 @@ Public Class Main
             End If
         Next
         For Each p As Process In System.Diagnostics.Process.GetProcesses
-            If p.ProcessName.Contains("ocm_sgminer") Then
+            If p.ProcessName.Contains("ocm_sgminer") Then ' And p.Id = miner_process
                 amd_detected = True
                 Exit For
             Else
@@ -230,7 +230,7 @@ Public Class Main
             End If
         Next
         For Each p As Process In System.Diagnostics.Process.GetProcesses
-            If p.ProcessName.Contains("ocm_ccminer") Or p.ProcessName.Contains("ocm_vertminer") Then
+            If (p.ProcessName.Contains("ocm_ccminer") Or p.ProcessName.Contains("ocm_vertminer")) And p.Id = miner_process Then
                 nvidia_detected = True
                 Exit For
             Else
@@ -238,7 +238,7 @@ Public Class Main
             End If
         Next
         For Each p As Process In System.Diagnostics.Process.GetProcesses
-            If p.ProcessName.Contains("ocm_cpuminer") Then
+            If p.ProcessName.Contains("ocm_cpuminer") And p.Id = miner_process Then
                 cpu_detected = True
                 Exit For
             Else
@@ -246,7 +246,7 @@ Public Class Main
             End If
         Next
         For Each p As Process In System.Diagnostics.Process.GetProcesses
-            If (p.ProcessName.Contains("run_p2pool") Or p.ProcessName.Contains("p2pool")) And Not p.ProcessName.Contains("ocm") Then
+            If ((p.ProcessName.Contains("run_p2pool") Or p.ProcessName.Contains("p2pool")) And Not p.ProcessName.Contains("ocm")) And Not p.Id = p2pool_process Then
                 otherp2pool = True
                 Exit For
             Else
@@ -254,7 +254,7 @@ Public Class Main
             End If
         Next
         For Each p As Process In System.Diagnostics.Process.GetProcesses
-            If p.ProcessName = ("vertminer") Or p.ProcessName = ("sgminer") Or p.ProcessName = ("cpuminer") And Not p.ProcessName.Contains("ocm") Then
+            If (p.ProcessName = ("vertminer") Or p.ProcessName = ("sgminer") Or p.ProcessName = ("cpuminer") And Not p.ProcessName.Contains("ocm")) And Not p.Id = miner_process Then
                 otherminer = True
                 Exit For
             Else
@@ -513,16 +513,17 @@ Public Class Main
                                 entry.ExtractToFile(extractpath, True)
                             End If
                         ElseIf amdminer = True Then 'AMD
+                            'sgminer
                             If (entry.FullName.Contains("kernel") And entry.FullName.EndsWith(".cl", StringComparison.OrdinalIgnoreCase)) Then
-                                If System.IO.Directory.Exists(amdfolder & "\kernel\") = False Then
-                                    System.IO.Directory.CreateDirectory(amdfolder & "\kernel\")
+                                If System.IO.Directory.Exists(amdfolder & "\sgminer\kernel\") = False Then
+                                    System.IO.Directory.CreateDirectory(amdfolder & "\sgminer\kernel\")
                                 End If
-                                entry.ExtractToFile(amdfolder & "\kernel\" & entry.Name, True)
+                                entry.ExtractToFile(amdfolder & "\sgminer\kernel\" & entry.Name, True)
                             Else
                                 If entry.FullName.EndsWith(".exe") Then
                                     entry.ExtractToFile(exe, True)
                                 ElseIf entry.FullName.EndsWith(".dll") Then
-                                    entry.ExtractToFile(amdfolder & "\" & entry.Name, True)
+                                    entry.ExtractToFile(amdfolder & "\sgminer\" & entry.Name, True)
                                 End If
                             End If
                         ElseIf cpuminer = True Then 'CPU
@@ -716,9 +717,9 @@ Public Class Main
             TextBox2.Text = "Offline"
             Button3.Text = "Start"
             TextBox3.Text = "0 kh/s"
-            amdminer = False
-            nvidiaminer = False
-            cpuminer = False
+            'amdminer = False
+            'nvidiaminer = False
+            'cpuminer = False
         End If
         'P2Pool Info
         If p2pool_detected = True Then
@@ -786,19 +787,23 @@ Public Class Main
         chk.HeaderText = "Select"
         chk.Name = "Select"
         DataGridView1.Columns.Add(chk)
+        'Dim desc As New DataGridViewColumn()
+        'chk.HeaderText = "Description"
+        'chk.Name = "Description"
+        'DataGridView1.Columns.Add(desc)
+        DataGridView1.ColumnCount = 2
+        With DataGridView1.Columns(1)
+            .Name = "Description"
+        End With
         Dim link As New DataGridViewLinkColumn()
         link.HeaderText = "Pool"
         link.Name = "Pool"
         DataGridView1.Columns.Add(link)
-        DataGridView1.ColumnCount = 4
-        'With DataGridView1.Columns(1)
-        '    .Name = "Pool"
-        '    .AutoSizeMode = DataGridViewAutoSizeColumnsMode.AllCells
-        'End With
-        With DataGridView1.Columns(2)
+        DataGridView1.ColumnCount = 5
+        With DataGridView1.Columns(3)
             .Name = "Worker"
         End With
-        With DataGridView1.Columns(3)
+        With DataGridView1.Columns(4)
             .Name = "Password"
         End With
         If selected.Count < count And count > 0 Then
@@ -808,7 +813,7 @@ Public Class Main
         End If
         If count > 0 Then
             For x As Integer = 0 To count - 1
-                Dim row As Object() = New Object() {selected(x), pools(x), workers(x), passwords(x)}
+                Dim row As Object() = New Object() {selected(x), descriptions(x), pools(x), workers(x), passwords(x)}
                 DataGridView1.Rows.Add(row)
             Next
         End If
@@ -865,6 +870,7 @@ Public Class Main
             workers.Clear()
             passwords.Clear()
             selected.Clear()
+            descriptions.Clear()
             Dim count = settingsJSON.pools.Count
             If Not count = 0 Then
                 For x = 0 To count - 1
@@ -875,8 +881,27 @@ Public Class Main
                         workers.Add(poolJSON.user)
                         passwords.Add(poolJSON.pass)
                         selected.Add(poolJSON.checked)
+                        descriptions.Add(poolJSON.description)
                     End If
                 Next
+            End If
+            If String.IsNullOrEmpty(appdata) Then
+                appdata = ""
+            End If
+            If String.IsNullOrEmpty(sgminer_version) Then
+                sgminer_version = "0.0.0.0"
+            End If
+            If String.IsNullOrEmpty(ccminer_version) Then
+                ccminer_version = "0.0.0.0"
+            End If
+            If String.IsNullOrEmpty(vertminer_version) Then
+                vertminer_version = "0.0.0.0"
+            End If
+            If String.IsNullOrEmpty(cpuminer_version) Then
+                cpuminer_version = "0.0.0.0"
+            End If
+            If String.IsNullOrEmpty(default_miner) Then
+                default_miner = "0.0.0.0"
             End If
             Invoke(New MethodInvoker(AddressOf Update_Pool_Info))
         Catch ex As IOException
@@ -894,12 +919,14 @@ Public Class Main
             workers.Clear()
             passwords.Clear()
             selected.Clear()
+            descriptions.Clear()
             For Each row As DataGridViewRow In DataGridView1.Rows
                 Dim chk As DataGridViewCheckBoxCell = row.Cells(DataGridView1.Columns(0).Name)
                 If chk.Value IsNot Nothing Then
-                    pools.Add(DataGridView1.Rows(chk.RowIndex).Cells(1).Value)
-                    workers.Add(DataGridView1.Rows(chk.RowIndex).Cells(2).Value)
-                    passwords.Add(DataGridView1.Rows(chk.RowIndex).Cells(3).Value)
+                    descriptions.Add(DataGridView1.Rows(chk.RowIndex).Cells(1).Value)
+                    pools.Add(DataGridView1.Rows(chk.RowIndex).Cells(2).Value)
+                    workers.Add(DataGridView1.Rows(chk.RowIndex).Cells(3).Value)
+                    passwords.Add(DataGridView1.Rows(chk.RowIndex).Cells(4).Value)
                     If chk.Value = False Then
                         selected.Add(False)
                     Else
@@ -945,6 +972,7 @@ Public Class Main
                 For x = 0 To count - 1
                     If Not pools(x) = "" And Not workers(x) = "" And Not passwords(x) = "" Then
                         Dim pooljson As Pools_JSON = New Pools_JSON()
+                        pooljson.description = descriptions(x)
                         pooljson.url = pools(x)
                         pooljson.user = workers(x)
                         pooljson.pass = passwords(x)
@@ -979,7 +1007,7 @@ Public Class Main
         End If
         Dim pool_list = String.Join(",", pools.ToArray())
         If CheckBox1.Checked = True Then
-            If Not pool_list.Contains("stratum+tcp://localhost:" & mining_port) Then
+            If Not pool_list.Contains("stratum+tcp://localhost:") And Not pool_list.Contains("stratum+tcp://127.0.0.1:") Then
                 Dim dialog = New AddPool(_logger)
                 dialog.Show()
                 dialog.Pool_Address.Text = "stratum+tcp://localhost:" & mining_port
@@ -1084,9 +1112,9 @@ Public Class Main
             For Each row As DataGridViewRow In DataGridView1.Rows
                 Dim chk As DataGridViewCheckBoxCell = row.Cells(DataGridView1.Columns(0).Name)
                 If chk.Value IsNot Nothing AndAlso chk.Value = True Then 'add AndAlso chk.Value = True to only add pools that are checked
-                    pools.Add(DataGridView1.Rows(chk.RowIndex).Cells(1).Value)
-                    workers.Add(DataGridView1.Rows(chk.RowIndex).Cells(2).Value)
-                    passwords.Add(DataGridView1.Rows(chk.RowIndex).Cells(3).Value)
+                    pools.Add(DataGridView1.Rows(chk.RowIndex).Cells(2).Value)
+                    workers.Add(DataGridView1.Rows(chk.RowIndex).Cells(3).Value)
+                    passwords.Add(DataGridView1.Rows(chk.RowIndex).Cells(4).Value)
                 End If
             Next
             Dim poolcount = pools.Count()
@@ -1184,7 +1212,8 @@ Public Class Main
             Else
                 ' Process is not running
                 'JSON Configuration
-                Dim psi As New ProcessStartInfo
+                psi = New ProcessStartInfo
+                'minerprocess = New Process
                 If amdminer = True Then
                     If default_miner = "amd-sgminer" Then
                         'miner_config = amdfolder & "\ocm_sgminer.exe"
@@ -1212,7 +1241,9 @@ Public Class Main
                     psi.CreateNoWindow = True
                     psi.UseShellExecute = False
                 End If
-                Process.Start(psi)
+                Dim minerprocess As Process = Process.Start(psi)
+                miner_process = minerprocess.Id
+                'Process.Start(psi)
             End If
         Catch ex As Exception
             _logger.LogError(ex)
@@ -1240,11 +1271,13 @@ Public Class Main
 
         Try
             mining_running = False
-            For Each p As Process In System.Diagnostics.Process.GetProcesses
-                If p.ProcessName.Contains("ocm_ccminer") Or p.ProcessName.Contains("ocm_vertminer") Or p.ProcessName.Contains("ocm_sgminer") Or p.ProcessName.Contains("ocm_cpuminer") Then
-                    p.Kill()
-                End If
-            Next
+            'For Each p As Process In System.Diagnostics.Process.GetProcesses
+            '    If p.ProcessName.Contains("ocm_ccminer") Or p.ProcessName.Contains("ocm_vertminer") Or p.ProcessName.Contains("ocm_sgminer") Or p.ProcessName.Contains("ocm_cpuminer") Then
+            '        p.Kill()
+            '    End If
+            'Next
+            Dim processes As Process = Process.GetProcessById(miner_process)
+            processes.Kill()
             miner_hashrate = 0
         Catch ex As Exception
             _logger.LogError(ex)
@@ -1279,7 +1312,9 @@ Public Class Main
                 command = File.ReadAllText(p2pool_config_file)
                 command = command.Replace(Environment.NewLine, " & ")
                 psi.Arguments = ("/K cd /d" & p2poolfolder & " & " & command)
-                Process.Start(psi)
+                Dim p2poolprocess As Process = Process.Start(psi)
+                p2pool_process = p2poolprocess.Id
+                'Process.Start(psi)
             End If
         Catch ex As Exception
             _logger.LogError(ex)
@@ -1299,6 +1334,8 @@ Public Class Main
                     p.Kill()
                 End If
             Next
+            'Dim processes As Process = Process.GetProcessById(p2pool_process)
+            'processes.Kill()
         Catch ex As Exception
             _logger.LogError(ex)
             Invoke(New MethodInvoker(AddressOf SaveSettingsJSON))
@@ -1342,7 +1379,7 @@ Public Class Main
         If connection = True Then
             Dim tempnewestversion As New Version
             Dim templink As String = ""
-            Dim request As System.Net.HttpWebRequest = System.Net.HttpWebRequest.Create("http://alwayshashing.com/ocm_test.txt")
+            Dim request As System.Net.HttpWebRequest = System.Net.HttpWebRequest.Create("http://alwayshashing.com/ocm_versions.txt")
             Dim response As System.Net.HttpWebResponse = request.GetResponse()
             Dim sr As System.IO.StreamReader = New System.IO.StreamReader(response.GetResponseStream())
             'Compares current One-Click Miner version with the latest available.
@@ -1813,7 +1850,7 @@ Public Class Main
         End Try
         If connection = True Then
             update_needed = False
-            Dim request As System.Net.HttpWebRequest = System.Net.HttpWebRequest.Create("http://alwayshashing.com/ocm_test.txt")
+            Dim request As System.Net.HttpWebRequest = System.Net.HttpWebRequest.Create("http://alwayshashing.com/ocm_versions.txt")
             Dim response As System.Net.HttpWebResponse = request.GetResponse()
             Dim sr As System.IO.StreamReader = New System.IO.StreamReader(response.GetResponseStream())
             'Read versions and update links
@@ -2367,6 +2404,18 @@ Public Class Main
     Private Sub Idle_Timer_Tick_1(sender As Object, e As EventArgs) Handles Idle_Timer.Tick
 
         idle_ticker += 1
+
+    End Sub
+
+    Private Sub PictureBox2_Click(sender As Object, e As EventArgs) Handles PictureBox2.Click
+
+        If Me.Size = New Size(435, 335) Then 'Grow
+            Me.Size = New Size(650, 420)
+            PictureBox2.Image = My.Resources.greenminus
+        ElseIf Me.Size = New Size(650, 420) Then 'Shrink
+            Me.Size = New Size(435, 335)
+            PictureBox2.Image = My.Resources.greenplus
+        End If
 
     End Sub
 

@@ -34,6 +34,12 @@ Module variables
     Public Property nvidia_detected
     Public Property cpu_detected
 
+    'Process Variables
+    Public Property psi As ProcessStartInfo
+    'Public Property minerprocess As Process
+    Public Property miner_process
+    Public Property p2pool_process
+
     'Update Variables
     Public Property update_needed As Boolean
     Public Property autocheck_updates As Boolean
@@ -61,8 +67,8 @@ Module variables
 
     'API Variables
     Public Property api_connected As Boolean
-    Public Property api_network1_hosts() = {"http://scanner1.alwayshashing.com/api.json"}
-    Public Property api_network2_hosts() = {"http://scanner2.alwayshashing.com/api.json"}
+    Public Property api_network1_hosts() = {"http://scanner1.alwayshashing.com:8085/api", "https://scanner.vtconline.org/api"}
+    Public Property api_network2_hosts() = {"http://scanner2.alwayshashing.com:8085/api"}
     Public Property network1data As DataSet
     Public Property network2data As DataSet
 
@@ -133,5 +139,6 @@ Module variables
     Public Property workers As New ArrayList()
     Public Property passwords As New ArrayList()
     Public Property selected As New ArrayList()
+    Public Property descriptions As New ArrayList()
 
 End Module

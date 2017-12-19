@@ -226,6 +226,8 @@
     <None Include="Resources\ocm.png" />
     <None Include="Resources\ocmlogo.png" />
     <None Include="Resources\minimize.png" />
+    <None Include="Resources\greenminus.png" />
+    <None Include="Resources\greenplus.png" />
     <Content Include="scanner.js" />
     <None Include="Resources\up.png" />
   </ItemGroup>

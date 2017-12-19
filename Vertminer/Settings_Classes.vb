@@ -36,6 +36,7 @@ Public Class Pools_JSON
     Public Property user As String
     Public Property pass As String
     Public Property checked As Boolean
+    Public Property description As String
 
 End Class
 
