@@ -1,4 +1,5 @@
 ﻿Imports System.IO
+Imports System.Text
 Imports System.Web.Script.Serialization
 Imports Newtonsoft.Json
 Imports Newtonsoft.Json.Linq
@@ -147,7 +148,7 @@ Public Class P2Pool
         Else
             Try
                 Dim p2pool_api As Object = Nothing
-                Dim newjson As String = ""
+                Dim newjson_sb As StringBuilder = New StringBuilder("")
                 Dim jsonformatted As String = ""
                 Dim request As System.Net.HttpWebRequest = System.Net.HttpWebRequest.Create(host)
                 Dim response As System.Net.HttpWebResponse = request.GetResponse()
@@ -167,11 +168,14 @@ Public Class P2Pool
                             line = "{"
                         End If
                     End If
-                    newjson = newjson & line
+                    newjson_sb.Append(line)
                 Next
-                newjson = newjson.Insert(1, Environment.NewLine & """nodes"":[")
-                newjson = newjson.Insert(newjson.Length - 1, "]")
-                newjson = newjson.Replace(" ", "").Replace(vbCr, "").Replace(vbLf, "").Trim
+                newjson_sb.Insert(1, Environment.NewLine & """nodes"":[")
+                newjson_sb.Insert(newjson_sb.Length - 1, "]")
+                newjson_sb.Replace(" ", "")
+                newjson_sb.Replace(vbCr, "")
+                newjson_sb.Replace(vbLf, "")
+                Dim newjson As String = newjson_sb.ToString().Trim
                 If Not String.IsNullOrEmpty(newjson) Then
                     jsonformatted = JValue.Parse(newjson).ToString(Formatting.Indented)
                     File.WriteAllText(scannerfolder & "\network1.json", jsonformatted)
@@ -252,7 +256,7 @@ Public Class P2Pool
         Else
             Try
                 Dim p2pool_api As Object = Nothing
-                Dim newjson As String = ""
+                Dim newjson_sb As StringBuilder = New StringBuilder("")
                 Dim jsonformatted As String = ""
                 Dim request As System.Net.HttpWebRequest = System.Net.HttpWebRequest.Create(host)
                 Dim response As System.Net.HttpWebResponse = request.GetResponse()
@@ -272,11 +276,14 @@ Public Class P2Pool
                             line = "{"
                         End If
                     End If
-                    newjson = newjson & line
+                    newjson_sb.Append(line)
                 Next
-                newjson = newjson.Insert(1, Environment.NewLine & """nodes"":[")
-                newjson = newjson.Insert(newjson.Length - 1, "]")
-                newjson = newjson.Replace(" ", "").Replace(vbCr, "").Replace(vbLf, "").Trim
+                newjson_sb.Insert(1, Environment.NewLine & """nodes"":[")
+                newjson_sb.Insert(newjson_sb.Length - 1, "]")
+                newjson_sb.Replace(" ", "")
+                newjson_sb.Replace(vbCr, "")
+                newjson_sb.Replace(vbLf, "")
+                Dim newjson As String = newjson_sb.ToString().Trim
                 If Not String.IsNullOrEmpty(newjson) Then
                     jsonformatted = JValue.Parse(newjson).ToString(Formatting.Indented)
                     File.WriteAllText(scannerfolder & "\network2.json", jsonformatted)
