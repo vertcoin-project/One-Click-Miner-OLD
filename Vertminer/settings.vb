@@ -326,6 +326,8 @@ Public Class settings
             Dim result2 As Windows.Forms.DialogResult = dir_browse.ShowDialog()
             If result2 = Windows.Forms.DialogResult.OK Then
                 settingsfolder = dir_browse.SelectedPath
+                My.Settings.settingsfolder = settingsfolder
+                My.Settings.Save()
             End If
         End If
 
