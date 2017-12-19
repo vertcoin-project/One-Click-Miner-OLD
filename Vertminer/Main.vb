@@ -197,16 +197,30 @@ Public Class Main
 
     Private Sub dataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
 
-        If e.ColumnIndex = 1 Then
-            System.Diagnostics.Process.Start(DataGridView1(1, e.RowIndex).Value.ToString.Replace("stratum+tcp", "http"))
+        If e.ColumnIndex = 2 Then
+            System.Diagnostics.Process.Start(DataGridView1(2, e.RowIndex).Value.ToString.Replace("stratum+tcp", "http"))
         End If
 
     End Sub
 
     Private Sub dataGridView1_CellContentDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentDoubleClick
 
+        'If e.ColumnIndex = 1 Then
+        '    System.Diagnostics.Process.Start(DataGridView1(2, e.RowIndex).Value.ToString.Replace("stratum+tcp", "http"))
+        'End If
+
+    End Sub
+
+    Private Sub dataGridView1_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellEndEdit
+
         If e.ColumnIndex = 1 Then
-            System.Diagnostics.Process.Start(DataGridView1(1, e.RowIndex).Value.ToString.Replace("stratum+tcp", "http"))
+            descriptions(e.RowIndex) = DataGridView1(1, e.RowIndex).Value.ToString
+        ElseIf e.ColumnIndex = 2 Then
+            pools(e.RowIndex) = DataGridView1(2, e.RowIndex).Value.ToString
+        ElseIf e.ColumnIndex = 3 Then
+            workers(e.RowIndex) = DataGridView1(3, e.RowIndex).Value.ToString
+        ElseIf e.ColumnIndex = 4 Then
+            passwords(e.RowIndex) = DataGridView1(4, e.RowIndex).Value.ToString
         End If
 
     End Sub
@@ -811,6 +825,11 @@ Public Class Main
                 selected.Add(False)
             Next
         End If
+        'If descriptions.Count < count And count > 0 Then
+        '    For x As Integer = descriptions.Count To count - 1
+        '        descriptions.Add("")
+        '    Next
+        'End If
         If count > 0 Then
             For x As Integer = 0 To count - 1
                 Dim row As Object() = New Object() {selected(x), descriptions(x), pools(x), workers(x), passwords(x)}

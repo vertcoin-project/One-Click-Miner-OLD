@@ -379,6 +379,7 @@ Public Class P2Pool
                 Dim chk As DataGridViewCheckBoxCell = row.Cells(DataGridView1.Columns(0).Name)
                 If chk.Value IsNot Nothing AndAlso chk.Value = True Then
                     If Not pool_list.Contains(DataGridView1.Rows(chk.RowIndex).Cells(1).Value) Then
+                        descriptions.Add("")
                         pools.Add(DataGridView1.Rows(chk.RowIndex).Cells(1).Value)
                         workers.Add(Wallet_Address.Text)
                         passwords.Add("x")
@@ -389,6 +390,7 @@ Public Class P2Pool
                 Dim chk As DataGridViewCheckBoxCell = row.Cells(DataGridView2.Columns(0).Name)
                 If chk.Value IsNot Nothing AndAlso chk.Value = True Then
                     If Not pool_list.Contains(DataGridView2.Rows(chk.RowIndex).Cells(1).Value) Then
+                        descriptions.Add("")
                         pools.Add(DataGridView2.Rows(chk.RowIndex).Cells(1).Value)
                         workers.Add(Wallet_Address.Text)
                         passwords.Add("x")
