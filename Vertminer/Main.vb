@@ -39,6 +39,7 @@ Public Class Main
                     End If
                 ElseIf result1 = DialogResult.Cancel Then
                     settingsfolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) & "\Vertcoin One-Click Miner"
+                    System.IO.Directory.CreateDirectory(settingsfolder)
                 End If
                 My.Settings.settingsfolder = settingsfolder
                 My.Settings.Save()
