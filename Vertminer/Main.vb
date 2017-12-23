@@ -30,12 +30,14 @@ Public Class Main
                 platform = False '32-bit
             End If
             settingsfolder = My.Settings.settingsfolder
-            If settingsfolder = "" Then
-                Dim result1 As DialogResult = MsgBox("Please select the location that you would like the OCM to store it's settings, miner, and p2pool data.", MessageBoxButtons.OKCancel)
+            If settingsfolder = "" Or System.IO.Directory.Exists(settingsfolder) = False Then
+                Dim result1 As DialogResult = MsgBox("Please select the location that you would like the OCM to store it's settings, miner, and p2pool data." & Environment.NewLine & Environment.NewLine & "Click 'Cancel' to use the default location: My Documents\Vertcoin One-Click Miner", MessageBoxButtons.OKCancel)
                 If result1 = DialogResult.OK Then
                     Dim result2 As Windows.Forms.DialogResult = Select_Data_Dir.ShowDialog()
                     If result2 = Windows.Forms.DialogResult.OK Then
                         settingsfolder = Select_Data_Dir.SelectedPath
+                    ElseIf result2 = Windows.Forms.DialogResult.Cancel Then
+                        settingsfolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) & "\Vertcoin One-Click Miner"
                     End If
                 ElseIf result1 = DialogResult.Cancel Then
                     settingsfolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) & "\Vertcoin One-Click Miner"
