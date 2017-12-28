@@ -68,7 +68,7 @@ Module variables
     'API Variables
     Public Property api_connected As Boolean
     Public Property api_network1_hosts() = {"http://scanner1.alwayshashing.com:8085/api", "https://scanner.vtconline.org/api"}
-    Public Property api_network2_hosts() = {"http://scanner2.alwayshashing.com:8085/api"}
+    Public Property api_network2_hosts() = {"http://scanner2.alwayshashing.com:8086/api"}
     Public Property network1data As DataSet
     Public Property network2data As DataSet
 
