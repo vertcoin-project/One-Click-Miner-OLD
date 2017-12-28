@@ -113,6 +113,7 @@ Public Class P2Pool
 
     Public Sub Get_P2Pool_API()
 
+        JSONConverter.MaxJsonLength = jsonmaxlength 'set to 200000000 characters
         If DataGridView1.Rows.Count > 0 Then
             DataGridView1.DataSource = Nothing
             DataGridView1.Rows.Clear()
@@ -490,17 +491,17 @@ Public Class P2Pool
 
     End Sub
 
-    Private Sub dataGridView1_HeaderRowClicked(ByVal sender As Object, ByVal e As DataGridViewCellMouseEventArgs) Handles DataGridView1.ColumnHeaderMouseClick, DataGridView1.ColumnHeaderMouseDoubleClick, DataGridView1.RowHeaderMouseClick, DataGridView1.RowHeaderMouseDoubleClick
+    'Private Sub dataGridView1_HeaderRowClicked(ByVal sender As Object, ByVal e As DataGridViewCellMouseEventArgs) Handles DataGridView1.ColumnHeaderMouseClick, DataGridView1.ColumnHeaderMouseDoubleClick, DataGridView1.RowHeaderMouseClick, DataGridView1.RowHeaderMouseDoubleClick
 
-        scanner1worker.Abort()
+    '    scanner1worker.Abort()
 
-    End Sub
+    'End Sub
 
-    Private Sub dataGridView2_HeaderRowClicked(ByVal sender As Object, ByVal e As DataGridViewCellMouseEventArgs) Handles DataGridView2.ColumnHeaderMouseClick, DataGridView2.ColumnHeaderMouseDoubleClick, DataGridView2.RowHeaderMouseClick, DataGridView2.RowHeaderMouseDoubleClick
+    'Private Sub dataGridView2_HeaderRowClicked(ByVal sender As Object, ByVal e As DataGridViewCellMouseEventArgs) Handles DataGridView2.ColumnHeaderMouseClick, DataGridView2.ColumnHeaderMouseDoubleClick, DataGridView2.RowHeaderMouseClick, DataGridView2.RowHeaderMouseDoubleClick
 
-        scanner2worker.Abort()
+    '    scanner2worker.Abort()
 
-    End Sub
+    'End Sub
 
     Private Sub DataGridView_DataError(ByVal sender As Object, ByVal e As DataGridViewDataErrorEventArgs) Handles DataGridView1.DataError, DataGridView2.DataError
 
