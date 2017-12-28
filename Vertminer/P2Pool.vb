@@ -490,6 +490,24 @@ Public Class P2Pool
 
     End Sub
 
+    Private Sub dataGridView1_HeaderRowClicked(ByVal sender As Object, ByVal e As DataGridViewCellMouseEventArgs) Handles DataGridView1.ColumnHeaderMouseClick, DataGridView1.ColumnHeaderMouseDoubleClick, DataGridView1.RowHeaderMouseClick, DataGridView1.RowHeaderMouseDoubleClick
+
+        scanner1worker.Abort()
+
+    End Sub
+
+    Private Sub dataGridView2_HeaderRowClicked(ByVal sender As Object, ByVal e As DataGridViewCellMouseEventArgs) Handles DataGridView2.ColumnHeaderMouseClick, DataGridView2.ColumnHeaderMouseDoubleClick, DataGridView2.RowHeaderMouseClick, DataGridView2.RowHeaderMouseDoubleClick
+
+        scanner2worker.Abort()
+
+    End Sub
+
+    Private Sub DataGridView_DataError(ByVal sender As Object, ByVal e As DataGridViewDataErrorEventArgs) Handles DataGridView1.DataError, DataGridView2.DataError
+
+        'do nothing to ignore error
+
+    End Sub
+
     Sub Scanner1Thread()
 
         'Network 1

@@ -531,9 +531,7 @@ Partial Class settings
         Me.Button2.Size = New System.Drawing.Size(29, 23)
         Me.Button2.TabIndex = 1
         Me.Button2.Text = "L"
-        Me.ToolTip.SetToolTip(Me.Button2, "Resets the Vertcoin Data Directory to the default value." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "If the One-Click Miner " &
-        "cannot find the default directory, it will prompt you to select your alternative" &
-        " location when P2Pool is started.")
+        Me.ToolTip.SetToolTip(Me.Button2, resources.GetString("Button2.ToolTip"))
         Me.Button2.UseVisualStyleBackColor = False
         '
         'Button3
@@ -546,9 +544,7 @@ Partial Class settings
         Me.Button3.Size = New System.Drawing.Size(29, 23)
         Me.Button3.TabIndex = 2
         Me.Button3.Text = "M"
-        Me.ToolTip.SetToolTip(Me.Button3, "Resets the Vertcoin Data Directory to the default value." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "If the One-Click Miner " &
-        "cannot find the default directory, it will prompt you to select your alternative" &
-        " location when P2Pool is started.")
+        Me.ToolTip.SetToolTip(Me.Button3, resources.GetString("Button3.ToolTip"))
         Me.Button3.UseVisualStyleBackColor = False
         '
         'Button4
@@ -561,9 +557,7 @@ Partial Class settings
         Me.Button4.Size = New System.Drawing.Size(29, 23)
         Me.Button4.TabIndex = 3
         Me.Button4.Text = "H"
-        Me.ToolTip.SetToolTip(Me.Button4, "Resets the Vertcoin Data Directory to the default value." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "If the One-Click Miner " &
-        "cannot find the default directory, it will prompt you to select your alternative" &
-        " location when P2Pool is started.")
+        Me.ToolTip.SetToolTip(Me.Button4, resources.GetString("Button4.ToolTip"))
         Me.Button4.UseVisualStyleBackColor = False
         '
         'Button6

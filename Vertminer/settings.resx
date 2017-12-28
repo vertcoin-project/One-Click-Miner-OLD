@@ -151,6 +151,27 @@ Example: '0,2-5' launches the miner using GPU's 1,3,4,5,6
 Example: Leaving box blank launches miner using all GPU's.
 </value>
   </data>
+  <data name="Button2.ToolTip" xml:space="preserve">
+    <value>This sets the intensity of the miner.  This can be used to help fine-tune miner performance.
+Either manually enter an intensity in the box or click a button to select Low, Medium, or High performance.
+Set to 0 to allow the miner to automatically select the intensity for you.
+
+</value>
+  </data>
+  <data name="Button3.ToolTip" xml:space="preserve">
+    <value>This sets the intensity of the miner.  This can be used to help fine-tune miner performance.
+Either manually enter an intensity in the box or click a button to select Low, Medium, or High performance.
+Set to 0 to allow the miner to automatically select the intensity for you.
+
+</value>
+  </data>
+  <data name="Button4.ToolTip" xml:space="preserve">
+    <value>This sets the intensity of the miner.  This can be used to help fine-tune miner performance.
+Either manually enter an intensity in the box or click a button to select Low, Medium, or High performance.
+Set to 0 to allow the miner to automatically select the intensity for you.
+
+</value>
+  </data>
   <metadata name="dir_browse.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>116, 17</value>
   </metadata>

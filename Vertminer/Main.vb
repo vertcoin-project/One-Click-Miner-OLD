@@ -1293,11 +1293,11 @@ Public Class Main
 
         Try
             mining_running = False
-            'For Each p As Process In System.Diagnostics.Process.GetProcesses
-            '    If p.ProcessName.Contains("ocm_ccminer") Or p.ProcessName.Contains("ocm_vertminer") Or p.ProcessName.Contains("ocm_sgminer") Or p.ProcessName.Contains("ocm_cpuminer") Then
-            '        p.Kill()
-            '    End If
-            'Next
+            For Each p As Process In System.Diagnostics.Process.GetProcesses
+                If p.ProcessName.Contains("ocm_sgminer") Then
+                    p.Kill()
+                End If
+            Next
             Dim processes As Process = Process.GetProcessById(miner_process)
             processes.Kill()
             miner_hashrate = 0
