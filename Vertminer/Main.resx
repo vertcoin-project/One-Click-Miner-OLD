@@ -121,10 +121,10 @@
     <value>17, 17</value>
   </metadata>
   <metadata name="UpdateStatsInterval.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>362, 19</value>
+    <value>359, 8</value>
   </metadata>
   <metadata name="UpdateStats.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>245, 53</value>
+    <value>380, 47</value>
   </metadata>
   <metadata name="NotifyIcon1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>110, 19</value>
@@ -752,21 +752,6 @@
 It is recommended to add multiple nodes to your pool list for failover redundancy.
 That way in the event that your pool goes down, you'll just continue to mine on another node.</value>
   </data>
-  <metadata name="Uptime_Timer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>525, 17</value>
-  </metadata>
-  <metadata name="Uptime_Checker.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>525, 53</value>
-  </metadata>
-  <metadata name="Updater.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1084, 14</value>
-  </metadata>
-  <metadata name="Select_Data_Dir.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>109, 53</value>
-  </metadata>
-  <metadata name="Auto_Update_Notify.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>363, 53</value>
-  </metadata>
   <data name="PictureBox9.ToolTip" xml:space="preserve">
     <value>Enter the URL (usually including port) into the Pool Address field.
 To use multiple pools for redundancy, hit ENTER after the first pool to enter more.
@@ -775,17 +760,32 @@ Use ↑ and ↓ keys to cycle through entered pools.
 
 If mining on a public P2Pool node, make sure your worker name = your wallet address.</value>
   </data>
+  <metadata name="Uptime_Timer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>550, 14</value>
+  </metadata>
+  <metadata name="Uptime_Checker.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>551, 49</value>
+  </metadata>
+  <metadata name="Updater.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>1084, 14</value>
+  </metadata>
+  <metadata name="Select_Data_Dir.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>109, 53</value>
+  </metadata>
+  <metadata name="Auto_Update_Notify.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>1054, 46</value>
+  </metadata>
   <metadata name="Clock.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1180, 14</value>
+    <value>225, 30</value>
   </metadata>
   <metadata name="Idle_Check.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>853, 13</value>
+    <value>808, 12</value>
   </metadata>
   <metadata name="Idle_Worker.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>886, 46</value>
+    <value>856, 44</value>
   </metadata>
   <metadata name="Idle_Timer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>949, 13</value>
+    <value>911, 13</value>
   </metadata>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

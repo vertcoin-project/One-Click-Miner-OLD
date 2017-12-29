@@ -49,6 +49,8 @@ Partial Class Main
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button4 = New System.Windows.Forms.Button()
         Me.CheckBox2 = New System.Windows.Forms.CheckBox()
+        Me.PictureBox9 = New System.Windows.Forms.PictureBox()
+        Me.PictureBox3 = New System.Windows.Forms.PictureBox()
         Me.Uptime_Timer = New System.Windows.Forms.Timer(Me.components)
         Me.Uptime_Checker = New System.ComponentModel.BackgroundWorker()
         Me.Updater = New System.ComponentModel.BackgroundWorker()
@@ -56,6 +58,10 @@ Partial Class Main
         Me.Select_Data_Dir = New System.Windows.Forms.FolderBrowserDialog()
         Me.Auto_Update_Notify = New System.ComponentModel.BackgroundWorker()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.PictureBox6 = New System.Windows.Forms.PictureBox()
+        Me.PictureBox4 = New System.Windows.Forms.PictureBox()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
@@ -69,22 +75,16 @@ Partial Class Main
         Me.Idle_Check = New System.Windows.Forms.Timer(Me.components)
         Me.Idle_Worker = New System.ComponentModel.BackgroundWorker()
         Me.Idle_Timer = New System.Windows.Forms.Timer(Me.components)
-        Me.PictureBox9 = New System.Windows.Forms.PictureBox()
-        Me.PictureBox3 = New System.Windows.Forms.PictureBox()
-        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.PictureBox6 = New System.Windows.Forms.PictureBox()
-        Me.PictureBox4 = New System.Windows.Forms.PictureBox()
         Me.MenuStrip.SuspendLayout()
-        Me.Panel1.SuspendLayout()
-        Me.Panel3.SuspendLayout()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox9, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel1.SuspendLayout()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel3.SuspendLayout()
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label4
@@ -151,14 +151,14 @@ Partial Class Main
         Me.UpdateToolStripMenuItem.BackColor = System.Drawing.SystemColors.Control
         Me.UpdateToolStripMenuItem.ForeColor = System.Drawing.Color.DarkSlateGray
         Me.UpdateToolStripMenuItem.Name = "UpdateToolStripMenuItem"
-        Me.UpdateToolStripMenuItem.Size = New System.Drawing.Size(152, 28)
+        Me.UpdateToolStripMenuItem.Size = New System.Drawing.Size(140, 28)
         Me.UpdateToolStripMenuItem.Text = "Update"
         '
         'ExitToolStripMenuItem
         '
         Me.ExitToolStripMenuItem.ForeColor = System.Drawing.Color.DarkSlateGray
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(152, 28)
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(140, 28)
         Me.ExitToolStripMenuItem.Text = "Exit"
         '
         'EditToolStripMenuItem
@@ -209,14 +209,14 @@ Partial Class Main
         '
         Me.AboutToolStripMenuItem.ForeColor = System.Drawing.Color.DarkSlateGray
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(152, 28)
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(143, 28)
         Me.AboutToolStripMenuItem.Text = "About"
         '
         'ContactToolStripMenuItem
         '
         Me.ContactToolStripMenuItem.ForeColor = System.Drawing.Color.DarkSlateGray
         Me.ContactToolStripMenuItem.Name = "ContactToolStripMenuItem"
-        Me.ContactToolStripMenuItem.Size = New System.Drawing.Size(152, 28)
+        Me.ContactToolStripMenuItem.Size = New System.Drawing.Size(143, 28)
         Me.ContactToolStripMenuItem.Text = "Contact"
         '
         'UpdateStatsInterval
@@ -320,6 +320,27 @@ Partial Class Main
         Me.ToolTip.SetToolTip(Me.CheckBox2, "Selects all pools in pool list.")
         Me.CheckBox2.UseVisualStyleBackColor = True
         '
+        'PictureBox9
+        '
+        Me.PictureBox9.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.PictureBox9.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.help_small
+        Me.PictureBox9.Location = New System.Drawing.Point(284, 90)
+        Me.PictureBox9.Name = "PictureBox9"
+        Me.PictureBox9.Size = New System.Drawing.Size(15, 15)
+        Me.PictureBox9.TabIndex = 39
+        Me.PictureBox9.TabStop = False
+        Me.ToolTip.SetToolTip(Me.PictureBox9, resources.GetString("PictureBox9.ToolTip"))
+        '
+        'PictureBox3
+        '
+        Me.PictureBox3.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.help_small
+        Me.PictureBox3.Location = New System.Drawing.Point(109, 8)
+        Me.PictureBox3.Name = "PictureBox3"
+        Me.PictureBox3.Size = New System.Drawing.Size(15, 15)
+        Me.PictureBox3.TabIndex = 28
+        Me.PictureBox3.TabStop = False
+        Me.ToolTip.SetToolTip(Me.PictureBox3, "Select your hardware type to launch the respective miner for your hardware.")
+        '
         'Uptime_Timer
         '
         Me.Uptime_Timer.Interval = 500
@@ -366,6 +387,49 @@ Partial Class Main
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(435, 52)
         Me.Panel1.TabIndex = 88
+        '
+        'PictureBox2
+        '
+        Me.PictureBox2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.PictureBox2.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.greenplus
+        Me.PictureBox2.Location = New System.Drawing.Point(368, 14)
+        Me.PictureBox2.Name = "PictureBox2"
+        Me.PictureBox2.Size = New System.Drawing.Size(25, 25)
+        Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox2.TabIndex = 93
+        Me.PictureBox2.TabStop = False
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.ocmlogo
+        Me.PictureBox1.Location = New System.Drawing.Point(0, 0)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(50, 50)
+        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
+        Me.PictureBox1.TabIndex = 90
+        Me.PictureBox1.TabStop = False
+        '
+        'PictureBox6
+        '
+        Me.PictureBox6.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.PictureBox6.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.minimize
+        Me.PictureBox6.Location = New System.Drawing.Point(337, 14)
+        Me.PictureBox6.Name = "PictureBox6"
+        Me.PictureBox6.Size = New System.Drawing.Size(25, 25)
+        Me.PictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox6.TabIndex = 92
+        Me.PictureBox6.TabStop = False
+        '
+        'PictureBox4
+        '
+        Me.PictureBox4.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.PictureBox4.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.greenx
+        Me.PictureBox4.Location = New System.Drawing.Point(399, 14)
+        Me.PictureBox4.Name = "PictureBox4"
+        Me.PictureBox4.Size = New System.Drawing.Size(25, 25)
+        Me.PictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox4.TabIndex = 91
+        Me.PictureBox4.TabStop = False
         '
         'Panel3
         '
@@ -518,70 +582,6 @@ Partial Class Main
         '
         Me.Idle_Timer.Interval = 1000
         '
-        'PictureBox9
-        '
-        Me.PictureBox9.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.PictureBox9.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.help_small
-        Me.PictureBox9.Location = New System.Drawing.Point(284, 90)
-        Me.PictureBox9.Name = "PictureBox9"
-        Me.PictureBox9.Size = New System.Drawing.Size(15, 15)
-        Me.PictureBox9.TabIndex = 39
-        Me.PictureBox9.TabStop = False
-        Me.ToolTip.SetToolTip(Me.PictureBox9, resources.GetString("PictureBox9.ToolTip"))
-        '
-        'PictureBox3
-        '
-        Me.PictureBox3.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.help_small
-        Me.PictureBox3.Location = New System.Drawing.Point(109, 8)
-        Me.PictureBox3.Name = "PictureBox3"
-        Me.PictureBox3.Size = New System.Drawing.Size(15, 15)
-        Me.PictureBox3.TabIndex = 28
-        Me.PictureBox3.TabStop = False
-        Me.ToolTip.SetToolTip(Me.PictureBox3, "Select your hardware type to launch the respective miner for your hardware.")
-        '
-        'PictureBox2
-        '
-        Me.PictureBox2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.PictureBox2.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.greenplus
-        Me.PictureBox2.Location = New System.Drawing.Point(368, 14)
-        Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(25, 25)
-        Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox2.TabIndex = 93
-        Me.PictureBox2.TabStop = False
-        '
-        'PictureBox1
-        '
-        Me.PictureBox1.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.ocmlogo
-        Me.PictureBox1.Location = New System.Drawing.Point(0, 0)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(50, 50)
-        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
-        Me.PictureBox1.TabIndex = 90
-        Me.PictureBox1.TabStop = False
-        '
-        'PictureBox6
-        '
-        Me.PictureBox6.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.PictureBox6.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.minimize
-        Me.PictureBox6.Location = New System.Drawing.Point(337, 14)
-        Me.PictureBox6.Name = "PictureBox6"
-        Me.PictureBox6.Size = New System.Drawing.Size(25, 25)
-        Me.PictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox6.TabIndex = 92
-        Me.PictureBox6.TabStop = False
-        '
-        'PictureBox4
-        '
-        Me.PictureBox4.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.PictureBox4.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.greenx
-        Me.PictureBox4.Location = New System.Drawing.Point(399, 14)
-        Me.PictureBox4.Name = "PictureBox4"
-        Me.PictureBox4.Size = New System.Drawing.Size(25, 25)
-        Me.PictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox4.TabIndex = 91
-        Me.PictureBox4.TabStop = False
-        '
         'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -599,17 +599,17 @@ Partial Class Main
         Me.Text = "Vertcoin One-Click Miner - BETA"
         Me.MenuStrip.ResumeLayout(False)
         Me.MenuStrip.PerformLayout()
-        Me.Panel1.ResumeLayout(False)
-        Me.Panel1.PerformLayout()
-        Me.Panel3.ResumeLayout(False)
-        Me.Panel3.PerformLayout()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox9, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel1.ResumeLayout(False)
+        Me.Panel1.PerformLayout()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel3.ResumeLayout(False)
+        Me.Panel3.PerformLayout()
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

@@ -1401,7 +1401,7 @@ Public Class Main
         If connection = True Then
             Dim tempnewestversion As New Version
             Dim templink As String = ""
-            Dim request As System.Net.HttpWebRequest = System.Net.HttpWebRequest.Create("http://alwayshashing.com/ocm_versions.txt")
+            Dim request As System.Net.HttpWebRequest = System.Net.HttpWebRequest.Create("http://alwayshashing.com/ocm_test.txt")
             Dim response As System.Net.HttpWebResponse = request.GetResponse()
             Dim sr As System.IO.StreamReader = New System.IO.StreamReader(response.GetResponseStream())
             'Compares current One-Click Miner version with the latest available.
@@ -1526,7 +1526,7 @@ Public Class Main
                     p2pool_loaded = False
                 End Try
             End If
-            'Invoke(New MethodInvoker(AddressOf Uptime_Checker_Status_Text))
+            'BeginInvoke(New MethodInvoker(AddressOf Uptime_Checker_Status_Text))
         Catch ex As Exception
             Invoke(New MethodInvoker(AddressOf SaveSettingsJSON))
         Finally
@@ -1615,6 +1615,9 @@ Public Class Main
     Private Sub Uptime_Checker_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles Uptime_Checker.DoWork
 
         Try
+            If default_miner = "amd-sgminer" Then
+                System.Threading.Thread.Sleep(5000) 'Temporary fix until amd mining is controlled via PID
+            End If
             Invoke(New MethodInvoker(AddressOf Process_Check))
             If (amd_detected = True Or nvidia_detected = True Or cpu_detected = True) And p2pool_detected = True Then
                 'P2Pool and Miner are running, do nothing
@@ -1872,7 +1875,7 @@ Public Class Main
         End Try
         If connection = True Then
             update_needed = False
-            Dim request As System.Net.HttpWebRequest = System.Net.HttpWebRequest.Create("http://alwayshashing.com/ocm_versions.txt")
+            Dim request As System.Net.HttpWebRequest = System.Net.HttpWebRequest.Create("http://alwayshashing.com/ocm_test.txt")
             Dim response As System.Net.HttpWebResponse = request.GetResponse()
             Dim sr As System.IO.StreamReader = New System.IO.StreamReader(response.GetResponseStream())
             'Read versions and update links
@@ -1890,8 +1893,6 @@ Public Class Main
             cpuminer_updatelink = sr.ReadLine
             sr.Close()
             'Compares current One-Click Miner version with the latest available.
-            'newestversion = System.Version.Parse(SR.ReadLine.Replace("miner=", ""))
-            'updatelink = SR.ReadLine
             If (ocm_new_version > System.Version.Parse(miner_version)) Then
                 Dim result1 As DialogResult = MsgBox("Update found for One-Click Miner! Click OK to download." & Environment.NewLine & "Please close program before installing.", MessageBoxButtons.OKCancel)
                 If result1 = DialogResult.OK Then
@@ -1910,8 +1911,6 @@ Public Class Main
                 update_complete = False
             End If
             'Compares the current version of P2Pool with the latest available.
-            'newestversion = System.Version.Parse(SR.ReadLine.Replace("p2pool=", ""))
-            'updatelink = SR.ReadLine
             If p2pool_update = True Then
                 Dim result1 As DialogResult = MsgBox("Update found for P2Pool! Click OK to download and install.", MessageBoxButtons.OKCancel)
                 If result1 = DialogResult.OK Then
@@ -1938,8 +1937,6 @@ Public Class Main
                 update_complete = False
             End If
             'sgminer - Compares the current version of the AMD miner with the latest available.
-            'newestversion = System.Version.Parse(SR.ReadLine.Replace("amd-sgminer=", ""))
-            'updatelink = SR.ReadLine
             If amd_update = True Then
                 Dim result1 As DialogResult = MsgBox("Update found for AMD-sgminer! Click OK to download.", MessageBoxButtons.OKCancel)
                 If result1 = DialogResult.OK Then
@@ -1949,7 +1946,7 @@ Public Class Main
                     cancel = True
                 End If
             Else
-                If sgminer_new_version > System.Version.Parse(sgminer_version) And p2pool_update = False And nvidia_update = False And cpu_update = False Then
+                If sgminer_new_version > System.Version.Parse(sgminer_version) And p2pool_update = False And nvidia_update = False And cpu_update = False And Not (System.Version.Parse(sgminer_version) = System.Version.Parse("0.0.0.0")) Then
                     Dim result1 As DialogResult = MsgBox("Update found for AMD-sgminer! Click OK to download.", MessageBoxButtons.OKCancel)
                     update_needed = True
                     If result1 = DialogResult.OK Then
@@ -1969,9 +1966,7 @@ Public Class Main
                 Loop
                 update_complete = False
             End If
-            'ccminer - Compares the current version of the Nvidia miner with the latest available.
-            'newestversion = System.Version.Parse(SR.ReadLine.Replace("nvidia-ccminer=", ""))
-            'updatelink = SR.ReadLine
+            'Nvidia - Compares the current version of ccminer and vertminer with the latest available.
             If nvidia_update = True Then
                 If default_miner = "nvidia-ccminer" Then
                     Dim result1 As DialogResult = MsgBox("Update found for Nvidia-ccminer! Click OK to download.", MessageBoxButtons.OKCancel)
@@ -1992,7 +1987,7 @@ Public Class Main
                 End If
             Else
                 If default_miner = "nvidia-ccminer" Then
-                    If ccminer_new_version > System.Version.Parse(ccminer_version) And p2pool_update = False And amd_update = False And cpu_update = False Then
+                    If ccminer_new_version > System.Version.Parse(ccminer_version) And p2pool_update = False And amd_update = False And cpu_update = False And Not (System.Version.Parse(ccminer_version) = System.Version.Parse("0.0.0.0")) Then
                         Dim result1 As DialogResult = MsgBox("Update found for Nvidia-ccminer! Click OK to download.", MessageBoxButtons.OKCancel)
                         update_needed = True
                         If result1 = DialogResult.OK Then
@@ -2006,7 +2001,7 @@ Public Class Main
                         update_needed = False
                     End If
                 ElseIf default_miner = "nvidia-vertminer" Then
-                    If vertminer_new_version > System.Version.Parse(ccminer_version) And p2pool_update = False And amd_update = False And cpu_update = False Then
+                    If vertminer_new_version > System.Version.Parse(vertminer_version) And p2pool_update = False And amd_update = False And cpu_update = False And Not (System.Version.Parse(vertminer_version) = System.Version.Parse("0.0.0.0")) Then
                         Dim result1 As DialogResult = MsgBox("Update found for Nvidia-vertminer! Click OK to download.", MessageBoxButtons.OKCancel)
                         update_needed = True
                         If result1 = DialogResult.OK Then
@@ -2028,8 +2023,6 @@ Public Class Main
                 update_complete = False
             End If
             'cpuminer - Compares the current version of the CPU miner with the latest available.
-            'newestversion = System.Version.Parse(SR.ReadLine.Replace("cpu-cpuminer=", ""))
-            'updatelink = SR.ReadLine
             If cpu_update = True Then
                 Dim result1 As DialogResult = MsgBox("Update found for CPU-cpuminer! Click OK to download.", MessageBoxButtons.OKCancel)
                 If result1 = DialogResult.OK Then
@@ -2039,7 +2032,7 @@ Public Class Main
                     cancel = True
                 End If
             Else
-                If cpuminer_new_version > System.Version.Parse(cpuminer_version) And p2pool_update = False And amd_update = False And nvidia_update = False Then
+                If cpuminer_new_version > System.Version.Parse(cpuminer_version) And p2pool_update = False And amd_update = False And nvidia_update = False And Not (System.Version.Parse(cpuminer_version) = System.Version.Parse("0.0.0.0")) Then
                     Dim result1 As DialogResult = MsgBox("Update found for CPU-cpuminer! Click OK to download.", MessageBoxButtons.OKCancel)
                     update_needed = True
                     If result1 = DialogResult.OK Then
@@ -2061,7 +2054,6 @@ Public Class Main
             If update_needed = False And p2pool_update = False And amd_update = False And nvidia_update = False And cpu_update = False And cancel = False Then
                 MsgBox("There are no updates available.")
             End If
-            'SR.Close()
         End If
         p2pool_update = False
         amd_update = False
@@ -2366,7 +2358,6 @@ Public Class Main
 
         If mine_when_idle = True Then
             If Not (Idle_Worker.IsBusy) Then
-                'MsgBox("Idle Start")
                 Idle_Worker.RunWorkerAsync()
                 Idle_Timer.Start()
             End If
