@@ -227,7 +227,7 @@ Public Class P2Pool
                 scanner1worker = New Thread(AddressOf Scanner1Thread)
                 scanner1worker.Start()
             Catch ex As Exception
-                MsgBox(ex.Message)
+                'MsgBox(ex.Message)
                 _logger.LogError(ex)
                 Invoke(New MethodInvoker(AddressOf Main.SaveSettingsJSON))
             Finally
@@ -335,8 +335,8 @@ Public Class P2Pool
                 scanner2worker = New Thread(AddressOf Scanner2Thread)
                 scanner2worker.Start()
             Catch ex As Exception
-                MsgBox(ex.Message)
-                _Logger.LogError(ex)
+                'MsgBox(ex.Message)
+                _logger.LogError(ex)
                 Invoke(New MethodInvoker(AddressOf Main.SaveSettingsJSON))
             Finally
                 _logger.Trace("Scan Completed: OK")
