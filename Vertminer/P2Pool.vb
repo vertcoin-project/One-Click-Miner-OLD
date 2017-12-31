@@ -364,7 +364,7 @@ Public Class P2Pool
 
     End Function
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub AddSelectedPoolsButton_Click(sender As Object, e As EventArgs) Handles AddSelectedPoolsButton.Click
 
         Dim checkcount = 0
         Dim checkcount2 = 0
@@ -483,7 +483,7 @@ Public Class P2Pool
     Public Sub Style()
 
         Panel1.BackColor = Color.FromArgb(27, 92, 46)
-        Button1.BackColor = Color.FromArgb(27, 92, 46)
+        AddSelectedPoolsButton.BackColor = Color.FromArgb(27, 92, 46)
         Button2.BackColor = Color.FromArgb(27, 92, 46)
         Panel2.BackColor = Color.FromArgb(41, 54, 61)
         DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
