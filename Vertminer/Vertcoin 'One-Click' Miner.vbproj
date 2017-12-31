@@ -67,6 +67,10 @@
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.1.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\packages\BouncyCastle.Crypto.dll.1.8.1\lib\BouncyCastle.Crypto.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -116,6 +120,7 @@
     <Compile Include="AddPool.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Core\Base58.vb" />
     <Compile Include="Core\FileLogger.vb" />
     <Compile Include="Core\SystemWrapper.vb" />
     <Compile Include="Main.vb">
@@ -160,6 +165,7 @@
     </Compile>
     <Compile Include="Settings_Classes.vb" />
     <Compile Include="variables.vb" />
+    <Compile Include="Core\VertcoinAddressUtility.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="about.resx">
