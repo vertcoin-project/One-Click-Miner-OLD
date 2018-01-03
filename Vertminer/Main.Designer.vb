@@ -75,6 +75,7 @@ Partial Class Main
         Me.Idle_Check = New System.Windows.Forms.Timer(Me.components)
         Me.Idle_Worker = New System.ComponentModel.BackgroundWorker()
         Me.Idle_Timer = New System.Windows.Forms.Timer(Me.components)
+        Me.Form_Load = New System.Windows.Forms.Timer(Me.components)
         Me.MenuStrip.SuspendLayout()
         CType(Me.PictureBox9, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -89,135 +90,101 @@ Partial Class Main
         '
         'Label4
         '
-        Me.Label4.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 13.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(146, 196)
+        resources.ApplyResources(Me.Label4, "Label4")
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(146, 22)
-        Me.Label4.TabIndex = 41
-        Me.Label4.Text = "Miner Hashrate"
         '
         'TextBox3
         '
-        Me.TextBox3.Anchor = System.Windows.Forms.AnchorStyles.Bottom
+        resources.ApplyResources(Me.TextBox3, "TextBox3")
         Me.TextBox3.BackColor = System.Drawing.Color.DarkSlateGray
         Me.TextBox3.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox3.Font = New System.Drawing.Font("MS Reference Sans Serif", 29.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox3.ForeColor = System.Drawing.SystemColors.Control
-        Me.TextBox3.Location = New System.Drawing.Point(47, 224)
-        Me.TextBox3.Multiline = True
         Me.TextBox3.Name = "TextBox3"
         Me.TextBox3.ReadOnly = True
-        Me.TextBox3.Size = New System.Drawing.Size(341, 57)
-        Me.TextBox3.TabIndex = 40
-        Me.TextBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'Label19
         '
-        Me.Label19.Anchor = System.Windows.Forms.AnchorStyles.Top
-        Me.Label19.AutoSize = True
-        Me.Label19.Font = New System.Drawing.Font("Microsoft Sans Serif", 13.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label19.Location = New System.Drawing.Point(153, 83)
+        resources.ApplyResources(Me.Label19, "Label19")
         Me.Label19.Name = "Label19"
-        Me.Label19.Size = New System.Drawing.Size(129, 22)
-        Me.Label19.TabIndex = 21
-        Me.Label19.Text = "Pool Address"
         '
         'MenuStrip
         '
-        Me.MenuStrip.AutoSize = False
+        resources.ApplyResources(Me.MenuStrip, "MenuStrip")
         Me.MenuStrip.BackColor = System.Drawing.Color.DarkGreen
-        Me.MenuStrip.Dock = System.Windows.Forms.DockStyle.None
-        Me.MenuStrip.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.MenuStrip.ImageScalingSize = New System.Drawing.Size(32, 32)
         Me.MenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.EditToolStripMenuItem, Me.ViewToolStripMenuItem, Me.HelpToolStripMenuItem})
-        Me.MenuStrip.Location = New System.Drawing.Point(53, 2)
         Me.MenuStrip.Name = "MenuStrip"
         Me.MenuStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.System
-        Me.MenuStrip.Size = New System.Drawing.Size(273, 50)
-        Me.MenuStrip.TabIndex = 85
-        Me.MenuStrip.Text = "MenuStrip"
         '
         'FileToolStripMenuItem
         '
         Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UpdateToolStripMenuItem, Me.ExitToolStripMenuItem})
         Me.FileToolStripMenuItem.ForeColor = System.Drawing.SystemColors.Control
         Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
-        Me.FileToolStripMenuItem.Size = New System.Drawing.Size(53, 46)
-        Me.FileToolStripMenuItem.Text = "File"
+        resources.ApplyResources(Me.FileToolStripMenuItem, "FileToolStripMenuItem")
         '
         'UpdateToolStripMenuItem
         '
         Me.UpdateToolStripMenuItem.BackColor = System.Drawing.SystemColors.Control
         Me.UpdateToolStripMenuItem.ForeColor = System.Drawing.Color.DarkSlateGray
         Me.UpdateToolStripMenuItem.Name = "UpdateToolStripMenuItem"
-        Me.UpdateToolStripMenuItem.Size = New System.Drawing.Size(140, 28)
-        Me.UpdateToolStripMenuItem.Text = "Update"
+        resources.ApplyResources(Me.UpdateToolStripMenuItem, "UpdateToolStripMenuItem")
         '
         'ExitToolStripMenuItem
         '
         Me.ExitToolStripMenuItem.ForeColor = System.Drawing.Color.DarkSlateGray
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(140, 28)
-        Me.ExitToolStripMenuItem.Text = "Exit"
+        resources.ApplyResources(Me.ExitToolStripMenuItem, "ExitToolStripMenuItem")
         '
         'EditToolStripMenuItem
         '
         Me.EditToolStripMenuItem.ForeColor = System.Drawing.SystemColors.Control
         Me.EditToolStripMenuItem.Name = "EditToolStripMenuItem"
-        Me.EditToolStripMenuItem.Size = New System.Drawing.Size(88, 46)
-        Me.EditToolStripMenuItem.Text = "Settings"
+        resources.ApplyResources(Me.EditToolStripMenuItem, "EditToolStripMenuItem")
         '
         'ViewToolStripMenuItem
         '
         Me.ViewToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileDirectoryToolStripMenuItem, Me.SystemLogToolStripMenuItem, Me.P2PoolConfigToolStripMenuItem})
         Me.ViewToolStripMenuItem.ForeColor = System.Drawing.SystemColors.Control
         Me.ViewToolStripMenuItem.Name = "ViewToolStripMenuItem"
-        Me.ViewToolStripMenuItem.Size = New System.Drawing.Size(64, 46)
-        Me.ViewToolStripMenuItem.Text = "View"
+        resources.ApplyResources(Me.ViewToolStripMenuItem, "ViewToolStripMenuItem")
         '
         'FileDirectoryToolStripMenuItem
         '
         Me.FileDirectoryToolStripMenuItem.ForeColor = System.Drawing.Color.DarkSlateGray
         Me.FileDirectoryToolStripMenuItem.Name = "FileDirectoryToolStripMenuItem"
-        Me.FileDirectoryToolStripMenuItem.Size = New System.Drawing.Size(200, 28)
-        Me.FileDirectoryToolStripMenuItem.Text = "Miner Config"
+        resources.ApplyResources(Me.FileDirectoryToolStripMenuItem, "FileDirectoryToolStripMenuItem")
         '
         'SystemLogToolStripMenuItem
         '
         Me.SystemLogToolStripMenuItem.ForeColor = System.Drawing.Color.DarkSlateGray
         Me.SystemLogToolStripMenuItem.Name = "SystemLogToolStripMenuItem"
-        Me.SystemLogToolStripMenuItem.Size = New System.Drawing.Size(200, 28)
-        Me.SystemLogToolStripMenuItem.Text = "One-Click Log"
+        resources.ApplyResources(Me.SystemLogToolStripMenuItem, "SystemLogToolStripMenuItem")
         '
         'P2PoolConfigToolStripMenuItem
         '
         Me.P2PoolConfigToolStripMenuItem.ForeColor = System.Drawing.Color.DarkSlateGray
         Me.P2PoolConfigToolStripMenuItem.Name = "P2PoolConfigToolStripMenuItem"
-        Me.P2PoolConfigToolStripMenuItem.Size = New System.Drawing.Size(200, 28)
-        Me.P2PoolConfigToolStripMenuItem.Text = "P2Pool Config"
+        resources.ApplyResources(Me.P2PoolConfigToolStripMenuItem, "P2PoolConfigToolStripMenuItem")
         '
         'HelpToolStripMenuItem
         '
         Me.HelpToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AboutToolStripMenuItem, Me.ContactToolStripMenuItem})
         Me.HelpToolStripMenuItem.ForeColor = System.Drawing.SystemColors.Control
         Me.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem"
-        Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(62, 46)
-        Me.HelpToolStripMenuItem.Text = "Help"
+        resources.ApplyResources(Me.HelpToolStripMenuItem, "HelpToolStripMenuItem")
         '
         'AboutToolStripMenuItem
         '
         Me.AboutToolStripMenuItem.ForeColor = System.Drawing.Color.DarkSlateGray
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(143, 28)
-        Me.AboutToolStripMenuItem.Text = "About"
+        resources.ApplyResources(Me.AboutToolStripMenuItem, "AboutToolStripMenuItem")
         '
         'ContactToolStripMenuItem
         '
         Me.ContactToolStripMenuItem.ForeColor = System.Drawing.Color.DarkSlateGray
         Me.ContactToolStripMenuItem.Name = "ContactToolStripMenuItem"
-        Me.ContactToolStripMenuItem.Size = New System.Drawing.Size(143, 28)
-        Me.ContactToolStripMenuItem.Text = "Contact"
+        resources.ApplyResources(Me.ContactToolStripMenuItem, "ContactToolStripMenuItem")
         '
         'UpdateStatsInterval
         '
@@ -231,115 +198,73 @@ Partial Class Main
         'NotifyIcon1
         '
         Me.NotifyIcon1.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info
-        Me.NotifyIcon1.Icon = CType(resources.GetObject("NotifyIcon1.Icon"), System.Drawing.Icon)
-        Me.NotifyIcon1.Text = "Vertcoin One-Click Miner"
-        Me.NotifyIcon1.Visible = True
+        resources.ApplyResources(Me.NotifyIcon1, "NotifyIcon1")
         '
         'CheckBox1
         '
-        Me.CheckBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CheckBox1.Location = New System.Drawing.Point(300, 56)
+        resources.ApplyResources(Me.CheckBox1, "CheckBox1")
         Me.CheckBox1.Name = "CheckBox1"
-        Me.CheckBox1.Size = New System.Drawing.Size(118, 17)
-        Me.CheckBox1.TabIndex = 3
-        Me.CheckBox1.Text = "Run Local Node"
-        Me.ToolTip.SetToolTip(Me.CheckBox1, "Select this to point your miner directly to your local p2pool node.")
+        Me.ToolTip.SetToolTip(Me.CheckBox1, resources.GetString("CheckBox1.ToolTip"))
         Me.CheckBox1.UseVisualStyleBackColor = True
         '
         'Button1
         '
-        Me.Button1.Anchor = System.Windows.Forms.AnchorStyles.Top
+        resources.ApplyResources(Me.Button1, "Button1")
         Me.Button1.BackColor = System.Drawing.Color.DarkGreen
-        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button1.ForeColor = System.Drawing.SystemColors.Control
-        Me.Button1.Location = New System.Drawing.Point(156, 27)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(123, 22)
-        Me.Button1.TabIndex = 0
-        Me.Button1.Text = "Find P2Pool Nodes"
         Me.ToolTip.SetToolTip(Me.Button1, resources.GetString("Button1.ToolTip"))
         Me.Button1.UseVisualStyleBackColor = False
         '
         'Button3
         '
         Me.Button3.BackColor = System.Drawing.Color.DarkGreen
-        Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.Button3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        resources.ApplyResources(Me.Button3, "Button3")
         Me.Button3.ForeColor = System.Drawing.SystemColors.Control
-        Me.Button3.Location = New System.Drawing.Point(55, 82)
         Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(47, 23)
-        Me.Button3.TabIndex = 2
-        Me.Button3.Text = "Start"
-        Me.ToolTip.SetToolTip(Me.Button3, "Toggles your miner on/off.")
+        Me.ToolTip.SetToolTip(Me.Button3, resources.GetString("Button3.ToolTip"))
         Me.Button3.UseVisualStyleBackColor = False
         '
         'Button2
         '
-        Me.Button2.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        resources.ApplyResources(Me.Button2, "Button2")
         Me.Button2.BackColor = System.Drawing.Color.DarkGreen
-        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.Button2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button2.ForeColor = System.Drawing.SystemColors.Control
-        Me.Button2.Location = New System.Drawing.Point(332, 199)
         Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(91, 23)
-        Me.Button2.TabIndex = 5
-        Me.Button2.Text = "Add Pool"
-        Me.ToolTip.SetToolTip(Me.Button2, "Toggles your miner on/off.")
+        Me.ToolTip.SetToolTip(Me.Button2, resources.GetString("Button2.ToolTip"))
         Me.Button2.UseVisualStyleBackColor = False
         '
         'Button4
         '
-        Me.Button4.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        resources.ApplyResources(Me.Button4, "Button4")
         Me.Button4.BackColor = System.Drawing.Color.DarkGreen
-        Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.Button4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button4.ForeColor = System.Drawing.SystemColors.Control
-        Me.Button4.Location = New System.Drawing.Point(12, 199)
         Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(91, 23)
-        Me.Button4.TabIndex = 4
-        Me.Button4.Text = "Remove Pool"
-        Me.ToolTip.SetToolTip(Me.Button4, "Toggles your miner on/off.")
+        Me.ToolTip.SetToolTip(Me.Button4, resources.GetString("Button4.ToolTip"))
         Me.Button4.UseVisualStyleBackColor = False
         '
         'CheckBox2
         '
-        Me.CheckBox2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.CheckBox2.AutoSize = True
-        Me.CheckBox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CheckBox2.Location = New System.Drawing.Point(306, 90)
+        resources.ApplyResources(Me.CheckBox2, "CheckBox2")
         Me.CheckBox2.Name = "CheckBox2"
-        Me.CheckBox2.Size = New System.Drawing.Size(115, 17)
-        Me.CheckBox2.TabIndex = 88
-        Me.CheckBox2.Text = "Select All Pools"
-        Me.ToolTip.SetToolTip(Me.CheckBox2, "Selects all pools in pool list.")
+        Me.ToolTip.SetToolTip(Me.CheckBox2, resources.GetString("CheckBox2.ToolTip"))
         Me.CheckBox2.UseVisualStyleBackColor = True
         '
         'PictureBox9
         '
-        Me.PictureBox9.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        resources.ApplyResources(Me.PictureBox9, "PictureBox9")
         Me.PictureBox9.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.help_small
-        Me.PictureBox9.Location = New System.Drawing.Point(284, 90)
         Me.PictureBox9.Name = "PictureBox9"
-        Me.PictureBox9.Size = New System.Drawing.Size(15, 15)
-        Me.PictureBox9.TabIndex = 39
         Me.PictureBox9.TabStop = False
         Me.ToolTip.SetToolTip(Me.PictureBox9, resources.GetString("PictureBox9.ToolTip"))
         '
         'PictureBox3
         '
         Me.PictureBox3.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.help_small
-        Me.PictureBox3.Location = New System.Drawing.Point(109, 8)
+        resources.ApplyResources(Me.PictureBox3, "PictureBox3")
         Me.PictureBox3.Name = "PictureBox3"
-        Me.PictureBox3.Size = New System.Drawing.Size(15, 15)
-        Me.PictureBox3.TabIndex = 28
         Me.PictureBox3.TabStop = False
-        Me.ToolTip.SetToolTip(Me.PictureBox3, "Select your hardware type to launch the respective miner for your hardware.")
+        Me.ToolTip.SetToolTip(Me.PictureBox3, resources.GetString("PictureBox3.ToolTip"))
         '
         'Uptime_Timer
         '
@@ -355,12 +280,8 @@ Partial Class Main
         '
         'WebBrowser1
         '
-        Me.WebBrowser1.Location = New System.Drawing.Point(780, 213)
-        Me.WebBrowser1.MinimumSize = New System.Drawing.Size(20, 20)
+        resources.ApplyResources(Me.WebBrowser1, "WebBrowser1")
         Me.WebBrowser1.Name = "WebBrowser1"
-        Me.WebBrowser1.Size = New System.Drawing.Size(20, 20)
-        Me.WebBrowser1.TabIndex = 86
-        Me.WebBrowser1.Visible = False
         '
         'Select_Data_Dir
         '
@@ -373,9 +294,7 @@ Partial Class Main
         '
         'Panel1
         '
-        Me.Panel1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        resources.ApplyResources(Me.Panel1, "Panel1")
         Me.Panel1.BackColor = System.Drawing.Color.DarkGreen
         Me.Panel1.Controls.Add(Me.PictureBox2)
         Me.Panel1.Controls.Add(Me.PictureBox1)
@@ -383,59 +302,39 @@ Partial Class Main
         Me.Panel1.Controls.Add(Me.PictureBox4)
         Me.Panel1.Controls.Add(Me.MenuStrip)
         Me.Panel1.ForeColor = System.Drawing.SystemColors.Control
-        Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(435, 52)
-        Me.Panel1.TabIndex = 88
         '
         'PictureBox2
         '
-        Me.PictureBox2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        resources.ApplyResources(Me.PictureBox2, "PictureBox2")
         Me.PictureBox2.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.greenplus
-        Me.PictureBox2.Location = New System.Drawing.Point(368, 14)
         Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(25, 25)
-        Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox2.TabIndex = 93
         Me.PictureBox2.TabStop = False
         '
         'PictureBox1
         '
         Me.PictureBox1.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.ocmlogo
-        Me.PictureBox1.Location = New System.Drawing.Point(0, 0)
+        resources.ApplyResources(Me.PictureBox1, "PictureBox1")
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(50, 50)
-        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
-        Me.PictureBox1.TabIndex = 90
         Me.PictureBox1.TabStop = False
         '
         'PictureBox6
         '
-        Me.PictureBox6.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        resources.ApplyResources(Me.PictureBox6, "PictureBox6")
         Me.PictureBox6.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.minimize
-        Me.PictureBox6.Location = New System.Drawing.Point(337, 14)
         Me.PictureBox6.Name = "PictureBox6"
-        Me.PictureBox6.Size = New System.Drawing.Size(25, 25)
-        Me.PictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox6.TabIndex = 92
         Me.PictureBox6.TabStop = False
         '
         'PictureBox4
         '
-        Me.PictureBox4.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        resources.ApplyResources(Me.PictureBox4, "PictureBox4")
         Me.PictureBox4.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.greenx
-        Me.PictureBox4.Location = New System.Drawing.Point(399, 14)
         Me.PictureBox4.Name = "PictureBox4"
-        Me.PictureBox4.Size = New System.Drawing.Size(25, 25)
-        Me.PictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox4.TabIndex = 91
         Me.PictureBox4.TabStop = False
         '
         'Panel3
         '
-        Me.Panel3.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        resources.ApplyResources(Me.Panel3, "Panel3")
         Me.Panel3.BackColor = System.Drawing.Color.DarkSlateGray
         Me.Panel3.Controls.Add(Me.Label5)
         Me.Panel3.Controls.Add(Me.CheckBox2)
@@ -456,115 +355,65 @@ Partial Class Main
         Me.Panel3.Controls.Add(Me.CheckBox1)
         Me.Panel3.Controls.Add(Me.Label19)
         Me.Panel3.Controls.Add(Me.PictureBox3)
-        Me.Panel3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Panel3.ForeColor = System.Drawing.SystemColors.Control
-        Me.Panel3.Location = New System.Drawing.Point(0, 50)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(435, 285)
-        Me.Panel3.TabIndex = 91
         '
         'Label5
         '
-        Me.Label5.Anchor = System.Windows.Forms.AnchorStyles.Top
-        Me.Label5.AutoSize = True
-        Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(162, 52)
+        resources.ApplyResources(Me.Label5, "Label5")
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(110, 26)
-        Me.Label5.TabIndex = 90
-        Me.Label5.Text = "Vertminer includes" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "2% Dev Fee"
-        Me.Label5.TextAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.Label5.Visible = False
         '
         'DataGridView1
         '
         Me.DataGridView1.AllowUserToAddRows = False
         Me.DataGridView1.AllowUserToDeleteRows = False
         Me.DataGridView1.AllowUserToResizeRows = False
-        Me.DataGridView1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        resources.ApplyResources(Me.DataGridView1, "DataGridView1")
         Me.DataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
         Me.DataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Location = New System.Drawing.Point(12, 108)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.RowHeadersVisible = False
-        Me.DataGridView1.Size = New System.Drawing.Size(411, 85)
-        Me.DataGridView1.TabIndex = 6
         '
         'ComboBox1
         '
-        Me.ComboBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        resources.ApplyResources(Me.ComboBox1, "ComboBox1")
         Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Items.AddRange(New Object() {"AMD-sgminer", "NVIDIA-ccminer", "NVIDIA-vertminer", "CPU-cpuminer"})
-        Me.ComboBox1.Location = New System.Drawing.Point(12, 56)
+        Me.ComboBox1.Items.AddRange(New Object() {resources.GetString("ComboBox1.Items"), resources.GetString("ComboBox1.Items1"), resources.GetString("ComboBox1.Items2"), resources.GetString("ComboBox1.Items3")})
         Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(132, 21)
-        Me.ComboBox1.TabIndex = 1
         '
         'Label2
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(53, 6)
+        resources.ApplyResources(Me.Label2, "Label2")
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(50, 18)
-        Me.Label2.TabIndex = 15
-        Me.Label2.Text = "Miner"
         '
         'Label7
         '
-        Me.Label7.Anchor = System.Windows.Forms.AnchorStyles.Top
-        Me.Label7.AutoSize = True
+        resources.ApplyResources(Me.Label7, "Label7")
         Me.Label7.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Label7.Enabled = False
-        Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label7.ForeColor = System.Drawing.Color.Yellow
-        Me.Label7.Location = New System.Drawing.Point(150, 5)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(135, 17)
-        Me.Label7.TabIndex = 87
-        Me.Label7.Text = "Update Available!"
-        Me.Label7.Visible = False
         '
         'Label1
         '
-        Me.Label1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(303, 6)
+        resources.ApplyResources(Me.Label1, "Label1")
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(109, 18)
-        Me.Label1.TabIndex = 42
-        Me.Label1.Text = "Local P2Pool"
         '
         'TextBox1
         '
-        Me.TextBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        resources.ApplyResources(Me.TextBox1, "TextBox1")
         Me.TextBox1.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox1.Location = New System.Drawing.Point(291, 27)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.ReadOnly = True
-        Me.TextBox1.Size = New System.Drawing.Size(132, 22)
-        Me.TextBox1.TabIndex = 43
         Me.TextBox1.TabStop = False
-        Me.TextBox1.Text = "Offline"
-        Me.TextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'TextBox2
         '
         Me.TextBox2.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox2.Location = New System.Drawing.Point(12, 27)
+        resources.ApplyResources(Me.TextBox2, "TextBox2")
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.ReadOnly = True
-        Me.TextBox2.Size = New System.Drawing.Size(132, 22)
-        Me.TextBox2.TabIndex = 16
         Me.TextBox2.TabStop = False
-        Me.TextBox2.Text = "Offline"
-        Me.TextBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'Clock
         '
@@ -582,21 +431,20 @@ Partial Class Main
         '
         Me.Idle_Timer.Interval = 1000
         '
+        'Form_Load
+        '
+        Me.Form_Load.Interval = 250
+        '
         'Main
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        resources.ApplyResources(Me, "$this")
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(435, 335)
         Me.Controls.Add(Me.Panel3)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.WebBrowser1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
-        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
-        Me.MinimumSize = New System.Drawing.Size(435, 335)
         Me.Name = "Main"
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Vertcoin One-Click Miner - BETA"
         Me.MenuStrip.ResumeLayout(False)
         Me.MenuStrip.PerformLayout()
         CType(Me.PictureBox9, System.ComponentModel.ISupportInitialize).EndInit()
@@ -664,4 +512,5 @@ Partial Class Main
     Friend WithEvents Idle_Worker As System.ComponentModel.BackgroundWorker
     Friend WithEvents Idle_Timer As Timer
     Friend WithEvents PictureBox2 As PictureBox
+    Friend WithEvents Form_Load As Timer
 End Class

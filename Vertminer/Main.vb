@@ -80,12 +80,6 @@ Public Class Main
             ElseIf default_miner = "cpu-cpuminer" Then
                 ComboBox1.SelectedItem = "CPU-cpuminer"
             End If
-            'Window state on start
-            If start_minimized = True Then
-                Me.WindowState = FormWindowState.Minimized
-            Else
-                Me.WindowState = FormWindowState.Normal
-            End If
             'Check if p2pool or miner are already running
             Invoke(New MethodInvoker(AddressOf Process_Check))
             If p2pool_detected = True Then
@@ -132,6 +126,7 @@ Public Class Main
             UpdateStatsInterval.Start()
             Uptime_Timer.Start()
             Idle_Check.Start()
+            Form_Load.Start()
         Catch ex As Exception
             MsgBox(ex.Message)
             _logger.LogError(ex)
@@ -2422,13 +2417,42 @@ Public Class Main
 
     Private Sub PictureBox2_Click(sender As Object, e As EventArgs) Handles PictureBox2.Click
 
-        If Me.Size = New Size(435, 335) Then 'Grow
-            Me.Size = New Size(650, 420)
-            PictureBox2.Image = My.Resources.greenminus
-        ElseIf Me.Size = New Size(650, 420) Then 'Shrink
-            Me.Size = New Size(435, 335)
+        Invoke(New MethodInvoker(AddressOf Resize_Main))
+
+    End Sub
+
+    Public Sub Resize_Main()
+
+        Dim screenwidth As Integer = Screen.PrimaryScreen.Bounds.Width
+        Dim screenheight As Integer = Screen.PrimaryScreen.Bounds.Height
+        Dim smallwindowwidth As Double = 0.2266 * screenwidth
+        Dim smallwindowheight As Double = 0.3102 * screenheight
+        Dim largewindowwidth As Double = 0.4532 * screenwidth
+        Dim largewindowheight As Double = 0.4653 * screenheight
+
+        'MsgBox(screenwidth & "," & screenheight & " " & smallwindowwidth & "," & smallwindowheight)
+
+        If minmax = False Then 'Shrink
+            Me.Size = New Size(smallwindowwidth, smallwindowheight)
             PictureBox2.Image = My.Resources.greenplus
+            minmax = True
+        ElseIf minmax = True Then 'Grow
+            Me.Size = New Size(largewindowwidth, largewindowheight)
+            PictureBox2.Image = My.Resources.greenminus
+            minmax = False
         End If
+
+    End Sub
+
+    Private Sub Form_Load_Tick(sender As Object, e As EventArgs) Handles Form_Load.Tick
+
+        'Window state on start
+        If start_minimized = True Then
+            Me.WindowState = FormWindowState.Minimized
+        Else
+            Me.WindowState = FormWindowState.Normal
+        End If
+        Form_Load.Stop()
 
     End Sub
 

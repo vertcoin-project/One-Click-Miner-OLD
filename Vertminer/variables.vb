@@ -33,6 +33,7 @@ Module variables
     Public Property amd_detected
     Public Property nvidia_detected
     Public Property cpu_detected
+    Public Property minmax As Boolean = True 'false for small true for large
 
     'Process Variables
     Public Property psi As ProcessStartInfo
