@@ -23,7 +23,7 @@ Partial Class P2Pool
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(P2Pool))
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.AddSelectedPoolsButton = New System.Windows.Forms.Button()
         Me.Wallet_Address = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
@@ -57,18 +57,18 @@ Partial Class P2Pool
         Me.Panel2.SuspendLayout()
         Me.SuspendLayout()
         '
-        'Button1
+        'AddSelectedPoolsButton
         '
-        Me.Button1.BackColor = System.Drawing.Color.DarkGreen
-        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button1.ForeColor = System.Drawing.SystemColors.Control
-        Me.Button1.Location = New System.Drawing.Point(637, 206)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(140, 26)
-        Me.Button1.TabIndex = 6
-        Me.Button1.Text = "Add Selected Pool(s)"
-        Me.Button1.UseVisualStyleBackColor = False
+        Me.AddSelectedPoolsButton.BackColor = System.Drawing.Color.DarkGreen
+        Me.AddSelectedPoolsButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.AddSelectedPoolsButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.AddSelectedPoolsButton.ForeColor = System.Drawing.SystemColors.Control
+        Me.AddSelectedPoolsButton.Location = New System.Drawing.Point(637, 206)
+        Me.AddSelectedPoolsButton.Name = "AddSelectedPoolsButton"
+        Me.AddSelectedPoolsButton.Size = New System.Drawing.Size(140, 26)
+        Me.AddSelectedPoolsButton.TabIndex = 6
+        Me.AddSelectedPoolsButton.Text = "Add Selected Pool(s)"
+        Me.AddSelectedPoolsButton.UseVisualStyleBackColor = False
         '
         'Wallet_Address
         '
@@ -283,7 +283,7 @@ Partial Class P2Pool
         '
         Me.Panel2.BackColor = System.Drawing.Color.DarkSlateGray
         Me.Panel2.Controls.Add(Me.TabControl1)
-        Me.Panel2.Controls.Add(Me.Button1)
+        Me.Panel2.Controls.Add(Me.AddSelectedPoolsButton)
         Me.Panel2.Controls.Add(Me.Label5)
         Me.Panel2.Controls.Add(Me.Button2)
         Me.Panel2.Controls.Add(Me.Wallet_Address)
@@ -334,7 +334,7 @@ Partial Class P2Pool
         Me.ResumeLayout(False)
 
     End Sub
-    Friend WithEvents Button1 As System.Windows.Forms.Button
+    Friend WithEvents AddSelectedPoolsButton As System.Windows.Forms.Button
     Friend WithEvents Wallet_Address As System.Windows.Forms.TextBox
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents Label4 As System.Windows.Forms.Label
