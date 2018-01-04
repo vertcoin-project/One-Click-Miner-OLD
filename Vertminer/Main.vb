@@ -1654,7 +1654,7 @@ Public Class Main
             Dim cancel As Boolean = False
             Dim buffer As String = ""
             If System.IO.Directory.Exists(appdata) = False Then
-                Dim result1 As DialogResult = MsgBox("The default Vertcoin data directory was not found.  Would you like to select where it can be found?", MessageBoxButtons.OKCancel)
+                Dim result1 As DialogResult = MsgBox("The default Vertcoin Core Wallet data directory was not found.  Would you like to select where it can be found?", MessageBoxButtons.OKCancel)
                 If result1 = DialogResult.OK Then
                     Dim result2 As Windows.Forms.DialogResult = Select_Data_Dir.ShowDialog()
                     If result2 = Windows.Forms.DialogResult.OK Then
@@ -1668,6 +1668,7 @@ Public Class Main
                 End If
             End If
             If cancel = False Then
+                'Checks for existing vertcoin.conf file and pulls any available settings.
                 Dim files() As String = IO.Directory.GetFiles(appdata)
                 For Each file As String In files
                     If conf_check = False Then
@@ -1699,7 +1700,7 @@ Public Class Main
                 If (rpc_user = "" Or rpc_password = "" Or rpc_port = "" Or config_server = "" Or rpc_allowip = "") And conf_check = True Then
                     Dim result1 As DialogResult = MsgBox("RPC setting(s) not found in wallet configuration file. Would you like Vertcoin One-Click Miner to generate and append RPC settings to configuration file?", MessageBoxButtons.OKCancel)
                     If result1 = DialogResult.OK Then
-                        MsgBox("If your Vertcoin wallet is currently running, please close it and click OK.")
+                        MsgBox("If your Vertcoin Core wallet is currently running, please close it and click OK.")
                         Invoke(New MethodInvoker(AddressOf Generate_RPC_Settings))
                         Dim do_once_config_server As Boolean = False
                         Dim do_once_rpcallow As Boolean = False
@@ -1712,12 +1713,14 @@ Public Class Main
                                 Dim objWriter As New System.IO.StreamWriter(appdata & "\vertcoin_buffer.conf")
                                 For Each Line As String In File.ReadLines(appdata & "\vertcoin.conf")
                                     If do_once_config_server = False Then
-                                        config_server = "server=1"
-                                        objWriter.WriteLine(config_server) 'ALWAYS Changes server= to server=1 regardless of setting so p2pool can connect
-                                        do_once_config_server = True
+                                        If (Line.Contains("server=") And Line.Length >= 8) Then
+                                            config_server = "server=1"
+                                            objWriter.WriteLine(config_server) 'ALWAYS Changes server= to server=1 regardless of setting so p2pool can connect
+                                            do_once_config_server = True
+                                        End If
                                     End If
                                     If do_once_rpcallow = False Then
-                                        If (Line.Contains("rpcallowip=") And Line.Length >= 18) Or rpc_allowip = "" Then
+                                        If (Line.Contains("rpcallowip=") And Line.Length >= 18) Then
                                             If Not Line = "rpcallowip=127.0.0.1" Then
                                                 objWriter.WriteLine(Line) 'Moves previous rpcallowip's to new config and adds localhost
                                             End If
@@ -1729,17 +1732,11 @@ Public Class Main
                                         If Line.Contains("rpcuser=") And Line.Length >= 9 Then
                                             objWriter.WriteLine(Line)
                                             do_once_rpcuser = True
-                                        Else
-                                            objWriter.WriteLine("rpcuser=" & rpc_user)
-                                            do_once_rpcuser = True
                                         End If
                                     End If
                                     If do_once_rpcpassword = False Then
                                         If Line.Contains("rpcpassword=") And Line.Length >= 13 Then
                                             objWriter.WriteLine(Line)
-                                            do_once_rpcpassword = True
-                                        Else
-                                            objWriter.WriteLine("rpcpassword=" & rpc_password)
                                             do_once_rpcpassword = True
                                         End If
                                     End If
@@ -1747,15 +1744,27 @@ Public Class Main
                                         If Line.Contains("rpcport=") And Line.Length >= 9 Then
                                             objWriter.WriteLine(Line)
                                             do_once_rpcport = True
-                                        Else
-                                            objWriter.WriteLine("rpcport=" & rpc_port)
-                                            do_once_rpcport = True
                                         End If
                                     End If
                                     If Not Line.Contains("rpcallowip=") And Not Line.Contains("server=") And Not Line.Contains("rpcuser=") And Not Line.Contains("rpcpassword=") And Not Line.Contains("rpcport=") Then
                                         objWriter.WriteLine(Line)
                                     End If
                                 Next
+                                If do_once_config_server = False Then
+                                    objWriter.WriteLine("server=1")
+                                End If
+                                If do_once_rpcallow = False Then
+                                    objWriter.WriteLine("rpcallowip=127.0.0.1")
+                                End If
+                                If do_once_rpcuser = False Then
+                                    objWriter.WriteLine("rpcuser=" & rpc_user)
+                                End If
+                                If do_once_rpcpassword = False Then
+                                    objWriter.WriteLine("rpcpassword=" & rpc_password)
+                                End If
+                                If do_once_rpcport = False Then
+                                    objWriter.WriteLine("rpcport=" & rpc_port)
+                                End If
                                 My.Computer.FileSystem.MoveFile(appdata & "\vertcoin.conf", appdata & "\vertcoin_old.conf", True)
                                 objWriter.Close()
                                 My.Computer.FileSystem.MoveFile(appdata & "\vertcoin_buffer.conf", appdata & "\vertcoin.conf", True)
