@@ -1096,9 +1096,9 @@ Public Class Main
                 End If
             End If
             If Not appdata.Contains("AppData") Then
-                p2pool_config = "ocm_p2pool.exe" & network & " --give-author " & p2pool_donation & " --fee " & p2pool_node_fee & " --address " & p2pool_fee_address & " --max-conns " & max_connections & " --worker-port " & mining_port & " --p2pool-port " & p2pool_port & " --bitcoind-config-path """ & appdata & "\vertcoin.conf""" & Environment.NewLine & "exit /B"
+                p2pool_config = "ocm_p2pool.exe" & network & " --give-author " & p2pool_donation & " --fee " & p2pool_node_fee & " --address " & p2pool_fee_address & " --max-conns " & max_connections & " --worker-port " & mining_port & " --p2pool-port " & p2pool_port & " --bitcoind-config-path """ & appdata & "\vertcoin.conf""" & " --address-share-rate 30" & Environment.NewLine & "exit /B"
             Else
-                p2pool_config = "ocm_p2pool.exe" & network & " --give-author " & p2pool_donation & " --fee " & p2pool_node_fee & " --address " & p2pool_fee_address & " --max-conns " & max_connections & " --worker-port " & mining_port & " --p2pool-port " & p2pool_port & Environment.NewLine & "exit /B"
+                p2pool_config = "ocm_p2pool.exe" & network & " --give-author " & p2pool_donation & " --fee " & p2pool_node_fee & " --address " & p2pool_fee_address & " --max-conns " & max_connections & " --worker-port " & mining_port & " --p2pool-port " & p2pool_port & " --address-share-rate 30" & Environment.NewLine & "exit /B"
             End If
             If System.IO.File.Exists(p2pool_config_file) = True Then
                 command = File.ReadAllText(p2pool_config_file)
