@@ -31,7 +31,7 @@ Public Class Main
             End If
             settingsfolder = My.Settings.settingsfolder
             If settingsfolder = "" Or System.IO.Directory.Exists(settingsfolder) = False Then
-                Dim result1 As DialogResult = MsgBox("Please select the location that you would like the OCM to store it's settings, miner, and p2pool data." & Environment.NewLine & Environment.NewLine & "Click 'Cancel' to use the default location: My Documents\Vertcoin One-Click Miner", MessageBoxButtons.OKCancel)
+                Dim result1 As DialogResult = MsgBox("Please select the location that you would like the OCM to store its settings, miner, and p2pool data." & Environment.NewLine & Environment.NewLine & "Click 'Cancel' to use the default location: My Documents\Vertcoin One-Click Miner", MessageBoxButtons.OKCancel)
                 If result1 = DialogResult.OK Then
                     Dim result2 As Windows.Forms.DialogResult = Select_Data_Dir.ShowDialog()
                     If result2 = Windows.Forms.DialogResult.OK Then
