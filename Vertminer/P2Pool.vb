@@ -437,6 +437,7 @@ Public Class P2Pool
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
 
+        stopthread = False
         BeginInvoke(New MethodInvoker(AddressOf Loading_Start))
         BeginInvoke(New MethodInvoker(AddressOf Get_P2Pool_API))
 
@@ -450,6 +451,13 @@ Public Class P2Pool
 
     Private Sub PictureBox15_Click(sender As Object, e As EventArgs) Handles PictureBox15.Click
 
+        Cursor.Current = Cursors.WaitCursor
+        stopthread = True
+        Do Until (scanner1worker.ThreadState = ThreadState.Stopped)
+        Loop
+        Do Until (scanner2worker.ThreadState = ThreadState.Stopped)
+        Loop
+        Cursor.Current = Cursors.Arrow
         Me.Close()
 
     End Sub
@@ -460,16 +468,16 @@ Public Class P2Pool
     Private Sub Panel1_MouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles Panel1.MouseDown, Panel2.MouseDown, PictureBox11.MouseDown, Label6.MouseDown
 
         drag = True
-        mousex = Windows.Forms.Cursor.Position.X - Me.Left
-        mousey = Windows.Forms.Cursor.Position.Y - Me.Top
+        mousex = Cursor.Position.X - Me.Left
+        mousey = Cursor.Position.Y - Me.Top
 
     End Sub
 
     Private Sub Panel1_MouseMove(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles Panel1.MouseMove, Panel2.MouseMove, PictureBox11.MouseMove, Label6.MouseMove
 
         If drag Then
-            Me.Left = Windows.Forms.Cursor.Position.X - mousex
-            Me.Top = Windows.Forms.Cursor.Position.Y - mousey
+            Me.Left = Cursor.Position.X - mousex
+            Me.Top = Cursor.Position.Y - mousey
         End If
 
     End Sub
@@ -491,18 +499,6 @@ Public Class P2Pool
 
     End Sub
 
-    'Private Sub dataGridView1_HeaderRowClicked(ByVal sender As Object, ByVal e As DataGridViewCellMouseEventArgs) Handles DataGridView1.ColumnHeaderMouseClick, DataGridView1.ColumnHeaderMouseDoubleClick, DataGridView1.RowHeaderMouseClick, DataGridView1.RowHeaderMouseDoubleClick
-
-    '    scanner1worker.Abort()
-
-    'End Sub
-
-    'Private Sub dataGridView2_HeaderRowClicked(ByVal sender As Object, ByVal e As DataGridViewCellMouseEventArgs) Handles DataGridView2.ColumnHeaderMouseClick, DataGridView2.ColumnHeaderMouseDoubleClick, DataGridView2.RowHeaderMouseClick, DataGridView2.RowHeaderMouseDoubleClick
-
-    '    scanner2worker.Abort()
-
-    'End Sub
-
     Private Sub DataGridView_DataError(ByVal sender As Object, ByVal e As DataGridViewDataErrorEventArgs) Handles DataGridView1.DataError, DataGridView2.DataError
 
         'do nothing to ignore error
@@ -512,30 +508,28 @@ Public Class P2Pool
     Sub Scanner1Thread()
 
         'Network 1
-        Dim count As Integer = 0
         For x As Integer = 0 To scanner1.nodes.Count - 1
             Dim clientSocket As New Net.Sockets.TcpClient()
+            Dim result = clientSocket.BeginConnect(scanner1.nodes(x).ip, "9171", Nothing, Nothing)
             Dim stopWatch As New Stopwatch()
             Dim StopWatchTimeMs As Int32
             Try
                 If stopthread = False And scanner1worker.ThreadState = ThreadState.Running Then
                     Try
                         stopWatch.Start()
-                        clientSocket.Connect(scanner1.nodes(x).ip, "9171")
+                        result.AsyncWaitHandle.WaitOne(TimeSpan.FromMilliseconds(999))
                         clientSocket.Close()
                         stopWatch.Stop()
                         StopWatchTimeMs = stopWatch.ElapsedMilliseconds
                         DataGridView1.Rows(x).Cells(6).Value = StopWatchTimeMs
-                    Catch ex As Exception
+                    Catch ex As IOException
                         DataGridView1.Rows(x).Cells(6).Value = 999
                     End Try
                 Else
-                    stopthread = False
                     Exit Sub
                 End If
             Catch ex As Exception
             End Try
-            count = x
         Next
 
     End Sub
@@ -543,16 +537,16 @@ Public Class P2Pool
     Sub Scanner2Thread()
 
         'Network 2
-        Dim count As Integer = 0
-        For x = 0 To scanner2.nodes.Count - 1
+        For x As Integer = 0 To scanner2.nodes.Count - 1
             Dim clientSocket As New Net.Sockets.TcpClient()
+            Dim result = clientSocket.BeginConnect(scanner2.nodes(x).ip, "9181", Nothing, Nothing)
             Dim stopWatch As New Stopwatch()
             Dim StopWatchTimeMs As Int32
             Try
                 If stopthread = False And scanner2worker.ThreadState = ThreadState.Running Then
                     Try
                         stopWatch.Start()
-                        clientSocket.Connect(scanner2.nodes(x).ip, "9181")
+                        result.AsyncWaitHandle.WaitOne(TimeSpan.FromMilliseconds(999))
                         clientSocket.Close()
                         stopWatch.Stop()
                         StopWatchTimeMs = stopWatch.ElapsedMilliseconds
@@ -561,12 +555,10 @@ Public Class P2Pool
                         DataGridView2.Rows(x).Cells(6).Value = 999
                     End Try
                 Else
-                    stopthread = False
                     Exit Sub
                 End If
             Catch ex As Exception
             End Try
-            count = x
         Next
 
     End Sub

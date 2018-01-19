@@ -303,13 +303,13 @@ Public Class settings
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
 
-        Intensity_Text.Text = "11"
+        Intensity_Text.Text = "9"
 
     End Sub
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
 
-        Intensity_Text.Text = "12"
+        Intensity_Text.Text = "14"
 
     End Sub
 
@@ -329,6 +329,29 @@ Public Class settings
                 My.Settings.settingsfolder = settingsfolder
                 My.Settings.Save()
             End If
+        End If
+
+    End Sub
+
+    Public Sub Resize_Settings()
+
+        Dim screenwidth As Integer = Screen.PrimaryScreen.Bounds.Width
+        Dim screenheight As Integer = Screen.PrimaryScreen.Bounds.Height
+        Dim smallwindowwidth As Double = 0.2266 * screenwidth
+        Dim smallwindowheight As Double = 0.3102 * screenheight
+        Dim largewindowwidth As Double = 0.4532 * screenwidth
+        Dim largewindowheight As Double = 0.4653 * screenheight
+
+        'MsgBox(screenwidth & "," & screenheight & " " & smallwindowwidth & "," & smallwindowheight)
+
+        If minmax = False Then 'Shrink
+            Me.Size = New Size(smallwindowwidth, smallwindowheight)
+            PictureBox2.Image = My.Resources.greenplus
+            minmax = True
+        ElseIf minmax = True Then 'Grow
+            Me.Size = New Size(largewindowwidth, largewindowheight)
+            PictureBox2.Image = My.Resources.greenminus
+            minmax = False
         End If
 
     End Sub
