@@ -26,7 +26,6 @@ Module variables
     Public Property p2poolfolder As String
     Public Property scannerfolder As String
     Public Property command As String
-    Public Property platform As Boolean 'true=64-bit false=32-bit
     Public Property otherminer As Boolean
     Public Property otherp2pool As Boolean
     Public Property p2pool_detected
@@ -141,10 +140,29 @@ Module variables
     Public Property mining_intensity As Decimal = 0
     Public Property devices As String
     Public Property pool As String
-    Public Property pools As New ArrayList()
-    Public Property workers As New ArrayList()
-    Public Property passwords As New ArrayList()
-    Public Property selected As New ArrayList()
-    Public Property descriptions As New ArrayList()
+
+    Public Property PoolDataEx As PoolDataCollection = New PoolDataCollection
+
+
+    'Public Property pools As New ArrayList()
+    'Public Property workers As New ArrayList()
+    'Public Property passwords As New ArrayList()
+    'Public Property selected As New ArrayList()
+    'Public Property descriptions As New ArrayList()
+
+
+    Public Sub LoadSettings()
+        settingsfile = settingsfolder & "\Settings.json"
+        syslog = settingsfolder & "\SysLog.txt"
+        p2poolfolder = settingsfolder & "\p2pool"
+        scannerfolder = settingsfolder & "\scanner"
+        amdfolder = settingsfolder & "\amd"
+        nvidiafolder = settingsfolder & "\nvidia"
+        cpufolder = settingsfolder & "\cpu"
+        sgminerfolder = amdfolder & "\sgminer"
+        ccminerfolder = nvidiafolder & "\ccminer"
+        vertminerfolder = nvidiafolder & "\vertminer"
+        cpuminerfolder = cpufolder & "\cpuminer"
+    End Sub
 
 End Module

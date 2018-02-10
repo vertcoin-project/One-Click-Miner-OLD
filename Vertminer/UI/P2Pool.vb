@@ -364,58 +364,58 @@ Public Class P2Pool
 
     End Function
 
-    Private Sub AddSelectedPoolsButton_Click(sender As Object, e As EventArgs) Handles AddSelectedPoolsButton.Click
+    'Private Sub AddSelectedPoolsButton_Click(sender As Object, e As EventArgs) Handles AddSelectedPoolsButton.Click
 
-        Dim checkcount = 0
-        Dim checkcount2 = 0
-        For Each row As DataGridViewRow In DataGridView1.Rows
-            Dim chk As DataGridViewCheckBoxCell = row.Cells(DataGridView1.Columns(0).Name)
-            If chk.Value IsNot Nothing AndAlso chk.Value = True Then
-                checkcount += 1
-            End If
-        Next
-        For Each row As DataGridViewRow In DataGridView2.Rows
-            Dim chk As DataGridViewCheckBoxCell = row.Cells(DataGridView2.Columns(0).Name)
-            If chk.Value IsNot Nothing AndAlso chk.Value = True Then
-                checkcount2 += 1
-            End If
-        Next
-        checkcount = checkcount + checkcount2
-        Dim pool_list = String.Join(",", pools.ToArray())
-        If VertcoinAddressUtility.IsWalletAddressValid(Wallet_Address.Text) And checkcount > 0 Then
-            For Each row As DataGridViewRow In DataGridView1.Rows
-                Dim chk As DataGridViewCheckBoxCell = row.Cells(DataGridView1.Columns(0).Name)
-                If chk.Value IsNot Nothing AndAlso chk.Value = True Then
-                    If Not pool_list.Contains(DataGridView1.Rows(chk.RowIndex).Cells(1).Value) Then
-                        descriptions.Add("")
-                        pools.Add(DataGridView1.Rows(chk.RowIndex).Cells(1).Value)
-                        workers.Add(Wallet_Address.Text)
-                        passwords.Add("x")
-                    End If
-                End If
-            Next
-            For Each row As DataGridViewRow In DataGridView2.Rows
-                Dim chk As DataGridViewCheckBoxCell = row.Cells(DataGridView2.Columns(0).Name)
-                If chk.Value IsNot Nothing AndAlso chk.Value = True Then
-                    If Not pool_list.Contains(DataGridView2.Rows(chk.RowIndex).Cells(1).Value) Then
-                        descriptions.Add("")
-                        pools.Add(DataGridView2.Rows(chk.RowIndex).Cells(1).Value)
-                        workers.Add(Wallet_Address.Text)
-                        passwords.Add("x")
-                    End If
-                End If
-            Next
-            Invoke(New MethodInvoker(AddressOf Main.Update_Pool_Info))
-            Invoke(New MethodInvoker(AddressOf Main.SaveSettingsJSON))
-            MsgBox("Pool(s) added successfully.")
-            Me.Close()
-        ElseIf checkcount = 0 Then
-            MsgBox("Please select a pool to add.")
-        Else
-            MsgBox("Please enter a Valid Wallet Address before adding pools.")
-        End If
+    '    Dim checkcount = 0
+    '    Dim checkcount2 = 0
+    '    For Each row As DataGridViewRow In DataGridView1.Rows
+    '        Dim chk As DataGridViewCheckBoxCell = row.Cells(DataGridView1.Columns(0).Name)
+    '        If chk.Value IsNot Nothing AndAlso chk.Value = True Then
+    '            checkcount += 1
+    '        End If
+    '    Next
+    '    For Each row As DataGridViewRow In DataGridView2.Rows
+    '        Dim chk As DataGridViewCheckBoxCell = row.Cells(DataGridView2.Columns(0).Name)
+    '        If chk.Value IsNot Nothing AndAlso chk.Value = True Then
+    '            checkcount2 += 1
+    '        End If
+    '    Next
+    '    checkcount = checkcount + checkcount2
+    '    Dim pool_list = String.Join(",", pools.ToArray())
+    '    If VertcoinAddressUtility.IsWalletAddressValid(Wallet_Address.Text) And checkcount > 0 Then
+    '        For Each row As DataGridViewRow In DataGridView1.Rows
+    '            Dim chk As DataGridViewCheckBoxCell = row.Cells(DataGridView1.Columns(0).Name)
+    '            If chk.Value IsNot Nothing AndAlso chk.Value = True Then
+    '                If Not pool_list.Contains(DataGridView1.Rows(chk.RowIndex).Cells(1).Value) Then
+    '                    descriptions.Add("")
+    '                    pools.Add(DataGridView1.Rows(chk.RowIndex).Cells(1).Value)
+    '                    workers.Add(Wallet_Address.Text)
+    '                    passwords.Add("x")
+    '                End If
+    '            End If
+    '        Next
+    '        For Each row As DataGridViewRow In DataGridView2.Rows
+    '            Dim chk As DataGridViewCheckBoxCell = row.Cells(DataGridView2.Columns(0).Name)
+    '            If chk.Value IsNot Nothing AndAlso chk.Value = True Then
+    '                If Not pool_list.Contains(DataGridView2.Rows(chk.RowIndex).Cells(1).Value) Then
+    '                    descriptions.Add("")
+    '                    pools.Add(DataGridView2.Rows(chk.RowIndex).Cells(1).Value)
+    '                    workers.Add(Wallet_Address.Text)
+    '                    passwords.Add("x")
+    '                End If
+    '            End If
+    '        Next
+    '        ' Invoke(New MethodInvoker(AddressOf Main.Update_Pool_Info))
+    '        Invoke(New MethodInvoker(AddressOf Main.SaveSettingsJSON))
+    '        MsgBox("Pool(s) added successfully.")
+    '        Me.Close()
+    '    ElseIf checkcount = 0 Then
+    '        MsgBox("Please select a pool to add.")
+    '    Else
+    '        MsgBox("Please enter a Valid Wallet Address before adding pools.")
+    '    End If
 
-    End Sub
+    'End Sub
 
     Public Sub Loading_Start()
 

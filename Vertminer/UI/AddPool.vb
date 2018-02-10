@@ -37,12 +37,14 @@ Public Class AddPool
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
 
         If Not Pool_Address.Text = "" And Not Wallet_Address.Text = "" And Not Password_Address.Text = "" Then
-            pools.Insert(0, Pool_Address.Text)
-            workers.Insert(0, Wallet_Address.Text)
-            passwords.Insert(0, Password_Address.Text)
-            descriptions.Insert(0, "")
-            Invoke(New MethodInvoker(AddressOf Main.Update_Pool_Info))
-            Invoke(New MethodInvoker(AddressOf Main.SaveSettingsJSON))
+            PoolDataEx.Insert(0, New PoolData(Wallet_Address.Text, "", Pool_Address.Text, Password_Address.Text,))
+
+            'pools.Insert(0, Pool_Address.Text)
+            'workers.Insert(0, Wallet_Address.Text)
+            'passwords.Insert(0, Password_Address.Text)
+            'descriptions.Insert(0, "")
+            'Invoke(New MethodInvoker(AddressOf Main.Update_Pool_Info))
+            Main.SaveSettingsJSON()
             MsgBox("Pool(s) added successfully.")
             Me.Close()
         Else

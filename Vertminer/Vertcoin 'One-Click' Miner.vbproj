@@ -61,7 +61,7 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>600_600_d0I_1.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\Icons\600_600_d0I_1.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
@@ -108,25 +108,26 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="about.Designer.vb">
+    <Compile Include="PoolDataCollection.vb" />
+    <Compile Include="UI\about.Designer.vb">
       <DependentUpon>about.vb</DependentUpon>
     </Compile>
-    <Compile Include="about.vb">
+    <Compile Include="UI\about.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddPool.Designer.vb">
+    <Compile Include="UI\AddPool.Designer.vb">
       <DependentUpon>AddPool.vb</DependentUpon>
     </Compile>
-    <Compile Include="AddPool.vb">
+    <Compile Include="UI\AddPool.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Core\Base58.vb" />
     <Compile Include="Core\FileLogger.vb" />
     <Compile Include="Core\SystemWrapper.vb" />
-    <Compile Include="Main.vb">
+    <Compile Include="UI\Main.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Main.Designer.vb">
+    <Compile Include="UI\Main.Designer.vb">
       <DependentUpon>Main.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
@@ -145,22 +146,22 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="P2Pool.Designer.vb">
+    <Compile Include="UI\P2Pool.Designer.vb">
       <DependentUpon>P2Pool.vb</DependentUpon>
     </Compile>
-    <Compile Include="P2Pool.vb">
+    <Compile Include="UI\P2Pool.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="progress.Designer.vb">
+    <Compile Include="UI\progress.Designer.vb">
       <DependentUpon>progress.vb</DependentUpon>
     </Compile>
-    <Compile Include="progress.vb">
+    <Compile Include="UI\progress.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="settings.Designer.vb">
+    <Compile Include="UI\settings.Designer.vb">
       <DependentUpon>settings.vb</DependentUpon>
     </Compile>
-    <Compile Include="settings.vb">
+    <Compile Include="UI\settings.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Settings_Classes.vb" />
@@ -168,13 +169,13 @@
     <Compile Include="Core\VertcoinAddressUtility.vb" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="about.resx">
+    <EmbeddedResource Include="UI\about.resx">
       <DependentUpon>about.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AddPool.resx">
+    <EmbeddedResource Include="UI\AddPool.resx">
       <DependentUpon>AddPool.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Main.resx">
+    <EmbeddedResource Include="UI\Main.resx">
       <DependentUpon>Main.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -184,31 +185,33 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="P2Pool.resx">
+    <EmbeddedResource Include="UI\P2Pool.resx">
       <DependentUpon>P2Pool.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="progress.resx">
+    <EmbeddedResource Include="UI\progress.resx">
       <DependentUpon>progress.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="settings.resx">
+    <EmbeddedResource Include="UI\settings.resx">
       <DependentUpon>settings.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="My Project\app.manifest" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
     </None>
+    <None Include="My Project\DataSources\PoolDataCollection.datasource" />
     <None Include="My Project\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
-    <None Include="App.config" />
+    <None Include="Config\App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <None Include="Config\packages.config" />
     <None Include="Resources\help_small.png" />
   </ItemGroup>
   <ItemGroup>
@@ -224,9 +227,9 @@
     <None Include="Resources\red-led-off-md.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="600_600_d0I_1.ico" />
-    <Content Include="logo.ico" />
-    <Content Include="logo_small.ico" />
+    <Content Include="Resources\Icons\600_600_d0I_1.ico" />
+    <Content Include="Resources\Icons\logo.ico" />
+    <Content Include="Resources\Icons\logo_small.ico" />
     <None Include="Resources\vertcoin_icon.png" />
     <None Include="Resources\greenx.png" />
     <None Include="Resources\ocm.png" />
