@@ -24,6 +24,8 @@ Public Class Main
         Try
             'Styling
             Invoke(New MethodInvoker(AddressOf Style))
+            'Force TLS 1.2 for github downloads
+            System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 Or SecurityProtocolType.Tls11 Or SecurityProtocolType.Tls12
             If Environment.Is64BitOperatingSystem = True Then
                 platform = True '64-bit
             Else
@@ -421,7 +423,7 @@ Public Class Main
             _logger.LogError(ex)
             Invoke(New MethodInvoker(AddressOf SaveSettingsJSON))
         Finally
-            _logger.Trace("Downloaded OK.")
+            _logger.Trace("Download Started")
         End Try
 
     End Sub
@@ -603,6 +605,7 @@ Public Class Main
                 nvidiaminer = False
                 cpuminer = False
                 update_needed = False
+                update_complete = True
             End If
         Catch ex As Exception
             MsgBox("An issue occurred during the download.  Please try again.")
@@ -1879,6 +1882,7 @@ Public Class Main
         End Try
         If connection = True Then
             update_needed = False
+            update_complete = False
             Dim request As System.Net.HttpWebRequest = System.Net.HttpWebRequest.Create("http://alwayshashing.com/ocm_versions.txt")
             Dim response As System.Net.HttpWebResponse = request.GetResponse()
             Dim sr As System.IO.StreamReader = New System.IO.StreamReader(response.GetResponseStream())
