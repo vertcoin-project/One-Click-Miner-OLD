@@ -1,3 +1,5 @@
+# Vertcoin's [One-Click Miner](https://www.vertcoin.org/mine/)
+
 **Requirements**
 
 .NET 4.5
