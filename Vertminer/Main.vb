@@ -354,14 +354,8 @@ Public Class Main
             If amdminer = True Then
                 If default_miner = "amd-sgminer" Then
                     If (sgminer_new_version > System.Version.Parse(sgminer_version)) Or mining_installed = False Then
-                        If System.IO.Directory.Exists(sgminerfolder) = False Then
-                            'If AMD miner doesn't already exist, create folder and download
-                            System.IO.Directory.CreateDirectory(sgminerfolder)
-                        Else
-                            System.IO.Directory.Delete(sgminerfolder, True)
-                            System.Threading.Thread.Sleep(100)
-                            System.IO.Directory.CreateDirectory(sgminerfolder)
-                        End If
+                        'If AMD miner doesn't already exist, create folder and download
+                        System.IO.Directory.CreateDirectory(sgminerfolder)
                         downloadclient.DownloadFileAsync(New Uri(sgminer_updatelink), sgminerfolder & "\sgminer.zip", True)
                     Else
                         progress.Close()
@@ -372,28 +366,16 @@ Public Class Main
             If nvidiaminer = True Then
                 If default_miner = "nvidia-ccminer" Then
                     If ccminer_new_version > System.Version.Parse(ccminer_version) Or mining_installed = False Then
-                        If System.IO.Directory.Exists(ccminerfolder) = False Then
-                            'If Nvidia miner doesn't already exist, create folder and download
-                            System.IO.Directory.CreateDirectory(ccminerfolder)
-                        Else
-                            System.IO.Directory.Delete(ccminerfolder, True)
-                            System.Threading.Thread.Sleep(100)
-                            System.IO.Directory.CreateDirectory(ccminerfolder)
-                        End If
+                        'If Nvidia miner doesn't already exist, create folder and download
+                        System.IO.Directory.CreateDirectory(ccminerfolder)
                         downloadclient.DownloadFileAsync(New Uri(ccminer_updatelink), ccminerfolder & "\ccminer.zip", True)
                     Else
                         progress.Close()
                     End If
                 ElseIf default_miner = "nvidia-vertminer" Then
                     If vertminer_new_version > System.Version.Parse(vertminer_version) Or mining_installed = False Then
-                        If System.IO.Directory.Exists(vertminerfolder) = False Then
-                            'If Nvidia miner doesn't already exist, create folder and download
-                            System.IO.Directory.CreateDirectory(vertminerfolder)
-                        Else
-                            System.IO.Directory.Delete(vertminerfolder, True)
-                            System.Threading.Thread.Sleep(100)
-                            System.IO.Directory.CreateDirectory(vertminerfolder)
-                        End If
+                        'If Nvidia miner doesn't already exist, create folder and download
+                        System.IO.Directory.CreateDirectory(vertminerfolder)
                         downloadclient.DownloadFileAsync(New Uri(vertminer_updatelink), vertminerfolder & "\vertminer.zip", True)
                     Else
                         progress.Close()
@@ -404,14 +386,8 @@ Public Class Main
             If cpuminer = True Then
                 If default_miner = "cpu-cpuminer" Then
                     If cpuminer_new_version > System.Version.Parse(cpuminer_version) Or mining_installed = False Then
-                        If System.IO.Directory.Exists(cpuminerfolder) = False Then
-                            'If CPU miner doesn't already exist, create folder and download
-                            System.IO.Directory.CreateDirectory(cpuminerfolder)
-                        Else
-                            System.IO.Directory.Delete(cpuminerfolder, True)
-                            System.Threading.Thread.Sleep(100)
-                            System.IO.Directory.CreateDirectory(cpuminerfolder)
-                        End If
+                        'If CPU miner doesn't already exist, create folder and download
+                        System.IO.Directory.CreateDirectory(cpuminerfolder)
                         downloadclient.DownloadFileAsync(New Uri(cpuminer_updatelink), cpuminerfolder & "\cpuminer.zip", True)
                     Else
                         progress.Close()
@@ -438,9 +414,7 @@ Public Class Main
             AddHandler downloadclient.DownloadFileCompleted, AddressOf Client_P2PoolDownloadCompleted
             If (p2pool_new_version > System.Version.Parse(p2pool_version)) Or p2pool_installed = False Then
                 'Create p2pool directory and download/extract p2pool components into directory
-                If System.IO.Directory.Exists(p2poolfolder) = False Then
-                    System.IO.Directory.CreateDirectory(p2poolfolder)
-                End If
+                System.IO.Directory.CreateDirectory(p2poolfolder)
                 MsgBox("Please note, you must also run a Vertcoin Wallet to use P2Pool locally.")
                 downloadclient.DownloadFileAsync(New Uri(p2pool_updatelink), p2poolfolder & "\p2pool.zip", True)
             End If
