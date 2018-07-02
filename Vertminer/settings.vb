@@ -84,6 +84,7 @@ Public Class settings
             TextBox4.Text = p2pool_port
             TextBox5.Text = mining_port
             Intensity_Text.Text = mining_intensity
+            Worksize_Text.Text = mining_worksize
             Devices_Text.Text = devices
             Fee_Address_Text.Text = p2pool_fee_address
             ComboBox1.SelectedItem = p2pool_network
@@ -99,6 +100,9 @@ Public Class settings
     Private Sub Settings_Closing(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles MyBase.Closing
 
         Try
+            If Not Worksize_Text.Text = "" Then
+                mining_worksize = Worksize_Text.Text
+            End If
             If Not Intensity_Text.Text = "" Then
                 mining_intensity = Convert.ToDecimal(Intensity_Text.Text)
             End If
@@ -242,9 +246,6 @@ Public Class settings
         Button1.BackColor = Color.FromArgb(27, 92, 46)
         Button5.BackColor = Color.FromArgb(27, 92, 46)
         Button6.BackColor = Color.FromArgb(27, 92, 46)
-        Button2.BackColor = Color.FromArgb(27, 92, 46)
-        Button3.BackColor = Color.FromArgb(27, 92, 46)
-        Button4.BackColor = Color.FromArgb(27, 92, 46)
         Panel2.BackColor = Color.FromArgb(41, 54, 61)
 
     End Sub
@@ -301,19 +302,19 @@ Public Class settings
 
     End Sub
 
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+    Private Sub Button2_Click(sender As Object, e As EventArgs)
 
         Intensity_Text.Text = "9"
 
     End Sub
 
-    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+    Private Sub Button3_Click(sender As Object, e As EventArgs)
 
         Intensity_Text.Text = "14"
 
     End Sub
 
-    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+    Private Sub Button4_Click(sender As Object, e As EventArgs)
 
         Intensity_Text.Text = "0"
 
@@ -342,8 +343,6 @@ Public Class settings
         Dim largewindowwidth As Double = 0.4532 * screenwidth
         Dim largewindowheight As Double = 0.4653 * screenheight
 
-        'MsgBox(screenwidth & "," & screenheight & " " & smallwindowwidth & "," & smallwindowheight)
-
         If minmax = False Then 'Shrink
             Me.Size = New Size(smallwindowwidth, smallwindowheight)
             PictureBox2.Image = My.Resources.greenplus
@@ -353,6 +352,10 @@ Public Class settings
             PictureBox2.Image = My.Resources.greenminus
             minmax = False
         End If
+
+    End Sub
+
+    Private Sub Label10_Click(sender As Object, e As EventArgs) Handles Label10.Click
 
     End Sub
 

@@ -120,9 +120,6 @@
   <metadata name="ToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <metadata name="ToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <data name="PictureBox10.ToolTip" xml:space="preserve">
     <value>This sets the intensity of the miner.  This can be used to help fine-tune miner performance.
 Either manually enter an intensity in the box or click a button to select Low, Medium, or High performance.
@@ -143,36 +140,62 @@ NOTICE: To run P2Pool, you must have a Vertcoin Wallet running locally.</value>
   </data>
   <data name="PictureBox7.ToolTip" xml:space="preserve">
     <value>Select which of your GPU devices to use.
-Example: '0,1,4' launches the miner using GPU's 1,2 and 5.
-Example: '0,2-5' launches the miner using GPU's 1,3,4,5,6
-Example: Leaving box blank launches miner using all GPU's.</value>
-  </data>
-  <data name="Devices_Text.ToolTip" xml:space="preserve">
-    <value>Select which of your GPU devices to use.
-Example: '0,1,4' launches the miner using GPU's 1,2 and 5.
-Example: '0,2-5' launches the miner using GPU's 1,3,4,5,6
+Example: '0,1,4' launches the miner using GPU's with the PCIeBusId's of 1,2 and 5.
+Example: '0,2-5' launches the miner using GPU's with the PCIeBusId's 1,3,4,5,6
 Example: Leaving box blank launches miner using all GPU's.
 </value>
   </data>
-  <data name="Button2.ToolTip" xml:space="preserve">
-    <value>This sets the intensity of the miner.  This can be used to help fine-tune miner performance.
-Either manually enter an intensity in the box or click a button to select Low, Medium, or High performance.
-Set to 0 to allow the miner to automatically select the intensity for you.
-
-</value>
+  <data name="Devices_Text.ToolTip" xml:space="preserve">
+    <value>Select which of your GPU devices to use.
+Example: '0,1,4' launches the miner using GPU's with the PCIeBusId's of 1,2 and 5.
+Example: '0,2-5' launches the miner using GPU's with the PCIeBusId's 1,3,4,5,6
+Example: Leaving box blank launches miner using all GPU's.</value>
   </data>
-  <data name="Button3.ToolTip" xml:space="preserve">
-    <value>This sets the intensity of the miner.  This can be used to help fine-tune miner performance.
-Either manually enter an intensity in the box or click a button to select Low, Medium, or High performance.
-Set to 0 to allow the miner to automatically select the intensity for you.
+  <data name="PictureBox16.ToolTip" xml:space="preserve">
+    <value>*For use with AMD graphics cards*
 
-</value>
+Example: '0,1,4' in the 'Devices Box' launches the miner using GPU's 1,2 and 5.
+'1048576,2097152,3145728' in the 'Work Size Box' will set the work size for GPU 1 to 1048576, GPU 2 to 2097152, and GPU 5 to 3145728, respectively.
+
+Possible values: Minimal value is 256. Must be multiple of 256.
+Specifies a number of hashes to compute per run(batch), before returning result to the host(CPU).
+The higher the number the larger the size of work(GPU memory usage) and potentially higher hashrate.
+Too high work sizes can produce errors, including miner crashes and other issues.
+This value is GPU and driver specific.
+To get started, adjust WorkSize parameter according to hash rate with the default value(1048576)
+
+less than 6mh/s: 524288
+6-19mh/s: 524288, 1048576
+20-30mh/s: 1048576, 2097152
+32-40mh/s: 2097152, 3145728, 4194304
+41-59mh/s: 4194304, 6291456, 8388608
+more than 60mh/s: 8388608, 12582912, 16777216
+
+If you are running different types of AMD cards, you can manually specify a work size for each card by seperating their values with a comma.
+Use the 'Device Box' above as a reference for which order your cards are listed in, and then specify a work size for the respective spot.</value>
   </data>
-  <data name="Button4.ToolTip" xml:space="preserve">
-    <value>This sets the intensity of the miner.  This can be used to help fine-tune miner performance.
-Either manually enter an intensity in the box or click a button to select Low, Medium, or High performance.
-Set to 0 to allow the miner to automatically select the intensity for you.
+  <data name="Worksize_Text.ToolTip" xml:space="preserve">
+    <value>*For use with AMD graphics cards*
 
+Example: '0,1,4' in the 'Devices Box' launches the miner using GPU's 1,2 and 5.
+'1048576,2097152,3145728' in the 'Work Size Box' will set the work size for GPU 1 to 1048576, GPU 2 to 2097152, and GPU 5 to 3145728, respectively.
+
+Possible values: Minimal value is 256. Must be multiple of 256.
+Specifies a number of hashes to compute per run(batch), before returning result to the host(CPU).
+The higher the number the larger the size of work(GPU memory usage) and potentially higher hashrate.
+Too high work sizes can produce errors, including miner crashes and other issues.
+This value is GPU and driver specific.
+To get started, adjust WorkSize parameter according to hash rate with the default value(1048576)
+
+less than 6mh/s: 524288
+6-19mh/s: 524288, 1048576
+20-30mh/s: 1048576, 2097152
+32-40mh/s: 2097152, 3145728, 4194304
+41-59mh/s: 4194304, 6291456, 8388608
+more than 60mh/s: 8388608, 12582912, 16777216
+
+If you are running different types of AMD cards, you can manually specify a work size for each card by seperating their values with a comma.
+Use the 'Device Box' above as a reference for which order your cards are listed in, and then specify a work size for the respective spot.
 </value>
   </data>
   <metadata name="dir_browse.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">

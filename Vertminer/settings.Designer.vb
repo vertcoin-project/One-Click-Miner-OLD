@@ -63,10 +63,9 @@ Partial Class settings
         Me.PictureBox13 = New System.Windows.Forms.PictureBox()
         Me.CheckBox2 = New System.Windows.Forms.CheckBox()
         Me.CheckBox10 = New System.Windows.Forms.CheckBox()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.Button3 = New System.Windows.Forms.Button()
-        Me.Button4 = New System.Windows.Forms.Button()
         Me.Button6 = New System.Windows.Forms.Button()
+        Me.PictureBox16 = New System.Windows.Forms.PictureBox()
+        Me.Worksize_Text = New System.Windows.Forms.TextBox()
         Me.dir_browse = New System.Windows.Forms.FolderBrowserDialog()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
@@ -81,6 +80,7 @@ Partial Class settings
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.Label10 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         CType(Me.PictureBox9, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox6, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -94,6 +94,7 @@ Partial Class settings
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox7, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox13, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox16, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         CType(Me.PictureBox11, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox14, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -345,7 +346,7 @@ Partial Class settings
         'PictureBox10
         '
         Me.PictureBox10.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.help_small
-        Me.PictureBox10.Location = New System.Drawing.Point(79, 50)
+        Me.PictureBox10.Location = New System.Drawing.Point(88, 46)
         Me.PictureBox10.Name = "PictureBox10"
         Me.PictureBox10.Size = New System.Drawing.Size(15, 15)
         Me.PictureBox10.TabIndex = 43
@@ -355,10 +356,10 @@ Partial Class settings
         'Intensity_Text
         '
         Me.Intensity_Text.BackColor = System.Drawing.SystemColors.Window
-        Me.Intensity_Text.Location = New System.Drawing.Point(25, 97)
+        Me.Intensity_Text.Location = New System.Drawing.Point(6, 63)
         Me.Intensity_Text.MaxLength = 5
         Me.Intensity_Text.Name = "Intensity_Text"
-        Me.Intensity_Text.Size = New System.Drawing.Size(62, 20)
+        Me.Intensity_Text.Size = New System.Drawing.Size(101, 20)
         Me.Intensity_Text.TabIndex = 4
         Me.Intensity_Text.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.ToolTip.SetToolTip(Me.Intensity_Text, resources.GetString("Intensity_Text.ToolTip"))
@@ -468,7 +469,7 @@ Partial Class settings
         'PictureBox7
         '
         Me.PictureBox7.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.help_small
-        Me.PictureBox7.Location = New System.Drawing.Point(14, 144)
+        Me.PictureBox7.Location = New System.Drawing.Point(88, 85)
         Me.PictureBox7.Name = "PictureBox7"
         Me.PictureBox7.Size = New System.Drawing.Size(15, 15)
         Me.PictureBox7.TabIndex = 46
@@ -478,10 +479,10 @@ Partial Class settings
         'Devices_Text
         '
         Me.Devices_Text.BackColor = System.Drawing.SystemColors.Window
-        Me.Devices_Text.Location = New System.Drawing.Point(35, 141)
+        Me.Devices_Text.Location = New System.Drawing.Point(6, 102)
         Me.Devices_Text.MaxLength = 250
         Me.Devices_Text.Name = "Devices_Text"
-        Me.Devices_Text.Size = New System.Drawing.Size(62, 20)
+        Me.Devices_Text.Size = New System.Drawing.Size(101, 20)
         Me.Devices_Text.TabIndex = 5
         Me.Devices_Text.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.ToolTip.SetToolTip(Me.Devices_Text, resources.GetString("Devices_Text.ToolTip"))
@@ -521,45 +522,6 @@ Partial Class settings
         "matically start the miner " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "if the hardware has been idle for 1 minute.")
         Me.CheckBox10.UseVisualStyleBackColor = True
         '
-        'Button2
-        '
-        Me.Button2.BackColor = System.Drawing.Color.DarkGreen
-        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.Button2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button2.Location = New System.Drawing.Point(7, 69)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(29, 23)
-        Me.Button2.TabIndex = 1
-        Me.Button2.Text = "L"
-        Me.ToolTip.SetToolTip(Me.Button2, resources.GetString("Button2.ToolTip"))
-        Me.Button2.UseVisualStyleBackColor = False
-        '
-        'Button3
-        '
-        Me.Button3.BackColor = System.Drawing.Color.DarkGreen
-        Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.Button3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button3.Location = New System.Drawing.Point(42, 69)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(29, 23)
-        Me.Button3.TabIndex = 2
-        Me.Button3.Text = "M"
-        Me.ToolTip.SetToolTip(Me.Button3, resources.GetString("Button3.ToolTip"))
-        Me.Button3.UseVisualStyleBackColor = False
-        '
-        'Button4
-        '
-        Me.Button4.BackColor = System.Drawing.Color.DarkGreen
-        Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.Button4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button4.Location = New System.Drawing.Point(77, 69)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(29, 23)
-        Me.Button4.TabIndex = 3
-        Me.Button4.Text = "H"
-        Me.ToolTip.SetToolTip(Me.Button4, resources.GetString("Button4.ToolTip"))
-        Me.Button4.UseVisualStyleBackColor = False
-        '
         'Button6
         '
         Me.Button6.BackColor = System.Drawing.Color.DarkGreen
@@ -574,6 +536,28 @@ Partial Class settings
         "cannot find the default directory, it will prompt you to select your alternative" &
         " location when P2Pool is started.")
         Me.Button6.UseVisualStyleBackColor = False
+        '
+        'PictureBox16
+        '
+        Me.PictureBox16.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.help_small
+        Me.PictureBox16.Location = New System.Drawing.Point(88, 124)
+        Me.PictureBox16.Name = "PictureBox16"
+        Me.PictureBox16.Size = New System.Drawing.Size(15, 15)
+        Me.PictureBox16.TabIndex = 49
+        Me.PictureBox16.TabStop = False
+        Me.ToolTip.SetToolTip(Me.PictureBox16, resources.GetString("PictureBox16.ToolTip"))
+        '
+        'Worksize_Text
+        '
+        Me.Worksize_Text.BackColor = System.Drawing.SystemColors.Window
+        Me.Worksize_Text.Location = New System.Drawing.Point(6, 141)
+        Me.Worksize_Text.MaxLength = 250
+        Me.Worksize_Text.Name = "Worksize_Text"
+        Me.Worksize_Text.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal
+        Me.Worksize_Text.Size = New System.Drawing.Size(101, 20)
+        Me.Worksize_Text.TabIndex = 47
+        Me.Worksize_Text.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.ToolTip.SetToolTip(Me.Worksize_Text, resources.GetString("Worksize_Text.ToolTip"))
         '
         'Label6
         '
@@ -599,7 +583,7 @@ Partial Class settings
         '
         Me.Label7.AutoSize = True
         Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.Location = New System.Drawing.Point(32, 52)
+        Me.Label7.Location = New System.Drawing.Point(33, 47)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(46, 13)
         Me.Label7.TabIndex = 42
@@ -740,14 +724,14 @@ Partial Class settings
         '
         'GroupBox3
         '
-        Me.GroupBox3.Controls.Add(Me.Button4)
-        Me.GroupBox3.Controls.Add(Me.Button3)
-        Me.GroupBox3.Controls.Add(Me.Button2)
+        Me.GroupBox3.Controls.Add(Me.PictureBox16)
+        Me.GroupBox3.Controls.Add(Me.Label10)
+        Me.GroupBox3.Controls.Add(Me.Worksize_Text)
         Me.GroupBox3.Controls.Add(Me.CheckBox10)
         Me.GroupBox3.Controls.Add(Me.PictureBox7)
+        Me.GroupBox3.Controls.Add(Me.PictureBox10)
         Me.GroupBox3.Controls.Add(Me.Label2)
         Me.GroupBox3.Controls.Add(Me.Devices_Text)
-        Me.GroupBox3.Controls.Add(Me.PictureBox10)
         Me.GroupBox3.Controls.Add(Me.Label7)
         Me.GroupBox3.Controls.Add(Me.Intensity_Text)
         Me.GroupBox3.ForeColor = System.Drawing.SystemColors.Control
@@ -758,11 +742,21 @@ Partial Class settings
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Mining"
         '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label10.Location = New System.Drawing.Point(28, 125)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(56, 13)
+        Me.Label10.TabIndex = 48
+        Me.Label10.Text = "Work Size"
+        '
         'Label2
         '
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(43, 125)
+        Me.Label2.Location = New System.Drawing.Point(33, 86)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(46, 13)
         Me.Label2.TabIndex = 45
@@ -794,6 +788,7 @@ Partial Class settings
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox7, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox13, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox16, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         CType(Me.PictureBox11, System.ComponentModel.ISupportInitialize).EndInit()
@@ -862,9 +857,9 @@ Partial Class settings
     Friend WithEvents PictureBox13 As PictureBox
     Friend WithEvents CheckBox2 As CheckBox
     Friend WithEvents CheckBox10 As CheckBox
-    Friend WithEvents Button4 As Button
-    Friend WithEvents Button3 As Button
-    Friend WithEvents Button2 As Button
     Friend WithEvents Button6 As Button
     Friend WithEvents Label8 As Label
+    Friend WithEvents PictureBox16 As PictureBox
+    Friend WithEvents Label10 As Label
+    Friend WithEvents Worksize_Text As TextBox
 End Class

@@ -130,13 +130,10 @@
     <value>Microsoft Sans Serif, 13pt, style=Bold, Underline</value>
   </data>
   <data name="Label4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>292, 377</value>
-  </data>
-  <data name="Label4.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>6, 0, 6, 0</value>
+    <value>146, 196</value>
   </data>
   <data name="Label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>268, 39</value>
+    <value>146, 22</value>
   </data>
   <data name="Label4.TabIndex" type="System.Int32, mscorlib">
     <value>41</value>
@@ -163,16 +160,13 @@
     <value>MS Reference Sans Serif, 29pt</value>
   </data>
   <data name="TextBox3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>94, 431</value>
-  </data>
-  <data name="TextBox3.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>6, 6, 6, 6</value>
+    <value>47, 224</value>
   </data>
   <data name="TextBox3.Multiline" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="TextBox3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>682, 110</value>
+    <value>341, 57</value>
   </data>
   <data name="TextBox3.TabIndex" type="System.Int32, mscorlib">
     <value>40</value>
@@ -202,13 +196,10 @@
     <value>Microsoft Sans Serif, 13pt, style=Bold, Underline</value>
   </data>
   <data name="Label19.Location" type="System.Drawing.Point, System.Drawing">
-    <value>306, 160</value>
-  </data>
-  <data name="Label19.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>6, 0, 6, 0</value>
+    <value>153, 83</value>
   </data>
   <data name="Label19.Size" type="System.Drawing.Size, System.Drawing">
-    <value>235, 39</value>
+    <value>129, 22</value>
   </data>
   <data name="Label19.TabIndex" type="System.Int32, mscorlib">
     <value>21</value>
@@ -240,14 +231,77 @@
   <data name="MenuStrip.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 14.25pt</value>
   </data>
-  <data name="MenuStrip.Location" type="System.Drawing.Point, System.Drawing">
-    <value>106, 4</value>
+  <data name="UpdateToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>140, 28</value>
   </data>
-  <data name="MenuStrip.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>12, 4, 0, 4</value>
+  <data name="UpdateToolStripMenuItem.Text" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="ExitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>140, 28</value>
+  </data>
+  <data name="ExitToolStripMenuItem.Text" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="FileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 46</value>
+  </data>
+  <data name="FileToolStripMenuItem.Text" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="EditToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>88, 46</value>
+  </data>
+  <data name="EditToolStripMenuItem.Text" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="FileDirectoryToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>200, 28</value>
+  </data>
+  <data name="FileDirectoryToolStripMenuItem.Text" xml:space="preserve">
+    <value>Miner Config</value>
+  </data>
+  <data name="SystemLogToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>200, 28</value>
+  </data>
+  <data name="SystemLogToolStripMenuItem.Text" xml:space="preserve">
+    <value>One-Click Log</value>
+  </data>
+  <data name="P2PoolConfigToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>200, 28</value>
+  </data>
+  <data name="P2PoolConfigToolStripMenuItem.Text" xml:space="preserve">
+    <value>P2Pool Config</value>
+  </data>
+  <data name="ViewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>64, 46</value>
+  </data>
+  <data name="ViewToolStripMenuItem.Text" xml:space="preserve">
+    <value>View</value>
+  </data>
+  <data name="AboutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>143, 28</value>
+  </data>
+  <data name="AboutToolStripMenuItem.Text" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="ContactToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>143, 28</value>
+  </data>
+  <data name="ContactToolStripMenuItem.Text" xml:space="preserve">
+    <value>Contact</value>
+  </data>
+  <data name="HelpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>62, 46</value>
+  </data>
+  <data name="HelpToolStripMenuItem.Text" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="MenuStrip.Location" type="System.Drawing.Point, System.Drawing">
+    <value>53, 2</value>
   </data>
   <data name="MenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>546, 96</value>
+    <value>273, 50</value>
   </data>
   <data name="MenuStrip.TabIndex" type="System.Int32, mscorlib">
     <value>85</value>
@@ -266,72 +320,6 @@
   </data>
   <data name="&gt;&gt;MenuStrip.ZOrder" xml:space="preserve">
     <value>4</value>
-  </data>
-  <data name="FileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>94, 88</value>
-  </data>
-  <data name="FileToolStripMenuItem.Text" xml:space="preserve">
-    <value>File</value>
-  </data>
-  <data name="UpdateToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>246, 48</value>
-  </data>
-  <data name="UpdateToolStripMenuItem.Text" xml:space="preserve">
-    <value>Update</value>
-  </data>
-  <data name="ExitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>246, 48</value>
-  </data>
-  <data name="ExitToolStripMenuItem.Text" xml:space="preserve">
-    <value>Exit</value>
-  </data>
-  <data name="EditToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>170, 88</value>
-  </data>
-  <data name="EditToolStripMenuItem.Text" xml:space="preserve">
-    <value>Settings</value>
-  </data>
-  <data name="ViewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>114, 88</value>
-  </data>
-  <data name="ViewToolStripMenuItem.Text" xml:space="preserve">
-    <value>View</value>
-  </data>
-  <data name="FileDirectoryToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>366, 48</value>
-  </data>
-  <data name="FileDirectoryToolStripMenuItem.Text" xml:space="preserve">
-    <value>Miner Config</value>
-  </data>
-  <data name="SystemLogToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>366, 48</value>
-  </data>
-  <data name="SystemLogToolStripMenuItem.Text" xml:space="preserve">
-    <value>One-Click Log</value>
-  </data>
-  <data name="P2PoolConfigToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>366, 48</value>
-  </data>
-  <data name="P2PoolConfigToolStripMenuItem.Text" xml:space="preserve">
-    <value>P2Pool Config</value>
-  </data>
-  <data name="HelpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>110, 88</value>
-  </data>
-  <data name="HelpToolStripMenuItem.Text" xml:space="preserve">
-    <value>Help</value>
-  </data>
-  <data name="AboutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>255, 48</value>
-  </data>
-  <data name="AboutToolStripMenuItem.Text" xml:space="preserve">
-    <value>About</value>
-  </data>
-  <data name="ContactToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>255, 48</value>
-  </data>
-  <data name="ContactToolStripMenuItem.Text" xml:space="preserve">
-    <value>Contact</value>
   </data>
   <metadata name="UpdateStatsInterval.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>362, 10</value>
@@ -975,13 +963,10 @@
     <value>Microsoft Sans Serif, 8.25pt, style=Bold</value>
   </data>
   <data name="CheckBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>622, 108</value>
-  </data>
-  <data name="CheckBox1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>6, 6, 6, 6</value>
+    <value>300, 56</value>
   </data>
   <data name="CheckBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>214, 30</value>
+    <value>118, 17</value>
   </data>
   <data name="CheckBox1.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -1014,13 +999,10 @@
     <value>Microsoft Sans Serif, 8.25pt, style=Bold</value>
   </data>
   <data name="Button1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>312, 52</value>
-  </data>
-  <data name="Button1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>6, 6, 6, 6</value>
+    <value>156, 27</value>
   </data>
   <data name="Button1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>246, 42</value>
+    <value>123, 22</value>
   </data>
   <data name="Button1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -1052,13 +1034,10 @@ That way in the event that your pool goes down, you'll just continue to mine on 
     <value>Microsoft Sans Serif, 8.25pt, style=Bold</value>
   </data>
   <data name="Button3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>110, 158</value>
-  </data>
-  <data name="Button3.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>6, 6, 6, 6</value>
+    <value>55, 82</value>
   </data>
   <data name="Button3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>94, 44</value>
+    <value>47, 23</value>
   </data>
   <data name="Button3.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -1091,13 +1070,10 @@ That way in the event that your pool goes down, you'll just continue to mine on 
     <value>Microsoft Sans Serif, 8.25pt, style=Bold</value>
   </data>
   <data name="Button2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>664, 383</value>
-  </data>
-  <data name="Button2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>6, 6, 6, 6</value>
+    <value>332, 199</value>
   </data>
   <data name="Button2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>182, 44</value>
+    <value>91, 23</value>
   </data>
   <data name="Button2.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -1130,13 +1106,10 @@ That way in the event that your pool goes down, you'll just continue to mine on 
     <value>Microsoft Sans Serif, 8.25pt, style=Bold</value>
   </data>
   <data name="Button4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>24, 383</value>
-  </data>
-  <data name="Button4.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>6, 6, 6, 6</value>
+    <value>12, 199</value>
   </data>
   <data name="Button4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>182, 44</value>
+    <value>91, 23</value>
   </data>
   <data name="Button4.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -1169,13 +1142,10 @@ That way in the event that your pool goes down, you'll just continue to mine on 
     <value>Microsoft Sans Serif, 8.25pt, style=Bold</value>
   </data>
   <data name="CheckBox2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>631, 173</value>
-  </data>
-  <data name="CheckBox2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>6, 6, 6, 6</value>
+    <value>307, 90</value>
   </data>
   <data name="CheckBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>213, 30</value>
+    <value>115, 17</value>
   </data>
   <data name="CheckBox2.TabIndex" type="System.Int32, mscorlib">
     <value>88</value>
@@ -1202,13 +1172,10 @@ That way in the event that your pool goes down, you'll just continue to mine on 
     <value>Top, Right</value>
   </data>
   <data name="PictureBox9.Location" type="System.Drawing.Point, System.Drawing">
-    <value>568, 173</value>
-  </data>
-  <data name="PictureBox9.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>6, 6, 6, 6</value>
+    <value>284, 90</value>
   </data>
   <data name="PictureBox9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>30, 29</value>
+    <value>15, 15</value>
   </data>
   <data name="PictureBox9.TabIndex" type="System.Int32, mscorlib">
     <value>39</value>
@@ -1234,13 +1201,10 @@ If mining on a public P2Pool node, make sure your worker name = your wallet addr
     <value>14</value>
   </data>
   <data name="PictureBox3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>218, 15</value>
-  </data>
-  <data name="PictureBox3.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>6, 6, 6, 6</value>
+    <value>109, 8</value>
   </data>
   <data name="PictureBox3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>30, 29</value>
+    <value>15, 15</value>
   </data>
   <data name="PictureBox3.TabIndex" type="System.Int32, mscorlib">
     <value>28</value>
@@ -1270,16 +1234,13 @@ If mining on a public P2Pool node, make sure your worker name = your wallet addr
     <value>1084, 14</value>
   </metadata>
   <data name="WebBrowser1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1560, 410</value>
-  </data>
-  <data name="WebBrowser1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>6, 6, 6, 6</value>
+    <value>780, 213</value>
   </data>
   <data name="WebBrowser1.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>40, 38</value>
+    <value>20, 20</value>
   </data>
   <data name="WebBrowser1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>40, 38</value>
+    <value>20, 20</value>
   </data>
   <data name="WebBrowser1.TabIndex" type="System.Int32, mscorlib">
     <value>86</value>
@@ -1308,89 +1269,14 @@ If mining on a public P2Pool node, make sure your worker name = your wallet addr
   <data name="Panel1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
-  <data name="&gt;&gt;PictureBox2.Name" xml:space="preserve">
-    <value>PictureBox2</value>
-  </data>
-  <data name="&gt;&gt;PictureBox2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;PictureBox2.Parent" xml:space="preserve">
-    <value>Panel1</value>
-  </data>
-  <data name="&gt;&gt;PictureBox2.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;PictureBox1.Name" xml:space="preserve">
-    <value>PictureBox1</value>
-  </data>
-  <data name="&gt;&gt;PictureBox1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;PictureBox1.Parent" xml:space="preserve">
-    <value>Panel1</value>
-  </data>
-  <data name="&gt;&gt;PictureBox1.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;PictureBox6.Name" xml:space="preserve">
-    <value>PictureBox6</value>
-  </data>
-  <data name="&gt;&gt;PictureBox6.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;PictureBox6.Parent" xml:space="preserve">
-    <value>Panel1</value>
-  </data>
-  <data name="&gt;&gt;PictureBox6.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;PictureBox4.Name" xml:space="preserve">
-    <value>PictureBox4</value>
-  </data>
-  <data name="&gt;&gt;PictureBox4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;PictureBox4.Parent" xml:space="preserve">
-    <value>Panel1</value>
-  </data>
-  <data name="&gt;&gt;PictureBox4.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="Panel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="Panel1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>6, 6, 6, 6</value>
-  </data>
-  <data name="Panel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>870, 100</value>
-  </data>
-  <data name="Panel1.TabIndex" type="System.Int32, mscorlib">
-    <value>88</value>
-  </data>
-  <data name="&gt;&gt;Panel1.Name" xml:space="preserve">
-    <value>Panel1</value>
-  </data>
-  <data name="&gt;&gt;Panel1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;Panel1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;Panel1.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
   <data name="PictureBox2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
   </data>
   <data name="PictureBox2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>736, 27</value>
-  </data>
-  <data name="PictureBox2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>6, 6, 6, 6</value>
+    <value>368, 14</value>
   </data>
   <data name="PictureBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 48</value>
+    <value>25, 25</value>
   </data>
   <data name="PictureBox2.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
     <value>StretchImage</value>
@@ -1412,9 +1298,6 @@ If mining on a public P2Pool node, make sure your worker name = your wallet addr
   </data>
   <data name="PictureBox1.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
-  </data>
-  <data name="PictureBox1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>6, 6, 6, 6</value>
   </data>
   <data name="PictureBox1.Size" type="System.Drawing.Size, System.Drawing">
     <value>50, 50</value>
@@ -1441,13 +1324,10 @@ If mining on a public P2Pool node, make sure your worker name = your wallet addr
     <value>Top, Right</value>
   </data>
   <data name="PictureBox6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>674, 27</value>
-  </data>
-  <data name="PictureBox6.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>6, 6, 6, 6</value>
+    <value>337, 14</value>
   </data>
   <data name="PictureBox6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 48</value>
+    <value>25, 25</value>
   </data>
   <data name="PictureBox6.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
     <value>StretchImage</value>
@@ -1471,13 +1351,10 @@ If mining on a public P2Pool node, make sure your worker name = your wallet addr
     <value>Top, Right</value>
   </data>
   <data name="PictureBox4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>798, 27</value>
-  </data>
-  <data name="PictureBox4.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>6, 6, 6, 6</value>
+    <value>399, 14</value>
   </data>
   <data name="PictureBox4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 48</value>
+    <value>25, 25</value>
   </data>
   <data name="PictureBox4.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
     <value>StretchImage</value>
@@ -1497,6 +1374,27 @@ If mining on a public P2Pool node, make sure your worker name = your wallet addr
   <data name="&gt;&gt;PictureBox4.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="Panel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="Panel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>435, 52</value>
+  </data>
+  <data name="Panel1.TabIndex" type="System.Int32, mscorlib">
+    <value>88</value>
+  </data>
+  <data name="&gt;&gt;Panel1.Name" xml:space="preserve">
+    <value>Panel1</value>
+  </data>
+  <data name="&gt;&gt;Panel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Panel1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;Panel1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <data name="Panel3.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
@@ -1510,13 +1408,10 @@ If mining on a public P2Pool node, make sure your worker name = your wallet addr
     <value>Microsoft Sans Serif, 7pt, style=Bold</value>
   </data>
   <data name="Label5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>324, 100</value>
-  </data>
-  <data name="Label5.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>6, 0, 6, 0</value>
+    <value>162, 52</value>
   </data>
   <data name="Label5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>186, 48</value>
+    <value>110, 26</value>
   </data>
   <data name="Label5.TabIndex" type="System.Int32, mscorlib">
     <value>90</value>
@@ -1547,13 +1442,10 @@ If mining on a public P2Pool node, make sure your worker name = your wallet addr
     <value>Top, Bottom, Left, Right</value>
   </data>
   <data name="DataGridView1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>24, 208</value>
-  </data>
-  <data name="DataGridView1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>6, 6, 6, 6</value>
+    <value>12, 108</value>
   </data>
   <data name="DataGridView1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>822, 163</value>
+    <value>411, 85</value>
   </data>
   <data name="DataGridView1.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -1574,25 +1466,19 @@ If mining on a public P2Pool node, make sure your worker name = your wallet addr
     <value>Microsoft Sans Serif, 8pt, style=Bold</value>
   </data>
   <data name="ComboBox1.Items" xml:space="preserve">
-    <value>AMD-sgminer</value>
+    <value>AMD-lyclminer</value>
   </data>
   <data name="ComboBox1.Items1" xml:space="preserve">
     <value>NVIDIA-ccminer</value>
   </data>
   <data name="ComboBox1.Items2" xml:space="preserve">
-    <value>NVIDIA-vertminer</value>
-  </data>
-  <data name="ComboBox1.Items3" xml:space="preserve">
     <value>CPU-cpuminer</value>
   </data>
   <data name="ComboBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>24, 108</value>
-  </data>
-  <data name="ComboBox1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>6, 6, 6, 6</value>
+    <value>12, 56</value>
   </data>
   <data name="ComboBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>260, 33</value>
+    <value>132, 21</value>
   </data>
   <data name="ComboBox1.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -1616,13 +1502,10 @@ If mining on a public P2Pool node, make sure your worker name = your wallet addr
     <value>Microsoft Sans Serif, 11.25pt, style=Bold</value>
   </data>
   <data name="Label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>106, 12</value>
-  </data>
-  <data name="Label2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>6, 0, 6, 0</value>
+    <value>53, 6</value>
   </data>
   <data name="Label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>95, 36</value>
+    <value>50, 18</value>
   </data>
   <data name="Label2.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
@@ -1655,13 +1538,10 @@ If mining on a public P2Pool node, make sure your worker name = your wallet addr
     <value>Microsoft Sans Serif, 10pt, style=Bold</value>
   </data>
   <data name="Label7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>300, 10</value>
-  </data>
-  <data name="Label7.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>6, 0, 6, 0</value>
+    <value>150, 5</value>
   </data>
   <data name="Label7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>244, 31</value>
+    <value>135, 17</value>
   </data>
   <data name="Label7.TabIndex" type="System.Int32, mscorlib">
     <value>87</value>
@@ -1694,13 +1574,10 @@ If mining on a public P2Pool node, make sure your worker name = your wallet addr
     <value>Microsoft Sans Serif, 11.25pt, style=Bold</value>
   </data>
   <data name="Label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>606, 12</value>
-  </data>
-  <data name="Label1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>6, 0, 6, 0</value>
+    <value>303, 6</value>
   </data>
   <data name="Label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>205, 36</value>
+    <value>109, 18</value>
   </data>
   <data name="Label1.TabIndex" type="System.Int32, mscorlib">
     <value>42</value>
@@ -1727,13 +1604,10 @@ If mining on a public P2Pool node, make sure your worker name = your wallet addr
     <value>Microsoft Sans Serif, 9.75pt</value>
   </data>
   <data name="TextBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>582, 52</value>
-  </data>
-  <data name="TextBox1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>6, 6, 6, 6</value>
+    <value>291, 27</value>
   </data>
   <data name="TextBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>260, 37</value>
+    <value>132, 22</value>
   </data>
   <data name="TextBox1.TabIndex" type="System.Int32, mscorlib">
     <value>43</value>
@@ -1760,13 +1634,10 @@ If mining on a public P2Pool node, make sure your worker name = your wallet addr
     <value>Microsoft Sans Serif, 9.75pt</value>
   </data>
   <data name="TextBox2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>24, 52</value>
-  </data>
-  <data name="TextBox2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>6, 6, 6, 6</value>
+    <value>12, 27</value>
   </data>
   <data name="TextBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>260, 37</value>
+    <value>132, 22</value>
   </data>
   <data name="TextBox2.TabIndex" type="System.Int32, mscorlib">
     <value>16</value>
@@ -1793,13 +1664,10 @@ If mining on a public P2Pool node, make sure your worker name = your wallet addr
     <value>Microsoft Sans Serif, 8.25pt, style=Bold</value>
   </data>
   <data name="Panel3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 96</value>
-  </data>
-  <data name="Panel3.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>6, 6, 6, 6</value>
+    <value>0, 50</value>
   </data>
   <data name="Panel3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>870, 548</value>
+    <value>435, 285</value>
   </data>
   <data name="Panel3.TabIndex" type="System.Int32, mscorlib">
     <value>91</value>
@@ -1838,13 +1706,13 @@ If mining on a public P2Pool node, make sure your worker name = your wallet addr
     <value>221</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>12, 25</value>
+    <value>6, 13</value>
   </data>
   <data name="$this.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
     <value>GrowAndShrink</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>870, 644</value>
+    <value>435, 335</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -2460,11 +2328,8 @@ If mining on a public P2Pool node, make sure your worker name = your wallet addr
         A/8/Z5MSxjBZRngAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>6, 6, 6, 6</value>
-  </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>870, 644</value>
+    <value>435, 335</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterScreen</value>

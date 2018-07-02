@@ -18,11 +18,11 @@
     Public Property p2pool_port As String
     Public Property mining_port As String
     Public Property mining_intensity As Decimal
+    Public Property mining_worksize As String
     Public Property p2pool_fee_address As String
     Public Property p2pool_version
-    Public Property sgminer_version
+    Public Property lyclminer_version
     Public Property ccminer_version
-    Public Property vertminer_version
     Public Property cpuminer_version
     Public Property default_miner As String
     Public Property devices As String

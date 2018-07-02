@@ -8,9 +8,8 @@ Module variables
     Public Property culture = CultureInfo.InvariantCulture
     Public Property miner_version = Application.ProductVersion
     Public Property p2pool_version = "0.0.0.0"
-    Public Property sgminer_version = "0.0.0.0"
+    Public Property lyclminer_version = "0.0.0.0"
     Public Property ccminer_version = "0.0.0.0"
-    Public Property vertminer_version = "0.0.0.0"
     Public Property cpuminer_version = "0.0.0.0"
     Public Property settingsfolder As String
     Public Property appdata As String
@@ -19,9 +18,8 @@ Module variables
     Public Property amdfolder As String
     Public Property nvidiafolder As String
     Public Property cpufolder As String
-    Public Property sgminerfolder As String
+    Public Property lyclminerfolder As String
     Public Property ccminerfolder As String
-    Public Property vertminerfolder As String
     Public Property cpuminerfolder As String
     Public Property p2poolfolder As String
     Public Property scannerfolder As String
@@ -55,15 +53,13 @@ Module variables
     'Versions and Links
     Public Property ocm_new_version As New Version
     Public Property p2pool_new_version As New Version
-    Public Property sgminer_new_version As New Version
+    Public Property lyclminer_new_version As New Version
     Public Property ccminer_new_version As New Version
-    Public Property vertminer_new_version As New Version
     Public Property cpuminer_new_version As New Version
     Public Property ocm_updatelink As String
     Public Property p2pool_updatelink As String
-    Public Property sgminer_updatelink As String
+    Public Property lyclminer_updatelink As String
     Public Property ccminer_updatelink As String
-    Public Property vertminer_updatelink As String
     Public Property cpuminer_updatelink As String
 
     'API Variables
@@ -119,6 +115,7 @@ Module variables
     Public Property exe As String
     Public Property dll As String
     Public Property miner_config_file As String
+    Public Property card_setup_file As String
     Public Property miner_config As String
     Public Property additional_miner_config As String
     Public Property mining_installed As Boolean
@@ -139,6 +136,7 @@ Module variables
     'Miner Configuration
     Public Property minersettingsfile As String
     Public Property mining_intensity As Decimal = 0
+    Public Property mining_worksize As String
     Public Property devices As String
     Public Property pool As String
     Public Property pools As New ArrayList()
