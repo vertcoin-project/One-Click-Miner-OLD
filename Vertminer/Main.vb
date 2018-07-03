@@ -1460,7 +1460,6 @@ Public Class Main
                 End Try
             End If
         Catch ex As Exception
-            Invoke(New MethodInvoker(AddressOf SaveSettingsJSON))
         Finally
         End Try
 

@@ -451,10 +451,10 @@ Public Class P2Pool
 
         Cursor.Current = Cursors.WaitCursor
         stopthread = True
-        Do Until (scanner1worker.ThreadState = ThreadState.Stopped)
-        Loop
-        Do Until (scanner2worker.ThreadState = ThreadState.Stopped)
-        Loop
+        'Do Until (scanner1worker.ThreadState = ThreadState.Stopped)
+        'Loop
+        'Do Until (scanner2worker.ThreadState = ThreadState.Stopped)
+        'Loop
         Cursor.Current = Cursors.Arrow
         Me.Close()
 

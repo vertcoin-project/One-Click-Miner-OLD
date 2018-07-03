@@ -416,7 +416,7 @@ Partial Class Main
         '
         'Idle_Check
         '
-        Me.Idle_Check.Interval = 10000
+        Me.Idle_Check.Interval = 60000
         '
         'Idle_Worker
         '
