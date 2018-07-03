@@ -140,16 +140,18 @@ NOTICE: To run P2Pool, you must have a Vertcoin Wallet running locally.</value>
   </data>
   <data name="PictureBox7.ToolTip" xml:space="preserve">
     <value>Select which of your GPU devices to use.
-Example: '0,1,4' launches the miner using GPU's with the PCIeBusId's of 1,2 and 5.
-Example: '0,2-5' launches the miner using GPU's with the PCIeBusId's 1,3,4,5,6
+Example: '0,1,4' launches the miner using GPU's with the device id's 1,2 and 5.
+Example: '0,2-5' launches the miner using GPU's with the dvice id's 1,3,4,5,6
 Example: Leaving box blank launches miner using all GPU's.
 </value>
   </data>
   <data name="Devices_Text.ToolTip" xml:space="preserve">
     <value>Select which of your GPU devices to use.
-Example: '0,1,4' launches the miner using GPU's with the PCIeBusId's of 1,2 and 5.
-Example: '0,2-5' launches the miner using GPU's with the PCIeBusId's 1,3,4,5,6
-Example: Leaving box blank launches miner using all GPU's.</value>
+Example: '0,1,4' launches the miner using GPU's with the device id's 1,2 and 5.
+Example: '0,2-5' launches the miner using GPU's with the dvice id's 1,3,4,5,6
+Example: Leaving box blank launches miner using all GPU's.
+
+</value>
   </data>
   <data name="PictureBox16.ToolTip" xml:space="preserve">
     <value>*For use with AMD graphics cards*

@@ -631,6 +631,7 @@ Public Class Main
             Else
                 If show_cli = True Or amdminer = True Then
                     TextBox2.Text = "CLI is open"
+                    TextBox3.Text = "Check CLI"
                 Else
                     TextBox2.Text = "Waiting for share"
                 End If
@@ -2070,13 +2071,10 @@ Public Class Main
 
         If ComboBox1.SelectedItem = "AMD-lyclminer" Then
             default_miner = "amd-lyclminer"
-            Label5.Visible = False
         ElseIf ComboBox1.SelectedItem = "NVIDIA-ccminer" Then
             default_miner = "nvidia-ccminer"
-            Label5.Visible = False
         ElseIf ComboBox1.SelectedItem = "CPU-cpuminer" Then
             default_miner = "cpu-cpuminer"
-            Label5.Visible = False
         End If
 
     End Sub

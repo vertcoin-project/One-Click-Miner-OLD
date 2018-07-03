@@ -63,7 +63,6 @@ Partial Class Main
         Me.PictureBox6 = New System.Windows.Forms.PictureBox()
         Me.PictureBox4 = New System.Windows.Forms.PictureBox()
         Me.Panel3 = New System.Windows.Forms.Panel()
-        Me.Label5 = New System.Windows.Forms.Label()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.ComboBox1 = New System.Windows.Forms.ComboBox()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -336,7 +335,6 @@ Partial Class Main
         '
         resources.ApplyResources(Me.Panel3, "Panel3")
         Me.Panel3.BackColor = System.Drawing.Color.DarkSlateGray
-        Me.Panel3.Controls.Add(Me.Label5)
         Me.Panel3.Controls.Add(Me.CheckBox2)
         Me.Panel3.Controls.Add(Me.Button4)
         Me.Panel3.Controls.Add(Me.DataGridView1)
@@ -357,11 +355,6 @@ Partial Class Main
         Me.Panel3.Controls.Add(Me.PictureBox3)
         Me.Panel3.ForeColor = System.Drawing.SystemColors.Control
         Me.Panel3.Name = "Panel3"
-        '
-        'Label5
-        '
-        resources.ApplyResources(Me.Label5, "Label5")
-        Me.Label5.Name = "Label5"
         '
         'DataGridView1
         '
@@ -508,7 +501,6 @@ Partial Class Main
     Friend WithEvents Button4 As Button
     Friend WithEvents DataGridView1 As DataGridView
     Friend WithEvents CheckBox2 As CheckBox
-    Friend WithEvents Label5 As Label
     Friend WithEvents Idle_Check As Timer
     Friend WithEvents Idle_Worker As System.ComponentModel.BackgroundWorker
     Friend WithEvents Idle_Timer As Timer
