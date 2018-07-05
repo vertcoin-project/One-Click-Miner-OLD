@@ -28,19 +28,19 @@ Public Class P2Pool
 
         Try
             Invoke(New MethodInvoker(AddressOf Style))
-            If Not network1data Is Nothing Then
+            If networkdata IsNot Nothing AndAlso networkdata.Tables.Count >= 1 Then
                 Dim chk As New DataGridViewCheckBoxColumn()
                 DataGridView1.Columns.Add(chk)
                 chk.HeaderText = "Select"
                 chk.Name = "Select"
-                DataGridView1.DataSource = network1data.Tables(0)
+                DataGridView1.DataSource = networkdata.Tables(0)
             End If
-            If Not network2data Is Nothing Then
+            If networkdata IsNot Nothing AndAlso networkdata.Tables.Count >= 2 Then
                 Dim chk As New DataGridViewCheckBoxColumn()
                 DataGridView2.Columns.Add(chk)
                 chk.HeaderText = "Select"
                 chk.Name = "Select"
-                DataGridView2.DataSource = network2data.Tables(0)
+                DataGridView2.DataSource = networkdata.Tables(1)
             End If
             If System.IO.Directory.Exists(scannerfolder) = False Then
                 System.IO.Directory.CreateDirectory(scannerfolder)
@@ -59,14 +59,6 @@ Public Class P2Pool
 
         Try
             stopthread = True
-            If DataGridView1.Rows.Count > 0 Then
-                DataGridView1.Columns.RemoveAt(0)
-                network1data = SaveScanner(DataGridView1, 1)
-            End If
-            If DataGridView2.Rows.Count > 0 Then
-                DataGridView2.Columns.RemoveAt(0)
-                network2data = SaveScanner(DataGridView2, 2)
-            End If
             JSONConverter = Nothing
             scanner1 = Nothing
             scanner2 = Nothing
@@ -82,34 +74,35 @@ Public Class P2Pool
 
     End Sub
 
-    Private Function SaveScanner(ByVal dgv As DataGridView, network As Integer) As DataSet
+    'SAVE THIS FUNCTION IN CASE NEEDED
+    'Private Function SaveScanner(ByVal dgv As DataGridView, network As Integer) As DataSet
 
-        Dim ds As New DataSet
-        Try
-            ' Add Table
-            ds.Tables.Add("Network" & network)
-            ' Add Columns
-            Dim col As DataColumn
-            For Each dgvCol As DataGridViewColumn In dgv.Columns
-                col = New DataColumn(dgvCol.Name)
-                ds.Tables("Network" & network).Columns.Add(col)
-            Next
-            'Add Rows from the datagridview
-            Dim row As DataRow
-            Dim colcount As Integer = dgv.Columns.Count - 1
-            For i As Integer = 0 To dgv.Rows.Count - 1
-                row = ds.Tables("Network" & network).Rows.Add
-                For Each column As DataGridViewColumn In dgv.Columns
-                    row.Item(column.Index) = dgv.Rows.Item(i).Cells(column.Index).Value
-                Next
-            Next
-            Return ds
-        Catch ex As Exception
-            MsgBox("CRITICAL ERROR : Exception caught while converting dataGridView to DataSet. " & Chr(10) & ex.Message)
-            Return Nothing
-        End Try
+    '    Dim ds As New DataSet
+    '    Try
+    '        ' Add Table
+    '        ds.Tables.Add("Network" & network)
+    '        ' Add Columns
+    '        Dim col As DataColumn
+    '        For Each dgvCol As DataGridViewColumn In dgv.Columns
+    '            col = New DataColumn(dgvCol.Name)
+    '            ds.Tables("Network" & network).Columns.Add(col)
+    '        Next
+    '        'Add Rows from the datagridview
+    '        Dim row As DataRow
+    '        Dim colcount As Integer = dgv.Columns.Count - 1
+    '        For i As Integer = 0 To dgv.Rows.Count - 1
+    '            row = ds.Tables("Network" & network).Rows.Add
+    '            For Each column As DataGridViewColumn In dgv.Columns
+    '                row.Item(column.Index) = dgv.Rows.Item(i).Cells(column.Index).Value
+    '            Next
+    '        Next
+    '        Return ds
+    '    Catch ex As Exception
+    '        MsgBox("CRITICAL ERROR : Exception caught while converting dataGridView to DataSet. " & Chr(10) & ex.Message)
+    '        Return Nothing
+    '    End Try
 
-    End Function
+    'End Function
 
     Public Sub Get_P2Pool_API()
 
@@ -188,44 +181,20 @@ Public Class P2Pool
                 chk.HeaderText = "Select"
                 chk.Name = "Select"
                 chk.ReadOnly = False
-                DataGridView1.ColumnCount = 7
-                With DataGridView1.Columns(1)
-                    .Name = "IP"
-                    .ReadOnly = True
-                    .AutoSizeMode = DataGridViewAutoSizeColumnsMode.AllCells
-                End With
-                With DataGridView1.Columns(2)
-                    .Name = "Version"
-                    .ReadOnly = True
-                End With
-                With DataGridView1.Columns(3)
-                    .Name = "Fee(%)"
-                    .ReadOnly = True
-                    .ValueType = GetType(Int32)
-                End With
-                With DataGridView1.Columns(4)
-                    .Name = "Uptime(days)"
-                    .ReadOnly = True
-                    .ValueType = GetType(Int32)
-                End With
-                With DataGridView1.Columns(5)
-                    .Name = "Located"
-                    .ReadOnly = True
-                End With
-                With DataGridView1.Columns(6)
-                    .Name = "Latency(ms)"
-                    .ReadOnly = True
-                    .ValueType = GetType(Int32)
-
-                End With
-                For x As Integer = 0 To count
+                networkdata = New DataSet
+                networkdata.Tables.Add("Network1")
+                Dim columns As String() = {"IP", "Version", "Fee (%)", "Uptime(days)", "Located", "Latency(ms)"}
+                Dim column As DataColumn
+                For Each col As String In columns
+                    column = New DataColumn(col)
+                    networkdata.Tables("Network1").Columns.Add(column)
+                Next
+                For x As Integer = 0 To count - 1
                     Dim uptime As Decimal = (scanner1.nodes(x).stats.uptime / 60 / 60 / 24)
                     uptime = Math.Round(uptime, 1)
-                    Dim row As Object() = New Object() {False, (scanner1.nodes(x).ip & ":9171"), scanner1.nodes(x).stats.version, scanner1.nodes(x).fee, uptime, scanner1.nodes(x).geo.country, Nothing}
-                    DataGridView1.Rows.Add(row)
+                    networkdata.Tables("Network1").Rows.Add((scanner1.nodes(x).ip & ":9171"), scanner1.nodes(x).stats.version, scanner1.nodes(x).fee, uptime, scanner1.nodes(x).geo.country, Nothing)
                 Next
-                scanner1worker = New Thread(AddressOf Scanner1Thread)
-                scanner1worker.Start()
+                DataGridView1.DataSource = networkdata.Tables(0)
             Catch ex As Exception
                 _logger.LogError(ex)
                 Invoke(New MethodInvoker(AddressOf Main.SaveSettingsJSON))
@@ -296,43 +265,19 @@ Public Class P2Pool
                 chk.HeaderText = "Select"
                 chk.Name = "Select"
                 chk.ReadOnly = False
-                DataGridView2.ColumnCount = 7
-                With DataGridView2.Columns(1)
-                    .Name = "IP"
-                    .ReadOnly = True
-                    .AutoSizeMode = DataGridViewAutoSizeColumnsMode.AllCells
-                End With
-                With DataGridView2.Columns(2)
-                    .Name = "Version"
-                    .ReadOnly = True
-                End With
-                With DataGridView2.Columns(3)
-                    .Name = "Fee (%)"
-                    .ReadOnly = True
-                    .ValueType = GetType(Int32)
-                End With
-                With DataGridView2.Columns(4)
-                    .Name = "Uptime(days)"
-                    .ReadOnly = True
-                    .ValueType = GetType(Int32)
-                End With
-                With DataGridView2.Columns(5)
-                    .Name = "Located"
-                    .ReadOnly = True
-                End With
-                With DataGridView2.Columns(6)
-                    .Name = "Latency(ms)"
-                    .ReadOnly = True
-                    .ValueType = GetType(Int32)
-                End With
+                networkdata.Tables.Add("Network2")
+                Dim columns As String() = {"IP", "Version", "Fee (%)", "Uptime(days)", "Located", "Latency(ms)"}
+                Dim column As DataColumn
+                For Each col As String In columns
+                    column = New DataColumn(col)
+                    networkdata.Tables("Network2").Columns.Add(column)
+                Next
                 For x As Integer = 0 To count
                     Dim uptime As Decimal = (scanner2.nodes(x).stats.uptime / 60 / 60 / 24)
                     uptime = Math.Round(uptime, 1)
-                    Dim row As Object() = New Object() {False, (scanner2.nodes(x).ip & ":9181"), scanner2.nodes(x).stats.version, scanner2.nodes(x).fee, uptime, scanner2.nodes(x).geo.country, Nothing}
-                    DataGridView2.Rows.Add(row)
+                    networkdata.Tables("Network2").Rows.Add((scanner2.nodes(x).ip & ":9181"), scanner2.nodes(x).stats.version, scanner2.nodes(x).fee, uptime, scanner2.nodes(x).geo.country, Nothing)
                 Next
-                scanner2worker = New Thread(AddressOf Scanner2Thread)
-                scanner2worker.Start()
+                DataGridView2.DataSource = networkdata.Tables(1)
             Catch ex As Exception
                 _logger.LogError(ex)
                 Invoke(New MethodInvoker(AddressOf Main.SaveSettingsJSON))
@@ -435,6 +380,17 @@ Public Class P2Pool
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
 
+        stopthread = True
+        If Not scanner1worker Is Nothing Then
+            Do Until (scanner1worker.ThreadState = ThreadState.Stopped)
+            Loop
+            scanner1worker = Nothing
+        End If
+        If Not scanner2worker Is Nothing Then
+            Do Until (scanner2worker.ThreadState = ThreadState.Stopped)
+            Loop
+            scanner2worker = Nothing
+        End If
         stopthread = False
         BeginInvoke(New MethodInvoker(AddressOf Loading_Start))
         BeginInvoke(New MethodInvoker(AddressOf Get_P2Pool_API))
@@ -451,10 +407,17 @@ Public Class P2Pool
 
         Cursor.Current = Cursors.WaitCursor
         stopthread = True
-        'Do Until (scanner1worker.ThreadState = ThreadState.Stopped)
-        'Loop
-        'Do Until (scanner2worker.ThreadState = ThreadState.Stopped)
-        'Loop
+        If Not scanner1worker Is Nothing Then
+            Do Until (scanner1worker.ThreadState = ThreadState.Stopped)
+            Loop
+            scanner1worker = Nothing
+        End If
+        If Not scanner2worker Is Nothing Then
+            Do Until (scanner2worker.ThreadState = ThreadState.Stopped)
+            Loop
+            scanner2worker = Nothing
+        End If
+        stopthread = False
         Cursor.Current = Cursors.Arrow
         Me.Close()
 
@@ -503,12 +466,32 @@ Public Class P2Pool
 
     End Sub
 
-    Sub Scanner1Thread()
+    Private Sub dataGridView1_DataBindingComplete(ByVal sender As Object, ByVal e As DataGridViewBindingCompleteEventArgs) Handles DataGridView1.DataBindingComplete
 
+        If scanner1worker Is Nothing Then
+            scanner1worker = New Thread(AddressOf Scanner1Thread)
+            scanner1worker.Start()
+        End If
+
+    End Sub
+
+    Private Sub dataGridView2_DataBindingComplete(ByVal sender As Object, ByVal e As DataGridViewBindingCompleteEventArgs) Handles DataGridView2.DataBindingComplete
+
+        If scanner2worker Is Nothing Then
+            scanner2worker = New Thread(AddressOf Scanner2Thread)
+            scanner2worker.Start()
+        End If
+
+    End Sub
+
+    Sub Scanner1Thread()
         'Network 1
-        For x As Integer = 0 To scanner1.nodes.Count - 1
+        System.Threading.Thread.Sleep(2000)
+        For x As Integer = 0 To DataGridView1.Rows.Count - 1
             Dim clientSocket As New Net.Sockets.TcpClient()
-            Dim result = clientSocket.BeginConnect(scanner1.nodes(x).ip, "9171", Nothing, Nothing)
+            Dim node = DataGridView1.Rows(x).Cells(1).Value.ToString
+            node = node.Substring(0, node.IndexOf(":"))
+            Dim result = clientSocket.BeginConnect(node, "9171", Nothing, Nothing)
             Dim stopWatch As New Stopwatch()
             Dim StopWatchTimeMs As Int32
             Try
@@ -535,9 +518,12 @@ Public Class P2Pool
     Sub Scanner2Thread()
 
         'Network 2
-        For x As Integer = 0 To scanner2.nodes.Count - 1
+        System.Threading.Thread.Sleep(2000)
+        For x As Integer = 0 To DataGridView2.Rows.Count - 1
             Dim clientSocket As New Net.Sockets.TcpClient()
-            Dim result = clientSocket.BeginConnect(scanner2.nodes(x).ip, "9181", Nothing, Nothing)
+            Dim node = DataGridView2.Rows(x).Cells(1).Value.ToString
+            node = node.Substring(0, node.IndexOf(":"))
+            Dim result = clientSocket.BeginConnect(node, "9181", Nothing, Nothing)
             Dim stopWatch As New Stopwatch()
             Dim StopWatchTimeMs As Int32
             Try
