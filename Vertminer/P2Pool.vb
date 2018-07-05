@@ -154,7 +154,7 @@ Public Class P2Pool
                     File.WriteAllText(scannerfolder & "\network1.json", jsonformatted)
                     jsonformatted = ""
                 End If
-                System.Threading.Thread.Sleep(100)
+                System.Threading.Thread.Sleep(200)
                 p2pool_api = File.ReadAllLines(scannerfolder & "\network1.json")
                 For Each line As String In p2pool_api
                     If line.Contains(": {") Then
@@ -237,7 +237,7 @@ Public Class P2Pool
                     File.WriteAllText(scannerfolder & "\network2.json", jsonformatted)
                     jsonformatted = ""
                 End If
-                System.Threading.Thread.Sleep(100)
+                System.Threading.Thread.Sleep(200)
                 p2pool_api = File.ReadAllLines(scannerfolder & "\network2.json")
                 For Each line As String In p2pool_api
                     If line.Contains(": {") Then
@@ -486,64 +486,68 @@ Public Class P2Pool
 
     Sub Scanner1Thread()
         'Network 1
-        System.Threading.Thread.Sleep(2000)
-        For x As Integer = 0 To DataGridView1.Rows.Count - 1
-            Dim clientSocket As New Net.Sockets.TcpClient()
-            Dim node = DataGridView1.Rows(x).Cells(1).Value.ToString
-            node = node.Substring(0, node.IndexOf(":"))
-            Dim result = clientSocket.BeginConnect(node, "9171", Nothing, Nothing)
-            Dim stopWatch As New Stopwatch()
-            Dim StopWatchTimeMs As Int32
-            Try
-                If stopthread = False And scanner1worker.ThreadState = ThreadState.Running Then
-                    Try
-                        stopWatch.Start()
-                        result.AsyncWaitHandle.WaitOne(TimeSpan.FromMilliseconds(999))
-                        clientSocket.Close()
-                        stopWatch.Stop()
-                        StopWatchTimeMs = stopWatch.ElapsedMilliseconds
-                        DataGridView1.Rows(x).Cells(6).Value = StopWatchTimeMs
-                    Catch ex As IOException
-                        DataGridView1.Rows(x).Cells(6).Value = 999
-                    End Try
-                Else
-                    Exit Sub
-                End If
-            Catch ex As Exception
-            End Try
-        Next
+        System.Threading.Thread.Sleep(3000)
+        If DataGridView1.Rows.Count >= 1 Then
+            For x As Integer = 0 To DataGridView1.Rows.Count - 1
+                Dim clientSocket As New Net.Sockets.TcpClient()
+                Dim node = DataGridView1.Rows(x).Cells(1).Value.ToString
+                node = node.Substring(0, node.IndexOf(":"))
+                Dim result = clientSocket.BeginConnect(node, "9171", Nothing, Nothing)
+                Dim stopWatch As New Stopwatch()
+                Dim StopWatchTimeMs As Int32
+                Try
+                    If stopthread = False And scanner1worker.ThreadState = ThreadState.Running Then
+                        Try
+                            stopWatch.Start()
+                            result.AsyncWaitHandle.WaitOne(TimeSpan.FromMilliseconds(999))
+                            clientSocket.Close()
+                            stopWatch.Stop()
+                            StopWatchTimeMs = stopWatch.ElapsedMilliseconds
+                            DataGridView1.Rows(x).Cells(6).Value = StopWatchTimeMs
+                        Catch ex As IOException
+                            DataGridView1.Rows(x).Cells(6).Value = 999
+                        End Try
+                    Else
+                        Exit Sub
+                    End If
+                Catch ex As Exception
+                End Try
+            Next
+        End If
 
     End Sub
 
     Sub Scanner2Thread()
 
         'Network 2
-        System.Threading.Thread.Sleep(2000)
-        For x As Integer = 0 To DataGridView2.Rows.Count - 1
-            Dim clientSocket As New Net.Sockets.TcpClient()
-            Dim node = DataGridView2.Rows(x).Cells(1).Value.ToString
-            node = node.Substring(0, node.IndexOf(":"))
-            Dim result = clientSocket.BeginConnect(node, "9181", Nothing, Nothing)
-            Dim stopWatch As New Stopwatch()
-            Dim StopWatchTimeMs As Int32
-            Try
-                If stopthread = False And scanner2worker.ThreadState = ThreadState.Running Then
-                    Try
-                        stopWatch.Start()
-                        result.AsyncWaitHandle.WaitOne(TimeSpan.FromMilliseconds(999))
-                        clientSocket.Close()
-                        stopWatch.Stop()
-                        StopWatchTimeMs = stopWatch.ElapsedMilliseconds
-                        DataGridView2.Rows(x).Cells(6).Value = StopWatchTimeMs
-                    Catch ex As Exception
-                        DataGridView2.Rows(x).Cells(6).Value = 999
-                    End Try
-                Else
-                    Exit Sub
-                End If
-            Catch ex As Exception
-            End Try
-        Next
+        System.Threading.Thread.Sleep(3000)
+        If DataGridView2.Rows.Count >= 1 Then
+            For x As Integer = 0 To DataGridView2.Rows.Count - 1
+                Dim clientSocket As New Net.Sockets.TcpClient()
+                Dim node = DataGridView2.Rows(x).Cells(1).Value.ToString
+                node = node.Substring(0, node.IndexOf(":"))
+                Dim result = clientSocket.BeginConnect(node, "9181", Nothing, Nothing)
+                Dim stopWatch As New Stopwatch()
+                Dim StopWatchTimeMs As Int32
+                Try
+                    If stopthread = False And scanner2worker.ThreadState = ThreadState.Running Then
+                        Try
+                            stopWatch.Start()
+                            result.AsyncWaitHandle.WaitOne(TimeSpan.FromMilliseconds(999))
+                            clientSocket.Close()
+                            stopWatch.Stop()
+                            StopWatchTimeMs = stopWatch.ElapsedMilliseconds
+                            DataGridView2.Rows(x).Cells(6).Value = StopWatchTimeMs
+                        Catch ex As Exception
+                            DataGridView2.Rows(x).Cells(6).Value = 999
+                        End Try
+                    Else
+                        Exit Sub
+                    End If
+                Catch ex As Exception
+                End Try
+            Next
+        End If
 
     End Sub
 
