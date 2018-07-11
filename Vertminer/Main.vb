@@ -195,13 +195,13 @@ Public Class Main
     Private Sub dataGridView1_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellEndEdit
 
         If e.ColumnIndex = 1 Then
-            descriptions(e.RowIndex) = DataGridView1(1, e.RowIndex).Value.ToString
+            descriptions(e.RowIndex) = If(DataGridView1(1, e.RowIndex).Value Is Nothing, "", DataGridView1(1, e.RowIndex).Value.ToString())
         ElseIf e.ColumnIndex = 2 Then
-            pools(e.RowIndex) = DataGridView1(2, e.RowIndex).Value.ToString
+            pools(e.RowIndex) = If(DataGridView1(2, e.RowIndex).Value Is Nothing, "", DataGridView1(1, e.RowIndex).Value.ToString())
         ElseIf e.ColumnIndex = 3 Then
-            workers(e.RowIndex) = DataGridView1(3, e.RowIndex).Value.ToString
+            workers(e.RowIndex) = If(DataGridView1(3, e.RowIndex).Value Is Nothing, "", DataGridView1(1, e.RowIndex).Value.ToString())
         ElseIf e.ColumnIndex = 4 Then
-            passwords(e.RowIndex) = DataGridView1(4, e.RowIndex).Value.ToString
+            passwords(e.RowIndex) = If(DataGridView1(4, e.RowIndex).Value Is Nothing, "", DataGridView1(1, e.RowIndex).Value.ToString())
         End If
 
     End Sub
