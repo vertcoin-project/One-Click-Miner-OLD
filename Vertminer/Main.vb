@@ -197,11 +197,11 @@ Public Class Main
         If e.ColumnIndex = 1 Then
             descriptions(e.RowIndex) = If(DataGridView1(1, e.RowIndex).Value Is Nothing, "", DataGridView1(1, e.RowIndex).Value.ToString())
         ElseIf e.ColumnIndex = 2 Then
-            pools(e.RowIndex) = If(DataGridView1(2, e.RowIndex).Value Is Nothing, "", DataGridView1(1, e.RowIndex).Value.ToString())
+            pools(e.RowIndex) = If(DataGridView1(2, e.RowIndex).Value Is Nothing, "", DataGridView1(2, e.RowIndex).Value.ToString())
         ElseIf e.ColumnIndex = 3 Then
-            workers(e.RowIndex) = If(DataGridView1(3, e.RowIndex).Value Is Nothing, "", DataGridView1(1, e.RowIndex).Value.ToString())
+            workers(e.RowIndex) = If(DataGridView1(3, e.RowIndex).Value Is Nothing, "", DataGridView1(3, e.RowIndex).Value.ToString())
         ElseIf e.ColumnIndex = 4 Then
-            passwords(e.RowIndex) = If(DataGridView1(4, e.RowIndex).Value Is Nothing, "", DataGridView1(1, e.RowIndex).Value.ToString())
+            passwords(e.RowIndex) = If(DataGridView1(4, e.RowIndex).Value Is Nothing, "", DataGridView1(4, e.RowIndex).Value.ToString())
         End If
 
     End Sub
