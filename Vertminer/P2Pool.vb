@@ -45,6 +45,14 @@ Public Class P2Pool
             If System.IO.Directory.Exists(scannerfolder) = False Then
                 System.IO.Directory.CreateDirectory(scannerfolder)
             End If
+            If scanner1worker Is Nothing AndAlso Not networkdata Is Nothing Then
+                scanner1worker = New Thread(AddressOf Scanner1Thread)
+                scanner1worker.Start()
+            End If
+            If scanner2worker Is Nothing AndAlso Not networkdata Is Nothing Then
+                scanner2worker = New Thread(AddressOf Scanner2Thread)
+                scanner2worker.Start()
+            End If
         Catch ex As Exception
             MsgBox(ex.Message)
             _logger.LogError(ex)
@@ -371,6 +379,15 @@ Public Class P2Pool
 
     Public Sub Loading_Stop()
 
+        System.Threading.Thread.Sleep(3000)
+        If scanner1worker Is Nothing AndAlso Not networkdata.Tables("Network1") Is Nothing Then
+            scanner1worker = New Thread(AddressOf Scanner1Thread)
+            scanner1worker.Start()
+        End If
+        If scanner2worker Is Nothing AndAlso Not networkdata.Tables("Network2") Is Nothing Then
+            scanner2worker = New Thread(AddressOf Scanner2Thread)
+            scanner2worker.Start()
+        End If
         Label1.Visible = False
         Label2.Visible = False
         Button2.Text = "Scan"
@@ -385,12 +402,19 @@ Public Class P2Pool
             Do Until (scanner1worker.ThreadState = ThreadState.Stopped)
             Loop
             scanner1worker = Nothing
+            DataGridView1.DataSource = Nothing
+            DataGridView1.Rows.Clear()
+            DataGridView1.Columns.Clear()
         End If
         If Not scanner2worker Is Nothing Then
             Do Until (scanner2worker.ThreadState = ThreadState.Stopped)
             Loop
             scanner2worker = Nothing
+            DataGridView2.DataSource = Nothing
+            DataGridView2.Rows.Clear()
+            DataGridView2.Columns.Clear()
         End If
+        networkdata = Nothing
         stopthread = False
         BeginInvoke(New MethodInvoker(AddressOf Loading_Start))
         BeginInvoke(New MethodInvoker(AddressOf Get_P2Pool_API))
@@ -466,46 +490,28 @@ Public Class P2Pool
 
     End Sub
 
-    Private Sub dataGridView1_DataBindingComplete(ByVal sender As Object, ByVal e As DataGridViewBindingCompleteEventArgs) Handles DataGridView1.DataBindingComplete
-
-        If scanner1worker Is Nothing Then
-            scanner1worker = New Thread(AddressOf Scanner1Thread)
-            scanner1worker.Start()
-        End If
-
-    End Sub
-
-    Private Sub dataGridView2_DataBindingComplete(ByVal sender As Object, ByVal e As DataGridViewBindingCompleteEventArgs) Handles DataGridView2.DataBindingComplete
-
-        If scanner2worker Is Nothing Then
-            scanner2worker = New Thread(AddressOf Scanner2Thread)
-            scanner2worker.Start()
-        End If
-
-    End Sub
-
     Sub Scanner1Thread()
         'Network 1
-        System.Threading.Thread.Sleep(3000)
-        If DataGridView1.Rows.Count >= 1 Then
-            For x As Integer = 0 To DataGridView1.Rows.Count - 1
-                Dim clientSocket As New Net.Sockets.TcpClient()
-                Dim node = DataGridView1.Rows(x).Cells(1).Value.ToString
-                node = node.Substring(0, node.IndexOf(":"))
-                Dim result = clientSocket.BeginConnect(node, "9171", Nothing, Nothing)
-                Dim stopWatch As New Stopwatch()
-                Dim StopWatchTimeMs As Int32
+        If DataGridView1.Rows.Count >= 1 AndAlso networkdata.Tables("Network1").Rows.Count >= 1 Then
+            For x As Integer = 0 To networkdata.Tables("Network1").Rows.Count - 1
                 Try
+                    Dim clientSocket As New Net.Sockets.TcpClient()
+                    Dim node = networkdata.Tables("Network1").Rows(x).Item(0).ToString
+                    node = node.Substring(0, node.IndexOf(":"))
+                    Dim result = clientSocket.BeginConnect(node, "9171", Nothing, Nothing)
+                    Dim stopWatch As New Stopwatch()
+                    Dim StopWatchTimeMs As Int32
                     If stopthread = False And scanner1worker.ThreadState = ThreadState.Running Then
                         Try
                             stopWatch.Start()
-                            result.AsyncWaitHandle.WaitOne(TimeSpan.FromMilliseconds(999))
+                            IIf(result IsNot Nothing, Nothing, result.AsyncWaitHandle.WaitOne(TimeSpan.FromMilliseconds(999)))
                             clientSocket.Close()
                             stopWatch.Stop()
                             StopWatchTimeMs = stopWatch.ElapsedMilliseconds
-                            DataGridView1.Rows(x).Cells(6).Value = StopWatchTimeMs
+                            Dim rowcount = DataGridView1.Rows.Count
+                            networkdata.Tables("Network1").Rows(x).Item(5) = StopWatchTimeMs
                         Catch ex As IOException
-                            DataGridView1.Rows(x).Cells(6).Value = 999
+                            networkdata.Tables("Network1").Rows(x).Item(5) = 999
                         End Try
                     Else
                         Exit Sub
@@ -520,26 +526,25 @@ Public Class P2Pool
     Sub Scanner2Thread()
 
         'Network 2
-        System.Threading.Thread.Sleep(3000)
-        If DataGridView2.Rows.Count >= 1 Then
-            For x As Integer = 0 To DataGridView2.Rows.Count - 1
-                Dim clientSocket As New Net.Sockets.TcpClient()
-                Dim node = DataGridView2.Rows(x).Cells(1).Value.ToString
-                node = node.Substring(0, node.IndexOf(":"))
-                Dim result = clientSocket.BeginConnect(node, "9181", Nothing, Nothing)
-                Dim stopWatch As New Stopwatch()
-                Dim StopWatchTimeMs As Int32
+        If DataGridView2.Rows.Count >= 1 AndAlso networkdata.Tables("Network2").Rows.Count >= 1 Then
+            For x As Integer = 0 To networkdata.Tables("Network2").Rows.Count - 1
                 Try
+                    Dim clientSocket As New Net.Sockets.TcpClient()
+                    Dim node = networkdata.Tables("Network2").Rows(x).Item(0).ToString
+                    node = node.Substring(0, node.IndexOf(":"))
+                    Dim result = clientSocket.BeginConnect(node, "9181", Nothing, Nothing)
+                    Dim stopWatch As New Stopwatch()
+                    Dim StopWatchTimeMs As Int32
                     If stopthread = False And scanner2worker.ThreadState = ThreadState.Running Then
                         Try
                             stopWatch.Start()
-                            result.AsyncWaitHandle.WaitOne(TimeSpan.FromMilliseconds(999))
+                            IIf(result IsNot Nothing, Nothing, result.AsyncWaitHandle.WaitOne(TimeSpan.FromMilliseconds(999)))
                             clientSocket.Close()
                             stopWatch.Stop()
                             StopWatchTimeMs = stopWatch.ElapsedMilliseconds
-                            DataGridView2.Rows(x).Cells(6).Value = StopWatchTimeMs
+                            networkdata.Tables("Network2").Rows(x).Item(5) = StopWatchTimeMs
                         Catch ex As Exception
-                            DataGridView2.Rows(x).Cells(6).Value = 999
+                            networkdata.Tables("Network2").Rows(x).Item(5) = 999
                         End Try
                     Else
                         Exit Sub

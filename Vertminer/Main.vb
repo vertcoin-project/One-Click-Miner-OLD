@@ -195,13 +195,13 @@ Public Class Main
     Private Sub dataGridView1_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellEndEdit
 
         If e.ColumnIndex = 1 Then
-            descriptions(e.RowIndex) = DataGridView1(1, e.RowIndex).Value.ToString
+            descriptions(e.RowIndex) = If(DataGridView1(1, e.RowIndex).Value Is Nothing, "", DataGridView1(1, e.RowIndex).Value.ToString())
         ElseIf e.ColumnIndex = 2 Then
-            pools(e.RowIndex) = DataGridView1(2, e.RowIndex).Value.ToString
+            pools(e.RowIndex) = If(DataGridView1(2, e.RowIndex).Value Is Nothing, "", DataGridView1(2, e.RowIndex).Value.ToString())
         ElseIf e.ColumnIndex = 3 Then
-            workers(e.RowIndex) = DataGridView1(3, e.RowIndex).Value.ToString
+            workers(e.RowIndex) = If(DataGridView1(3, e.RowIndex).Value Is Nothing, "", DataGridView1(3, e.RowIndex).Value.ToString())
         ElseIf e.ColumnIndex = 4 Then
-            passwords(e.RowIndex) = DataGridView1(4, e.RowIndex).Value.ToString
+            passwords(e.RowIndex) = If(DataGridView1(4, e.RowIndex).Value Is Nothing, "", DataGridView1(4, e.RowIndex).Value.ToString())
         End If
 
     End Sub
@@ -1236,13 +1236,16 @@ Public Class Main
 
         Try
             mining_running = False
+            Dim processes As Process = Process.GetProcessById(miner_process)
+            If Not miner_process = Nothing Then
+                processes.Kill()
+            End If
+            'In case the miner process was started outside of the OCM.
             For Each p As Process In System.Diagnostics.Process.GetProcesses
-                If p.ProcessName.Contains("ocm_lyclminer") Then
+                If p.ProcessName.Contains("ocm_lyclminer") Or p.ProcessName.Contains("ocm_ccminer") Or p.ProcessName.Contains("ocm_cpuminer") Then
                     p.Kill()
                 End If
             Next
-            Dim processes As Process = Process.GetProcessById(miner_process)
-            processes.Kill()
             miner_hashrate = 0
         Catch ex As Exception
             _logger.LogError(ex)
@@ -1400,11 +1403,9 @@ Public Class Main
             'Miner API
             System.Threading.Thread.CurrentThread.CurrentCulture = New CultureInfo("en-US")
             System.Threading.Thread.CurrentThread.CurrentUICulture = System.Threading.Thread.CurrentThread.CurrentCulture
-            If amd_detected = True Or nvidia_detected = True Or cpu_detected = True Then
+            If nvidia_detected = True Or cpu_detected = True Then
                 Dim tcpClient As New System.Net.Sockets.TcpClient()
-                If amd_detected = True Then
-                    tcpClient.Connect("127.0.0.1", 4028)
-                ElseIf nvidia_detected = True Then
+                If nvidia_detected = True Then
                     tcpClient.Connect("127.0.0.1", 4068)
                 ElseIf cpu_detected = True Then
                     tcpClient.Connect("127.0.0.1", 4048)
