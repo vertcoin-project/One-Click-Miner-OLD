@@ -118,12 +118,11 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Label1.Text" xml:space="preserve">
-    <value>This miner was developed by Zemrys of the Vertcoin 
-Development Team. It has been designed to make entry
-into the mining arena easier for all walks of life. The 
-Vertcoin Development Team is not liable for any lost/stolen
-coins or damaged hardware. Vertcoin Development Fund
-address can be found at</value>
+    <value>This miner was developed by the Vertcoin Development Team. 
+It's purpose is to make entry into the mining arena easier for 
+all walks of life. The Vertcoin Development Team is not liable
+for any lost/stolen coins or damaged hardware. Vertcoin's 
+development fund address can be found </value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

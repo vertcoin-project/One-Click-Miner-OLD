@@ -78,6 +78,8 @@ Public Class Main
                 ComboBox1.SelectedItem = "NVIDIA-ccminer"
             ElseIf default_miner = "cpu-cpuminer" Then
                 ComboBox1.SelectedItem = "CPU-cpuminer"
+            Else
+                ComboBox1.SelectedIndex = 0
             End If
             'Check if p2pool or miner are already running
             Invoke(New MethodInvoker(AddressOf Process_Check))
@@ -525,6 +527,7 @@ Public Class Main
 
         Try
             If canceldownloadasync = False Then
+                System.Threading.Thread.Sleep(500)
                 'Download proper miner and extract into respective directories
                 zipPath = p2poolfolder & "\p2pool.zip"
                 exe = p2poolfolder & "\ocm_p2pool.exe"
@@ -577,6 +580,7 @@ Public Class Main
     Private Sub Client_P2PoolInterfaceDownloadCompleted(ByVal sender As Object, ByVal e As System.ComponentModel.AsyncCompletedEventArgs)
 
         Try
+            System.Threading.Thread.Sleep(500)
             'Download proper miner and extract into respective directories
             zipPath = p2poolfolder & "\interface.zip"
             ZipFile.ExtractToDirectory(zipPath, p2poolfolder)
@@ -636,10 +640,10 @@ Public Class Main
                     TextBox2.Text = "Waiting for share"
                 End If
             End If
-            Button3.Text = "Stop"
+            Button3.Text = "Stop Miner"
         Else
             TextBox2.Text = "Offline"
-            Button3.Text = "Start"
+            Button3.Text = "Start Miner"
             TextBox3.Text = "0 kh/s"
         End If
         'P2Pool Info
@@ -1091,7 +1095,7 @@ Public Class Main
                     ElseIf Line.Contains("Username =") Then
                         Line = "            Username = """ & workers(0) & """"
                     ElseIf Line.Contains("Password =") Then
-                        Line = "            Password = """ & passwords(0) & """>"
+                        Line = "            Password = """ & passwords(0) & """"
                     ElseIf Line.Contains("<Device") Then
                         If devicelist.Count > 0 Then
                             For Each x As String In devicelist
@@ -1128,7 +1132,7 @@ Public Class Main
                 If default_miner = "nvidia-ccminer" Then
                     minersettingsfile = ccminerfolder & "\ccminer.conf"
                 End If
-                newjson.algo = "lyra2v2"
+                newjson.algo = "lyra2v3"
                 newjson.intensity = mining_intensity
                 newjson.devices = devices
                 For x As Integer = count - 1 To 0 Step -1
@@ -1150,7 +1154,7 @@ Public Class Main
                     newjson.user = workers(0)
                     newjson.pass = passwords(0)
                 End If
-                newjson.algo = "lyra2rev2"
+                newjson.algo = "lyra2rev3"
                 newjson.intensity = mining_intensity
                 jsonstring = JSONConverter.Serialize(newjson)
             End If
@@ -1220,7 +1224,7 @@ Public Class Main
 
     Public Sub Stop_Miner()
 
-        Button3.Text = "Start"
+        Button3.Text = "Start Miner"
         miner_hashrate = 0
 
     End Sub
@@ -1515,7 +1519,7 @@ Public Class Main
     Private Sub ContactToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ContactToolStripMenuItem.Click
 
         Try
-            Dim url As String = "https://discordapp.com/invite/Yb6EHNy"
+            Dim url As String = "https://discord.gg/xZSyaJy"
             Process.Start(url)
         Catch ex As Exception
             MsgBox(ex.Message)
@@ -2112,58 +2116,60 @@ Public Class Main
         Next
         Invoke(New MethodInvoker(AddressOf SaveSettingsJSON))
         'Starts mining if miner software is already detected.  If not, downloads miner software.
-        If Button3.Text = "Start" Then
-            Button3.Text = "Stop"
+        If Button3.Text = "Start Miner" Then
+            Button3.Text = "Stop Miner"
             If checkcount > 0 Then 'If at least one pool is selected
-                If default_miner = "amd-lyclminer" Then
-                    mining_installed = IsMinerInstalled(lyclminerfolder, "ocm_lyclminer.exe", lyclminer_version)
-                    If Not mining_installed Then
-                        If Not Updater.IsBusy Then
+                If Not ComboBox1.SelectedIndex = 0 Then
+                    If default_miner = "amd-lyclminer" Then
+                        mining_installed = IsMinerInstalled(lyclminerfolder, "ocm_lyclminer.exe", lyclminer_version)
+                        If Not mining_installed Then
+                            If Not Updater.IsBusy Then
+                                SetMinerBooleans(default_miner)
+                                amd_update = True
+                                canceldownloadasync = False
+                                Updater.RunWorkerAsync()
+                            End If
+                        Else
                             SetMinerBooleans(default_miner)
-                            amd_update = True
-                            canceldownloadasync = False
-                            Updater.RunWorkerAsync()
+                            mining_initialized = True
+                            BeginInvoke(New MethodInvoker(AddressOf Start_Miner))
                         End If
-                    Else
-                        SetMinerBooleans(default_miner)
-                        mining_initialized = True
-                        BeginInvoke(New MethodInvoker(AddressOf Start_Miner))
-                    End If
-                ElseIf default_miner = "nvidia-ccminer" Then
-                    mining_installed = IsMinerInstalled(ccminerfolder, "ocm_ccminer.exe", ccminer_version)
-                    If Not mining_installed Then
-                        If Not Updater.IsBusy Then
+                    ElseIf default_miner = "nvidia-ccminer" Then
+                        mining_installed = IsMinerInstalled(ccminerfolder, "ocm_ccminer.exe", ccminer_version)
+                        If Not mining_installed Then
+                            If Not Updater.IsBusy Then
+                                SetMinerBooleans(default_miner)
+                                nvidia_update = True
+                                canceldownloadasync = False
+                                Updater.RunWorkerAsync()
+                            End If
+                        Else
                             SetMinerBooleans(default_miner)
-                            nvidia_update = True
-                            canceldownloadasync = False
-                            Updater.RunWorkerAsync()
+                            mining_initialized = True
+                            BeginInvoke(New MethodInvoker(AddressOf Start_Miner))
                         End If
-                    Else
-                        SetMinerBooleans(default_miner)
-                        mining_initialized = True
-                        BeginInvoke(New MethodInvoker(AddressOf Start_Miner))
-                    End If
-                ElseIf default_miner = "cpu-cpuminer" Then
-                    mining_installed = IsMinerInstalled(cpuminerfolder, "ocm_cpuminer.exe", cpuminer_version)
-                    If Not mining_installed Then
-                        If Not Updater.IsBusy Then
+                    ElseIf default_miner = "cpu-cpuminer" Then
+                        mining_installed = IsMinerInstalled(cpuminerfolder, "ocm_cpuminer.exe", cpuminer_version)
+                        If Not mining_installed Then
+                            If Not Updater.IsBusy Then
+                                SetMinerBooleans(default_miner)
+                                cpu_update = True
+                                canceldownloadasync = False
+                                Updater.RunWorkerAsync()
+                            End If
+                        Else
                             SetMinerBooleans(default_miner)
-                            cpu_update = True
-                            canceldownloadasync = False
-                            Updater.RunWorkerAsync()
+                            mining_initialized = True
+                            BeginInvoke(New MethodInvoker(AddressOf Start_Miner))
                         End If
-                    Else
-                        SetMinerBooleans(default_miner)
-                        mining_initialized = True
-                        BeginInvoke(New MethodInvoker(AddressOf Start_Miner))
                     End If
                 End If
                 mining_installed = False
             Else
                 MsgBox("Please select at least one pool before starting miner.")
             End If
-        ElseIf Button3.Text = "Stop" Then
-            Button3.Text = "Start"
+        ElseIf Button3.Text = "Stop Miner" Then
+            Button3.Text = "Start Miner"
             amdminer = False
             nvidiaminer = False
             cpuminer = False
@@ -2344,6 +2350,8 @@ Public Class Main
             Me.WindowState = FormWindowState.Minimized
         Else
             Me.WindowState = FormWindowState.Normal
+            minmax = False
+            Invoke(New MethodInvoker(AddressOf Resize_Main))
         End If
         Form_Load.Stop()
 

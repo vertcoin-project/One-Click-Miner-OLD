@@ -25,7 +25,7 @@ Public Class about
     Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
 
         Try
-            Dim url As String = "http://www.vtcfund.com"
+            Dim url As String = "https://vertcoin.org/donate/"
             Process.Start(url)
         Catch ex As Exception
             MsgBox(ex.Message)
