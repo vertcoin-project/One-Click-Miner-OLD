@@ -1519,7 +1519,7 @@ Public Class Main
     Private Sub ContactToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ContactToolStripMenuItem.Click
 
         Try
-            Dim url As String = "https://discord.gg/xZSyaJy"
+            Dim url As String = "https://discordapp.com/invite/vertcoin"
             Process.Start(url)
         Catch ex As Exception
             MsgBox(ex.Message)
