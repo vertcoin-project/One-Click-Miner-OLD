@@ -11,7 +11,7 @@
 A copy of this guide including images can be found [HERE](http://alwayshashing.com/ocmhowto.pdf)
 
 First off, you'll need to download the OCM. You can find the most recent
-version [HERE](https://github.com/vertcoin/One-Click-Miner/releases).
+version [HERE](https://github.com/vertcoin-project/One-Click-Miner/releases).
 
 Once you have the OCM downloaded and installed, you'll find a new icon
 on your desktop that says 'Vertcoin One-Click Miner'. Double-click the
