@@ -110,7 +110,7 @@ Partial Class settings
         Me.CheckBox3.AutoSize = True
         Me.CheckBox3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CheckBox3.Location = New System.Drawing.Point(58, 234)
-        Me.CheckBox3.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.CheckBox3.Margin = New System.Windows.Forms.Padding(6)
         Me.CheckBox3.Name = "CheckBox3"
         Me.CheckBox3.Size = New System.Drawing.Size(203, 30)
         Me.CheckBox3.TabIndex = 7
@@ -122,7 +122,7 @@ Partial Class settings
         '
         Me.CheckBox4.AutoSize = True
         Me.CheckBox4.Location = New System.Drawing.Point(58, 192)
-        Me.CheckBox4.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.CheckBox4.Margin = New System.Windows.Forms.Padding(6)
         Me.CheckBox4.Name = "CheckBox4"
         Me.CheckBox4.Size = New System.Drawing.Size(143, 29)
         Me.CheckBox4.TabIndex = 5
@@ -135,7 +135,7 @@ Partial Class settings
         '
         Me.CheckBox6.AutoSize = True
         Me.CheckBox6.Location = New System.Drawing.Point(328, 276)
-        Me.CheckBox6.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.CheckBox6.Margin = New System.Windows.Forms.Padding(6)
         Me.CheckBox6.Name = "CheckBox6"
         Me.CheckBox6.Size = New System.Drawing.Size(207, 29)
         Me.CheckBox6.TabIndex = 10
@@ -148,7 +148,7 @@ Partial Class settings
         '
         Me.PictureBox9.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.help_small
         Me.PictureBox9.Location = New System.Drawing.Point(18, 150)
-        Me.PictureBox9.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.PictureBox9.Margin = New System.Windows.Forms.Padding(6)
         Me.PictureBox9.Name = "PictureBox9"
         Me.PictureBox9.Size = New System.Drawing.Size(30, 30)
         Me.PictureBox9.TabIndex = 15
@@ -160,7 +160,7 @@ Partial Class settings
         Me.CheckBox9.AutoSize = True
         Me.CheckBox9.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CheckBox9.Location = New System.Drawing.Point(58, 150)
-        Me.CheckBox9.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.CheckBox9.Margin = New System.Windows.Forms.Padding(6)
         Me.CheckBox9.Name = "CheckBox9"
         Me.CheckBox9.Size = New System.Drawing.Size(230, 30)
         Me.CheckBox9.TabIndex = 3
@@ -172,7 +172,7 @@ Partial Class settings
         '
         Me.PictureBox6.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.help_small
         Me.PictureBox6.Location = New System.Drawing.Point(286, 234)
-        Me.PictureBox6.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.PictureBox6.Margin = New System.Windows.Forms.Padding(6)
         Me.PictureBox6.Name = "PictureBox6"
         Me.PictureBox6.Size = New System.Drawing.Size(30, 30)
         Me.PictureBox6.TabIndex = 11
@@ -184,7 +184,7 @@ Partial Class settings
         '
         Me.CheckBox5.AutoSize = True
         Me.CheckBox5.Location = New System.Drawing.Point(328, 234)
-        Me.CheckBox5.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.CheckBox5.Margin = New System.Windows.Forms.Padding(6)
         Me.CheckBox5.Name = "CheckBox5"
         Me.CheckBox5.Size = New System.Drawing.Size(222, 29)
         Me.CheckBox5.TabIndex = 8
@@ -197,7 +197,7 @@ Partial Class settings
         '
         Me.PictureBox4.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.help_small
         Me.PictureBox4.Location = New System.Drawing.Point(286, 276)
-        Me.PictureBox4.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.PictureBox4.Margin = New System.Windows.Forms.Padding(6)
         Me.PictureBox4.Name = "PictureBox4"
         Me.PictureBox4.Size = New System.Drawing.Size(30, 30)
         Me.PictureBox4.TabIndex = 9
@@ -209,7 +209,7 @@ Partial Class settings
         '
         Me.PictureBox3.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.help_small
         Me.PictureBox3.Location = New System.Drawing.Point(18, 192)
-        Me.PictureBox3.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.PictureBox3.Margin = New System.Windows.Forms.Padding(6)
         Me.PictureBox3.Name = "PictureBox3"
         Me.PictureBox3.Size = New System.Drawing.Size(30, 30)
         Me.PictureBox3.TabIndex = 8
@@ -221,7 +221,7 @@ Partial Class settings
         '
         Me.PictureBox1.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.help_small
         Me.PictureBox1.Location = New System.Drawing.Point(18, 234)
-        Me.PictureBox1.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.PictureBox1.Margin = New System.Windows.Forms.Padding(6)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(30, 30)
         Me.PictureBox1.TabIndex = 6
@@ -231,7 +231,7 @@ Partial Class settings
         'Fee_Address_Text
         '
         Me.Fee_Address_Text.Location = New System.Drawing.Point(30, 288)
-        Me.Fee_Address_Text.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.Fee_Address_Text.Margin = New System.Windows.Forms.Padding(6)
         Me.Fee_Address_Text.Name = "Fee_Address_Text"
         Me.Fee_Address_Text.Size = New System.Drawing.Size(484, 31)
         Me.Fee_Address_Text.TabIndex = 6
@@ -275,7 +275,7 @@ Partial Class settings
         '
         Me.TextBox4.BackColor = System.Drawing.Color.White
         Me.TextBox4.Location = New System.Drawing.Point(176, 58)
-        Me.TextBox4.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.TextBox4.Margin = New System.Windows.Forms.Padding(6)
         Me.TextBox4.Name = "TextBox4"
         Me.TextBox4.Size = New System.Drawing.Size(96, 31)
         Me.TextBox4.TabIndex = 0
@@ -287,7 +287,7 @@ Partial Class settings
         '
         Me.TextBox5.BackColor = System.Drawing.Color.White
         Me.TextBox5.Location = New System.Drawing.Point(176, 96)
-        Me.TextBox5.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.TextBox5.Margin = New System.Windows.Forms.Padding(6)
         Me.TextBox5.Name = "TextBox5"
         Me.TextBox5.Size = New System.Drawing.Size(96, 31)
         Me.TextBox5.TabIndex = 1
@@ -321,7 +321,7 @@ Partial Class settings
         '
         Me.Node_Fee.BackColor = System.Drawing.Color.White
         Me.Node_Fee.Location = New System.Drawing.Point(176, 144)
-        Me.Node_Fee.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.Node_Fee.Margin = New System.Windows.Forms.Padding(6)
         Me.Node_Fee.Name = "Node_Fee"
         Me.Node_Fee.Size = New System.Drawing.Size(96, 31)
         Me.Node_Fee.TabIndex = 2
@@ -334,7 +334,7 @@ Partial Class settings
         '
         Me.Node_Donation.BackColor = System.Drawing.Color.White
         Me.Node_Donation.Location = New System.Drawing.Point(176, 182)
-        Me.Node_Donation.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.Node_Donation.Margin = New System.Windows.Forms.Padding(6)
         Me.Node_Donation.Name = "Node_Donation"
         Me.Node_Donation.Size = New System.Drawing.Size(96, 31)
         Me.Node_Donation.TabIndex = 3
@@ -358,7 +358,7 @@ Partial Class settings
         '
         Me.TextBox3.BackColor = System.Drawing.SystemColors.Window
         Me.TextBox3.Location = New System.Drawing.Point(374, 96)
-        Me.TextBox3.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.TextBox3.Margin = New System.Windows.Forms.Padding(6)
         Me.TextBox3.Name = "TextBox3"
         Me.TextBox3.Size = New System.Drawing.Size(96, 31)
         Me.TextBox3.TabIndex = 4
@@ -369,7 +369,7 @@ Partial Class settings
         '
         Me.PictureBox10.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.help_small
         Me.PictureBox10.Location = New System.Drawing.Point(176, 92)
-        Me.PictureBox10.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.PictureBox10.Margin = New System.Windows.Forms.Padding(6)
         Me.PictureBox10.Name = "PictureBox10"
         Me.PictureBox10.Size = New System.Drawing.Size(30, 30)
         Me.PictureBox10.TabIndex = 43
@@ -380,7 +380,7 @@ Partial Class settings
         '
         Me.Intensity_Text.BackColor = System.Drawing.SystemColors.Window
         Me.Intensity_Text.Location = New System.Drawing.Point(12, 126)
-        Me.Intensity_Text.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.Intensity_Text.Margin = New System.Windows.Forms.Padding(6)
         Me.Intensity_Text.MaxLength = 5
         Me.Intensity_Text.Name = "Intensity_Text"
         Me.Intensity_Text.Size = New System.Drawing.Size(198, 31)
@@ -392,7 +392,7 @@ Partial Class settings
         '
         Me.PictureBox12.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.help_small
         Me.PictureBox12.Location = New System.Drawing.Point(410, 148)
-        Me.PictureBox12.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.PictureBox12.Margin = New System.Windows.Forms.Padding(6)
         Me.PictureBox12.Name = "PictureBox12"
         Me.PictureBox12.Size = New System.Drawing.Size(30, 30)
         Me.PictureBox12.TabIndex = 46
@@ -405,7 +405,7 @@ Partial Class settings
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button1.Location = New System.Drawing.Point(380, 68)
-        Me.Button1.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.Button1.Margin = New System.Windows.Forms.Padding(6)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(162, 46)
         Me.Button1.TabIndex = 2
@@ -419,7 +419,7 @@ Partial Class settings
         Me.Button5.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.Button5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button5.Location = New System.Drawing.Point(32, 68)
-        Me.Button5.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.Button5.Margin = New System.Windows.Forms.Padding(6)
         Me.Button5.Name = "Button5"
         Me.Button5.Size = New System.Drawing.Size(162, 46)
         Me.Button5.TabIndex = 0
@@ -432,7 +432,7 @@ Partial Class settings
         '
         Me.PictureBox5.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.help_small
         Me.PictureBox5.Location = New System.Drawing.Point(286, 192)
-        Me.PictureBox5.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.PictureBox5.Margin = New System.Windows.Forms.Padding(6)
         Me.PictureBox5.Name = "PictureBox5"
         Me.PictureBox5.Size = New System.Drawing.Size(30, 30)
         Me.PictureBox5.TabIndex = 48
@@ -443,7 +443,7 @@ Partial Class settings
         '
         Me.CheckBox1.AutoSize = True
         Me.CheckBox1.Location = New System.Drawing.Point(328, 192)
-        Me.CheckBox1.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.CheckBox1.Margin = New System.Windows.Forms.Padding(6)
         Me.CheckBox1.Name = "CheckBox1"
         Me.CheckBox1.Size = New System.Drawing.Size(205, 29)
         Me.CheckBox1.TabIndex = 6
@@ -455,7 +455,7 @@ Partial Class settings
         '
         Me.PictureBox8.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.help_small
         Me.PictureBox8.Location = New System.Drawing.Point(286, 150)
-        Me.PictureBox8.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.PictureBox8.Margin = New System.Windows.Forms.Padding(6)
         Me.PictureBox8.Name = "PictureBox8"
         Me.PictureBox8.Size = New System.Drawing.Size(30, 30)
         Me.PictureBox8.TabIndex = 51
@@ -466,7 +466,7 @@ Partial Class settings
         '
         Me.CheckBox7.AutoSize = True
         Me.CheckBox7.Location = New System.Drawing.Point(328, 150)
-        Me.CheckBox7.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.CheckBox7.Margin = New System.Windows.Forms.Padding(6)
         Me.CheckBox7.Name = "CheckBox7"
         Me.CheckBox7.Size = New System.Drawing.Size(200, 29)
         Me.CheckBox7.TabIndex = 4
@@ -478,7 +478,7 @@ Partial Class settings
         '
         Me.PictureBox2.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.help_small
         Me.PictureBox2.Location = New System.Drawing.Point(410, 28)
-        Me.PictureBox2.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.PictureBox2.Margin = New System.Windows.Forms.Padding(6)
         Me.PictureBox2.Name = "PictureBox2"
         Me.PictureBox2.Size = New System.Drawing.Size(30, 30)
         Me.PictureBox2.TabIndex = 47
@@ -490,7 +490,7 @@ Partial Class settings
         Me.ComboBox1.FormattingEnabled = True
         Me.ComboBox1.Items.AddRange(New Object() {"1", "2"})
         Me.ComboBox1.Location = New System.Drawing.Point(384, 216)
-        Me.ComboBox1.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.ComboBox1.Margin = New System.Windows.Forms.Padding(6)
         Me.ComboBox1.Name = "ComboBox1"
         Me.ComboBox1.Size = New System.Drawing.Size(76, 33)
         Me.ComboBox1.TabIndex = 5
@@ -500,7 +500,7 @@ Partial Class settings
         '
         Me.PictureBox7.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.help_small
         Me.PictureBox7.Location = New System.Drawing.Point(176, 170)
-        Me.PictureBox7.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.PictureBox7.Margin = New System.Windows.Forms.Padding(6)
         Me.PictureBox7.Name = "PictureBox7"
         Me.PictureBox7.Size = New System.Drawing.Size(30, 30)
         Me.PictureBox7.TabIndex = 46
@@ -511,7 +511,7 @@ Partial Class settings
         '
         Me.Devices_Text.BackColor = System.Drawing.SystemColors.Window
         Me.Devices_Text.Location = New System.Drawing.Point(12, 204)
-        Me.Devices_Text.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.Devices_Text.Margin = New System.Windows.Forms.Padding(6)
         Me.Devices_Text.MaxLength = 250
         Me.Devices_Text.Name = "Devices_Text"
         Me.Devices_Text.Size = New System.Drawing.Size(198, 31)
@@ -523,7 +523,7 @@ Partial Class settings
         '
         Me.PictureBox13.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.help_small
         Me.PictureBox13.Location = New System.Drawing.Point(18, 276)
-        Me.PictureBox13.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.PictureBox13.Margin = New System.Windows.Forms.Padding(6)
         Me.PictureBox13.Name = "PictureBox13"
         Me.PictureBox13.Size = New System.Drawing.Size(30, 30)
         Me.PictureBox13.TabIndex = 53
@@ -536,7 +536,7 @@ Partial Class settings
         Me.CheckBox2.AutoSize = True
         Me.CheckBox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CheckBox2.Location = New System.Drawing.Point(58, 276)
-        Me.CheckBox2.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.CheckBox2.Margin = New System.Windows.Forms.Padding(6)
         Me.CheckBox2.Name = "CheckBox2"
         Me.CheckBox2.Size = New System.Drawing.Size(139, 30)
         Me.CheckBox2.TabIndex = 9
@@ -549,7 +549,7 @@ Partial Class settings
         '
         Me.CheckBox10.AutoSize = True
         Me.CheckBox10.Location = New System.Drawing.Point(22, 50)
-        Me.CheckBox10.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.CheckBox10.Margin = New System.Windows.Forms.Padding(6)
         Me.CheckBox10.Name = "CheckBox10"
         Me.CheckBox10.Size = New System.Drawing.Size(188, 29)
         Me.CheckBox10.TabIndex = 0
@@ -564,7 +564,7 @@ Partial Class settings
         Me.Button6.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.Button6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button6.Location = New System.Drawing.Point(206, 68)
-        Me.Button6.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.Button6.Margin = New System.Windows.Forms.Padding(6)
         Me.Button6.Name = "Button6"
         Me.Button6.Size = New System.Drawing.Size(162, 46)
         Me.Button6.TabIndex = 1
@@ -577,7 +577,7 @@ Partial Class settings
         '
         Me.PictureBox16.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.help_small
         Me.PictureBox16.Location = New System.Drawing.Point(176, 248)
-        Me.PictureBox16.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.PictureBox16.Margin = New System.Windows.Forms.Padding(6)
         Me.PictureBox16.Name = "PictureBox16"
         Me.PictureBox16.Size = New System.Drawing.Size(30, 30)
         Me.PictureBox16.TabIndex = 49
@@ -588,7 +588,7 @@ Partial Class settings
         '
         Me.Worksize_Text.BackColor = System.Drawing.SystemColors.Window
         Me.Worksize_Text.Location = New System.Drawing.Point(12, 282)
-        Me.Worksize_Text.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.Worksize_Text.Margin = New System.Windows.Forms.Padding(6)
         Me.Worksize_Text.MaxLength = 250
         Me.Worksize_Text.Name = "Worksize_Text"
         Me.Worksize_Text.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal
@@ -639,7 +639,7 @@ Partial Class settings
         Me.Panel1.Controls.Add(Me.PictureBox15)
         Me.Panel1.ForeColor = System.Drawing.SystemColors.Control
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
-        Me.Panel1.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.Panel1.Margin = New System.Windows.Forms.Padding(6)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(1438, 104)
         Me.Panel1.TabIndex = 89
@@ -659,7 +659,7 @@ Partial Class settings
         '
         Me.PictureBox11.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.ocmlogo
         Me.PictureBox11.Location = New System.Drawing.Point(0, 0)
-        Me.PictureBox11.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.PictureBox11.Margin = New System.Windows.Forms.Padding(6)
         Me.PictureBox11.Name = "PictureBox11"
         Me.PictureBox11.Size = New System.Drawing.Size(50, 50)
         Me.PictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
@@ -671,7 +671,7 @@ Partial Class settings
         Me.PictureBox14.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.PictureBox14.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.minimize
         Me.PictureBox14.Location = New System.Drawing.Point(1292, 26)
-        Me.PictureBox14.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.PictureBox14.Margin = New System.Windows.Forms.Padding(6)
         Me.PictureBox14.Name = "PictureBox14"
         Me.PictureBox14.Size = New System.Drawing.Size(50, 50)
         Me.PictureBox14.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -683,7 +683,7 @@ Partial Class settings
         Me.PictureBox15.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.PictureBox15.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.greenx
         Me.PictureBox15.Location = New System.Drawing.Point(1368, 26)
-        Me.PictureBox15.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.PictureBox15.Margin = New System.Windows.Forms.Padding(6)
         Me.PictureBox15.Name = "PictureBox15"
         Me.PictureBox15.Size = New System.Drawing.Size(50, 50)
         Me.PictureBox15.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -697,7 +697,7 @@ Partial Class settings
         Me.Panel2.Controls.Add(Me.GroupBox1)
         Me.Panel2.Controls.Add(Me.GroupBox3)
         Me.Panel2.Location = New System.Drawing.Point(0, 100)
-        Me.Panel2.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.Panel2.Margin = New System.Windows.Forms.Padding(6)
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(1438, 386)
         Me.Panel2.TabIndex = 90
@@ -722,9 +722,9 @@ Partial Class settings
         Me.GroupBox2.Controls.Add(Me.Label4)
         Me.GroupBox2.ForeColor = System.Drawing.SystemColors.Control
         Me.GroupBox2.Location = New System.Drawing.Point(630, 16)
-        Me.GroupBox2.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.GroupBox2.Margin = New System.Windows.Forms.Padding(6)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Padding = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.GroupBox2.Padding = New System.Windows.Forms.Padding(6)
         Me.GroupBox2.Size = New System.Drawing.Size(550, 346)
         Me.GroupBox2.TabIndex = 12
         Me.GroupBox2.TabStop = False
@@ -755,9 +755,9 @@ Partial Class settings
         Me.GroupBox1.Controls.Add(Me.CheckBox9)
         Me.GroupBox1.ForeColor = System.Drawing.SystemColors.Control
         Me.GroupBox1.Location = New System.Drawing.Point(24, 16)
-        Me.GroupBox1.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.GroupBox1.Margin = New System.Windows.Forms.Padding(6)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Padding = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.GroupBox1.Padding = New System.Windows.Forms.Padding(6)
         Me.GroupBox1.Size = New System.Drawing.Size(574, 346)
         Me.GroupBox1.TabIndex = 11
         Me.GroupBox1.TabStop = False
@@ -788,9 +788,9 @@ Partial Class settings
         Me.GroupBox3.Controls.Add(Me.Intensity_Text)
         Me.GroupBox3.ForeColor = System.Drawing.SystemColors.Control
         Me.GroupBox3.Location = New System.Drawing.Point(1192, 16)
-        Me.GroupBox3.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.GroupBox3.Margin = New System.Windows.Forms.Padding(6)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Padding = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.GroupBox3.Padding = New System.Windows.Forms.Padding(6)
         Me.GroupBox3.Size = New System.Drawing.Size(226, 346)
         Me.GroupBox3.TabIndex = 12
         Me.GroupBox3.TabStop = False
@@ -822,12 +822,14 @@ Partial Class settings
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(192.0!, 192.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi
+        Me.AutoSize = True
+        Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.ClientSize = New System.Drawing.Size(1438, 486)
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Panel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.Margin = New System.Windows.Forms.Padding(6)
         Me.MaximizeBox = False
         Me.MinimumSize = New System.Drawing.Size(1438, 486)
         Me.Name = "settings"

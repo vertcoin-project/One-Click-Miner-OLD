@@ -65,8 +65,8 @@ Module variables
     'API Variables
     Public Property api_connected As Boolean
     Public Property jsonmaxlength As Integer = 200000000 '2 million characters
-    Public Property api_network1_hosts() = {"http://scanner1.alwayshashing.com/api", "https://scanner1.mining.moe/api", "https://scanner.vtconline.org/api"}
-    Public Property api_network2_hosts() = {"http://scanner2.alwayshashing.com/api", "https://scanner2.mining.moe/api"}
+    Public Property api_network1_hosts() = {"https://scanner1.mining.moe/api", "http://scanner1.alwayshashing.com:8085/api", "https://scanner.vtconline.org/api"}
+    Public Property api_network2_hosts() = {"https://scanner2.mining.moe/api", "http://scanner2.alwayshashing.com:8086/api"}
     Public Property networkdata As DataSet
     Public Property latencytimemsnet1 As Int32 = 0
     Public Property latencytimemsnet2 As Int32 = 0
