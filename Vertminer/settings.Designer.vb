@@ -831,6 +831,7 @@ Partial Class settings
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(6)
         Me.MaximizeBox = False
+        Me.MaximumSize = New System.Drawing.Size(1438, 486)
         Me.MinimumSize = New System.Drawing.Size(1438, 486)
         Me.Name = "settings"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen

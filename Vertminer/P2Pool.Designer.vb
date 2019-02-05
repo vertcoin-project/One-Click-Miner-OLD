@@ -63,9 +63,10 @@ Partial Class P2Pool
         Me.AddSelectedPoolsButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.AddSelectedPoolsButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.AddSelectedPoolsButton.ForeColor = System.Drawing.SystemColors.Control
-        Me.AddSelectedPoolsButton.Location = New System.Drawing.Point(637, 206)
+        Me.AddSelectedPoolsButton.Location = New System.Drawing.Point(1274, 412)
+        Me.AddSelectedPoolsButton.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
         Me.AddSelectedPoolsButton.Name = "AddSelectedPoolsButton"
-        Me.AddSelectedPoolsButton.Size = New System.Drawing.Size(140, 26)
+        Me.AddSelectedPoolsButton.Size = New System.Drawing.Size(280, 52)
         Me.AddSelectedPoolsButton.TabIndex = 6
         Me.AddSelectedPoolsButton.Text = "Add Selected Pool(s)"
         Me.AddSelectedPoolsButton.UseVisualStyleBackColor = False
@@ -73,10 +74,11 @@ Partial Class P2Pool
         'Wallet_Address
         '
         Me.Wallet_Address.BackColor = System.Drawing.SystemColors.Window
-        Me.Wallet_Address.Location = New System.Drawing.Point(613, 180)
+        Me.Wallet_Address.Location = New System.Drawing.Point(1226, 360)
+        Me.Wallet_Address.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
         Me.Wallet_Address.MaxLength = 100
         Me.Wallet_Address.Name = "Wallet_Address"
-        Me.Wallet_Address.Size = New System.Drawing.Size(189, 20)
+        Me.Wallet_Address.Size = New System.Drawing.Size(374, 31)
         Me.Wallet_Address.TabIndex = 5
         Me.Wallet_Address.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
@@ -85,9 +87,10 @@ Partial Class P2Pool
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label3.Location = New System.Drawing.Point(642, 157)
+        Me.Label3.Location = New System.Drawing.Point(1284, 314)
+        Me.Label3.Margin = New System.Windows.Forms.Padding(6, 0, 6, 0)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(130, 20)
+        Me.Label3.Size = New System.Drawing.Size(247, 37)
         Me.Label3.TabIndex = 43
         Me.Label3.Text = "Wallet Address"
         '
@@ -96,9 +99,10 @@ Partial Class P2Pool
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label4.Location = New System.Drawing.Point(127, 238)
+        Me.Label4.Location = New System.Drawing.Point(254, 476)
+        Me.Label4.Margin = New System.Windows.Forms.Padding(6, 0, 6, 0)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(358, 13)
+        Me.Label4.Size = New System.Drawing.Size(672, 26)
         Me.Label4.TabIndex = 44
         Me.Label4.Text = "Network 1 is recommended for miners with 100MH and above."
         '
@@ -106,9 +110,10 @@ Partial Class P2Pool
         '
         Me.Label5.AutoSize = True
         Me.Label5.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label5.Location = New System.Drawing.Point(613, 74)
+        Me.Label5.Location = New System.Drawing.Point(1226, 148)
+        Me.Label5.Margin = New System.Windows.Forms.Padding(6, 0, 6, 0)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(189, 78)
+        Me.Label5.Size = New System.Drawing.Size(383, 150)
         Me.Label5.TabIndex = 45
         Me.Label5.Text = "-Select the node(s) you would like" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "to add to your pool list." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "-Enter the wallet " &
     "address you wish to" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "mine to in the box below." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "*Individually add nodes to use d" &
@@ -116,11 +121,12 @@ Partial Class P2Pool
         '
         'WebBrowser1
         '
-        Me.WebBrowser1.Location = New System.Drawing.Point(697, 6)
-        Me.WebBrowser1.MinimumSize = New System.Drawing.Size(20, 20)
+        Me.WebBrowser1.Location = New System.Drawing.Point(1394, 12)
+        Me.WebBrowser1.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.WebBrowser1.MinimumSize = New System.Drawing.Size(40, 40)
         Me.WebBrowser1.Name = "WebBrowser1"
         Me.WebBrowser1.ScriptErrorsSuppressed = True
-        Me.WebBrowser1.Size = New System.Drawing.Size(20, 20)
+        Me.WebBrowser1.Size = New System.Drawing.Size(40, 40)
         Me.WebBrowser1.TabIndex = 47
         Me.WebBrowser1.Url = New System.Uri("", System.UriKind.Relative)
         Me.WebBrowser1.Visible = False
@@ -129,20 +135,22 @@ Partial Class P2Pool
         '
         Me.TabControl1.Controls.Add(Me.Network1)
         Me.TabControl1.Controls.Add(Me.Network2)
-        Me.TabControl1.Location = New System.Drawing.Point(12, 8)
+        Me.TabControl1.Location = New System.Drawing.Point(24, 16)
+        Me.TabControl1.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(588, 224)
+        Me.TabControl1.Size = New System.Drawing.Size(1176, 448)
         Me.TabControl1.TabIndex = 3
         '
         'Network1
         '
         Me.Network1.Controls.Add(Me.Label1)
         Me.Network1.Controls.Add(Me.DataGridView1)
-        Me.Network1.Location = New System.Drawing.Point(4, 22)
+        Me.Network1.Location = New System.Drawing.Point(8, 39)
+        Me.Network1.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
         Me.Network1.Name = "Network1"
-        Me.Network1.Padding = New System.Windows.Forms.Padding(3)
-        Me.Network1.Size = New System.Drawing.Size(580, 198)
+        Me.Network1.Padding = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.Network1.Size = New System.Drawing.Size(1160, 401)
         Me.Network1.TabIndex = 0
         Me.Network1.Text = "Network 1"
         Me.Network1.UseVisualStyleBackColor = True
@@ -152,9 +160,10 @@ Partial Class P2Pool
         Me.Label1.AutoSize = True
         Me.Label1.BackColor = System.Drawing.SystemColors.AppWorkspace
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(212, 89)
+        Me.Label1.Location = New System.Drawing.Point(424, 178)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(6, 0, 6, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(157, 20)
+        Me.Label1.Size = New System.Drawing.Size(318, 37)
         Me.Label1.TabIndex = 1
         Me.Label1.Text = "Loading, please wait."
         Me.Label1.Visible = False
@@ -168,19 +177,21 @@ Partial Class P2Pool
         Me.DataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Location = New System.Drawing.Point(0, 0)
+        Me.DataGridView1.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.RowHeadersVisible = False
-        Me.DataGridView1.Size = New System.Drawing.Size(580, 198)
+        Me.DataGridView1.Size = New System.Drawing.Size(1160, 396)
         Me.DataGridView1.TabIndex = 1
         '
         'Network2
         '
         Me.Network2.Controls.Add(Me.Label2)
         Me.Network2.Controls.Add(Me.DataGridView2)
-        Me.Network2.Location = New System.Drawing.Point(4, 22)
+        Me.Network2.Location = New System.Drawing.Point(8, 39)
+        Me.Network2.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
         Me.Network2.Name = "Network2"
-        Me.Network2.Padding = New System.Windows.Forms.Padding(3)
-        Me.Network2.Size = New System.Drawing.Size(580, 198)
+        Me.Network2.Padding = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.Network2.Size = New System.Drawing.Size(1160, 401)
         Me.Network2.TabIndex = 1
         Me.Network2.Text = "Network 2"
         Me.Network2.UseVisualStyleBackColor = True
@@ -190,9 +201,10 @@ Partial Class P2Pool
         Me.Label2.AutoSize = True
         Me.Label2.BackColor = System.Drawing.SystemColors.AppWorkspace
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(251, 89)
+        Me.Label2.Location = New System.Drawing.Point(502, 178)
+        Me.Label2.Margin = New System.Windows.Forms.Padding(6, 0, 6, 0)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(78, 20)
+        Me.Label2.Size = New System.Drawing.Size(159, 37)
         Me.Label2.TabIndex = 2
         Me.Label2.Text = "Loading..."
         Me.Label2.Visible = False
@@ -206,9 +218,10 @@ Partial Class P2Pool
         Me.DataGridView2.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
         Me.DataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView2.Location = New System.Drawing.Point(0, 0)
+        Me.DataGridView2.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
         Me.DataGridView2.Name = "DataGridView2"
         Me.DataGridView2.RowHeadersVisible = False
-        Me.DataGridView2.Size = New System.Drawing.Size(580, 198)
+        Me.DataGridView2.Size = New System.Drawing.Size(1160, 396)
         Me.DataGridView2.TabIndex = 1
         '
         'Button2
@@ -217,9 +230,10 @@ Partial Class P2Pool
         Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.Button2.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button2.ForeColor = System.Drawing.SystemColors.Control
-        Me.Button2.Location = New System.Drawing.Point(652, 30)
+        Me.Button2.Location = New System.Drawing.Point(1304, 60)
+        Me.Button2.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
         Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(111, 37)
+        Me.Button2.Size = New System.Drawing.Size(222, 74)
         Me.Button2.TabIndex = 4
         Me.Button2.Text = "Scan"
         Me.Button2.UseVisualStyleBackColor = False
@@ -233,17 +247,19 @@ Partial Class P2Pool
         Me.Panel1.Controls.Add(Me.PictureBox15)
         Me.Panel1.ForeColor = System.Drawing.SystemColors.Control
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
+        Me.Panel1.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(814, 52)
+        Me.Panel1.Size = New System.Drawing.Size(1628, 104)
         Me.Panel1.TabIndex = 90
         '
         'Label6
         '
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(67, 13)
+        Me.Label6.Location = New System.Drawing.Point(134, 26)
+        Me.Label6.Margin = New System.Windows.Forms.Padding(6, 0, 6, 0)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(228, 26)
+        Me.Label6.Size = New System.Drawing.Size(448, 51)
         Me.Label6.TabIndex = 93
         Me.Label6.Text = "P2Pool Node Scanner"
         '
@@ -251,6 +267,7 @@ Partial Class P2Pool
         '
         Me.PictureBox11.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.ocmlogo
         Me.PictureBox11.Location = New System.Drawing.Point(0, 0)
+        Me.PictureBox11.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
         Me.PictureBox11.Name = "PictureBox11"
         Me.PictureBox11.Size = New System.Drawing.Size(50, 50)
         Me.PictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
@@ -261,9 +278,10 @@ Partial Class P2Pool
         '
         Me.PictureBox14.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.PictureBox14.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.minimize
-        Me.PictureBox14.Location = New System.Drawing.Point(741, 13)
+        Me.PictureBox14.Location = New System.Drawing.Point(1482, 26)
+        Me.PictureBox14.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
         Me.PictureBox14.Name = "PictureBox14"
-        Me.PictureBox14.Size = New System.Drawing.Size(25, 25)
+        Me.PictureBox14.Size = New System.Drawing.Size(50, 50)
         Me.PictureBox14.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.PictureBox14.TabIndex = 92
         Me.PictureBox14.TabStop = False
@@ -272,9 +290,10 @@ Partial Class P2Pool
         '
         Me.PictureBox15.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.PictureBox15.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.greenx
-        Me.PictureBox15.Location = New System.Drawing.Point(779, 13)
+        Me.PictureBox15.Location = New System.Drawing.Point(1558, 26)
+        Me.PictureBox15.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
         Me.PictureBox15.Name = "PictureBox15"
-        Me.PictureBox15.Size = New System.Drawing.Size(25, 25)
+        Me.PictureBox15.Size = New System.Drawing.Size(50, 50)
         Me.PictureBox15.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.PictureBox15.TabIndex = 91
         Me.PictureBox15.TabStop = False
@@ -290,9 +309,10 @@ Partial Class P2Pool
         Me.Panel2.Controls.Add(Me.Label3)
         Me.Panel2.Controls.Add(Me.WebBrowser1)
         Me.Panel2.Controls.Add(Me.Label4)
-        Me.Panel2.Location = New System.Drawing.Point(0, 50)
+        Me.Panel2.Location = New System.Drawing.Point(0, 100)
+        Me.Panel2.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(814, 261)
+        Me.Panel2.Size = New System.Drawing.Size(1628, 522)
         Me.Panel2.TabIndex = 91
         '
         'BackgroundWorker1
@@ -305,15 +325,18 @@ Partial Class P2Pool
         '
         'P2Pool
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(96.0!, 96.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(192.0!, 192.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi
-        Me.ClientSize = New System.Drawing.Size(814, 311)
+        Me.AutoSize = True
+        Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.ClientSize = New System.Drawing.Size(1628, 622)
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Panel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.MaximumSize = New System.Drawing.Size(814, 311)
-        Me.MinimumSize = New System.Drawing.Size(814, 311)
+        Me.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.MaximumSize = New System.Drawing.Size(1628, 622)
+        Me.MinimumSize = New System.Drawing.Size(1628, 622)
         Me.Name = "P2Pool"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "P2Pool Node Scanner"
