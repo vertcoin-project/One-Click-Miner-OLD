@@ -64,7 +64,7 @@ Partial Class P2Pool
         Me.AddSelectedPoolsButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.AddSelectedPoolsButton.ForeColor = System.Drawing.SystemColors.Control
         Me.AddSelectedPoolsButton.Location = New System.Drawing.Point(1274, 412)
-        Me.AddSelectedPoolsButton.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.AddSelectedPoolsButton.Margin = New System.Windows.Forms.Padding(6)
         Me.AddSelectedPoolsButton.Name = "AddSelectedPoolsButton"
         Me.AddSelectedPoolsButton.Size = New System.Drawing.Size(280, 52)
         Me.AddSelectedPoolsButton.TabIndex = 6
@@ -75,7 +75,7 @@ Partial Class P2Pool
         '
         Me.Wallet_Address.BackColor = System.Drawing.SystemColors.Window
         Me.Wallet_Address.Location = New System.Drawing.Point(1226, 360)
-        Me.Wallet_Address.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.Wallet_Address.Margin = New System.Windows.Forms.Padding(6)
         Me.Wallet_Address.MaxLength = 100
         Me.Wallet_Address.Name = "Wallet_Address"
         Me.Wallet_Address.Size = New System.Drawing.Size(374, 31)
@@ -122,7 +122,7 @@ Partial Class P2Pool
         'WebBrowser1
         '
         Me.WebBrowser1.Location = New System.Drawing.Point(1394, 12)
-        Me.WebBrowser1.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.WebBrowser1.Margin = New System.Windows.Forms.Padding(6)
         Me.WebBrowser1.MinimumSize = New System.Drawing.Size(40, 40)
         Me.WebBrowser1.Name = "WebBrowser1"
         Me.WebBrowser1.ScriptErrorsSuppressed = True
@@ -136,7 +136,7 @@ Partial Class P2Pool
         Me.TabControl1.Controls.Add(Me.Network1)
         Me.TabControl1.Controls.Add(Me.Network2)
         Me.TabControl1.Location = New System.Drawing.Point(24, 16)
-        Me.TabControl1.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.TabControl1.Margin = New System.Windows.Forms.Padding(6)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
         Me.TabControl1.Size = New System.Drawing.Size(1176, 448)
@@ -147,9 +147,9 @@ Partial Class P2Pool
         Me.Network1.Controls.Add(Me.Label1)
         Me.Network1.Controls.Add(Me.DataGridView1)
         Me.Network1.Location = New System.Drawing.Point(8, 39)
-        Me.Network1.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.Network1.Margin = New System.Windows.Forms.Padding(6)
         Me.Network1.Name = "Network1"
-        Me.Network1.Padding = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.Network1.Padding = New System.Windows.Forms.Padding(6)
         Me.Network1.Size = New System.Drawing.Size(1160, 401)
         Me.Network1.TabIndex = 0
         Me.Network1.Text = "Network 1"
@@ -177,7 +177,7 @@ Partial Class P2Pool
         Me.DataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Location = New System.Drawing.Point(0, 0)
-        Me.DataGridView1.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.DataGridView1.Margin = New System.Windows.Forms.Padding(6)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.RowHeadersVisible = False
         Me.DataGridView1.Size = New System.Drawing.Size(1160, 396)
@@ -188,9 +188,9 @@ Partial Class P2Pool
         Me.Network2.Controls.Add(Me.Label2)
         Me.Network2.Controls.Add(Me.DataGridView2)
         Me.Network2.Location = New System.Drawing.Point(8, 39)
-        Me.Network2.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.Network2.Margin = New System.Windows.Forms.Padding(6)
         Me.Network2.Name = "Network2"
-        Me.Network2.Padding = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.Network2.Padding = New System.Windows.Forms.Padding(6)
         Me.Network2.Size = New System.Drawing.Size(1160, 401)
         Me.Network2.TabIndex = 1
         Me.Network2.Text = "Network 2"
@@ -218,7 +218,7 @@ Partial Class P2Pool
         Me.DataGridView2.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
         Me.DataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView2.Location = New System.Drawing.Point(0, 0)
-        Me.DataGridView2.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.DataGridView2.Margin = New System.Windows.Forms.Padding(6)
         Me.DataGridView2.Name = "DataGridView2"
         Me.DataGridView2.RowHeadersVisible = False
         Me.DataGridView2.Size = New System.Drawing.Size(1160, 396)
@@ -231,7 +231,7 @@ Partial Class P2Pool
         Me.Button2.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button2.ForeColor = System.Drawing.SystemColors.Control
         Me.Button2.Location = New System.Drawing.Point(1304, 60)
-        Me.Button2.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.Button2.Margin = New System.Windows.Forms.Padding(6)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(222, 74)
         Me.Button2.TabIndex = 4
@@ -247,7 +247,7 @@ Partial Class P2Pool
         Me.Panel1.Controls.Add(Me.PictureBox15)
         Me.Panel1.ForeColor = System.Drawing.SystemColors.Control
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
-        Me.Panel1.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.Panel1.Margin = New System.Windows.Forms.Padding(6)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(1628, 104)
         Me.Panel1.TabIndex = 90
@@ -267,7 +267,7 @@ Partial Class P2Pool
         '
         Me.PictureBox11.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.ocmlogo
         Me.PictureBox11.Location = New System.Drawing.Point(0, 0)
-        Me.PictureBox11.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.PictureBox11.Margin = New System.Windows.Forms.Padding(6)
         Me.PictureBox11.Name = "PictureBox11"
         Me.PictureBox11.Size = New System.Drawing.Size(50, 50)
         Me.PictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
@@ -279,7 +279,7 @@ Partial Class P2Pool
         Me.PictureBox14.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.PictureBox14.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.minimize
         Me.PictureBox14.Location = New System.Drawing.Point(1482, 26)
-        Me.PictureBox14.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.PictureBox14.Margin = New System.Windows.Forms.Padding(6)
         Me.PictureBox14.Name = "PictureBox14"
         Me.PictureBox14.Size = New System.Drawing.Size(50, 50)
         Me.PictureBox14.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -291,7 +291,7 @@ Partial Class P2Pool
         Me.PictureBox15.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.PictureBox15.Image = Global.VertcoinOneClickMiner.My.Resources.Resources.greenx
         Me.PictureBox15.Location = New System.Drawing.Point(1558, 26)
-        Me.PictureBox15.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.PictureBox15.Margin = New System.Windows.Forms.Padding(6)
         Me.PictureBox15.Name = "PictureBox15"
         Me.PictureBox15.Size = New System.Drawing.Size(50, 50)
         Me.PictureBox15.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -310,7 +310,7 @@ Partial Class P2Pool
         Me.Panel2.Controls.Add(Me.WebBrowser1)
         Me.Panel2.Controls.Add(Me.Label4)
         Me.Panel2.Location = New System.Drawing.Point(0, 100)
-        Me.Panel2.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.Panel2.Margin = New System.Windows.Forms.Padding(6)
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(1628, 522)
         Me.Panel2.TabIndex = 91
@@ -334,7 +334,7 @@ Partial Class P2Pool
         Me.Controls.Add(Me.Panel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.Margin = New System.Windows.Forms.Padding(6)
         Me.MaximumSize = New System.Drawing.Size(1628, 622)
         Me.MinimumSize = New System.Drawing.Size(1628, 622)
         Me.Name = "P2Pool"
