@@ -194,6 +194,9 @@ Public Class P2Pool
                 Dim columns As String() = {"IP", "Version", "Fee (%)", "Uptime(days)", "Located", "Latency(ms)"}
                 Dim column As DataColumn
                 For Each col As String In columns
+                    If (col.Contains("Latency")) Then
+                        column.DataType = GetType(Integer)
+                    End If
                     column = New DataColumn(col)
                     networkdata.Tables("Network1").Columns.Add(column)
                 Next
@@ -277,6 +280,9 @@ Public Class P2Pool
                 Dim columns As String() = {"IP", "Version", "Fee (%)", "Uptime(days)", "Located", "Latency(ms)"}
                 Dim column As DataColumn
                 For Each col As String In columns
+                    If (col.Contains("Latency")) Then
+                        column.DataType = GetType(Integer)
+                    End If
                     column = New DataColumn(col)
                     networkdata.Tables("Network2").Columns.Add(column)
                 Next
