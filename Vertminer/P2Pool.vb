@@ -197,6 +197,9 @@ Public Class P2Pool
                     If (col.Contains("Latency")) Then
                         column.DataType = GetType(Integer)
                     End If
+                    If (col.Contains("Uptime")) Then
+                        column.DataType = GetType(Double)
+                    End If
                     column = New DataColumn(col)
                     networkdata.Tables("Network1").Columns.Add(column)
                 Next
@@ -282,6 +285,9 @@ Public Class P2Pool
                 For Each col As String In columns
                     If (col.Contains("Latency")) Then
                         column.DataType = GetType(Integer)
+                    End If
+                    If (col.Contains("Uptime")) Then
+                        column.DataType = GetType(Double)
                     End If
                     column = New DataColumn(col)
                     networkdata.Tables("Network2").Columns.Add(column)
